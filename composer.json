@@ -1,0 +1,25 @@
+{
+    "name": "Bruno/hxphp",
+    "require": {
+        "php-activerecord/php-activerecord": "dev-master"
+    },
+    "authors": [
+        {
+            "name": "Vinnicyus Carvalho",
+            "email": "vynny.cg@gmail.com"
+        },
+        {
+            "name": "Luciano Guida",
+            "email": "luciadoguida10@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-0": {
+            "": ["src/"]
+        }
+    },
+    "config": {
+        "discard-changes": "stash",    
+        "preferred-install": "dist"    
+    }
+}

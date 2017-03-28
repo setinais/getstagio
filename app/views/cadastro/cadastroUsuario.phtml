@@ -1,0 +1,97 @@
+<section id="login-container">
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2" id="login-wrapper">
+		<?php echo (isset($this->alert) ? $this->alert : ''); ?>
+			<div class="panel panel-success animated flipInY">
+				<div class="panel-heading">
+					<h3 class="panel-title text-center">     
+						Formulário de Cadastro
+					</h3>      
+				</div>
+				<div class="panel-body">
+					<div class="form-group col-md-12 col-xs-12 col-sm-12 col-lg-12">
+						<div class="col-md-4">
+							<h4 class="active">* Campos Obrigatórios</h4>
+							<div id="errors_campus"></div>
+						</div>
+						
+						
+					</div>
+					
+					<form method="post" class="form-horizontal" action="<?=BASE?>cadastro/cadastrousuario/" role="form">
+						
+						<div class="form-group">
+							<div class="col-md-8 ">
+								<label class="control-label" for="username">Nome: *</label>
+								<input type="text" class="form-control" id="id_nome" name="nome" value="<?=$view_request['nome'];?>" placeholder="Nome" " />
+							</div>
+							
+						</div>
+						<div class="form-group">
+							<div class="col-md-12">
+								<label for="exampleInputEmail1">Email: *</label>
+								<input value="<?=$view_request['email'];?>" type="email" class="form-control" id="id_email" name="email" placeholder="Email"/>
+								
+							</div>
+							<div class="col-md-3">
+								<label for="id_senha">Senha: *</label>
+								<input type="password" class="form-control" id="id_senha" name="senha" placeholder="Senha"/>
+								
+							</div>
+							<div class="col-md-3">
+								<label for="password">Confirmar Senha:</label>
+								<input type="password"  class="form-control col-md-5" id="confirsenha" placeholder="Senha" />
+								
+							</div>
+
+						</div>
+						<div class="form-group">
+							<div class="col-md-2">
+								<label>Estado: *</label>
+								<select class="form-control" name="estado_id" >
+									<?php   foreach($view_estados as $es){ ?>
+
+									<option value="<?=$es->id;?>"><?=$es->sigla;?></option>
+									<?php } ?>
+								</select>
+							</div>
+
+							<div class="col-md-4">
+								<label for="id_cidade">Cidade: </label>
+								<input value="<?=$view_request['cidade'];?>" type="text" placeholder="Cidade" class="form-control col-md-5" id="id_cidade" name="cidade"/>
+
+							</div>
+							<div class="col-md-4">
+								<label for="id_telefone">Telefone: *</label>
+								<input value="<?=$view_request['telefone'];?>" type="text" placeholder="(DD)9 9999-9999" class="form-control col-md-5" id="id_telefone" name="telefone"/>
+								
+							</div>
+							<div class="col-md-3">
+								<label for="password">CEP: *</label>
+								<input value="<?=$view_request['cep'];?>" type="text" class="form-control col-md-5" id="id_cep" name="cep" placeholder="CEP"" />
+							</div>
+							<div class="col-md-4">
+								<label for="password">Endereço: </label>
+								<input value="<?=$view_request['endereco'];?>" type="text" class="form-control" id="" name="endereco" placeholder="Endereço"" />
+							</div>
+							<div class="col-md-2">
+								<label for="password">Numero: </label>
+								<input value="<?=$view_request['numero'];?>" type="number" class="form-control" id="id_numero" name="numero" placeholder="Número" />
+							</div>
+						</div>
+						<div class="form-group">
+							
+							<div class="col-md-3 col-md-offset-2">
+								<a href="<?=BASE?>" type="submit" class="btn btn-danger">Voltar</a>
+							</div>
+							<div class="col-md-3 col-md-offset-3">
+								<button id="btn_cad" class="btn btn-success">Cadastrar</button>
+							</div>
+						</div>
+
+					</form>
+					
+				</div>
+			</div>
+		</div>
+	</div>

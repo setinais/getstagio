@@ -1,0 +1,64 @@
+<?php
+
+/**
+* 
+*/
+class Estudante extends \HXPHP\System\Model
+{
+	static $validates_presence_of = [
+			[
+				'matricula',
+				'message' => '<strong>Matricula</strong> é um campo obrigatório.'
+			],
+			[
+				'curso',
+				'message' => '<strong>Curso</strong> é um campo obrigatório.'
+			],
+			[
+				'serie_modulo',
+				'message' => '<strong>Serié / Modúlo</strong> é um campo obrigatório.'
+			],
+			[
+				'data_nasc',
+				'message' => '<strong>Data de Nascimento</strong> é um campo obrigatorio.'
+			]
+			
+	];
+	static $validates_uniqueness_of  = [
+			[
+				['matricula'],
+				'message' => 'Já existe um estudante cadastrado com esta <strong>matricula</strong>.'
+			]
+	];
+
+	public static function cadastrar($post,$id_user)
+	{
+		$callback = new \stdClass;
+		$callback->status = false;
+		$callback->user = null;
+		$callback->errors = [];
+
+		$post['usuario_id'] = $id_user;
+		$cadastrar = self::create($post);
+		if($cadastrar->is_valid())
+		{
+			$callback->status = true;
+			$callback->user = $cadastrar;
+
+			$usuario = Usuario::find($id_user);
+			$usuario->funcoe_id = 1;
+			$usuario->save();
+
+		}
+		else
+		{
+			$errors = $cadastrar->errors->get_raw_errors();
+			foreach ($errors as $campo => $messagem) {
+				array_push($callback->errors, $messagem[0]);
+			}
+		}
+
+		return $callback;
+	}
+			
+}
