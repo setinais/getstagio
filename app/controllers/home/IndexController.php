@@ -48,6 +48,6 @@ class IndexController extends \HXPHP\System\Controller
 
 	public function editarBasicoAction()
 	{
-
+		$post = $this->request->post();
 	}
 }
