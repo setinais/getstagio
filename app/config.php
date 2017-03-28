@@ -18,7 +18,7 @@
 			'host' => 'localhost',
 			'user' => 'root',
 			'password' => '',
-			'dbname' => 'vibe',
+			'dbname' => 'sie',
 			'charset' => 'utf8'
 		]);
 
