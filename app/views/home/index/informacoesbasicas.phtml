@@ -27,7 +27,17 @@
   					<input type="text" class="form-control" id="id_numero" placeholder="Numero" name="numero" value="<?=$view_request->numero;?>" />
 
   					<label for="id_estado">Estado</label>
-  					<input type="email" class="form-control" id="id_estado" placeholder="Estado" name="estado" value="<?=$view_request->estado;?>" />
+  					<select class="form-control" name="estado_id" >
+
+                  <?php foreach($view_estados as $es){ 
+                    if($es->id === $view_request->estado_id){ ?>
+                       <option value='<?=$es->id;?>' selected="selected"><?=$es->sigla;?></option>
+                      <?php } 
+                      else
+                      { ?><option value='<?=$es->id;?>'><?=$es->sigla;?></option>
+                      <?php }
+                   } ?>
+                </select>
 
   					<label for="id_cidade">Cidade</label>
   					<input type="email" class="form-control" id="id_cidade" placeholder="Cidade" name="cidade" value="<?=$view_request->cidade;?>" />

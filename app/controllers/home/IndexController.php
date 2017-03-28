@@ -28,7 +28,7 @@ class IndexController extends \HXPHP\System\Controller
 	public function informacoesBasicasAction()
 	{
 		$this->requestpag = Usuario::find_by_id($this->auth->getUserId());
-		$this->view->setVars(['request' => $this->requestpag,'errors' => $this->errors]);
+		$this->view->setVars(['request' => $this->requestpag,'errors' => $this->errors, 'estados' => Estado::getEstados()]);
 	}
 
 	public function perfilAction()

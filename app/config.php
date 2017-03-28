@@ -56,7 +56,7 @@
 			'Cadastro Incompleto/folder-open' => '%siteURL%/home/cadastroadicional/'
 			
 		]);
-		$configs->env->development->auth->setURLs('/vibe/home',' /vibe/login/');
+		$configs->env->development->auth->setURLs('/sie/home',' /sie/login/');
 		//$configs->env->development->auth->setURLs('/hxphp/admin/home/', '/hxphp/admin/login/', 'admin');
 		/*
 		//Configurações de Ambiente - Produção

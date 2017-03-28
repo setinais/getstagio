@@ -20,7 +20,7 @@
 	$composer_autoload = 'vendor' . DS . 'autoload.php';
 
 	if ( ! file_exists($composer_autoload))
-		die('Execute o comando: composer install');
+		die('Execute o comando: "composer install" -> se este problema persistir, foi o bebo que nao corrigiu... by Carvalho never end!!!');
 
 	if (version_compare(PHP_VERSION, '5.4.0', '<'))
 		die('Atualize seu PHP para a vers&atilde;o: 5.4.0 ou superior.');
