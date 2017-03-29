@@ -36,6 +36,7 @@
 		$configs->env->development->menu->setMenus([
 			'Home/home' => '%siteURL%/home',
 			'Vagas de Estagio/s' => '%baseURI%/home/estagio',
+			'Minhas Incscriçoes/d' => '%baseURI%/home/incricoes',
 			'Usuario/user' => [
 				'Informações Basicas/user-secret' => '%baseURI%/home/index/informacoesBasicas',
 				'Perfil/user-plus' => '%baseURI%/home/index/perfil/',
