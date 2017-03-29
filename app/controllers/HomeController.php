@@ -1,6 +1,6 @@
 <?php 
 
-class IndexController extends \HXPHP\System\Controller
+class HomeController extends \HXPHP\System\Controller
 {
 	private $requestpag;
 

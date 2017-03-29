@@ -62,7 +62,7 @@ class CadastroAdicionalController extends HXPHP\System\Controller
 							}
 						break;
 					default:
-						$this->redirectTo($this->configs->baseURI.'home/cadastroadicional/');
+						$this->redirectTo($this->configs->baseURI.'cadastroadicional/');
 						break;
 				}
 			}

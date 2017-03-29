@@ -38,8 +38,8 @@
 			'Vagas de Estagio/s' => '%baseURI%/home/estagio',
 			'Minhas Incscriçoes/d' => '%baseURI%/home/incricoes',
 			'Usuario/user' => [
-				'Informações Basicas/user-secret' => '%baseURI%/home/index/informacoesBasicas',
-				'Perfil/user-plus' => '%baseURI%/home/index/perfil/',
+				'Informações Basicas/user-secret' => '%baseURI%/home/informacoesBasicas/',
+				'Perfil/user-plus' => '%baseURI%/home/perfil/',
 				'Sair/power-off' => '%baseURI%/login/sair/'
 			]
 		],'Estudante');
@@ -48,8 +48,8 @@
 			'Home/home' => '%siteURL%/home/',
 
 			'Usuario/user' => [
-				'Informações Basicas/user-secret' => '%baseURI%/home/index/informacoesBasicas',
-				'Perfil/user-plus' => '%baseURI%/home/index/perfil/',
+				'Informações Basicas/user-secret' => '%baseURI%/home/informacoesBasicas',
+				'Perfil/user-plus' => '%baseURI%/home/perfil/',
 				'Sair/power-off' => '%baseURI%/login/sair/'
 			]
 		],'Instituicao');
@@ -60,8 +60,8 @@
 			'Sair/power-off' => '%baseURI%/login/sair/'
 			
 		]);
-		$configs->env->development->auth->setURLs('/sie/home',' /sie/login/');
-		//$configs->env->development->auth->setURLs('/hxphp/admin/home/', '/hxphp/admin/login/', 'admin');
+		$configs->env->development->auth->setURLs('/sie/home/',' /sie/login/');
+		//$configs->env->development->auth->setURLs('/sie/exemplo/home/', '/sie/exemplo/login/', 'admin');
 		/*
 		//Configurações de Ambiente - Produção
 		$configs->env->add('production');
