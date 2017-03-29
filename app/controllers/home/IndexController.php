@@ -10,7 +10,8 @@ class IndexController extends \HXPHP\System\Controller
             $this->load(
                     'Services\Auth',
                     $configs->auth->after_login,
-                    $configs->auth->after_logout
+                    $configs->auth->after_logout,
+                    true
       
                 );
             $this->load(
@@ -56,7 +57,7 @@ class IndexController extends \HXPHP\System\Controller
 		$post = $this->request->post();
 		if(!empty($post))
 		{
-			$callback = Usuario::editar($post,$this->auth->getUserId());
+			($this->auth->getUserRole() === "Estudante" ? $callback = Estudante::editar($post,$this->auth->getUserId()) : $callback = Instituicao::editar($post,$this->auth->getUserId()) );
 			if($callback->status === true)
 			{
 				$this->load('Helpers\Alert',[
@@ -75,7 +76,7 @@ class IndexController extends \HXPHP\System\Controller
 	                    ]);
 			}
 		}
-		$this->requestpag = Usuario::find_by_usuario_id($this->auth->getUserId());
-		$this->view->setFile('perfil'.$this->auth->getUserRole())->setVars(['request' => $this->requestpag, 'estados' => Estado::getEstados()]);
+		($this->auth->getUserRole() == "Estudante" ? $this->requestpag = Estudante::find_by_usuario_id($this->auth->getUserId()) : $this->requestpag = Instituicao::find_by_usuario_id($this->auth->getUserId()) );
+		$this->view->setFile('perfil'.$this->auth->getUserRole())->setVar('request', $this->requestpag);
 	}
 }

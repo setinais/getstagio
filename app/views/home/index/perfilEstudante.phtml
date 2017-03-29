@@ -1,19 +1,20 @@
 <div class="col-md-8 col-md-offset-2">
+	<?php (isset($this->alert) ? $this->alert : '' );?>
 	<div class="panel panel-default">
   		<div class="panel-heading">
     		<h3 class="panel-title">Perfil</h3>
   		</div>
   		<div class="panel-body">
-  			<form action="<?=BASE?>home/index/perfil">
+  			<form action="<?=BASE?>home/index/perfil" method="POST">
     		 <div class="form-group"> 
 			    <label for="id_matricula">Matricula</label>
-			    <input type="email" class="form-control" id="id_matricula" placeholder="Curso" name="matricula">
+			    <input value="<?=$view_request->matricula;?>" type="email" class="form-control" id="id_matricula" placeholder="Curso" name="matricula">
 
 				<label for="id_curso">Curso</label>
-			    <input type="email" class="form-control" id="id_curso" placeholder="Curso" name="curso">
+			    <input value="<?=$view_request->curso;?>" type="email" class="form-control" id="id_curso" placeholder="Curso" name="curso">
 
 			    <label for="id_serie">Serie / Modulo</label>
-			    <input type="email" class="form-control" id="id_serie" placeholder="Serie / Modulo" name="serie_modulo">
+			    <input value="<?=$view_request->serie_modulo;?>" type="email" class="form-control" id="id_serie" placeholder="Serie / Modulo" name="serie_modulo">
 			  </div>
 			  </form>
   		</div>

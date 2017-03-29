@@ -70,7 +70,7 @@ class Instituicao extends \HXPHP\System\Model
 			if($editar->is_valid())
 			{
 				$callback->status = true;
-				$callback->user = $editar;
+				$callback->ins = $editar;
 			}
 			else
 			{

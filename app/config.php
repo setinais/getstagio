@@ -35,6 +35,7 @@
 
 		$configs->env->development->menu->setMenus([
 			'Home/home' => '%siteURL%/home',
+			'Vagas de Estagio/s' => '%baseURI%/home/estagio',
 			'Usuario/user' => [
 				'Informações Basicas/user-secret' => '%baseURI%/home/index/informacoesBasicas',
 				'Perfil/user-plus' => '%baseURI%/home/index/perfil/',
@@ -44,6 +45,7 @@
 
 		$configs->env->development->menu->setMenus([
 			'Home/home' => '%siteURL%/home/',
+
 			'Usuario/user' => [
 				'Informações Basicas/user-secret' => '%baseURI%/home/index/informacoesBasicas',
 				'Perfil/user-plus' => '%baseURI%/home/index/perfil/',
@@ -53,7 +55,8 @@
 
 		$configs->env->development->menu->setMenus([
 			'Home/home' => '%siteURL%/home/',
-			'Cadastro Incompleto/folder-open' => '%siteURL%/home/cadastroadicional/'
+			'Cadastro Incompleto/folder-open' => '%baseURI%/home/cadastroadicional/',
+			'Sair/power-off' => '%baseURI%/login/sair/'
 			
 		]);
 		$configs->env->development->auth->setURLs('/sie/home',' /sie/login/');

@@ -68,7 +68,7 @@ class Estudante extends \HXPHP\System\Model
 	{
 		$callback = new \stdClass;
 		$callback->status = false;
-		$callback->ins = null;
+		$callback->est = null;
 		$callback->errors = [];
 
 		if(!empty($atributos)){
@@ -78,7 +78,7 @@ class Estudante extends \HXPHP\System\Model
 			if($editar->is_valid())
 			{
 				$callback->status = true;
-				$callback->user = $editar;
+				$callback->est = $editar;
 			}
 			else
 			{

@@ -11,7 +11,8 @@ class CadastroAdicionalController extends HXPHP\System\Controller
             $this->load(
                     'Services\Auth',
                     $configs->auth->after_login,
-                    $configs->auth->after_logout
+                    $configs->auth->after_logout,
+                    true
                 );
             $this->load(
 				'Helpers\Menu',
