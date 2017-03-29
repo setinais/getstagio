@@ -6,7 +6,8 @@
 class Usuario extends \HXPHP\System\Model
 {
 	static $belongs_to = [
-			['funcoe']
+			['funcoe'],
+			['estado']
 			];
 
 	static $has_many = [
@@ -63,7 +64,7 @@ class Usuario extends \HXPHP\System\Model
 	];
 	static $validates_size_of = [
 	  ['cep', 'is' => 8, 'wrong_length' => 'O tamanho do <strong>CEP</strong> deve ser de 8 caracteres.'],
-	  ['telefone', 'is' => 11, 'wrong_length' => '<strong>Telefone</strong> inválido, deve conter 11 digítos']
+	  ['telefone', 'is' => 11, 'wrong_length' => '<strong>Telefone</strong> inválido, deve conter 11 digítos.']
    ];
 	public static function cadastrar($post)
 	{
@@ -161,5 +162,37 @@ class Usuario extends \HXPHP\System\Model
 			$callBack_logar->alert = "Campo <strong>e-mail</strong> está vazio.";
 		}
 		return $callBack_logar;
+	}
+
+	public static function editar($atributos,$id)
+	{
+		$callback = new \stdClass;
+		$callback->user = null;
+		$callback->status = false;
+		$callback->errors = [];
+
+		if(!empty($atributos)){
+			$editar = self::find($id);
+			$editar->update_attributes($atributos);
+			$editar->save();
+			if($editar->is_valid())
+			{
+				$callback->status = true;
+				$callback->user = $editar;
+			}
+			else
+			{
+				$errors = $editar->errors->get_raw_errors();
+				foreach ($errors as $campo => $messagem) 
+				{
+					array_push($callback->errors, $messagem[0]);
+				}
+			}
+		}
+		else
+		{
+			$callback->errors = "Todos os campos estão vazios!";
+		}
+		return $callback;
 	}
 }

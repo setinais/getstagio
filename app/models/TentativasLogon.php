@@ -4,6 +4,9 @@
 */
 class TentativasLogon extends \HXPHP\System\Model
 {
+	static $belongs_to = [
+		['usuario']
+	];
 	
 	public static $attempts;
 		

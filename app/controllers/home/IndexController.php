@@ -2,8 +2,6 @@
 
 class IndexController extends \HXPHP\System\Controller
 {
-
-	private $errors = null;
 	private $requestpag;
 
 	function __construct($configs)
@@ -27,8 +25,30 @@ class IndexController extends \HXPHP\System\Controller
 
 	public function informacoesBasicasAction()
 	{
+		$post = $this->request->post();
+		if(!empty($post))
+		{
+			$callback = Usuario::editar($post,$this->auth->getUserId());
+			if($callback->status === true)
+			{
+				$this->load('Helpers\Alert',[
+	                    'success',
+	                    'Salvo',
+	     				'Dados alterados com sucesso.'
+	                    ]);
+
+			}
+			else
+			{
+	            $this->load('Helpers\Alert',[
+	                    'danger',
+	                    'Atenção',
+	     				$callback->errors
+	                    ]);
+			}
+		}
 		$this->requestpag = Usuario::find_by_id($this->auth->getUserId());
-		$this->view->setVars(['request' => $this->requestpag,'errors' => $this->errors, 'estados' => Estado::getEstados()]);
+		$this->view->setVars(['request' => $this->requestpag, 'estados' => Estado::getEstados()]);
 	}
 
 	public function perfilAction()
@@ -46,8 +66,4 @@ class IndexController extends \HXPHP\System\Controller
 		$post = $this->request->post();
 	}
 
-	public function editarBasicoAction()
-	{
-		$post = $this->request->post();
-	}
 }

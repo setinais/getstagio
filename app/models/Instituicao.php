@@ -5,6 +5,9 @@
 */
 class Instituicao extends \HXPHP\System\Model
 {
+	static $belongs_to = [
+		['usuario']
+	];
 	static $validates_presence_of = [
 			[
 				'razao_social',
@@ -52,5 +55,22 @@ class Instituicao extends \HXPHP\System\Model
 
 		return $callback;
 	}
-			
+	
+	public static function editar($post,$id)
+	{
+		$callback = new \stdClass;
+		$callback->status = false;
+		$callback->ins = null;
+		$callback->errors = [];
+
+		if(!empty($post))
+		{
+
+		}
+		else
+		{
+			$callback->errors = "";
+		}
+		return $callback;
+	} 
 }

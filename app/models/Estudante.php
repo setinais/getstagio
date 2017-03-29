@@ -5,6 +5,9 @@
 */
 class Estudante extends \HXPHP\System\Model
 {
+	static $belongs_to = [
+		['usuario']
+	];
 	static $validates_presence_of = [
 			[
 				'matricula',

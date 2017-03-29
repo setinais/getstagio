@@ -1,23 +1,24 @@
 <div class="col-md-8 col-md-offset-2">
+<?php echo (isset($this->alert) ? $this->alert : ''); ?>
 	<div class="panel panel-default">
   		<div class="panel-heading">
     		<h3 class="panel-title">Perfil</h3>
   		</div>
   		<div class="panel-body">
-  			<form action="<?=BASE?>home/index/editarBasico" method="POST">
+  			<form action="<?=BASE?>home/index/informacoesbasicas" method="POST">
   				<div class="form-group">
   					<label for="id_nome">Nome</label>
-  					<input type="email" class="form-control" id="id_nome" placeholder="Nome" name="nome" value="<?=$view_request->nome;?>" />
+  					<input type="text" class="form-control" id="id_nome" placeholder="Nome" name="nome" value="<?=$view_request->nome;?>" />
   				</div>
   				<div class="form-group">
   					<label for="id_endereco">Endereço</label>
-  					<input type="email" class="form-control" id="id_endereco" placeholder="Endereço" name="endereco" value="<?=$view_request->endereco;?>" />
+  					<input type="text" class="form-control" id="id_endereco" placeholder="Endereço" name="endereco" value="<?=$view_request->endereco;?>" />
 
   					<label for="id_telefone">Telefone</label>
-  					<input type="email" class="form-control" id="id_telefone" placeholder="Telefone" name="telefone" value="<?=$view_request->telefone;?>" />
+  					<input type="text" class="form-control" id="id_telefone" placeholder="Telefone" name="telefone" value="<?=$view_request->telefone;?>" />
 
   					<label for="id_cep">Cep</label>
-  					<input type="email" class="form-control" id="id_cep" placeholder="CEP" name="cep" value="<?=$view_request->cep;?>" />
+  					<input type="text" class="form-control" id="id_cep" placeholder="CEP" name="cep" value="<?=$view_request->cep;?>" />
 
   					<label for="id_numero">Numero</label>
   					<input type="text" class="form-control" id="id_numero" placeholder="Numero" name="numero" value="<?=$view_request->numero;?>" />
@@ -36,7 +37,7 @@
                 </select>
 
   					<label for="id_cidade">Cidade</label>
-  					<input type="email" class="form-control" id="id_cidade" placeholder="Cidade" name="cidade" value="<?=$view_request->cidade;?>" />
+  					<input type="text" class="form-control" id="id_cidade" placeholder="Cidade" name="cidade" value="<?=$view_request->cidade;?>" />
   				</div>
           <div class="form-group col-md-4 col-md-offset-5">
             <button class="btn btn-success">Salvar alterações</button>
