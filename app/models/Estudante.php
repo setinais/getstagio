@@ -63,5 +63,36 @@ class Estudante extends \HXPHP\System\Model
 
 		return $callback;
 	}
-			
+	
+	public static function editar($atributos,$id)
+	{
+		$callback = new \stdClass;
+		$callback->status = false;
+		$callback->ins = null;
+		$callback->errors = [];
+
+		if(!empty($atributos)){
+			$editar = self::find($id);
+			$editar->update_attributes($atributos);
+			$editar->save();
+			if($editar->is_valid())
+			{
+				$callback->status = true;
+				$callback->user = $editar;
+			}
+			else
+			{
+				$errors = $editar->errors->get_raw_errors();
+				foreach ($errors as $campo => $messagem) 
+				{
+					array_push($callback->errors, $messagem[0]);
+				}
+			}
+		}
+		else
+		{
+			$callback->errors = "Todos os campos estão vazios!";
+		}
+		return $callback;
+	} 
 }

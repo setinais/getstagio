@@ -53,17 +53,29 @@ class IndexController extends \HXPHP\System\Controller
 
 	public function perfilAction()
 	{
-		$this->view->setFile('perfil'.$this->auth->getUserRole());
-	}
-	public function editarEmpresaAction()
-	{
 		$post = $this->request->post();
+		if(!empty($post))
+		{
+			$callback = Usuario::editar($post,$this->auth->getUserId());
+			if($callback->status === true)
+			{
+				$this->load('Helpers\Alert',[
+	                    'success',
+	                    'Salvo',
+	     				'Dados alterados com sucesso.'
+	                    ]);
 
-
+			}
+			else
+			{
+	            $this->load('Helpers\Alert',[
+	                    'danger',
+	                    'Atenção',
+	     				$callback->errors
+	                    ]);
+			}
+		}
+		$this->requestpag = Usuario::find_by_usuario_id($this->auth->getUserId());
+		$this->view->setFile('perfil'.$this->auth->getUserRole())->setVars(['request' => $this->requestpag, 'estados' => Estado::getEstados()]);
 	}
-	public function editarEstudanteAction()
-	{
-		$post = $this->request->post();
-	}
-
 }
