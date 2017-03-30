@@ -1,17 +1,48 @@
 <div class="col-md-8 col-md-offset-2">
 	<div class="row">
-		<h3 class="col-md-4 col-md-offse-4">Situação das Vagas</h3>
+		<h3 class="col-md-4 col-md-offset-4">Situação das Vagas</h3>
 		<table class="table table-hover">
-			<tr>
-				<td>Selecione<td>
-				<td>Vaga</td>
-				<td>Inscritos</td>
-				<td>Remuneração</td>
-				<td>Duração</td>
-				<td>Status</td>
-				<td>Açoes</td>
-			<tr>
-			<?php ?>
+			<thead>
+				<tr>
+					<th>
+						<div class="btn-group">
+							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								Ações <span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu">
+								<li><a href="">Finalizar</a></li>
+								<li><a href="#">Reabrir</a></li>
+								<li><a href="#">Editar</a></li>
+								<li><a href="#">Excluir</a></li>
+							</ul>
+						</div>
+					</th>
+					<th>Cargo</th>
+					<th>Quantidade</th>
+					<th>Remuneração</th>
+					<th>Duração</th>
+					<th>Status</th>
+				</tr>
+			</thead>
+			<tbody>
+			<?php foreach ($view_vagas as $key) { ?>
+				<tr>
+					<th>
+						<div class="checkbox">
+						    <label>
+						      <input type="checkbox" value="<?=$key->id;?>">
+						    </label>
+					  	</div>
+					</th>
+					<td><?=$key->cargo_has_instituicao->cargo->nome;?></td>
+					<td><?=$key->qnt;?></td>
+					<td><?=$key->remuneracao;?></td>
+					<td><?=$key->duracao;?></td>
+					<td><?php echo ($key->status === 1 ? "<span class='label label-info'>Em Aberto</span>" : "<span class='label label-danger'>Finalizado</span>" );?>
+					</td>
+				</tr>
+			<?php } ?>
+			</tbody>
 		</table>
 	</div>
 </div>

@@ -25,8 +25,8 @@ class VagaController extends \HXPHP\System\Controller
 
 	}
 
-	public function indexAction()
+	public function indexAction($filtros = null)
 	{
-		$this->view->setFile('vagas'.$this->auth->getUserRole())->setVar('vagas' => Vaga::all());
+		$this->view->setFile('vagas'.$this->auth->getUserRole())->setVar('vagas', Vaga::all());
 	}
 }
