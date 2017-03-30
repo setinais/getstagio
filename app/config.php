@@ -6,7 +6,7 @@
 
 	
 		//Globais
-		$configs->title = 'SIE';
+		$configs->title = 'GetStagio';
 
 		//Configurações de Ambiente - Desenvolvimento
 		$configs->env->add('development');
@@ -18,7 +18,7 @@
 			'host' => 'localhost',
 			'user' => 'root',
 			'password' => '',
-			'dbname' => 'sie',
+			'dbname' => 'getstagio',
 			'charset' => 'utf8'
 		]);
 
