@@ -2,7 +2,7 @@
 /**
 * 
 */
-class VagaController extends \HXPHP\System\Controller
+class EstagioController extends \HXPHP\System\Controller
 {
 	
 	function __construct($configs)
@@ -25,8 +25,13 @@ class VagaController extends \HXPHP\System\Controller
 
 	}
 
-	public function indexAction($filtros = null)
+	public function listAction($filtros = null)
 	{
 		$this->view->setFile('vagas'.$this->auth->getUserRole())->setVar('vagas', Vaga::all());
+	}
+
+	public function criarAction()
+	{
+
 	}
 }
