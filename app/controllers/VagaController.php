@@ -24,4 +24,9 @@ class VagaController extends \HXPHP\System\Controller
     		$this->auth->redirectCheck();
 
 	}
+
+	public function indexAction()
+	{
+		$this->view->setFile('vagas'.$this->auth->getUserRole())->setVar('vagas' => Vaga::all());
+	}
 }

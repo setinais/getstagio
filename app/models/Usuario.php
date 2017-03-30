@@ -11,10 +11,10 @@ class Usuario extends \HXPHP\System\Model
 			];
 
 	static $has_many = [
-		['recuperar_senha'],
-		['tentativas_logon'],
-		['estudante'],
-		['instituicao']
+		['recuperar_senhas'],
+		['tentativas_logons'],
+		['estudantes'],
+		['instituicaos']
 	];
 	static $validates_presence_of = [
 			[
