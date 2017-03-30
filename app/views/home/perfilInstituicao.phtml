@@ -1,5 +1,5 @@
 <div class="col-md-8 col-md-offset-2">
-	<?php (isset($this->alert) ? $this->alert : ''); ?>
+	<?php echo (isset($this->alert) ? $this->alert : ''); ?>
 	<div class="panel panel-default">
   		<div class="panel-heading">
     		<h3 class="panel-title">Perfil</h3>
@@ -10,7 +10,9 @@
 			    <label for="id_razao">Razão Social / Fantasia</label>
 			    <input value="<?=$view_request->razao_social;?>" type="text" class="form-control" id="id_razao" placeholder="Razão Social / Fantasia" name="razao_social">
 			  </div>
-			 	
+			 	 <div class="form-group col-md-4 col-md-offset-5">
+		            <button class="btn btn-success">Salvar alterações</button>
+		          </div>
 			</form>
   		</div>
 	</div>

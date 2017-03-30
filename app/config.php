@@ -35,8 +35,8 @@
 
 		$configs->env->development->menu->setMenus([
 			'Home/home' => '%siteURL%/home',
-			'Vagas de Estagio/s' => '%baseURI%/home/estagio',
-			'Minhas Incscriçoes/d' => '%baseURI%/home/incricoes',
+			'Minhas Incscriçoes/list-alt' => '%baseURI%/vaga/',
+			'Vagas de Estagio/newspaper-o' => '%baseURI%/vaga/candidatar',
 			'Usuario/user' => [
 				'Informações Basicas/user-secret' => '%baseURI%/home/informacoesBasicas/',
 				'Perfil/user-plus' => '%baseURI%/home/perfil/',
@@ -46,7 +46,8 @@
 
 		$configs->env->development->menu->setMenus([
 			'Home/home' => '%siteURL%/home/',
-
+			'Minhas Vagas/list-alt' => '%baseURI%/vaga/',
+			'Nova Vaga/newspaper-o' => '%baseURI%/vaga/criar',
 			'Usuario/user' => [
 				'Informações Basicas/user-secret' => '%baseURI%/home/informacoesBasicas',
 				'Perfil/user-plus' => '%baseURI%/home/perfil/',
