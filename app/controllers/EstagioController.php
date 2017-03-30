@@ -34,4 +34,9 @@ class EstagioController extends \HXPHP\System\Controller
 	{
 
 	}
+
+	public function showVagaAction($id)
+	{
+
+	}
 }
