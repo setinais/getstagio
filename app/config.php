@@ -11,7 +11,7 @@
 		//Configurações de Ambiente - Desenvolvimento
 		$configs->env->add('development');
 
-		$configs->env->development->baseURI = '/sie/';
+		$configs->env->development->baseURI = '/getstagio/';
 
 		$configs->env->development->database->setConnectionData([
 			'driver' => 'mysql',
@@ -60,7 +60,7 @@
 			'Sair/power-off' => '%baseURI%/login/sair/'
 			
 		]);
-		$configs->env->development->auth->setURLs('/sie/home/',' /sie/login/');
+		$configs->env->development->auth->setURLs('/getstagio/home/',' /getstagio/login/');
 		//$configs->env->development->auth->setURLs('/sie/exemplo/home/', '/sie/exemplo/login/', 'admin');
 		/*
 		//Configurações de Ambiente - Produção
