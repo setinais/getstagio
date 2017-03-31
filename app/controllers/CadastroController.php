@@ -43,6 +43,6 @@ class CadastroController extends \HXPHP\System\Controller
 
 			}
 		}
-		$this->view->setAssets('js',[$this->configs->baseURI.'public/js/cadastro/cadastroUsuario.js',$this->configs->baseURI.'public/js/jquery.1.7.7.mask.min.js'])->setVars(["request" => $post, "estados" => Estado::getEstados()]);
+		$this->view->setAssets('js',[$this->configs->baseURI.'public/js/jquery.js',$this->configs->baseURI.'public/js/cadastro/cadastroUsuario.js',$this->configs->baseURI.'public/js/jquery.1.7.7.mask.min.js'])->setVars(["request" => $post, "estados" => Estado::getEstados()]);
 	}
 }

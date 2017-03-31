@@ -16,3 +16,7 @@ function troca(tipo)
 			alert('invalido');
 	}
 }
+jQuery(document).ready(function($) {
+	$("#id_cnpj").mask('99.999.999/9999-99');
+	
+});
