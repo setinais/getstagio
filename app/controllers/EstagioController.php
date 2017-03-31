@@ -34,5 +34,5 @@ class EstagioController extends \HXPHP\System\Controller
 	{
 		$post = $this->request->post();
 		$this->view->setVars(['request' => $post]);
-	}
+	}g
 }

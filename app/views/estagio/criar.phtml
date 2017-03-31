@@ -1,1 +1,15 @@
-criar.phtml
+<div class="container">
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			<form action="<?=BASE;?>" method="POST" role="form">
+				<div class="form-group">
+					<div class="col-md-8">
+						<label class="control-label" for="username">Nome: *</label>
+						<input type="text" class="form-control" id="id_nome" name="nome" value="<?=$view_request['nome'];?>" placeholder="Nome" " />
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+

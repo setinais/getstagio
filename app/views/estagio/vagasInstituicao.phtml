@@ -26,27 +26,27 @@
 				</tr>
 			</thead>
 			<tbody>
-			<?php foreach ($view_vagas as $key) { ?>
+			<?php foreach ($view_vagas as $vagas) { ?>
 				<tr>
 					<th>
 						<p class="text-center">
-							<input type="checkbox" value="<?=$key->id;?>">
+							<input type="checkbox" value="<?=$vagas->id;?>">
 						</p>
 					</th>
 					<td>
-						<?=$key->cargo_has_instituicao->cargo->nome;?>
+						<?=$vagas->cargo_has_instituicao->cargo->nome;?>
 					</td>
 					<td>
-						<?=$key->qnt;?>
+						<?=$vagas->qnt;?>
 					</td>
 					<td>
-						R$ <?=$key->remuneracao;?>
+						R$ <?=$vagas->remuneracao;?>
 					</td>
 					<td>
-						<?=$key->duracao;?>
+						<?=$vagas->duracao;?>
 					</td>
 					<td>
-						<?php echo ($key->status === 1 ? "<span class='label label-info'>Em Aberto</span>" : "<span class='label label-danger'>Finalizado</span>" );?> 
+						<?php echo ($vagas->status === 1 ? "<span class='label label-info'>Em Aberto</span>" : "<span class='label label-danger'>Finalizado</span>" );?> 
 					</td>
 					<td><p class="text-center"><a href="#" data-toggle="modal" data-target="#myModal">More</a></p></td>
 					<div class="modal fade"  id="myModal" tabindex="-1" role="dialog">
