@@ -12,4 +12,11 @@ class CargoHasInstituicao extends \HXPHP\System\Model
 		['cargo'],
 		['instituicao']
 	];
+
+	public static function cadastrar($id_ins,$id_cargo)
+	{
+		$post = ['cargo_id' => $id_cargo,'instituicao_id' => $id_ins];
+		$callback = self::create($post);
+		return $callback;
+	}
 }

@@ -27,12 +27,61 @@ class EstagioController extends \HXPHP\System\Controller
 
 	public function listAction($filtros = null)
 	{
-		$this->view->setFile('vagas'.$this->auth->getUserRole())->setVar('vagas', Vaga::search($id_user,$filtros,$this->auth->getUserRole()));
+		$this->view->setFile('vagas'.$this->auth->getUserRole())->setVar('vagas', ($this->auth->getUserRole() == "Instituicao" ? Vaga::search($this->auth->getUserId(),$filtros) : Vaga::search($filtros)));
 	}
 
-	public function criarAction()
+	public function criarAction($acao=null)
 	{
 		$post = $this->request->post();
-		$this->view->setVars(['request' => $post]);
-	}g
+		if(!is_null($acao))
+		{
+			switch ($acao) {
+				case '1':
+					$cad_vaga = Vaga::cadastrar($post,$this->auth->getUserId());
+						if($cad_vaga->status === true)
+						{
+							$this->load('Helpers\Alert',[
+								'success',
+								'Salvo',
+								'Vaga criado com sucesso.'
+								]);
+							$post = null;
+						}
+						else
+						{
+							$this->load('Helpers\Alert',[
+								'danger',
+								'Não foi possivel Cadastrar, devido aos erros abaixo:',
+								$cad_vaga->errors
+								]);
+						}
+					break;
+				case '2':
+					$cad_cargo = Cargo::cadastrar($post);
+						if($cad_cargo->status === true)
+						{
+							$this->load('Helpers\Alert',[
+								'success',
+								'Salvo',
+								'Cargo criado com sucesso.'
+								]);
+							$post = null;
+						}
+						else
+						{
+							$this->load('Helpers\Alert',[
+								'danger',
+								'Não foi possivel Cadastrar, devido aos erros abaixo:',
+								$cad_cargo->errors
+								]);
+							$post = null;
+						}
+					break;
+				default:
+					$this->redirectTo($this->configs->baseURI.'estagio/criar');
+					break;
+			}
+		}
+		$this->view->setVars(['request' => $post, 'cargos' => Cargo::all()]);
+	}
 }
