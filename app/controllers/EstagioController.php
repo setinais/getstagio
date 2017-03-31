@@ -27,16 +27,12 @@ class EstagioController extends \HXPHP\System\Controller
 
 	public function listAction($filtros = null)
 	{
-		$this->view->setFile('vagas'.$this->auth->getUserRole())->setVar('vagas', Vaga::all());
+		$this->view->setFile('vagas'.$this->auth->getUserRole())->setVar('vagas', Vaga::search($id_user,$filtros,$this->auth->getUserRole()));
 	}
 
 	public function criarAction()
 	{
-
-	}
-
-	public function showVagaAction($id)
-	{
-
+		$post = $this->request->post();
+		$this->view->setVars(['request' => $post]);
 	}
 }
