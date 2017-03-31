@@ -61,7 +61,7 @@
 
 		$configs->env->development->menu->setMenus([
 			'Home/home' => '%siteURL%/home/',
-			'Cadastro Incompleto/folder-open' => '%baseURI%/home/cadastroadicional/',
+			'Cadastro Incompleto/folder-open' => '%baseURI%/cadastroadicional/',
 			'Sair/power-off' => '%baseURI%/login/sair/'
 			
 		]);

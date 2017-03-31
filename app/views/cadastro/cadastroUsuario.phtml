@@ -63,12 +63,12 @@
 							</div>
 							<div class="col-md-4">
 								<label for="id_telefone">Telefone: *</label>
-								<input value="<?=$view_request['telefone'];?>" type="text" placeholder="(DD)9 9999-9999" class="form-control col-md-5" id="id_telefone" name="telefone"/>
+								<input value="<?=$view_request['telefone'];?>" type="text" placeholder="(DD)9 9999-9999" class="form-control col-md-5" id="id_telefone" name="telefone" maxlength="11"/>
 								
 							</div>
 							<div class="col-md-3">
 								<label for="password">CEP: *</label>
-								<input value="<?=$view_request['cep'];?>" type="text" class="form-control col-md-5" id="id_cep" name="cep" placeholder="CEP"" />
+								<input value="<?=$view_request['cep'];?>" type="text" class="form-control col-md-5" id="id_cep" name="cep" placeholder="CEP" maxlength="8"/>
 							</div>
 							<div class="col-md-4">
 								<label for="password">Endereço: *</label>
@@ -76,7 +76,7 @@
 							</div>
 							<div class="col-md-2">
 								<label for="password">Número: *</label>
-								<input value="<?=$view_request['numero'];?>" type="text" class="form-control" id="id_numero" name="numero" placeholder="Número" />
+								<input value="<?=$view_request['numero'];?>" type="text" class="form-control" id="id_numero" name="numero" placeholder="Número" maxlength="7"/>
 							</div>
 						</div>
 						<div class="form-group">
