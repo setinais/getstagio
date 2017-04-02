@@ -1,3 +1,14 @@
+<?php $data = "";
+foreach($view_estados as $val){
+	$data .= "<datalist id='".$val->id."'>";
+	foreach($val->cidades as $vall){
+		$data .= "<option value='".$vall->nome."'>";
+	}
+	$data .= "</datalist>";
+}
+echo $data;
+?>
+
 <section id="login-container">
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2" id="login-wrapper">
@@ -46,11 +57,11 @@
 
 						</div>
 						<div class="form-group">
-							<div class="col-md-2">
+							<div class="col-md-3">
 								<label>Estado: *</label>
-								<select class="form-control" name="estado_id" >
+								<select class="form-control" name="estado_id" id="estado_id" >
+									<option value="" disabled="" selected="">Selecione...</option>
 									<?php   foreach($view_estados as $es){ ?>
-
 									<option value="<?=$es->id;?>"><?=$es->sigla;?></option>
 									<?php } ?>
 								</select>
@@ -58,7 +69,7 @@
 
 							<div class="col-md-4">
 								<label for="id_cidade">Cidade: *</label>
-								<input value="<?=$view_request['cidade'];?>" type="text" placeholder="Cidade" class="form-control col-md-5" id="id_cidade" name="cidade"/>
+								<input value="<?=$view_request['cidade'];?>" list="id_cidade"  type="text" placeholder="Cidade" class="form-control col-md-5" id="id_cidade" name="cidade"/>
 
 							</div>
 							<div class="col-md-4">
