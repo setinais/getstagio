@@ -11,7 +11,6 @@
 						<label class="control-label" for="username">Cargo:</label>
 						<select class="form-control" name="cargo_id" aria-descrubedby="cargo_help">
 									<?php   foreach($view_cargos as $es){ ?>
-
 									<option value="<?=$es->id;?>"><?=$es->nome;?></option>
 									<?php } ?>
 						</select>
@@ -19,7 +18,7 @@
 					</div>
 					<div class="col-md-2">
 						<label class="control-label" for="username">Vagas:</label>
-						<input type="number" class="form-control" id="id_qnt" name="qnt" value="<?=$view_request['qnt'];?>" placeholder="Qntd" />
+						<input type="number" class="form-control" required="" id="id_qnt" name="qnt" value="<?=$view_request['qnt'];?>" placeholder="Qntd" />
 					</div>
 					<div class="col-md-4">
 						<label class="control-label" for="username">Remuneração (Se houver):</label>
@@ -50,6 +49,7 @@
 						</div>
 						<span id="cargahoraria_help" class="help-block">Ex: 20h</span>
 					</div>
+					<div id="requist"></div>
 					<div class="col-md-4">
 						<label class="control-label" for="username">Requisitos Minimos:</label>
 						<input type="text" class="form-control" id="id_requisitosminimos" name="requisitosminimos" value="<?=$view_request['requisitosminimos'];?>" placeholder="" />

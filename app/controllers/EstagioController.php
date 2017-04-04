@@ -57,7 +57,8 @@ class EstagioController extends \HXPHP\System\Controller
 						}
 					break;
 				case '2':
-					$cad_cargo = Cargo::cadastrar($post);
+						$cad_cargo = Cargo::cadastrar($post);
+						
 						if($cad_cargo->status === true)
 						{
 							$this->load('Helpers\Alert',[
@@ -82,6 +83,7 @@ class EstagioController extends \HXPHP\System\Controller
 					break;
 			}
 		}
+		$this->view->setAssets('js',[$this->configs->baseURI.'public/js/jquery.js',$this->configs->baseURI.'public/js/vaga/cadastroVaga.js']);
 		$this->view->setVars(['request' => $post, 'cargos' => Cargo::all()]);
 	}
 }
