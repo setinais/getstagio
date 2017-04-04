@@ -84,6 +84,8 @@ class EstagioController extends \HXPHP\System\Controller
 			}
 		}
 		$this->view->setAssets('js',[$this->configs->baseURI.'public/js/jquery.js',$this->configs->baseURI.'public/js/vaga/cadastroVaga.js']);
+		$this->view->setAssets('css',[$this->configs->baseURI."public/css/vaga/vaga.css"]);
+		
 		$this->view->setVars(['request' => $post, 'cargos' => Cargo::all()]);
 	}
 }
