@@ -43,7 +43,9 @@ class Vaga extends \HXPHP\System\Model
 		$callback->status = false;
 		$callback->user = null;
 		$callback->errors = [];
-
+		var_dump($post);
+		$post['requisitos'] = self::tratamentoRequisito($post);
+		
 		$id_inst = Instituicao::find_by_usuario_id($id_user)->id;
 		$id_cargo = $post['cargo_id'];
 
@@ -67,5 +69,17 @@ class Vaga extends \HXPHP\System\Model
 		}
 
 		return $callback;
+	}
+
+	private static function tratamentoRequisito($req)
+	{
+		$result = null;
+		$v = 1;
+		while(isset($req['requisitos'.$v]))
+		{
+			$result .= $req['requisitos'.$v].';';
+			$v++;
+		}
+		return $result;
 	}
 }
