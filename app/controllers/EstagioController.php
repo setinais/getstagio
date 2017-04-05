@@ -117,8 +117,11 @@ class EstagioController extends \HXPHP\System\Controller
 		$this->redirectTo($this->configs->baseURI."estagio/list");
 	}
 
-	public function eliminarVagaAction()
+	public function eliminarVagaAction($id)
 	{
-
+		$ids = explode("-", $id);
+		unset($ids[count($ids)-1]);
+		Vaga::eliminarVaga($ids);
+		$this->redirectTo($this->configs->baseURI."estagio/list");
 	}
 }

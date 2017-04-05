@@ -91,8 +91,9 @@ class Vaga extends \HXPHP\System\Model
 		$editar->save();
 	}
 
-	public static function eliminarVaga()
+	public static function eliminarVaga($ids)
 	{
-
+		Requisito::excluir($ids);
+		self::table()->delete(['id' => $ids]);
 	}
 }
