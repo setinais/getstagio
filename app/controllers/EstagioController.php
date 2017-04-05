@@ -37,8 +37,16 @@ class EstagioController extends \HXPHP\System\Controller
 		{
 			switch ($acao) {
 				case '1':
-					$cad_vaga = Vaga::cadastrar($post,$this->auth->getUserId());
-						if($cad_vaga->status === true)
+						//$cad_vaga = Vaga::cadastrar(,$this->auth->getUserId());
+						var_dump($post);
+						$i=1;
+						foreach ($post as $key => $value) {
+							if($key == "requisito-".$i){
+								//aqui faz a inserção no BD
+								requisito::create(array('requisito'=>$value,"vaga_id"=>$cad_vaga->id));
+							}
+						}
+						/*if($cad_vaga->status === true)
 						{
 							$this->load('Helpers\Alert',[
 								'success',
@@ -54,7 +62,7 @@ class EstagioController extends \HXPHP\System\Controller
 								'Não foi possivel Cadastrar, devido aos erros abaixo:',
 								$cad_vaga->errors
 								]);
-						}
+						}*/
 					break;
 				case '2':
 						$cad_cargo = Cargo::cadastrar($post);

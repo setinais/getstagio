@@ -15,13 +15,19 @@ $(document).ready(function() {
 			$("#id_requisitosminimos").val("");
 		}
 		var i=1;
-		$("#requist>input").each(function(index, el) {
+		$("#requist>.input-group>input").each(function(index, el) {
 			$(this).attr("name","requisito-"+i);i++;
+			alert("da");
 		});
 	});
 	$('#requist').on("click",".remove_campo",function(e) {
 		$(this).parent().html('');
-	})
+	});
+	$("form").submit(function(event) {
+		$("input").each(function(){
+			$(this).removeAttr('disabled');
+		});
+	});
 });
 
 
