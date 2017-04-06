@@ -13,19 +13,18 @@ class Vaga extends \HXPHP\System\Model
 		['cargo_has_instituicao']
 	];
 
-	public static function search($id_user = null,$filters = null)
+	public static function search($id_user)
 	{
 		$vagas = null;
 		$op = Usuario::find($id_user)->funcoe->tipo;
-		$id_inst = Instituicao::find_by_usuario_id($id_user)->id;
 		switch($op)
 		{		
 			case "Estudante" :
 				$vagas = self::all();
 				break;
 			case "Instituicao":
+				$id_inst = Instituicao::find_by_usuario_id($id_user)->id;
 				$all = self::all();
-				$vagas=null;
 				foreach ($all as $key) {
 					if($key->cargo_has_instituicao->instituicao->id == $id_inst){
 						$vagas[] = $key;

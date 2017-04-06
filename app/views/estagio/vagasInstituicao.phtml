@@ -12,7 +12,6 @@
 							<ul class="dropdown-menu">
 								<li><a href="#" id="Finalizar">Finalizar</a></li>
 								<li><a href="#" id="Reabrir">Reabrir</a></li>
-								<li><a href="#" id="">Editar</a></li>
 								<li><a href="#" id="Excluir">Excluir</a></li>
 							</ul>
 						</div>
@@ -22,7 +21,7 @@
 					<th>Remuneração</th>
 					<th>Duração</th>
 					<th>Status</th>
-					<th>More Info</th>
+					<th>Opções</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -48,20 +47,48 @@
 					<td>
 						<?php echo ($vagas->status === 1 ? "<span class='label label-info'>Em Aberto</span>" : "<span class='label label-danger'>Finalizado</span>" );?> 
 					</td>
-					<td><p class="text-center"><a href="#" data-toggle="modal" data-target="#myModal">More</a></p></td>
-					<div class="modal fade"  id="myModal" tabindex="-1" role="dialog">
+					<td>
+						<p class="text-center">
+							<a href="#" data-toggle="modal" data-target="#info<?=$vagas->id;?>">
+								<span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+							</a>
+							<a href="<?=BASE;?>estagio/editarVaga/<?=$vagas->id;?>">
+								<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+							</a>
+						</p>
+					</td>
+					<div class="modal fade"  id="info<?=$vagas->id?>" tabindex="-1" role="dialog">
 					  <div class="modal-dialog" role="document">
 					    <div class="modal-content">
 					      <div class="modal-header">
 					        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					        <h4 class="modal-title">Modal title</h4>
+					        <h4 class="modal-title">Vaga de <?=$vagas->cargo_has_instituicao->cargo->nome;?></h4>
 					      </div>
 					      <div class="modal-body">
-					        <p>One fine body&hellip;</p>
+					        <dl class="dl-horizontal">
+							  	<dt>Cargo</dt>
+							  		<dd><?=$vagas->cargo_has_instituicao->cargo->nome;?></dd>
+								<dt>Quantidade</dt>
+									<dd><?=$vagas->qnt;?> ofertadas</dd>
+								<dt>Remuneração</dt>
+									<dd>R$ <?=$vagas->remuneracao;?></dd>
+								<dt>Duração</dt>
+									<dd><?=$vagas->duracao;?></dd>
+								<dt>Idade Minima</dt>
+									<dd><?=$vagas->idademinima;?> anos</dd>
+								<dt>Carga Horaria</dt>
+									<dd><?=$vagas->cargahoraria;?>h semanais</dd>
+								<dt>Requisitos</dt>
+									<?php foreach ($view_requisitos[$vagas->id] as $key => $value) { ?>
+										<dd><span class="label label-default"><?=$value->requisito;?></span></dd>
+									<?php } ?>
+									
+								<dt>Status</dt>
+									<dd><?php echo ($vagas->status === 1 ? "<span class='label label-info'>Em Aberto</span>" : "<span class='label label-danger'>Finalizado</span>" ); ?></dd>
+							</dl>
 					      </div>
 					      <div class="modal-footer">
 					        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					        <button type="button" class="btn btn-primary">Save changes</button>
 					      </div>
 					    </div><!-- /.modal-content -->
 					  </div><!-- /.modal-dialog -->

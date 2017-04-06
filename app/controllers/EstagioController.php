@@ -27,7 +27,10 @@ class EstagioController extends \HXPHP\System\Controller
 
 	public function listAction($filtros = null)
 	{
-		$this->view->setAssets('js',[$this->configs->baseURI.'public/js/jquery.js',$this->configs->baseURI.'public/js/estagio/list.js'])->setFile('vagas'.$this->auth->getUserRole())->setVar('vagas', ($this->auth->getUserRole() == "Instituicao" ? Vaga::search($this->auth->getUserId(),$filtros) : Vaga::search($filtros)));
+		$this->view->setAssets('js',[$this->configs->baseURI.'public/js/jquery.js',$this->configs->baseURI.'public/js/estagio/list.js'])
+					->setFile('vagas'.$this->auth->getUserRole())
+					->setVar('vagas',  Vaga::search($this->auth->getUserId()))
+					->setVar('requisitos',Requisito::search($this->auth->getUserId()));
 	}
 
 	public function criarAction($acao=null)
@@ -123,5 +126,10 @@ class EstagioController extends \HXPHP\System\Controller
 		unset($ids[count($ids)-1]);
 		Vaga::eliminarVaga($ids);
 		$this->redirectTo($this->configs->baseURI."estagio/list");
+	}
+
+	public function editarVagaAction($id)
+	{
+
 	}
 }
