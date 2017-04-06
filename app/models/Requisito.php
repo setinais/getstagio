@@ -18,10 +18,11 @@
 		{
 			$vagas = Vaga::search($id);
 			$requisitos = [];
-			foreach ($vagas as $key => $value) {
-				$all = self::find('all',['conditions' => ['vaga_id = ?',$value->id]]);
-				$requisitos[$value->id] = $all;
-			}
+			if(!is_null($vagas))
+				foreach ($vagas as $key => $value) {
+					$all = self::find('all',['conditions' => ['vaga_id = ?',$value->id]]);
+					$requisitos[$value->id] = $all;
+				}
 			return $requisitos;
 		}
 	}
