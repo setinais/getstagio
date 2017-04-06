@@ -79,10 +79,10 @@
 								<dt>Carga Horaria</dt>
 									<dd><?=$vagas->cargahoraria;?>h semanais</dd>
 								<dt>Requisitos</dt>
-									<?php foreach ($view_requisitos[$vagas->id] as $key => $value) { ?>
-										<dd><span class="label label-default"><?=$value->requisito;?></span></dd>
+									<dd><?php foreach ($view_requisitos[$vagas->id] as $key => $value) { ?>
+										<span class="label label-default"><?=$value->requisito;?></span>
 									<?php } ?>
-									
+									</dd>
 								<dt>Status</dt>
 									<dd><?php echo ($vagas->status === 1 ? "<span class='label label-info'>Em Aberto</span>" : "<span class='label label-danger'>Finalizado</span>" ); ?></dd>
 							</dl>
