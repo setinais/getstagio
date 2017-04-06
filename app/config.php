@@ -36,11 +36,11 @@
 		$configs->env->development->menu->setMenus([
 			'Home/home' => '%siteURL%/home',
 			'Estágio/f' => [
-				'Minhas Incscriçoes/list-alt' => '%baseURI%/estagio/list/',
-				'Vagas de Estagio/newspaper-o' => '%baseURI%/estagio/candidatar/'
+				'Minhas Inscrições/list-alt' => '%baseURI%/estagio/list/',
+				'Vagas de Estágio/newspaper-o' => '%baseURI%/estagio/candidatar/'
 			],
 			'Usuário/user' => [
-				'Informações Basicas/user-secret' => '%baseURI%/home/informacoesBasicas/',
+				'Informações Básicas/user-secret' => '%baseURI%/home/informacoesBasicas/',
 				'Perfil/user-plus' => '%baseURI%/home/perfil/',
 				'Sair/power-off' => '%baseURI%/login/sair/'
 			]
@@ -53,7 +53,7 @@
 				'Nova Vaga/newspaper-o' => '%baseURI%/estagio/criar/'
 			],
 			'Usuário/user' => [
-				'Informações Basicas/user-secret' => '%baseURI%/home/informacoesBasicas',
+				'Informações Básicas/user-secret' => '%baseURI%/home/informacoesBasicas',
 				'Perfil/user-plus' => '%baseURI%/home/perfil/',
 				'Sair/power-off' => '%baseURI%/login/sair/'
 			]
@@ -61,7 +61,7 @@
 
 		$configs->env->development->menu->setMenus([
 			'Home/home' => '%siteURL%/home/',
-			'Cadastro Incompleto/folder-open' => '%baseURI%/cadastroadicional/',
+			'Complete seu cadastro/folder-open' => '%baseURI%/cadastroadicional/',
 			'Sair/power-off' => '%baseURI%/login/sair/'
 			
 		]);
