@@ -153,7 +153,7 @@ class EstagioController extends \HXPHP\System\Controller
 							foreach ($post as $key => $value) {
 								if($key == "requisito-".$i){
 									//aqui faz a inserção no BD
-									Requisito::cadastrar($value,$alt_vaga->user->id);
+									Requisito::cadastrar($value,$id);
 									$i++;
 								}
 							}
