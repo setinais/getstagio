@@ -134,7 +134,7 @@ class EstagioController extends \HXPHP\System\Controller
 
 		if (!is_null($acao)) {
 			var_dump($post);
-				$alt_vaga = Vaga::editarVaga($this->auth->getUserId(),$post);
+				$alt_vaga = Vaga::editarVaga($id,$post);
 						
 						if($alt_vaga->status === true)
 						{
