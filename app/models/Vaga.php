@@ -13,6 +13,33 @@ class Vaga extends \HXPHP\System\Model
 		['cargo_has_instituicao']
 	];
 
+	static $validates_presence_of = [
+			[
+				'qnt',
+				'message' => '<strong>Quantidade</strong> é um campo obrigatório.'
+			],
+			[
+				'descricao',
+				'message' => '<strong>Descrição</strong> é um campo obrigatório.'
+			],			
+			[
+				'remuneracao',
+				'message' => '<strong>Remuneração</strong> é um campo obrigatório.'
+			],
+			[
+				'duracao',
+				'message' => '<strong>Duração</strong> é um campo obrigatorio.'
+			],
+			[
+				'idademinima',
+				'message' => '<strong>Idade Minima</strong> é um campo obrigatorio.'
+			],
+			[
+				'cargahoraria',
+				'message' => '<strong>Carga horaria</strong> é um campo obrigatorio.'
+			]
+	];
+
 	public static function search($id_user)
 	{
 		$vagas = null;
@@ -94,5 +121,43 @@ class Vaga extends \HXPHP\System\Model
 	{
 		Requisito::excluir($ids);
 		self::table()->delete(['id' => $ids]);
+	}
+
+	public static function editarVaga($id,$atributes)
+	{
+		$i=1;
+		foreach ($atributes as $key => $value) {
+			if($key == "requisito-".$i){
+				//aqui faz a inserção no BD
+				unset($atributes['requisito-'.$i]);
+				$i++;
+			}
+		}
+
+		$callback = new \stdClass;
+		$callback->status = false;
+		$callback->user = null;
+		$callback->errors = [];
+
+		unset($atributes['cargo_id']);
+
+		$editar = self::find($id);
+		$editar->update_attributes($atributes);
+		$editar->save();
+
+		if($editar->is_valid())
+		{
+			$callback->status = true;
+			$callback->user = $editar;
+		}
+		else
+		{
+			$errors = $editar->errors->get_raw_errors();
+			foreach ($errors as $campo => $messagem) {
+				array_push($callback->errors, $messagem[0]);
+			}
+		}
+
+		return $callback;
 	}
 }

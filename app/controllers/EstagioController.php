@@ -25,7 +25,7 @@ class EstagioController extends \HXPHP\System\Controller
 
 	}
 
-	public function listAction($filtros = null)
+	public function listAction()
 	{
 		$this->view->setAssets('js',[$this->configs->baseURI.'public/js/jquery.js',$this->configs->baseURI.'public/js/estagio/list.js'])
 					->setFile('vagas'.$this->auth->getUserRole())
@@ -128,8 +128,56 @@ class EstagioController extends \HXPHP\System\Controller
 		$this->redirectTo($this->configs->baseURI."estagio/list");
 	}
 
-	public function editarVagaAction($id)
+	public function editarVagaAction($id,$acao=null)
 	{
+		$post = $this->request->post();
 
+		if (!is_null($acao)) {
+			var_dump($post);
+				$alt_vaga = Vaga::editarVaga($this->auth->getUserId(),$post);
+						
+						if($alt_vaga->status === true)
+						{
+							$requisitos_del = Requisito::find('all',['conditions' => ['vaga_id = ?',$id]]);
+							foreach ($requisitos_del as $key1 => $value1) {
+								$requisito = Requisito::find($value1->id);
+ 								$requisito->delete();
+							}
+							
+							$this->load('Helpers\Alert',[
+								'success',
+								'Salvo',
+								'Vaga criado com sucesso.'
+								]);
+							$i=1;
+							foreach ($post as $key => $value) {
+								if($key == "requisito-".$i){
+									//aqui faz a inserção no BD
+									Requisito::cadastrar($value,$alt_vaga->user->id);
+									$i++;
+								}
+							}
+							$this->redirectTo($this->configs->baseURI."estagio/list");
+						}
+						else
+						{
+							$post = Vaga::find($id);
+
+							$this->load('Helpers\Alert',[
+								'danger',
+								'Não foi possivel Cadastrar, devido aos erros abaixo:',
+								$alt_vaga->errors
+								]);
+
+						}
+		}
+		else
+		{
+			$post = Vaga::find($id);
+		}
+
+		$this->view->setAssets('js',[$this->configs->baseURI.'public/js/jquery.js',$this->configs->baseURI.'public/js/estagio/cadastroVaga.js'])
+		->setAssets('css',[$this->configs->baseURI."public/css/vaga/vaga.css"])
+		->setVars(['requisitos' => Requisito::find('all',['conditions' => ['vaga_id = ?',$id]]),'request' => $post, 'cargos' => Cargo::all()]);
 	}
 }
