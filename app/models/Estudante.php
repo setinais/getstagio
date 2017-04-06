@@ -11,7 +11,7 @@ class Estudante extends \HXPHP\System\Model
 	static $validates_presence_of = [
 			[
 				'matricula',
-				'message' => '<strong>Matricula</strong> é um campo obrigatório.'
+				'message' => '<strong>Matrícula</strong> é um campo obrigatório.'
 			],
 			[
 				'curso',
@@ -19,11 +19,11 @@ class Estudante extends \HXPHP\System\Model
 			],
 			[
 				'serie_modulo',
-				'message' => '<strong>Serié / Modúlo</strong> é um campo obrigatório.'
+				'message' => '<strong>Série / Modúlo / Período</strong> é um campo obrigatório.'
 			],
 			[
 				'data_nasc',
-				'message' => '<strong>Data de Nascimento</strong> é um campo obrigatorio.'
+				'message' => '<strong>Data de nascimento</strong> é um campo obrigatorio.'
 			]
 			
 	];

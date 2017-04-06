@@ -28,15 +28,15 @@ class Vaga extends \HXPHP\System\Model
 			],
 			[
 				'duracao',
-				'message' => '<strong>Duração</strong> é um campo obrigatorio.'
+				'message' => '<strong>Duração</strong> é um campo obrigatório.'
 			],
 			[
 				'idademinima',
-				'message' => '<strong>Idade Minima</strong> é um campo obrigatorio.'
+				'message' => '<strong>Idade mínima</strong> é um campo obrigatório.'
 			],
 			[
 				'cargahoraria',
-				'message' => '<strong>Carga horaria</strong> é um campo obrigatorio.'
+				'message' => '<strong>Carga horária</strong> é um campo obrigatório.'
 			]
 	];
 

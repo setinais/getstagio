@@ -22,7 +22,7 @@ class Instituicao extends \HXPHP\System\Model
 	static $validates_uniqueness_of  = [
 			[
 				['cnpj'],
-				'message' => 'Este CNPJ ja consta em nosso cadastro.'
+				'message' => 'Este CNPJ já está cadastrado.'
 			]
 	];
 
