@@ -180,4 +180,34 @@ class EstagioController extends \HXPHP\System\Controller
 		->setAssets('css',[$this->configs->baseURI."public/css/vaga/vaga.css"])
 		->setVars(['requisitos' => Requisito::find('all',['conditions' => ['vaga_id = ?',$id]]),'request' => $post, 'cargos' => Cargo::all()]);
 	}
+
+	public function candidatarAction()
+	{
+		$vagas = Vaga::all();
+		$estrutura_vagas = null;
+		foreach ($vagas as $key => $value) {
+			$estrutura_vagas_head = null;
+			$estrutura_vagas_section = null;
+			$estrutura_vagas_footer = null;
+
+			$estrutura_vagas_head = "<tr>
+			<td>
+				<h4>".$value->cargo_has_instituicao->cargo->nome."</h4>
+			</td>
+			<td>";
+				$search_requisitos = Requisito::searchRequisitos($value->id);
+				if(!is_null($search_requisitos)){
+					foreach ($search_requisitos as $indei => $requisitos) {
+						$estrutura_vagas_section .= "<span class='label label-default'>".$requisitos->requisito."</span>";
+					}
+				}
+				$estrutura_vagas_footer = "</td>
+				<td>".$value->remuneracao."</td>
+				<td><?=?></td>
+				<td><a href=''><span class='label label-success'><span class='glyphicon glyphicon-log-in'></span></span></a></td>
+			</tr>";
+			$estrutura_vagas[] = $estrutura_vagas_head.$estrutura_vagas_section.$estrutura_vagas_footer;
+		}
+		$this->view->setVars(['vagas' => $estrutura_vagas]);
+	}
 }

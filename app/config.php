@@ -37,7 +37,7 @@
 			'Home/home' => '%siteURL%/home',
 			'Estágio/f' => [
 				'Minhas Inscrições/list-alt' => '%baseURI%/estagio/list/',
-				'Vagas de Estágio/newspaper-o' => '%baseURI%/estagio/candidatar/'
+				'Candidatar-se/newspaper-o' => '%baseURI%/estagio/candidatar/'
 			],
 			'Usuário/user' => [
 				'Informações Básicas/user-secret' => '%baseURI%/home/informacoesBasicas/',

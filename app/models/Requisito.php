@@ -25,4 +25,10 @@
 				}
 			return $requisitos;
 		}
+
+		public static function searchRequisitos($id)
+		{
+			$all = self::find('all',['conditions' => ['vaga_id = ?',$id]]);
+			return $all;
+		}
 	}
