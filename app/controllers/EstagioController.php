@@ -192,13 +192,13 @@ class EstagioController extends \HXPHP\System\Controller
 
 			$estrutura_vagas_head = "<tr>
 			<td>
-				<h4>".$value->cargo_has_instituicao->cargo->nome."</h4>
+				<h4 class='busca'>".$value->cargo_has_instituicao->cargo->nome."</h4>
 			</td>
 			<td>";
 				$search_requisitos = Requisito::searchRequisitos($value->id);
 				if(!is_null($search_requisitos)){
 					foreach ($search_requisitos as $indei => $requisitos) {
-						$estrutura_vagas_section .= "<span class='label label-default'>".$requisitos->requisito."</span>";
+						$estrutura_vagas_section .= "<span class='label label-default busca'>".$requisitos->requisito."</span>";
 					}
 				}
 				$estrutura_vagas_footer = "</td>
@@ -208,6 +208,7 @@ class EstagioController extends \HXPHP\System\Controller
 			</tr>";
 			$estrutura_vagas[] = $estrutura_vagas_head.$estrutura_vagas_section.$estrutura_vagas_footer;
 		}
+		$this->view->setAssets('js',[$this->configs->baseURI."public/js/jquery.js",$this->configs->baseURI.'public/js/cadastro/candidatar.js']);
 		$this->view->setVars(['vagas' => $estrutura_vagas]);
 	}
 }

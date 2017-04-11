@@ -18,5 +18,5 @@ function troca(tipo)
 }
 jQuery(document).ready(function($) {
 	$("#id_cnpj").mask('99.999.999/9999-99');
-	
+	alert("da");
 });
