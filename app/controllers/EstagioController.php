@@ -202,8 +202,8 @@ class EstagioController extends \HXPHP\System\Controller
 					}
 				}
 				$estrutura_vagas_footer = "</td>
-				<td>".$value->remuneracao."</td>
-				<td><?=?></td>
+				<td>R$ ".$value->remuneracao.",00</td>
+				<td>".$value->duracao."</td>
 				<td><a href=''><span class='label label-success'><span class='glyphicon glyphicon-log-in'></span></span></a></td>
 			</tr>";
 			$estrutura_vagas[] = $estrutura_vagas_head.$estrutura_vagas_section.$estrutura_vagas_footer;
