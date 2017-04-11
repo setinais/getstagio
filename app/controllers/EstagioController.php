@@ -204,11 +204,15 @@ class EstagioController extends \HXPHP\System\Controller
 				$estrutura_vagas_footer = "</td>
 				<td>".$value->remuneracao."</td>
 				<td><?=?></td>
-				<td><a href=''><span class='label label-success'><span class='glyphicon glyphicon-log-in'></span></span></a></td>
+				<td>
+				<span class='label label-success'><span class='glyphicon glyphicon-log-in candidatar' id='".$value->id."'></span></span></td>
 			</tr>";
 			$estrutura_vagas[] = $estrutura_vagas_head.$estrutura_vagas_section.$estrutura_vagas_footer;
 		}
 		$this->view->setAssets('js',[$this->configs->baseURI."public/js/jquery.js",$this->configs->baseURI.'public/js/cadastro/candidatar.js']);
 		$this->view->setVars(['vagas' => $estrutura_vagas]);
+	}
+	public function ajaxAction(){
+		var_dump($this->request->post());
 	}
 }

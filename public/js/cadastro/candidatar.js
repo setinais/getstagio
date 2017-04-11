@@ -1,3 +1,4 @@
+
 $(document).ready(function() {
 	$("#busca").keyup(function(event) {
 		var pesquisa = $(this).val();
@@ -21,4 +22,23 @@ $(document).ready(function() {
 			});
 		}
 	});
+	$(".candidatar").click(function(){
+		var id = $(this).attr('id');
+		$.ajax({
+			url: 'http://localhost/getstagio/estagio/ajax',
+			type: 'POST',
+			dataType: 'html',
+			data: "id="+id,
+		})
+		.done(function(e) {
+			$("#ret").html(e);
+		})
+		.fail(function() {
+			console.log("error");
+		})
+		.always(function() {
+			console.log("complete");
+		});
+		
+	})
 });
