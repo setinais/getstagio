@@ -7,8 +7,10 @@
 		public static function lists($id){
 			$vaga = null;
 			$cads = Estudante::find_by_usuario_id($id);
-			foreach($cads->cadastros as $vall){
-				$vaga[] = $vall->vaga;
+			if(!is_null($cads)){
+				foreach($cads->cadastros as $vall){
+					$vaga[] = $vall->vaga;
+				}
 			}
 			return $vaga;
 		}

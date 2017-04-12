@@ -27,37 +27,44 @@ class EstagioController extends \HXPHP\System\Controller
 
 	public function listAction()
 	{
-		$vagas = Cadastro::lists($this->auth->getUserId());
-		$estrutura_vagas = null;
-		$idu = Estudante::find_by_usuario_id($this->auth->getUserId())->id;
-		if(!empty($vagas)){
-			foreach ($vagas as $key => $value) {
-				$estrutura_vagas_head = null;
-				$estrutura_vagas_section = null;
-				$estrutura_vagas_footer = null;
+		if($this->auth->getUserRole() == 'Estudante'){
+			$vagas = Cadastro::lists($this->auth->getUserId());
+			$estrutura_vagas = null;
+			$idu = Estudante::find_by_usuario_id($this->auth->getUserId())->id;
+			if(!empty($vagas)){
+				foreach ($vagas as $key => $value) {
+					$estrutura_vagas_head = null;
+					$estrutura_vagas_section = null;
+					$estrutura_vagas_footer = null;
 
-				$estrutura_vagas_head = "<tr>
-				<td>
-					<h4 class='busca'>".$value->cargo_has_instituicao->cargo->nome."</h4>
-				</td>
-				<td>";
-					$search_requisitos = Requisito::searchRequisitos($value->id);
-					if(!is_null($search_requisitos)){
-						foreach ($search_requisitos as $indei => $requisitos) {
-							$estrutura_vagas_section .= "<span class='label label-default busca'>".$requisitos->requisito."</span>";
+					$estrutura_vagas_head = "<tr>
+					<td>
+						<h4 class='busca'>".$value->cargo_has_instituicao->cargo->nome."</h4>
+					</td>
+					<td>";
+						$search_requisitos = Requisito::searchRequisitos($value->id);
+						if(!is_null($search_requisitos)){
+							foreach ($search_requisitos as $indei => $requisitos) {
+								$estrutura_vagas_section .= "<span class='label label-default busca'>".$requisitos->requisito."</span>";
+							}
 						}
-					}
-					$estrutura_vagas_footer = "</td>
-					<td>".$value->remuneracao."</td>
-					<td>".$value->duracao."</td>
-					<td><span class='label label-danger descandidatar' id='".$value->id."' style='cursor: pointer;'><span class='glyphicon glyphicon-log-in'></span>  <span class='troca'> Desinscrever</span></span></td>";
-				$estrutura_vagas[] = $estrutura_vagas_head.$estrutura_vagas_section.$estrutura_vagas_footer;
-				
+						$estrutura_vagas_footer = "</td>
+						<td>".$value->remuneracao."</td>
+						<td>".$value->duracao."</td>
+						<td><span class='label label-danger descandidatar' id='".$value->id."' style='cursor: pointer;'><span class='glyphicon glyphicon-log-in'></span>  <span class='troca'> Desinscrever</span></span></td>";
+					$estrutura_vagas[] = $estrutura_vagas_head.$estrutura_vagas_section.$estrutura_vagas_footer;
+					
+				}
+			}else{
+				$estrutura_vagas[] = "<tr><td colspan='5'>Nada encontrado <a href='".$this->configs->baseURI."estagio/candidatar/'>Clique aqui</a> para procura vagas de emprego!</td></tr>";
 			}
-		}else{
-			$estrutura_vagas[] = "<tr><td colspan='5'>Nada encontrado <a href='".$this->configs->baseURI."estagio/candidatar/'>Clique aqui</a> para procura vagas de emprego!</td></tr>";
+			$this->view->setVars(['vagas' => $estrutura_vagas]);
 		}
-		$this->view->setVars(['vagas' => $estrutura_vagas]);
+		else
+		{
+			$this->view->setVar('vagas',  Vaga::search($this->auth->getUserId()))->setVar('requisitos',Requisito::search($this->auth->getUserId()));
+		}
+		$this->view->setFile('vagas'.$this->auth->getUserRole());
 		$this->view->setAssets('js',[$this->configs->baseURI."public/js/jquery.js",$this->configs->baseURI.'public/js/cadastro/candidatar2.js']);
 	}
 
