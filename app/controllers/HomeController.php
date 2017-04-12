@@ -29,6 +29,10 @@ class HomeController extends \HXPHP\System\Controller
 		$post = $this->request->post();
 		if(!empty($post))
 		{
+			$post['cep'] = str_replace('-', "", $post['cep']);
+			$post['telefone'] = str_replace("-", "", $post['telefone']);
+			$post['telefone'] = str_replace("(", "", $post['telefone']);
+			$post['telefone'] = str_replace(")", "", $post['telefone']);
 			$callback = Usuario::editar($post,$this->auth->getUserId());
 			if($callback->status === true)
 			{
@@ -49,7 +53,7 @@ class HomeController extends \HXPHP\System\Controller
 			}
 		}
 		$this->requestpag = Usuario::find_by_id($this->auth->getUserId());
-		$this->view->setVars(['request' => $this->requestpag, 'estados' => Estado::getEstados()]);
+		$this->view->setVars(['request' => $this->requestpag, 'estados' => Estado::getEstados()])->setAssets('js',[$this->configs->baseURI."public/js/jquery.js",$this->configs->baseURI."public/js/home/informacoesbasicas.js",$this->configs->baseURI."public/js/jquery.1.7.7.mask.min.js"]);
 	}
 
 	public function perfilAction()
