@@ -8,6 +8,9 @@ class Estudante extends \HXPHP\System\Model
 	static $belongs_to = [
 		['usuario']
 	];
+	static $has_many = array(
+		array('cadastros')
+		);
 	static $validates_presence_of = [
 			[
 				'matricula',

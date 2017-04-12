@@ -6,7 +6,8 @@ class Vaga extends \HXPHP\System\Model
 {
 	static $has_many = [
 		['log_vagas'],
-		['requisitos']
+		['requisitos'],
+		['cadastros']
 		];
 
 	static $belongs_to = [

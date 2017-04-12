@@ -27,10 +27,38 @@ class EstagioController extends \HXPHP\System\Controller
 
 	public function listAction()
 	{
-		$this->view->setAssets('js',[$this->configs->baseURI.'public/js/jquery.js',$this->configs->baseURI.'public/js/estagio/list.js'])
-					->setFile('vagas'.$this->auth->getUserRole())
-					->setVar('vagas',  Vaga::search($this->auth->getUserId()))
-					->setVar('requisitos',Requisito::search($this->auth->getUserId()));
+		$vagas = Cadastro::lists($this->auth->getUserId());
+		$estrutura_vagas = null;
+		$idu = Estudante::find_by_usuario_id($this->auth->getUserId())->id;
+		if(!empty($vagas)){
+			foreach ($vagas as $key => $value) {
+				$estrutura_vagas_head = null;
+				$estrutura_vagas_section = null;
+				$estrutura_vagas_footer = null;
+
+				$estrutura_vagas_head = "<tr>
+				<td>
+					<h4 class='busca'>".$value->cargo_has_instituicao->cargo->nome."</h4>
+				</td>
+				<td>";
+					$search_requisitos = Requisito::searchRequisitos($value->id);
+					if(!is_null($search_requisitos)){
+						foreach ($search_requisitos as $indei => $requisitos) {
+							$estrutura_vagas_section .= "<span class='label label-default busca'>".$requisitos->requisito."</span>";
+						}
+					}
+					$estrutura_vagas_footer = "</td>
+					<td>".$value->remuneracao."</td>
+					<td>".$value->duracao."</td>
+					<td><span class='label label-danger descandidatar' id='".$value->id."' style='cursor: pointer;'><span class='glyphicon glyphicon-log-in'></span>  <span class='troca'> Desinscrever</span></span></td>";
+				$estrutura_vagas[] = $estrutura_vagas_head.$estrutura_vagas_section.$estrutura_vagas_footer;
+				
+			}
+		}else{
+			$estrutura_vagas[] = "<tr><td colspan='5'>Nada encontrado <a href='".$this->configs->baseURI."estagio/candidatar/'>Clique aqui</a> para procura vagas de emprego!</td></tr>";
+		}
+		$this->view->setVars(['vagas' => $estrutura_vagas]);
+		$this->view->setAssets('js',[$this->configs->baseURI."public/js/jquery.js",$this->configs->baseURI.'public/js/cadastro/candidatar2.js']);
 	}
 
 	public function criarAction($acao=null)
@@ -185,6 +213,7 @@ class EstagioController extends \HXPHP\System\Controller
 	{
 		$vagas = Vaga::all();
 		$estrutura_vagas = null;
+		$idu = Estudante::find_by_usuario_id($this->auth->getUserId())->id;
 		foreach ($vagas as $key => $value) {
 			$estrutura_vagas_head = null;
 			$estrutura_vagas_section = null;
@@ -204,15 +233,35 @@ class EstagioController extends \HXPHP\System\Controller
 				$estrutura_vagas_footer = "</td>
 				<td>".$value->remuneracao."</td>
 				<td>".$value->duracao."</td>
-				<td>
-				<span class='label label-success'><span class='glyphicon glyphicon-log-in candidatar' id='".$value->id."'></span></span></td>";
+				<td>";
+				if(Cadastro::verifica($value->id,$idu)){
+					$estrutura_vagas_footer .= "<span class='label label-success candidatar' id='".$value->id."' style='cursor: pointer;'><span class='glyphicon glyphicon-log-in'></span>  <span class='troca'>Inscrever</span></span></td>";
+				}else{
+					$estrutura_vagas_footer .= "<span class='label label-info' id='".$value->id."' style='cursor: not-allowed;'><span class='glyphicon glyphicon-log-in'></span>  <span class='troca'> Inscrito</span></span> 
+						<span class='label label-danger descandidatar' id='".$value->id."' style='cursor: pointer;'><span class='glyphicon glyphicon-log-in'></span>  <span class='troca'> Desinscrever</span></span></td>";
+				}
 			$estrutura_vagas[] = $estrutura_vagas_head.$estrutura_vagas_section.$estrutura_vagas_footer;
 			
 		}
 		$this->view->setAssets('js',[$this->configs->baseURI."public/js/jquery.js",$this->configs->baseURI.'public/js/cadastro/candidatar.js']);
 		$this->view->setVars(['vagas' => $estrutura_vagas]);
 	}
-	public function ajaxAction(){
-		var_dump($this->request->post());
+	public function ajaxAction($type = ""){
+		$this->view->setTemplate(false);
+		$id_vaga = Vaga::find($this->request->post()['id'])->id;
+		$idu = Estudante::find_by_usuario_id($this->auth->getUserId())->id;
+		if($type == ""){
+			if(Cadastro::cadastrar($id_vaga,$idu)){
+				echo "true";
+			}else{
+				echo "false";
+			}
+		}else if($type == "descandidatar"){
+			if(Cadastro::descadastrar($id_vaga,$idu)){
+				echo "true";
+			}else{
+				echo "false";
+			}
+		}
 	}
 }

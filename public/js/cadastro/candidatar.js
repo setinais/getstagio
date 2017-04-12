@@ -22,8 +22,9 @@ $(document).ready(function() {
 			});
 		}
 	});
-	$(".candidatar").click(function(){
+	$(document).on( "click",".candidatar", function(){
 		var id = $(this).attr('id');
+		obj = $(this);
 		$.ajax({
 			url: 'http://localhost/getstagio/estagio/ajax',
 			type: 'POST',
@@ -31,7 +32,13 @@ $(document).ready(function() {
 			data: "id="+id,
 		})
 		.done(function(e) {
-			$("#ret").html(e);
+			if(e == "true"){
+				obj.removeClass('label-success');
+				obj.addClass('label-info');
+				obj.find('.troca').html("Inscrito");
+				obj.css('cursor', 'not-allowed');
+				obj.parent().append(" <span class='label label-danger descandidatar' id='"+id+"' style='cursor: pointer;'><span class='glyphicon glyphicon-log-in'></span>  <span class='troca'> Desinscrever</span></span>")
+			}
 		})
 		.fail(function() {
 			console.log("error");
@@ -40,5 +47,27 @@ $(document).ready(function() {
 			console.log("complete");
 		});
 		
-	})
+	});
+	$(document).on( "click",".descandidatar", function(){
+		var id = $(this).attr('id');
+		obj = $(this);
+		$.ajax({
+			url: 'http://localhost/getstagio/estagio/ajax/descandidatar',
+			type: 'POST',
+			dataType: 'html',
+			data: "id="+id,
+		})
+		.done(function(e) {
+			if(e == "true"){
+				obj.parent().html("<span class='label label-success candidatar' id='"+id+"' style='cursor: pointer;'><span class='glyphicon glyphicon-log-in'></span>  <span class='troca'>Inscrever</span></span>")
+			}
+		})
+		.fail(function() {
+			console.log("error");
+		})
+		.always(function() {
+			console.log("complete");
+		});
+		
+	});
 });

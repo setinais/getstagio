@@ -14,7 +14,8 @@ class Usuario extends \HXPHP\System\Model
 		['recuperar_senhas'],
 		['tentativas_logons'],
 		['estudantes'],
-		['instituicaos']
+		['instituicaos'],
+		['cadastros']
 	];
 	static $validates_presence_of = [
 			[
