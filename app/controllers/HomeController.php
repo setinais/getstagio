@@ -61,7 +61,7 @@ class HomeController extends \HXPHP\System\Controller
 		$post = $this->request->post();
 		if(!empty($post))
 		{
-			($this->auth->getUserRole() === "Estudante" ? $callback = Estudante::editar($post,$this->auth->getUserId()) : $callback = Instituicao::editar($post,$this->auth->getUserId()) );
+			($this->auth->getUserRole() == "Estudante" ? $callback = Estudante::editar($post,$this->auth->getUserId()) : $callback = Instituicao::editar($post,$this->auth->getUserId()) );
 			if($callback->status === true)
 			{
 				$this->load('Helpers\Alert',[

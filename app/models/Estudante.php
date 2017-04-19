@@ -75,7 +75,7 @@ class Estudante extends \HXPHP\System\Model
 		$callback->errors = [];
 
 		if(!empty($atributos)){
-			$editar = self::find($id);
+			$editar = self::find_by_usuario_id($id);
 			$editar->update_attributes($atributos);
 			$editar->save();
 			if($editar->is_valid())

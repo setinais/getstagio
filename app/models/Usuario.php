@@ -65,7 +65,8 @@ class Usuario extends \HXPHP\System\Model
 	];
 	static $validates_size_of = [
 	  ['cep', 'is' => 8, 'wrong_length' => 'O tamanho do <strong>CEP</strong> deve ser de 8 caracteres.'],
-	  ['telefone', 'is' => 12, 'wrong_length' => '<strong>Telefone</strong> inválido, deve conter 11 digítos.']
+	  ['telefone', 'maximum' => 11, 'too_long' => '<strong>Telefone</strong> inválido!'],
+	  ['telefone', 'minimum' => 10, 'too_short' => '<strong>Telefone</strong> inválido!']
    ];
 	public static function cadastrar($post)
 	{

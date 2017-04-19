@@ -1,3 +1,13 @@
+<?php $data = "";
+foreach($view_estados as $val){
+  $data .= "<datalist id='".$val->id."'>";
+  foreach($val->cidades as $vall){
+    $data .= "<option value='".$vall->nome."'>";
+  }
+  $data .= "</datalist>";
+}
+echo $data;
+?>
 <div class="col-md-8 col-md-offset-2">
 <?php echo (isset($this->alert) ? $this->alert : ''); ?>
 	<div class="panel panel-default">
