@@ -60,7 +60,28 @@ class Vaga extends \HXPHP\System\Model
 			'idademinima',
 			'greater_than_or_equal_to' => 0,
 			'message' => '<strong>Idade</strong> não pode ser negativa.'
+		],
+		[
+			'qnt',
+			'only_integer' => true,
+			'message' => '<strong>Quantidade</strong> deve ser um numero <strong>inteiro</strong>! Ex: 1,2,3...'
+		],
+		[
+			'remuneracao',
+			'only_integer' => true,
+			'message' => '<strong>Remuneração</strong> deve ser um numero <strong>inteiro</strong>! Ex: 1,2,3...'
+		],
+		[
+			'cargahoraria',
+			'only_integer' => true,
+			'message' => '<strong>Carga Horaria</strong> deve ser um numero <strong>inteiro</strong>! Ex: 1,2,3...'
+		],
+		[
+			'idademinima',
+			'only_integer' => true,
+			'message' => '<strong>Idade</strong> deve ser um numero <strong>inteiro</strong>! Ex: 1,2,3...'
 		]
+
 	];
 	public static function search($id_user)
 	{
