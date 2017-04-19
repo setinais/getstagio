@@ -52,7 +52,7 @@ class Vaga extends \HXPHP\System\Model
 				break;
 			case "Instituicao":
 				$id_inst = Instituicao::find_by_usuario_id($id_user)->id;
-				$all = self::all();
+				$all = self::all(array('conditions'=>array('status' => 1)));
 				foreach ($all as $key) {
 					if($key->cargo_has_instituicao->instituicao->id == $id_inst){
 						$vagas[] = $key;
@@ -120,8 +120,11 @@ class Vaga extends \HXPHP\System\Model
 
 	public static function eliminarVaga($ids)
 	{
-		Requisito::excluir($ids);
-		self::table()->delete(['id' => $ids]);
+		//self::table()->update(array('status'=>2), array('id'=>$ids));
+		self::update_all(array(
+    		'set' => array('status' => 2),
+    		'conditions' => array('id' => $ids)
+    	));
 	}
 
 	public static function editarVaga($id,$atributes)

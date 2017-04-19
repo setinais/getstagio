@@ -65,7 +65,7 @@ class EstagioController extends \HXPHP\System\Controller
 			$this->view->setVar('vagas',  Vaga::search($this->auth->getUserId()))->setVar('requisitos',Requisito::search($this->auth->getUserId()));
 		}
 		$this->view->setFile('vagas'.$this->auth->getUserRole());
-		$this->view->setAssets('js',[$this->configs->baseURI."public/js/jquery.js",$this->configs->baseURI.'public/js/cadastro/candidatar2.js']);
+		$this->view->setAssets('js',[$this->configs->baseURI."public/js/jquery.js",$this->configs->baseURI.'public/js/cadastro/candidatar2.js',$this->configs->baseURI.'public/js/estagio/list.js']);
 	}
 
 	public function criarAction($acao=null)

@@ -8,13 +8,13 @@
   			<form action="<?=BASE?>home/perfil" method="POST">
     		 <div class="form-group"> 
 			    <label for="id_matricula">Matrícula</label>
-			    <input value="<?=$view_request->matricula;?>" type="email" class="form-control" id="id_matricula" placeholder="Matrícula" name="matricula">
+			    <input value="<?=$view_request->matricula;?>" type="text" class="form-control" id="id_matricula" placeholder="Matrícula" name="matricula">
 
 				<label for="id_curso">Curso</label>
-			    <input value="<?=$view_request->curso;?>" type="email" class="form-control" id="id_curso" placeholder="Curso" name="curso">
+			    <input value="<?=$view_request->curso;?>" type="text" class="form-control" id="id_curso" placeholder="Curso" name="curso">
 
 			    <label for="id_serie">Série / Módulo / Período</label>
-			    <input value="<?=$view_request->serie_modulo;?>" type="email" class="form-control" id="id_serie" placeholder="Série / Modulo / Período" name="serie_modulo">
+			    <input value="<?=$view_request->serie_modulo;?>" type="text" class="form-control" id="id_serie" placeholder="Série / Modulo / Período" name="serie_modulo">
 			  </div>
 			   <div class="form-group col-md-4 col-md-offset-5">
 	            <button class="btn btn-success">Salvar alterações</button>
