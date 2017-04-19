@@ -79,7 +79,7 @@
 								<dt>Carga Horária</dt>
 									<dd><?=$vagas->cargahoraria;?>h semanais</dd>
 								<dt>Requisitos</dt>
-									<dd><?php foreach ($view_requisitos[$vagas->id] as $key => $value) { ?>
+									<dd><?php  foreach ($view_requisitos[$vagas->id] as $key => $value) { ?>
 										<span class="label label-default"><?=$value->requisito;?></span>
 									<?php } ?>
 									</dd>

@@ -40,7 +40,28 @@ class Vaga extends \HXPHP\System\Model
 				'message' => '<strong>Carga horária</strong> é um campo obrigatório.'
 			]
 	];
-
+	static $validates_numericality_of = [
+		[
+			'qnt',
+			'greater_than_or_equal_to' => 0,
+			'message' => '<strong>Quantidade</strong> não pode ser negativa.'
+		],
+		[
+			'remuneracao',
+			'greater_than_or_equal_to' => 0,
+			'message' => '<strong>Remuneração</strong> não pode ser negativa.'
+		],
+		[
+			'cargahoraria',
+			'greater_than_or_equal_to' => 0,
+			'message' => '<strong>Carga Horaria</strong> não pode ser negativa.'
+		],
+		[
+			'idademinima',
+			'greater_than_or_equal_to' => 0,
+			'message' => '<strong>Idade</strong> não pode ser negativa.'
+		]
+	];
 	public static function search($id_user)
 	{
 		$vagas = null;
