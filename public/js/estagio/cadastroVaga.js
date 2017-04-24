@@ -3,7 +3,7 @@ $(document).ready(function() {
 	$("#id_requisitos").keydown(function(e) {
 		if(e.keyCode  == 13){
 			if($(this).val() != ""){
-				$("#requist").append("<div class='input-group'><input type='text' name='requisito' disabled class='req_sito' value='"+$("#id_requisitos").val()+"'><span class='remove_campo'>X</span></div>");
+				$("#requist").append("<div class='input-group'><input type='text' name='requisito' disabled='disabled' class='req_sito' value='"+$("#id_requisitos").val()+"'><span class='glyphicon glyphicon-edit edita_requisito' aria-hidden='true'></span><span class='remove_campo'>X</span></div>");
 				$("#id_requisitos").val("");
 				$("#id_requisitos").focus()
 			}
@@ -11,7 +11,7 @@ $(document).ready(function() {
 		}	
 	}).blur(function(){
 		if($(this).val() != ""){
-			$("#requist").append("<div class='input-group'><input type='text' name='requisito' disabled class='req_sito' value='"+$("#id_requisitos").val()+"'><span class='remove_campo'>X</span></div>");
+			$("#requist").append("<div class='input-group'><input type='text' name='requisito' disabled='disabled' class='req_sito' value='"+$("#id_requisitos").val()+"'><span class='glyphicon glyphicon-edit edita_requisito' aria-hidden='true'></span><span class='remove_campo'>X</span></div>");
 			$("#id_requisitos").val("");
 		}
 		var tamanho = 1;
@@ -35,12 +35,9 @@ $(document).ready(function() {
 		});
 	});
 
+	$('#requist').on("click",".edita_requisito",function(e) {
+		$('[name=requisito]').attr('disabled','');
+	});
 });
-
-function namesRequisitos()
-{
-
-}
-
 
 

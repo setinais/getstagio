@@ -37,7 +37,7 @@ $(document).ready(function() {
 				obj.addClass('label-info');
 				obj.find('.troca').html("Inscrito");
 				obj.css('cursor', 'not-allowed');
-				obj.parent().append(" <span class='label label-danger descandidatar' id='"+id+"' style='cursor: pointer;'><span class='glyphicon glyphicon-log-in'></span>  <span class='troca'> Desinscrever</span></span>")
+				obj.parent().append(" <span class='label label-danger descandidatar' id='"+id+"' style='cursor: pointer;'><span class='glyphicon glyphicon-log-in'></span>  <span class='troca'> Cancelar</span></span>")
 			}
 		})
 		.fail(function() {

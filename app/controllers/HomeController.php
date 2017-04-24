@@ -22,6 +22,11 @@ class HomeController extends \HXPHP\System\Controller
 			);
     		$this->auth->redirectCheck();
 
+    		if($this->auth->getUserRole() == 'default')
+    		{
+    			$this->redirectTo($this->configs->baseURI.'cadastroadicional');
+    		}
+
 	}
 
 	public function informacoesBasicasAction()
