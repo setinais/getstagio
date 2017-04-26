@@ -49,8 +49,23 @@
 				return false;
 			}
 		}
-		public static function search($ids_vagas)
+		/*
+		* Pegar todos os estudantes que estão inscritos nesta vaga
+		*
+		*/
+		public static function searchEstudantes($id_vaga)
 		{
-			
+			$ids_estudantes = self::all(['conditions' => ['vaga_id = ?',$id_vagad]]);
+			foreach ($ids_estudantes as $key => $value) 
+			{
+				$layout[] .= "
+						<div class='list-group'>
+						  <a href='#' class='list-group-item active'>
+						    <h4 class='list-group-item-heading'>List group item heading</h4>
+						    <p class='list-group-item-text'>...</p>
+						  </a>
+						</div>
+				";
+			}
 		}
 	}

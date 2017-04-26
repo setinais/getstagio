@@ -293,7 +293,7 @@ class EstagioController extends \HXPHP\System\Controller
 			}
 		}
 	}
-	public function infoinscritosAction($id)
+	public function infoInscritosAction($id_vaga)
 	{
 		echo 'heloow';
 	}
