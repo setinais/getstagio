@@ -39,6 +39,7 @@ $(document).ready(function() {
 		$("#id_requisitos").focus();
 		$(this).parent().remove();
 	});
+	
 });
 
 

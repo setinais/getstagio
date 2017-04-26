@@ -123,13 +123,10 @@ class Vaga extends \HXPHP\System\Model
 
 		$id_inst = Instituicao::find_by_usuario_id($id_user)->id;
 		$id_cargo = $post['cargo_id'];
-		$post['duracao'] = $post['duracao']." ".$post['definicao_tempo'];
 		unset($post['cargo_id']);
-		unset($post['definicao_tempo']);
 		$chi = CargoHasInstituicao::cadastrar($id_inst,$id_cargo);
 		$post['cargo_has_instituicao_id'] = $chi->id;
 		$post['status'] = true;
-
 		$cadastrar = self::create($post);
 		if($cadastrar->is_valid())
 		{

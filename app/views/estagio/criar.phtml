@@ -32,20 +32,19 @@
 						<label class="control-label" for="username">Descrição:</label>
 						<textarea class="form-control" id="id_descricao" name="descricao" rows="4"  placeholder="Descrição da Vaga"><?=$view_request['descricao'];?></textarea>
 					</div>
-					<div class="col-md-3">
+					<div class="col-md-4">
 						<label class="control-label" for="username">Duração:</label>
 						<div class="input-group">
-							<div class="col-md-12" >
-								
+								<input type="number" class="form-control" id="id_duracao" name="duracao" value="<?=$view_request['duracao'];?>" placeholder="Duração" aria-descrubedby="duracao_help"/>
+								<div class="input-group-btn" style="width: 40%;">
 								<select name="definicao_tempo" id="" class="form-control">
-									<option value="Dias">Dias</option>
+									<option value="Dias" selected="">Dias</option>
 									<option value="Meses">Meses</option>
 									<option value="Anos">Anos</option>
 									<option value="Efetivo">Efetivo</option>
 									<option value="A decidir">A decidir</option>
 								</select>
-								<input type="number" class="form-control" id="id_duracao" name="duracao" value="<?=$view_request['duracao'];?>" placeholder="Duração" aria-descrubedby="duracao_help"/>
-							</div>
+								</div >
 						</div>
 						<span id="duracao_help" class="help-block">Ex: 2 meses</span>
 					</div>
@@ -61,7 +60,7 @@
 						</div>
 						<span id="cargahoraria_help" class="help-block">Ex: 20h</span>
 					</div>
-					<div class="col-md-4">
+					<div class="col-md-3">
 						<label class="control-label" for="username">Requisitos:</label>
 						<div id="requist">
 						</div>

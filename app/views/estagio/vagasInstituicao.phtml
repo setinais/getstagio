@@ -43,7 +43,7 @@
 						R$ <?=$vagas->remuneracao;?>,00
 					</td>
 					<td>
-						<?=$vagas->duracao;?>
+						<?=$vagas->duracao;?> <?=$vagas->definicao_tempo?>
 					</td>
 					<td>
 						<?php echo ($vagas->status === 1 ? "<span class='label label-info'>Em Aberto</span>" : "<span class='label label-danger'>Finalizado</span>" );?> 

@@ -1,3 +1,12 @@
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#definicao_tempo").find('option').each(function(index, el) {
+			if($(this).val() == '<?=$view_request->definicao_tempo?>'){
+				$(this).attr('selected','selected');
+			}
+		});
+	});
+</script>
 <div class="container">
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
@@ -41,16 +50,16 @@
 					<div class="col-md-4">
 						<label class="control-label" for="username">Duração:</label>
 						<div class="input-group">
-							<div class="col-md-12" >
-								<select name="definicao_tempo" id="" class="form-control">
-									<option value="Dias">Dias</option>
+								<input type="number" class="form-control" id="id_duracao" name="duracao" value="<?=$view_request->duracao;?>" placeholder="Duração" aria-descrubedby="duracao_help"/>
+								<div class="input-group-btn" style="width: 40%;">
+								<select name="definicao_tempo" id="definicao_tempo" class="form-control">
+									<option value="Dias" selected="">Dias</option>
 									<option value="Meses">Meses</option>
 									<option value="Anos">Anos</option>
 									<option value="Efetivo">Efetivo</option>
 									<option value="A decidir">A decidir</option>
 								</select>
-								<input type="number" class="form-control" id="id_duracao" name="duracao" value="<?=$view_request->duracao;?>" placeholder="Duração" aria-descrubedby="duracao_help"/>
-							</div>
+								</div >
 						</div>
 					</div>
 					<div class="col-md-2">
@@ -68,11 +77,17 @@
 					<div class="col-md-4">
 						<div id="requist">
 							<?php foreach ($view_requisitos as $key => $value) { ?>
-							<div class="input-group"><input type="text" name="requisito-<?=$key+1;?>" disabled class="req_sito" value="<?=$value->requisito?>"><span class="remove_campo">X</span></div>
+							<div class="input-group"><input type="text" name="requisito-<?=$key+1;?>" disabled class="req_sito" value="<?=$value->requisito?>"><span class='glyphicon glyphicon-edit edita_requisito' aria-hidden='true'> </span> <span class="remove_campo"> X</span></div>
 							<?php } ?>
 						</div>
 						<label class="control-label" for="username">Requisitos:</label>
-						<input type="text" class="form-control" id="id_requisitos" placeholder="" />
+						<div class="input-group">
+							
+							<input type="text" class="form-control" id="id_requisitos" placeholder="" />
+							<span class="input-group-btn">
+								<button class="btn btn-info" type="button"><span class="glyphicon glyphicon-plus-sign"></span></button>
+							</span>
+						</div>
 					</div>
 				</div>
 				<div class="form-group">

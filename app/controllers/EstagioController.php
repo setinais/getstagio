@@ -50,7 +50,7 @@ class EstagioController extends \HXPHP\System\Controller
 						}
 						$estrutura_vagas_footer = "</td>
 						<td>R$".$value->remuneracao.",00</td>
-						<td>".$value->duracao."h</td>
+						<td>".$value->duracao." ".$value->definicao_tempo."</td>
 						<td><span class='label label-danger descandidatar' id='".$value->id."' style='cursor: pointer;'><span class='glyphicon glyphicon-log-in'></span>  <span class='troca'> Cancelar</span></span></td>";
 					$estrutura_vagas[] = $estrutura_vagas_head.$estrutura_vagas_section.$estrutura_vagas_footer;
 					
@@ -238,7 +238,7 @@ class EstagioController extends \HXPHP\System\Controller
 				}
 				$estrutura_vagas_footer = "</td>
 				<td>R$ ".$value->remuneracao.",00</td>
-				<td>".$value->duracao."</td>
+				<td>".$value->duracao." ".$value->definicao_tempo."</td>
 				<td>";
 				if(Cadastro::verifica($value->id,$idu)){
 					$estrutura_vagas_footer .= "<span class='label label-success candidatar' id='".$value->id."' style='cursor: pointer;'><span class='glyphicon glyphicon-log-in'></span>  <span class='troca'>Inscrever</span></span></td>";
