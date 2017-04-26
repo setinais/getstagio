@@ -1,7 +1,7 @@
 <div class="col-md-8 col-md-offset-2">
 	<div class="row">
 		<h3 class="col-md-4 col-md-offset-4">Situação das Vagas</h3>
-		<a href="<?=$view_url?>" class="btn btn-success">Criar vaga</a>
+		<a href="<?=$view_url?>" class="btn btn-success col-md-offset-2">Criar vaga</a>
 		<table class="table table-hover">
 			<thead>
 				<tr>
@@ -13,13 +13,14 @@
 							<ul class="dropdown-menu">
 								<li><a href="#" id="Finalizar">Desativar</a></li>
 								<li><a href="#" id="Reabrir">Reabrir</a></li>
+								<li role="separator" class="divider"></li>
 								<li><a href="#" id="Excluir">Excluir</a></li>
 							</ul>
 						</div>
 					</th>
 					<th>Cargo</th>
 					<th>Quantidade</th>
-					<th>Incritos</th>
+					<th>Inscritos</th>
 					<th>Remuneração</th>
 					<th>Duração</th>
 					<th>Status</th>
@@ -41,24 +42,26 @@
 						<?=$vagas->qnt;?>
 					</td>
 					<td>
-						<span class="badge">
-							<?php
-							$qntd = 0;
-							foreach ($view_inscrito as $key => $value) 
-							{
-								
-								if($key == $vagas->id)
+						<a href="#" data-id-vaga="<?=$vagas->id?>">
+							<span class="badge">
+								<?php
+								$qntd = 0;
+								foreach ($view_inscrito as $key => $value) 
 								{
-									if(!empty($value))
+									
+									if($key == $vagas->id)
 									{
-										$qntd = $value;
+										if(!empty($value))
+										{
+											$qntd = $value;
+										}
 									}
-								}
 
-							}
-							echo $qntd;
-							?>
-						</span>
+								}
+								echo $qntd;
+								?>
+							</span>
+						</a>
 					</td>
 					<td>
 						R$ <?=$vagas->remuneracao;?>,00
@@ -119,5 +122,8 @@
 			<?php } }?>
 			</tbody>
 		</table>
+		<div id="infoinscritos">
+			
+		</div>
 	</div>
 </div>

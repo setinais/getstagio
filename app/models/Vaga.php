@@ -44,22 +44,22 @@ class Vaga extends \HXPHP\System\Model
 		[
 			'qnt',
 			'greater_than_or_equal_to' => 0,
-			'message' => '<strong>Quantidade</strong> não pode ser negativa.'
+			'message' => '<strong>Quantidade</strong> invalida.'
 		],
 		[
 			'remuneracao',
 			'greater_than_or_equal_to' => 0,
-			'message' => '<strong>Remuneração</strong> não pode ser negativa.'
+			'message' => '<strong>Remuneração</strong> invalida.'
 		],
 		[
 			'cargahoraria',
 			'greater_than_or_equal_to' => 0,
-			'message' => '<strong>Carga Horaria</strong> não pode ser negativa.'
+			'message' => '<strong>Carga Horaria</strong> invalida.'
 		],
 		[
 			'idademinima',
 			'greater_than_or_equal_to' => 0,
-			'message' => '<strong>Idade</strong> não pode ser negativa.'
+			'message' => '<strong>Idade</strong> invalida!.'
 		],
 		[
 			'qnt',
@@ -124,8 +124,7 @@ class Vaga extends \HXPHP\System\Model
 		$id_inst = Instituicao::find_by_usuario_id($id_user)->id;
 		$id_cargo = $post['cargo_id'];
 		unset($post['cargo_id']);
-		$chi = CargoHasInstituicao::find_by_cargo_id($id_cargo)->id;
-		$post['cargo_has_instituicao_id'] = $chi->id;
+		$post['cargo_has_instituicao_id'] = CargoHasInstituicao::find_by_cargo_id($id_cargo)->id;
 		$post['status'] = true;
 		$cadastrar = self::create($post);
 		if($cadastrar->is_valid())

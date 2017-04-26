@@ -78,7 +78,8 @@ class EstagioController extends \HXPHP\System\Controller
 				'requisitos'=>Requisito::search($this->auth->getUserId()),
 				'url'=>$this->configs->baseURI.'estagio/criar', 
 				'inscrito' => $incritos
-				]);
+				])
+			->setAssets('js',[$this->configs->baseURI."public/js/estagio/infoinscritos.js"]);
 		}
 		$this->view->setFile('vagas'.$this->auth->getUserRole());
 		$this->view->setAssets('js',[$this->configs->baseURI."public/js/jquery.js",$this->configs->baseURI.'public/js/cadastro/candidatar2.js',$this->configs->baseURI.'public/js/estagio/list.js']);
@@ -125,7 +126,7 @@ class EstagioController extends \HXPHP\System\Controller
 						
 						if($cad_cargo->status === true)
 						{
-							CargoHasInstituicao::cadastrar(Instituicao::find_by_usuario_id($this->auth->getUserId()),$cad_cargo->user->id);
+							CargoHasInstituicao::cadastrar(Instituicao::find_by_usuario_id($this->auth->getUserId())->id,$cad_cargo->user->id);
 							$this->load('Helpers\Alert',[
 								'success',
 								'Salvo',
@@ -286,5 +287,9 @@ class EstagioController extends \HXPHP\System\Controller
 				echo "false";
 			}
 		}
+	}
+	public function infoinscritosAction($id)
+	{
+		echo 'heloow';
 	}
 }
