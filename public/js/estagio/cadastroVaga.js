@@ -34,9 +34,10 @@ $(document).ready(function() {
 			tamanho++;
 		});
 	});
-
-	$('#requist').on("click",".edita_requisito",function(e) {
-		$('[name=requisito]').attr('disabled','');
+	$('#requist').on("click",".edita_requisito",function(e){
+		$("#id_requisitos").val($(this).parent().find('input').val());
+		$("#id_requisitos").focus();
+		$(this).parent().remove();
 	});
 });
 

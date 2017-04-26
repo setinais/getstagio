@@ -62,7 +62,7 @@ class EstagioController extends \HXPHP\System\Controller
 		}
 		else
 		{
-			$this->view->setVar('vagas',  Vaga::search($this->auth->getUserId()))->setVar('requisitos',Requisito::search($this->auth->getUserId()));
+			$this->view->setVars(['vagas'=> Vaga::search($this->auth->getUserId()),'requisitos'=>Requisito::search($this->auth->getUserId()),'url'=>$this->configs->baseURI.'estagio/criar']);
 		}
 		$this->view->setFile('vagas'.$this->auth->getUserRole());
 		$this->view->setAssets('js',[$this->configs->baseURI."public/js/jquery.js",$this->configs->baseURI.'public/js/cadastro/candidatar2.js',$this->configs->baseURI.'public/js/estagio/list.js']);
@@ -168,7 +168,6 @@ class EstagioController extends \HXPHP\System\Controller
 		$post = $this->request->post();
 
 		if (!is_null($acao)) {
-			var_dump($post);
 				$alt_vaga = Vaga::editarVaga($id,$post);
 						
 						if($alt_vaga->status === true)

@@ -48,10 +48,7 @@
 
 		$configs->env->development->menu->setMenus([
 			'Home/home' => '%siteURL%/home/',
-			'Estágio/f' => [
-				'Minhas Vagas/list-alt' => '%baseURI%/estagio/list/',
-				'Nova Vaga/newspaper-o' => '%baseURI%/estagio/criar/'
-			],
+			'Minhas Vagas/list-alt' => '%baseURI%/estagio/list/',
 			'Usuário/user' => [
 				'Informações Básicas/user-secret' => '%baseURI%/home/informacoesBasicas',
 				'Perfil/user-plus' => '%baseURI%/home/perfil/',
