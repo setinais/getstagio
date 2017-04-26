@@ -62,24 +62,29 @@ class EstagioController extends \HXPHP\System\Controller
 		}
 		else
 		{
-			foreach (Vaga::search($this->auth->getUserId()) as $key => $value) {
+			$incritos = [];
+			$vagaste = Vaga::search($this->auth->getUserId());
+			if(!is_null($vagaste)){
+				foreach ($vagaste as $key => $value) {
 					if(!isset($incritos[$value->id]))
 					{
 						$incritos[$value->id] = null;
 					}
-							foreach($value->cadastros as $vall){
-								if($vall->vaga_id == $value->id){
-									$incritos[$value->id]++; 
-								}
-							}
+					foreach($value->cadastros as $vall){
+						if($vall->vaga_id == $value->id){
+							$incritos[$value->id]++; 
 						}
+					}
+				}
+			}
 			$this->view->setVars([
-				'vagas'=> Vaga::search($this->auth->getUserId()),
+				'vagas'=> $vagaste,
 				'requisitos'=>Requisito::search($this->auth->getUserId()),
 				'url'=>$this->configs->baseURI.'estagio/criar', 
 				'inscrito' => $incritos
 				])
 			->setAssets('js',[$this->configs->baseURI."public/js/estagio/infoinscritos.js"]);
+			
 		}
 		$this->view->setFile('vagas'.$this->auth->getUserRole());
 		$this->view->setAssets('js',[$this->configs->baseURI."public/js/jquery.js",$this->configs->baseURI.'public/js/cadastro/candidatar2.js',$this->configs->baseURI.'public/js/estagio/list.js']);

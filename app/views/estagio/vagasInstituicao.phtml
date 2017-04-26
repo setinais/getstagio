@@ -45,20 +45,22 @@
 						<a href="#" data-id-vaga="<?=$vagas->id?>">
 							<span class="badge">
 								<?php
-								$qntd = 0;
-								foreach ($view_inscrito as $key => $value) 
-								{
-									
-									if($key == $vagas->id)
+								if(!is_null($view_vagas)){
+									$qntd = 0;
+									foreach ($view_inscrito as $key => $value) 
 									{
-										if(!empty($value))
+										
+										if($key == $vagas->id)
 										{
-											$qntd = $value;
+											if(!empty($value))
+											{
+												$qntd = $value;
+											}
 										}
-									}
 
+									}
+									echo $qntd;
 								}
-								echo $qntd;
 								?>
 							</span>
 						</a>
@@ -119,7 +121,8 @@
 					  </div><!-- /.modal-dialog -->
 					</div><!-- /.modal -->
 				</tr>
-			<?php } }?>
+			<?php } }else{
+				echo "<tr><td colspan='5'>Nenhuma vaga cadastrada <a href='".$this->configs->baseURI."estagio/criar/'>Clique aqui</a> para criar vagas de emprego!</td></tr>";}?>
 			</tbody>
 		</table>
 		<div id="infoinscritos">
