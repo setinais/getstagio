@@ -19,6 +19,7 @@
 					</th>
 					<th>Cargo</th>
 					<th>Quantidade</th>
+					<th>Incritos</th>
 					<th>Remuneração</th>
 					<th>Duração</th>
 					<th>Status</th>
@@ -38,6 +39,26 @@
 					</td>
 					<td>
 						<?=$vagas->qnt;?>
+					</td>
+					<td>
+						<span class="badge">
+							<?php
+							$qntd = 0;
+							foreach ($view_inscrito as $key => $value) 
+							{
+								
+								if($key == $vagas->id)
+								{
+									if(!empty($value))
+									{
+										$qntd = $value;
+									}
+								}
+
+							}
+							echo $qntd;
+							?>
+						</span>
 					</td>
 					<td>
 						R$ <?=$vagas->remuneracao;?>,00
@@ -74,7 +95,7 @@
 								<dt>Remuneração</dt>
 									<dd>R$ <?=$vagas->remuneracao;?>,00</dd>
 								<dt>Duração</dt>
-									<dd><?=$vagas->duracao;?></dd>
+									<dd><?=$vagas->duracao." ".$vagas->definicao_tempo;?> </dd>
 								<dt>Idade Mínima</dt>
 									<dd><?=$vagas->idademinima;?> anos</dd>
 								<dt>Carga Horária</dt>

@@ -124,7 +124,7 @@ class Vaga extends \HXPHP\System\Model
 		$id_inst = Instituicao::find_by_usuario_id($id_user)->id;
 		$id_cargo = $post['cargo_id'];
 		unset($post['cargo_id']);
-		$chi = CargoHasInstituicao::cadastrar($id_inst,$id_cargo);
+		$chi = CargoHasInstituicao::find_by_cargo_id($id_cargo)->id;
 		$post['cargo_has_instituicao_id'] = $chi->id;
 		$post['status'] = true;
 		$cadastrar = self::create($post);
@@ -203,5 +203,14 @@ class Vaga extends \HXPHP\System\Model
 		}
 
 		return $callback;
+	}
+	public static function ids($id_user)
+	{
+		$ids = null;
+		$id_cargo_inst = CargoHasInstituicao::all(['conditions' => ['instituicao_id = ?',Instituicao::find_by_usuario_id($id_user)->id]]);
+		foreach ($id_cargo_inst as $key => $value) {
+			$ids[] .= $value->id;
+		}
+		return $ids;
 	}
 }

@@ -11,7 +11,7 @@ $(document).ready(function() {
 		}	
 	}).blur(function(){
 		if($(this).val() != ""){
-			$("#requist").append("<div class='input-group'><input type='text' name='requisito' disabled='disabled' class='req_sito' value='"+$("#id_requisitos").val()+"'><span class='glyphicon glyphicon-edit edita_requisito' aria-hidden='true'></span><span class='remove_campo'>X</span></div>");
+			$("#requist").append("<div class='input-group'><input style='width: 75%;' type='text' name='requisito' disabled='disabled' class='req_sito' value='"+$("#id_requisitos").val()+"'><span class='glyphicon glyphicon-edit edita_requisito' aria-hidden='true'></span><span class='remove_campo'>X</span></div>");
 			$("#id_requisitos").val("");
 		}
 		var tamanho = 1;

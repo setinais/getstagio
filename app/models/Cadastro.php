@@ -49,4 +49,8 @@
 				return false;
 			}
 		}
+		public static function search($ids_vagas)
+		{
+			
+		}
 	}
