@@ -94,7 +94,7 @@ class Vaga extends \HXPHP\System\Model
 				break;
 			case "Instituicao":
 				$id_inst = Instituicao::find_by_usuario_id($id_user)->id;
-				$all = self::all(array('conditions'=>array('status2 < ?', 2)));
+				$all = self::all(array('conditions'=>array('status < ?', 2)));
 				foreach ($all as $key) {
 					if($key->cargo_has_instituicao->instituicao->id == $id_inst){
 						$vagas[] = $key;
@@ -161,7 +161,7 @@ class Vaga extends \HXPHP\System\Model
 	{
 		//self::table()->update(array('status'=>2), array('id'=>$ids));
 		self::update_all(array(
-    		'set' => array('status2' => 2),
+    		'set' => array('status' => 2),
     		'conditions' => array('id' => $ids)
     	));
 	}
