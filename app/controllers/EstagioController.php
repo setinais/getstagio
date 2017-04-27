@@ -104,7 +104,7 @@ class EstagioController extends \HXPHP\System\Controller
 							$this->load('Helpers\Alert',[
 								'success',
 								'Salvo',
-								'Vaga criado com sucesso.'
+								'Vaga criada com sucesso!'
 								]);
 							
 							$i=1;
@@ -121,7 +121,7 @@ class EstagioController extends \HXPHP\System\Controller
 						{
 							$this->load('Helpers\Alert',[
 								'danger',
-								'Não foi possivel Cadastrar, devido aos erros abaixo:',
+								'Não foi possível cadastrar, devido aos motivos abaixo:',
 								$cad_vaga->errors
 								]);
 						}
@@ -135,7 +135,7 @@ class EstagioController extends \HXPHP\System\Controller
 							$this->load('Helpers\Alert',[
 								'success',
 								'Salvo',
-								'Cargo criado com sucesso.'
+								'Cargo criado com sucesso!'
 								]);
 							$post = null;
 						}
@@ -143,7 +143,7 @@ class EstagioController extends \HXPHP\System\Controller
 						{
 							$this->load('Helpers\Alert',[
 								'danger',
-								'Não foi possivel Cadastrar, devido aos erros abaixo:',
+								'Não foi possível cadastrar, devido aos motivos abaixo:',
 								$cad_cargo->errors
 								]);
 							$post = null;
@@ -204,7 +204,7 @@ class EstagioController extends \HXPHP\System\Controller
 							$this->load('Helpers\Alert',[
 								'success',
 								'Salvo',
-								'Vaga criado com sucesso.'
+								'Vaga alterada com sucesso!'
 								]);
 							$i=1;
 							foreach ($post as $key => $value) {
@@ -222,7 +222,7 @@ class EstagioController extends \HXPHP\System\Controller
 
 							$this->load('Helpers\Alert',[
 								'danger',
-								'Não foi possivel Cadastrar, devido aos erros abaixo:',
+								'Não foi possível cadastrar, devido aos motivos abaixo:',
 								$alt_vaga->errors
 								]);
 
@@ -264,7 +264,7 @@ class EstagioController extends \HXPHP\System\Controller
 				<td>".$value->duracao." ".$value->definicao_tempo."</td>
 				<td>";
 				if(Cadastro::verifica($value->id,$idu)){
-					$estrutura_vagas_footer .= "<span class='label label-success candidatar' id='".$value->id."' style='cursor: pointer;'><span class='glyphicon glyphicon-log-in'></span>  <span class='troca'>Inscrever</span></span></td>";
+					$estrutura_vagas_footer .= "<span class='label label-success candidatar' id='".$value->id."' style='cursor: pointer;'><span class='glyphicon glyphicon-log-in'></span>  <span class='troca'>Inscreva-se</span></span></td>";
 				}else{
 					$estrutura_vagas_footer .= "<span class='label label-info' id='".$value->id."' style='cursor: not-allowed;'><span class='glyphicon glyphicon-log-in'></span>  <span class='troca'> Inscrito</span></span> 
 						<span class='label label-danger descandidatar' id='".$value->id."' style='cursor: pointer;'><span class='glyphicon glyphicon-log-in'></span>  <span class='troca'> Cancelar</span></span></td>";

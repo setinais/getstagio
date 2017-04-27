@@ -32,15 +32,15 @@ class Usuario extends \HXPHP\System\Model
 			],
 			[
 				'senha',
-				'message' => '<strong>Senha</strong> é um campo obrigatorio.'
+				'message' => '<strong>Senha</strong> é um campo obrigatório.'
 			],
 			[
 				'endereco',
-				'message' => '<strong>Endereço</strong> é um campo obrigatorio.'
+				'message' => '<strong>Endereço</strong> é um campo obrigatório.'
 			],
 			[
 				'numero',
-				'message' => '<strong>Número</strong> é um campo obrigatorio.'
+				'message' => '<strong>Número</strong> é um campo obrigatório.'
 			],
 			[
 				'cep',
@@ -97,7 +97,7 @@ class Usuario extends \HXPHP\System\Model
 		}
 		else
 		{
-			array_push($callback->errors ,'Campo <strong>Senha</strong> está vazio');
+			array_push($callback->errors ,'O campo <strong>Senha</strong> está vazio');
 		}
 
 		return $callback;
@@ -132,7 +132,7 @@ class Usuario extends \HXPHP\System\Model
 							{
 								TentativasLogon::ArmazenarTentativa($user->id);
 								$total_tentativas =5 - TentativasLogon::CountTentativa($user->id);
-								$callBack_logar->alert = '<strong>Senha</strong> incorreta, você ainda tem '.$total_tentativas.' tentativas!';
+								$callBack_logar->alert = '<strong>Senha</strong> incorreta, você ainda possui '.$total_tentativas.' tentativas!';
 
 							}
 						}
@@ -140,11 +140,11 @@ class Usuario extends \HXPHP\System\Model
 						{
 							$user->status = 0;
 							$user->save(false);
-							$callBack_logar->alert = '<strong>Usuario</strong> bloqueado, devido a tentativas excessivas!';
+							$callBack_logar->alert = '<strong>Usuário</strong> bloqueado, devido a tentativas excessivas!';
 
 						}
 					}else{
-						$callBack_logar->alert = '<strong>Usuario</strong> bloqueado, devido a tentativas excessivas!';
+						$callBack_logar->alert = '<strong>Usuário</strong> bloqueado, devido a tentativas excessivas!';
 
 					}
 				}
@@ -156,12 +156,12 @@ class Usuario extends \HXPHP\System\Model
 			}
 			else
 			{
-				$callBack_logar->alert = "Campo <strong>senha</strong> está vazio.";
+				$callBack_logar->alert = "O campo <strong>senha</strong> está vazio.";
 			}
 		}
 		else
 		{
-			$callBack_logar->alert = "Campo <strong>e-mail</strong> está vazio.";
+			$callBack_logar->alert = "O campo <strong>e-mail</strong> está vazio.";
 		}
 		return $callBack_logar;
 	}
