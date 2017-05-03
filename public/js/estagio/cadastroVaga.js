@@ -21,6 +21,30 @@ $(document).ready(function() {
 		});
 
 	});
+	$("#id_cargahoraria").blur(function(event) {
+		var val = parseInt($(this).val());
+		if(val<0){
+			$(this).val(1).focus();
+		}else{
+			$(this).val(val);
+		}
+	});
+	$("#id_remuneracao").blur(function(event) {
+		var val = parseInt($(this).val());
+		if(val<0){
+			$(this).val(0).focus();
+		}else{
+			$(this).val(val);
+		}
+	});
+	$("#id_duracao").blur(function(event) {
+		var val = parseInt($(this).val());
+		if(val<0){
+			$(this).val(1).focus();
+		}else{
+			$(this).val(val);
+		}
+	});
 	$('#requist').on("click",".remove_campo",function(e) {
 		$(this).parent().html('');
 	});

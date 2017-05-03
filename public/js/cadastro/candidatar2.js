@@ -1,3 +1,10 @@
+$(document).ready( function () {
+		$('#example').DataTable({
+			paging: false,
+			ordering: true,
+			"orderMulti": false
+		});
+	} );
 $(document).ready(function() {
 	$("#busca").keyup(function(event) {
 		var pesquisa = $(this).val();

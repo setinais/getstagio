@@ -240,7 +240,7 @@ class EstagioController extends \HXPHP\System\Controller
 
 	public function candidatarAction()
 	{
-		$vagas = Vaga::all();
+		$vagas = Vaga::find('all',array('conditions'=>array('status = ? OR status = ?',1,true)));
 		$estrutura_vagas = null;
 		$idu = Estudante::find_by_usuario_id($this->auth->getUserId())->id;
 		foreach ($vagas as $key => $value) {
@@ -272,7 +272,7 @@ class EstagioController extends \HXPHP\System\Controller
 			$estrutura_vagas[] = $estrutura_vagas_head.$estrutura_vagas_section.$estrutura_vagas_footer;
 			
 		}
-		$this->view->setAssets('js',[$this->configs->baseURI."public/js/jquery.js",$this->configs->baseURI.'public/js/cadastro/candidatar.js']);
+		$this->view->setAssets('js',[$this->configs->baseURI."public/js/jquery.js",$this->configs->baseURI.'public/js/jquery.js',$this->configs->baseURI.'public/js/cadastro/candidatar.js']);
 		$this->view->setVars(['vagas' => $estrutura_vagas]);
 	}
 	public function ajaxAction($type = ""){
