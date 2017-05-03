@@ -122,10 +122,11 @@ class Vaga extends \HXPHP\System\Model
 		$callback->errors = [];
 
 		$id_inst = Instituicao::find_by_usuario_id($id_user)->id;
-		$id_cargo = $post['cargo_id'];
-		if(empty($id_cargo))
-			array_push($callback->errors, 'Por favor selecione um cargo, ou crie-o!');
+		if(!isset($post['cargo_id'])){
+			array_push($callback->errors, 'Por favor, selecione ou crie um cargo.');
 			return $callback;
+		}
+		$id_cargo = $post['cargo_id'];
 		unset($post['cargo_id']);
 		$post['cargo_has_instituicao_id'] = CargoHasInstituicao::find_by_cargo_id($id_cargo)->id;
 		$post['status'] = true;
@@ -142,7 +143,6 @@ class Vaga extends \HXPHP\System\Model
 				array_push($callback->errors, $messagem[0]);
 			}
 		}
-
 		return $callback;
 	}
 
