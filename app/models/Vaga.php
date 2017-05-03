@@ -90,7 +90,7 @@ class Vaga extends \HXPHP\System\Model
 		switch($op)
 		{		
 			case "Estudante" :
-				$vagas = self::all();
+				$vagas = self::all(array('conditions'=>array('status < ?', 1)));
 				break;
 			case "Instituicao":
 				$id_inst = Instituicao::find_by_usuario_id($id_user)->id;
@@ -123,6 +123,9 @@ class Vaga extends \HXPHP\System\Model
 
 		$id_inst = Instituicao::find_by_usuario_id($id_user)->id;
 		$id_cargo = $post['cargo_id'];
+		if(empty($id_cargo))
+			array_push($callback->errors, 'Por favor selecione um cargo, ou crie-o!');
+			return $callback;
 		unset($post['cargo_id']);
 		$post['cargo_has_instituicao_id'] = CargoHasInstituicao::find_by_cargo_id($id_cargo)->id;
 		$post['status'] = true;
