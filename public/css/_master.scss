@@ -1,7 +1,16 @@
-/*v*****vPALETA PRINCIPALv*****v*/
-$roxo: rgba(31, 32, 65, 1);
-$amarelo: rgba(255, 200, 87, 1);
-$azul: rgba(17, 157, 164, 1);
-$laranja: rgba(237, 37, 37, 1);
-$branco: rgba(241, 247, 237, 1);
-/*^*****^PALETA PRINCIPAL^*****^*/
+/* fontes */
+@font-face {font-family: padrao;src: url(../fonts/m);}
+@font-face {font-family: padraobold;src: url(../fonts/mb);}
+/* ------ */
+
+/* backgrounds */
+$bgmenu1: white;
+$bgsite1: #1c2a4e;
+$bgsite2: url("../img/bgbg.png");
+$bghpanel1:white;
+$fontcolor1:$bgsite1;
+/* ----------- */
+
+/* shadows */
+$shadow1:0px 0px 7px rgba(0, 0, 0, 0.75);
+/* ------- */

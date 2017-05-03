@@ -1,9 +1,89 @@
 @import "master";
-/* *****GERAL***** */
-.centro{
-    text-align: center;
-}
-/* *************** */
 
-/* *****header***** */
-/* **************** */
+/* ++Geral++ */
+body{
+    background-color: $bgsite1;
+    background-image: $bgsite2;
+}
+/* --------- */
+
+/* +Estilo do MENU+ */
+
+.navbar-default .navbar-nav>li>a:hover,
+.navbar-default .navbar-nav>li>a:focus {
+    color: #000;
+    /*Cor do text hover no navbar*/
+}
+
+.navbar-default .navbar-nav>.active>a,
+.navbar-default .navbar-nav>.active>a:hover,
+.navbar-default .navbar-nav>.active>a:focus {
+    color: white;
+    background-color: #030033;
+    /*Cor do bg quando ativo*/
+}
+
+.navbar-default {
+    background-color: $bgmenu1;
+    border-style: none;
+    border-radius: 0px;
+    box-shadow: 0px 0px 7px;
+    /* Estilo default do menu */
+}
+
+.dropdown-menu>li>a:hover,
+.dropdown-menu>li>a:focus {
+    color: #262626;
+    text-decoration: none;
+    background-color: #66CCFF;
+    /*Cor dos links no drop down*/
+}
+
+.nav>li>a:hover,
+.nav>li>a:focus {
+    text-decoration: none;
+    background-color: silver;
+    /*Change rollover cell color here*/
+}
+
+.navbar-default .navbar-nav>li>a {
+    color: $fontcolor1;
+    /*Cor do texto quando ativo*/
+}
+/* ---------------- */
+
+
+/* +Estilo do PANEL+ */
+
+.panel {
+    border-style: none;
+    box-shadow: 0px 0px 7px;
+    border-radius: 0px;
+    font-family: 'padrao';
+    /* Estilo do corpo do panel */
+    
+}
+
+.panel-default>.panel-heading {
+    margin-bottom: -20px;
+    font-size: 25px;
+    background-color: $bghpanel1;
+    border-style: none;
+    border-radius: 0px;
+    font-family: 'padraobold';
+    /* Estilo do header no panel-default */
+}
+/* ----------------- */
+
+/* +Estilo do button+ */
+.duplabtn>.btn{
+    height: 45px;
+    border-radius: 0px;
+    margin-bottom: -30px;
+
+}
+/* ------------------ */
+
+/* +Estilo do campo de texto+ */
+
+/* -------------------------- */
