@@ -21,7 +21,7 @@ class Cargo extends \HXPHP\System\Model
 		$callback->status = false;
 		$callback->user = null;
 		$callback->errors = [];
-  
+  			
 			$cadastrar = self::create($post);
 			if($cadastrar->is_valid())
 			{
