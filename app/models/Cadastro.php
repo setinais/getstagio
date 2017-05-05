@@ -57,28 +57,33 @@
 		{
 			$estagiarios = null;
 			$ids_estudantes = self::all(['conditions' => ['vaga_id = ?',$id_vagad]]);
-			foreach ($ids_estudantes as $key => $value) 
+			if(is_null($ids_estudantes))
 			{
-				$estagiarios[] .= "
-					<tr>
-						<td>".$value->estudante->usuario->nome."</td>
-						<td>".$value->estudante->usuario->email."</td>
-						<td>".$value->estudante->usuario->telefone."</td>
-					</tr>
-				";
-			}
-			$layout = "
-						<thead>
+				$estagiarios = "<tr>Nenhum candidato para esta vaga</tr>";
+			}else{
+				foreach ($ids_estudantes as $key => $value) 
+				{
+					$estagiarios[] .= "
 						<tr>
-							<th>Estagiario</th>
-							<th>E-mail</th>
-							<th>Idade</th>
+							<td>".$value->estudante->usuario->nome."</td>
+							<td>".$value->estudante->usuario->email."</td>
+							<td>".$value->estudante->usuario->telefone."</td>
 						</tr>
-					</thead>
-					<tbody>
-						".$estagiarios."
-					</tbody>
-				";
+					";
+				}
+				$layout = "
+							<thead>
+							<tr>
+								<th>Estagiario</th>
+								<th>E-mail</th>
+								<th>Idade</th>
+							</tr>
+						</thead>
+						<tbody>
+							".$estagiarios."
+						</tbody>
+					";
+			}
 			return $layout;
 		}
 	}
