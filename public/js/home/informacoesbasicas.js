@@ -27,4 +27,15 @@ jQuery(document).ready(function($){
  		$("#"+$(this).val()).attr('data',$(this).val());
  		$("#"+$(this).val()).attr('id','id_cidade');
  	});
+ 	$("#estado_id").change(function(event) {
+ 		$.ajax({
+			url: 'http://localhost/getstagio/estagio/ajax/carregaCidade',
+			type: 'POST',
+			dataType: 'html',
+			data: "cidade_id="+$(this).val(),
+			success: function(e){
+				$("#cidade_id").html(e);
+			}
+		});
+ 	});
 });

@@ -46,4 +46,16 @@ class CadastroController extends \HXPHP\System\Controller
 		$this->view->setAssets('js',[$this->configs->baseURI.'public/js/jquery.js',$this->configs->baseURI.'public/js/cadastro/cadastroUsuario.js',$this->configs->baseURI.'public/js/jquery.1.7.7.mask.min.js'])->setVars(["request" => $post, "estados" => Estado::getEstados()]);
         $this->view->setAssets('css',[$this->configs->baseURI.'public/css/cadastro/cadastro.css']);
 	}
+	public function ajaxAction($type=""){
+		$this->view->setTemplate(false);$txt="";
+		if($type == "carregaCidade"){
+			if(!empty($this->request->post()['cidade_id'])){
+				foreach(Cidade::find_all_by_estado_id($this->request->post()['cidade_id']) as $val){
+					$txt .= "<option value='".$val->id."'>".$val->nome."</option>";
+				}
+			}
+			echo $txt;
+		}
+		echo $txt;
+	}
 }

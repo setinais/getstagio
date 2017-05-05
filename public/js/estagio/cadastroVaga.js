@@ -57,8 +57,6 @@ $(document).ready(function() {
 		$(this).parent().html('');
 	});
 	$("#form_cadastro_vaga").submit(function(event) {
-		alert($("#cargo_id").html());
-		alert($("#cargo_id").val() );
 		if($("#cargo_id").html() == ""){
 			$("#erro_cargo").html("<b>Nenhum cargo cadastrado por favor cadastre um cargo!</b>")
 			$('#cadastrar_cargo').modal('show');
