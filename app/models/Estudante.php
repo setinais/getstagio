@@ -33,7 +33,7 @@ class Estudante extends \HXPHP\System\Model
 	static $validates_uniqueness_of  = [
 			[
 				['matricula'],
-				'message' => 'Já existe um estudante cadastrado com esta <strong>matricula</strong>.'
+				'message' => 'Já existe um estudante cadastrado com esta <strong>matrícula</strong>.'
 			]
 	];
 

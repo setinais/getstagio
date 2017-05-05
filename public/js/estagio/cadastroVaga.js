@@ -100,7 +100,7 @@ $(document).ready(function() {
 			});
 		}else{
 			$(this).focus()
-			$("#erro_cargo").append('<b>Por favor digite o nome do cargo!.</b>')
+			$("#erro_cargo").html('<b>Por favor digite o nome do cargo!.</b>')
 		}
 		return false;
 	});

@@ -56,7 +56,7 @@ class EstagioController extends \HXPHP\System\Controller
 					
 				}
 			}else{
-				$estrutura_vagas[] = "<tr><td colspan='5'>Nada encontrado <a href='".$this->configs->baseURI."estagio/candidatar/'>Clique aqui</a> para procura vagas de emprego!</td></tr>";
+				$estrutura_vagas[] = "<tr><td colspan='5'>Nada encontrado <a href='".$this->configs->baseURI."estagio/candidatar/'>Clique aqui</a> para procura vagas de estágio.</td></tr>";
 			}
 			$this->view->setVars(['vagas' => $estrutura_vagas]);
 		}
