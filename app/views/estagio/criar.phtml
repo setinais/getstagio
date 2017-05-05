@@ -8,25 +8,12 @@
 			<form action="<?=BASE;?>estagio/criar/1" method="POST" id="form_cadastro_vaga" role="form">
 				<div class="form-group">
 					<div class="col-md-4">
-<<<<<<< HEAD
-						<label class="control-label" for="username">Cargo*:</label>
+						<label class="control-label" for="username">*Cargo:</label>
 						<select class="form-control" id="cargo_id" name="cargo_id" aria-descrubedby="cargo_help"><?php foreach($view_cargos as $es){ ?><option value="<?=$es->id;?>"><?=$es->nome;?></option><?php } ?></select>
 						<span id="cargo_help" class="help-block"><a href="" data-toggle="modal" data-target="#cadastrar_cargo">Novo Cargo, clique aqui!</a></span>
 					</div>
 					<div class="col-md-2">
-						<label class="control-label" for="username">Vagas*:</label>
-=======
-						<label class="control-label" for="username">*Cargo:</label>
-						<select class="form-control" name="cargo_id" aria-descrubedby="cargo_help">
-							<?php   foreach($view_cargos as $es){ ?>
-							<option value="<?=$es->id;?>"><?=$es->nome;?></option>
-							<?php } ?>
-						</select>
-						<span id="cargo_help" class="help-block"><a href="" data-toggle="modal" data-target="#cadastrar_cargo">Novo Cargo, clique aqui!</a></span>
-					</div>
-					<div class="col-md-2">
 						<label class="control-label" for="username">*Vagas:</label>
->>>>>>> 4611ac052c55178a1d6886cd5a01a2a08af0d3df
 						<input type="number" class="form-control" required="" id="id_qnt" name="qnt" value="<?=$view_request['qnt'];?>" placeholder="Qntd" />
 					</div>
 					<div class="col-md-4">
@@ -38,13 +25,8 @@
 						</div>
 					</div>
 					<div class="col-md-12">
-<<<<<<< HEAD
-						<label class="control-label" for="username">Descrição*:</label>
-						<textarea class="form-control" id="id_descricao" required="" name="descricao" rows="4"  placeholder="Descrição da Vaga"><?=$view_request['descricao'];?></textarea>
-=======
 						<label class="control-label" for="username">*Descrição:</label>
 						<textarea class="form-control" id="id_descricao" name="descricao" rows="4"  placeholder="Descrição da Vaga"><?=$view_request['descricao'];?></textarea>
->>>>>>> 4611ac052c55178a1d6886cd5a01a2a08af0d3df
 					</div>
 					<div class="col-md-4">
 						<label class="control-label" for="username">*Duração:</label>
@@ -55,29 +37,17 @@
 									<option value="Dias" selected="">Dias</option>
 									<option value="Meses">Meses</option>
 									<option value="Anos">Anos</option>
-<<<<<<< HEAD
-									<option value="A decidir">A decidir</option>
-=======
->>>>>>> 4611ac052c55178a1d6886cd5a01a2a08af0d3df
 								</select>
 								</div >
 						</div>
 						<span id="duracao_help" class="help-block">Ex: 2 meses</span>
 					</div>
 					<div class="col-md-2">
-<<<<<<< HEAD
-						<label class="control-label" for="username">Idade Mínima*:</label>
+						<label class="control-label" for="username">*Idade Mínima:</label>
 						<input type="text" class="form-control" required="" id="id_idademinima" name="idademinima" value="<?=$view_request['idademinima'];?>"  />
 					</div>
 					<div class="col-md-2">
-						<label class="control-label" for="username">CH(Semanal)*</label>
-=======
-						<label class="control-label" for="username">*Idade Mínima:</label>
-						<input type="text" class="form-control" id="id_idademinima" name="idademinima" value="<?=$view_request['idademinima'];?>"  />
-					</div>
-					<div class="col-md-2">
 						<label class="control-label" for="username">*CH(Semanal)</label>
->>>>>>> 4611ac052c55178a1d6886cd5a01a2a08af0d3df
 						<div class="input-group">
 							<input type="number" class="form-control" required="" id="id_cargahoraria" name="cargahoraria" value="<?=$view_request['cargahoraria'];?>" />
 							<div class="input-group-addon">h</div>
