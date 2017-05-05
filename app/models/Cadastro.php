@@ -59,12 +59,16 @@
 			foreach ($ids_estudantes as $key => $value) 
 			{
 				$layout[] .= "
-						<div class='list-group'>
-						  <a href='#' class='list-group-item active'>
-						    <h4 class='list-group-item-heading'>List group item heading</h4>
-						    <p class='list-group-item-text'>...</p>
-						  </a>
-						</div>
+						<thead>
+						<tr>
+							<th>Estagiario</th>
+							<th>Escola</th>
+							<th>Idade</th>
+						</tr>
+					</thead>
+					<tbody>
+						".$estagiarios."
+					</tbody>
 				";
 			}
 		}
