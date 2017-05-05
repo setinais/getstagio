@@ -55,14 +55,23 @@
 		*/
 		public static function searchEstudantes($id_vaga)
 		{
+			$estagiarios = null;
 			$ids_estudantes = self::all(['conditions' => ['vaga_id = ?',$id_vagad]]);
 			foreach ($ids_estudantes as $key => $value) 
 			{
-				$layout[] .= "
+				$estagiarios[] .= "
+					<tr>
+						<td>".$value->estudante->usuario->nome."</td>
+						<td>".$value->estudante->usuario->email."</td>
+						<td>".$value->estudante->usuario->telefone."</td>
+					</tr>
+				";
+			}
+			$layout = "
 						<thead>
 						<tr>
 							<th>Estagiario</th>
-							<th>Escola</th>
+							<th>E-mail</th>
 							<th>Idade</th>
 						</tr>
 					</thead>
@@ -70,6 +79,6 @@
 						".$estagiarios."
 					</tbody>
 				";
-			}
+			return $layout;
 		}
 	}
