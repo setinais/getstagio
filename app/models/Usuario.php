@@ -7,7 +7,7 @@ class Usuario extends \HXPHP\System\Model
 {
 	static $belongs_to = [
 			['funcoe'],
-			['estado']
+			['cidade']
 			];
 
 	static $has_many = [
@@ -47,11 +47,7 @@ class Usuario extends \HXPHP\System\Model
 				'message' => '<strong>Cep</strong> é um campo obrigatório.'
 			],
 			[
-				'estado_id',
-				'message' => '<strong>Estado</strong> é um campo obrigatório.'
-			],
-			[
-				'cidade',
+				'cidade_id',
 				'message' => '<strong>Cidade</strong> é um campo obrigatório.'
 			]
 

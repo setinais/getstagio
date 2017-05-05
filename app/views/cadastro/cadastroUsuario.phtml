@@ -54,18 +54,16 @@ echo $data;
                         <div class="form-group">
                             <div class="col-sm-4 col-md-2">
                                 <label>*Estado:</label>
-                                <select class="form-control" name="estado_id" id="estado_id">
+                                <select class="form-control" id="estado_id">
 									<option value="" disabled="" selected="">Selecione...</option>
 									<?php   foreach($view_estados as $es){ ?>
 									<option value="<?=$es->id;?>"><?=$es->sigla;?></option>
 									<?php } ?>
 								</select>
                             </div>
-
                             <div class="col-sm-8 col-md-5">
                                 <label for="id_cidade">*Cidade:</label>
-                                <input value="<?=$view_request['cidade'];?>" list="id_cidade" type="text" placeholder="Cidade" class="form-control col-md-5" id="id_cidade" name="cidade" />
-
+                                <select id="cidade_id" name="cidade_id" class="form-control"></select>
                             </div>
                             <div class="col-sm-6 col-md-5">
                                 <label for="id_telefone">*Telefone:</label>

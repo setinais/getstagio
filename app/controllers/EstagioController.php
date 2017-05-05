@@ -56,7 +56,7 @@ class EstagioController extends \HXPHP\System\Controller
 					
 				}
 			}else{
-				$estrutura_vagas[] = "<tr><td colspan='5'>Nada encontrado <a href='".$this->configs->baseURI."estagio/candidatar/'>Clique aqui</a> para procura vagas de emprego!</td></tr>";
+				$estrutura_vagas[] = "<tr><td colspan='5'>Nada encontrado <a href='".$this->configs->baseURI."estagio/candidatar/'>Clique aqui</a> para procura vagas de estágio.</td></tr>";
 			}
 			$this->view->setVars(['vagas' => $estrutura_vagas]);
 		}
@@ -312,6 +312,13 @@ class EstagioController extends \HXPHP\System\Controller
 				$e .= '<option value="'.$es->id.'">'.$es->nome.'</option>';
 			}
 			echo $e;
+		}else if($type == "carregaCidade"){
+			if(!empty($this->request->post()['cidade_id'])){
+				foreach(Cidade::find_all_by_estado_id($this->request->post()['cidade_id']) as $val){
+					$txt .= "<option value='".$val->id."'>".$val->nome."</option>";
+				}
+			}
+			echo $txt;
 		}
 	}
 	public function infoInscritosAction($id_vaga)

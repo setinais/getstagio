@@ -44,42 +44,42 @@ class Vaga extends \HXPHP\System\Model
 		[
 			'qnt',
 			'greater_than_or_equal_to' => 0,
-			'message' => '<strong>Quantidade</strong> invalida.'
+			'message' => '<strong>Quantidade</strong> inválida.'
 		],
 		[
 			'remuneracao',
 			'greater_than_or_equal_to' => 0,
-			'message' => '<strong>Remuneração</strong> invalida.'
+			'message' => '<strong>Remuneração</strong> inválida.'
 		],
 		[
 			'cargahoraria',
 			'greater_than_or_equal_to' => 0,
-			'message' => '<strong>Carga Horaria</strong> invalida.'
+			'message' => '<strong>Carga Horaria</strong> inválida.'
 		],
 		[
 			'idademinima',
 			'greater_than_or_equal_to' => 0,
-			'message' => '<strong>Idade</strong> invalida!.'
+			'message' => '<strong>Idade</strong> inválida.'
 		],
 		[
 			'qnt',
 			'only_integer' => true,
-			'message' => '<strong>Quantidade</strong> deve ser um numero <strong>inteiro</strong>! Ex: 1,2,3...'
+			'message' => '<strong>Quantidade</strong> deve ser um número <strong>inteiro</strong>! Ex: 1,2,3...'
 		],
 		[
 			'remuneracao',
 			'only_integer' => true,
-			'message' => '<strong>Remuneração</strong> deve ser um numero <strong>inteiro</strong>! Ex: 1,2,3...'
+			'message' => '<strong>Remuneração</strong> deve ser um número <strong>inteiro</strong>! Ex: 1,2,3...'
 		],
 		[
 			'cargahoraria',
 			'only_integer' => true,
-			'message' => '<strong>Carga Horaria</strong> deve ser um numero <strong>inteiro</strong>! Ex: 1,2,3...'
+			'message' => '<strong>Carga Horária</strong> deve ser um número <strong>inteiro</strong>! Ex: 1,2,3...'
 		],
 		[
 			'idademinima',
 			'only_integer' => true,
-			'message' => '<strong>Idade</strong> deve ser um numero <strong>inteiro</strong>! Ex: 1,2,3...'
+			'message' => '<strong>Idade</strong> deve ser um número <strong>inteiro</strong>! Ex: 1,2,3...'
 		]
 
 	];
