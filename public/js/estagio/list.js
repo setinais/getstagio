@@ -1,15 +1,21 @@
 $(document).ready(function($) {
 	$("#Finalizar").click(function(event) {
 		var string = checkboxValues();
+		if(string != ""){
 		window.location.href = "/getstagio/estagio/finalizarVaga/"+string;
+		}
 	});
 	$("#Reabrir").click(function(event) {
 		var string = checkboxValues();
+		if(string != ""){
 		window.location.href = "/getstagio/estagio/reabrirVaga/"+string;
+		}
 	});
 	$("#Excluir").click(function(event) {
 		var string = checkboxValues();
-		window.location.href = "/getstagio/estagio/eliminarVaga/"+string;
+		if(string != ""){
+			window.location.href = "/getstagio/estagio/eliminarVaga/"+string;
+		}
 	});
 });
 

@@ -17,7 +17,7 @@
 			<form action="<?=BASE;?>estagio/editarVaga/<?=$view_request->id;?>/alt" method="POST" role="form">
 				<div class="form-group">
 					<div class="col-md-4">
-						<label class="control-label" for="username">Cargo:</label>
+						<label class="control-label" for="username">*Cargo:</label>
 						<select disabled="" class="form-control" name="cargo_id" aria-descrubedby="cargo_help">
 									<?php   foreach($view_cargos as $es){ 
 										if($es->id == $view_request->cargo_has_instituicao->cargo->id){ ?> 
@@ -32,11 +32,11 @@
 						
 					</div>
 					<div class="col-md-2">
-						<label class="control-label" for="username">Vagas:</label>
+						<label class="control-label" for="username">*Vagas:</label>
 						<input type="number" class="form-control" required="" id="id_qnt" name="qnt" value="<?=$view_request->qnt;?>" placeholder="Qntd" />
 					</div>
 					<div class="col-md-4">
-						<label class="control-label" for="username">Remuneração (Se houver):</label>
+						<label class="control-label" for="username">*Remuneração (Se houver):</label>
 						 <div class="input-group">
       						<div class="input-group-addon">R$</div>
 								<input type="number" class="form-control" id="id_remuneracao" name="remuneracao" value="<?=$view_request->remuneracao;?>" placeholder="Remuneração" />
@@ -44,30 +44,28 @@
 						</div>
 					</div>
 					<div class="col-md-12">
-						<label class="control-label" for="username">Descrição:</label>
+						<label class="control-label" for="username">*Descrição:</label>
 						<textarea class="form-control" id="id_descricao" name="descricao" rows="4"  placeholder="Descrição da Vaga"><?=$view_request->descricao;?></textarea>
 					</div>
 					<div class="col-md-4">
-						<label class="control-label" for="username">Duração:</label>
+						<label class="control-label" for="username">*Duração:</label>
 						<div class="input-group">
 								<input type="number" class="form-control" id="id_duracao" name="duracao" value="<?=$view_request->duracao;?>" placeholder="Duração" aria-descrubedby="duracao_help"/>
 								<div class="input-group-btn" style="width: 40%;">
 								<select name="definicao_tempo" id="definicao_tempo" class="form-control">
-									<option value="Dias" selected="">Dias</option>
-									<option value="Meses">Meses</option>
-									<option value="Anos">Anos</option>
-									<option value="Efetivo">Efetivo</option>
-									<option value="A decidir">A decidir</option>
+									<option value="Dia(s)" selected="">Dia(s)</option>
+									<option value="Mes(es)">Mes(es)</option>
+									<option value="Ano(s)">Ano(s)</option>
 								</select>
 								</div >
 						</div>
 					</div>
 					<div class="col-md-2">
-						<label class="control-label" for="username">Idade Mínima:</label>
+						<label class="control-label" for="username">*Idade Mínima:</label>
 						<input type="text" class="form-control" id="id_idademinima" name="idademinima" value="<?=$view_request->idademinima;?>"  />
 					</div>
 					<div class="col-md-2">
-						<label class="control-label" for="username">CH(Semanal)</label>
+						<label class="control-label" for="username">*CH(Semanal)</label>
 						<div class="input-group">
 							<input type="text" class="form-control" id="id_cargahoraria" name="cargahoraria" value="<?=$view_request->cargahoraria;?>" />
 							<div class="input-group-addon">h</div>
@@ -80,7 +78,7 @@
 							<div class="input-group"><input type="text" name="requisito-<?=$key+1;?>" disabled class="req_sito" value="<?=$value->requisito?>"><span class='glyphicon glyphicon-edit edita_requisito' aria-hidden='true'> </span> <span class="remove_campo"> X</span></div>
 							<?php } ?>
 						</div>
-						<label class="control-label" for="username">Requisitos:</label>
+						<label class="control-label" for="username">*Requisitos:</label>
 						<div class="input-group">
 							
 							<input type="text" class="form-control" id="id_requisitos" placeholder="" />

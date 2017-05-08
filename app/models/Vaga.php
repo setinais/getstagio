@@ -44,42 +44,42 @@ class Vaga extends \HXPHP\System\Model
 		[
 			'qnt',
 			'greater_than_or_equal_to' => 0,
-			'message' => '<strong>Quantidade</strong> invalida.'
+			'message' => '<strong>Quantidade</strong> inválida.'
 		],
 		[
 			'remuneracao',
 			'greater_than_or_equal_to' => 0,
-			'message' => '<strong>Remuneração</strong> invalida.'
+			'message' => '<strong>Remuneração</strong> inválida.'
 		],
 		[
 			'cargahoraria',
 			'greater_than_or_equal_to' => 0,
-			'message' => '<strong>Carga Horaria</strong> invalida.'
+			'message' => '<strong>Carga Horaria</strong> inválida.'
 		],
 		[
 			'idademinima',
 			'greater_than_or_equal_to' => 0,
-			'message' => '<strong>Idade</strong> invalida!.'
+			'message' => '<strong>Idade</strong> inválida.'
 		],
 		[
 			'qnt',
 			'only_integer' => true,
-			'message' => '<strong>Quantidade</strong> deve ser um numero <strong>inteiro</strong>! Ex: 1,2,3...'
+			'message' => '<strong>Quantidade</strong> deve ser um número <strong>inteiro</strong>! Ex: 1,2,3...'
 		],
 		[
 			'remuneracao',
 			'only_integer' => true,
-			'message' => '<strong>Remuneração</strong> deve ser um numero <strong>inteiro</strong>! Ex: 1,2,3...'
+			'message' => '<strong>Remuneração</strong> deve ser um número <strong>inteiro</strong>! Ex: 1,2,3...'
 		],
 		[
 			'cargahoraria',
 			'only_integer' => true,
-			'message' => '<strong>Carga Horaria</strong> deve ser um numero <strong>inteiro</strong>! Ex: 1,2,3...'
+			'message' => '<strong>Carga Horária</strong> deve ser um número <strong>inteiro</strong>! Ex: 1,2,3...'
 		],
 		[
 			'idademinima',
 			'only_integer' => true,
-			'message' => '<strong>Idade</strong> deve ser um numero <strong>inteiro</strong>! Ex: 1,2,3...'
+			'message' => '<strong>Idade</strong> deve ser um número <strong>inteiro</strong>! Ex: 1,2,3...'
 		]
 
 	];
@@ -90,7 +90,7 @@ class Vaga extends \HXPHP\System\Model
 		switch($op)
 		{		
 			case "Estudante" :
-				$vagas = self::all();
+				$vagas = self::all(array('conditions'=>array('status < ?', 1)));
 				break;
 			case "Instituicao":
 				$id_inst = Instituicao::find_by_usuario_id($id_user)->id;
@@ -122,6 +122,10 @@ class Vaga extends \HXPHP\System\Model
 		$callback->errors = [];
 
 		$id_inst = Instituicao::find_by_usuario_id($id_user)->id;
+		if(!isset($post['cargo_id'])){
+			array_push($callback->errors, 'Por favor, selecione ou crie um cargo.');
+			return $callback;
+		}
 		$id_cargo = $post['cargo_id'];
 		unset($post['cargo_id']);
 		$post['cargo_has_instituicao_id'] = CargoHasInstituicao::find_by_cargo_id($id_cargo)->id;
@@ -139,7 +143,6 @@ class Vaga extends \HXPHP\System\Model
 				array_push($callback->errors, $messagem[0]);
 			}
 		}
-
 		return $callback;
 	}
 

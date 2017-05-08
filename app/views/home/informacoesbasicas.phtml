@@ -17,27 +17,27 @@ echo $data;
   		<div class="panel-body">
   			<form action="<?=BASE?>home/informacoesbasicas" method="POST">
   				<div class="form-group">
-  					<label for="id_nome">Nome</label>
-  					<input type="text" class="form-control" id="id_nome" placeholder="Nome" name="nome" value="<?=$view_request->nome;?>" />
+  					<label for="id_nome">Nome*</label>
+  					<input type="text" class="form-control" id="id_nome" placeholder="Nome" name="nome" value="<?=$view_request->nome;?>" required=""/>
   				</div>
   				<div class="form-group">
-  					<label for="id_endereco">Endereço</label>
-  					<input type="text" class="form-control" id="id_endereco" placeholder="Endereço" name="endereco" value="<?=$view_request->endereco;?>" />
+  					<label for="id_endereco">Endereço*</label>
+  					<input type="text" class="form-control" id="id_endereco" placeholder="Endereço" name="endereco" value="<?=$view_request->endereco;?>" required=""/>
 
-  					<label for="id_telefone">Telefone</label>
-  					<input type="text" class="form-control" id="id_telefone" placeholder="Telefone" name="telefone" value="<?=$view_request->telefone;?>" />
+  					<label for="id_telefone">Telefone*</label>
+  					<input type="text" class="form-control" id="id_telefone" placeholder="Telefone" name="telefone" value="<?=$view_request->telefone;?>" required=""/>
 
-  					<label for="id_cep">Cep</label>
-  					<input type="text" class="form-control" id="id_cep" placeholder="CEP" name="cep" value="<?=$view_request->cep;?>" />
+  					<label for="id_cep">CEP*</label>
+  					<input type="text" class="form-control" id="id_cep" placeholder="CEP" name="cep" value="<?=$view_request->cep;?>" required=""/>
 
-  					<label for="id_numero">Número</label>
-  					<input type="text" class="form-control" id="id_numero" placeholder="Numero" name="numero" value="<?=$view_request->numero;?>" />
+  					<label for="id_numero">Número*</label>
+  					<input type="text" class="form-control" id="id_numero" placeholder="Numero" name="numero" value="<?=$view_request->numero;?>" required=""/>
 
-  					<label for="id_estado">Estado</label>
-  					<select class="form-control" name="estado_id" >
+  					<label for="id_estado">Estado*</label>
+  					<select class="form-control" id="estado_id" required="">
 
                   <?php foreach($view_estados as $es){ 
-                    if($es->id === $view_request->estado_id){ ?>
+                    if($es->id === $view_request->cidade->estado->id){ ?>
                        <option value='<?=$es->id;?>' selected="selected"><?=$es->sigla;?></option>
                       <?php } 
                       else
@@ -45,9 +45,15 @@ echo $data;
                       <?php }
                    } ?>
                 </select>
-
-  					<label for="id_cidade">Cidade</label>
-  					<input type="text" class="form-control" id="id_cidade" placeholder="Cidade" name="cidade" value="<?=$view_request->cidade;?>" />
+  					<label for="id_cidade">Cidade*</label>
+            <select id="cidade_id" name="cidade_id" class="form-control">
+              <?php foreach(Cidade::find_all_by_estado_id($view_request->cidade->estado->id) as $val ){ ?>
+                <?php if($view_request->cidade_id == $val->id){ ?>
+                  <option selected="" value="<?=$val->id?>"><?=$val->nome?></option>
+                <?php }else{ ?>
+                  <option value="<?=$val->id?>"><?=$val->nome?></option>
+              <?php }} ?>
+            </select>
   				</div>
           <div class="form-group col-md-4 col-md-offset-5">
             <button class="btn btn-success">Salvar alterações</button>

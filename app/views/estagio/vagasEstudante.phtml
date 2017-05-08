@@ -1,24 +1,25 @@
 <div id="ret">	</div>
 <div class="container">
 	<div class="row">
-		<div class="col-md-offset-1 col-md-4">
+		<div class="col-md-12">
 			<h1>
-				<span class="label label-info">
-					Vagas em Aberto
+				<span class="label label-info col-md-offset-4">
+					Minhas Inscrições
+
 				</span>
 			</h1>
 		</div>
-		<div class="col-md-4 col-md-offset-1">
-			<div class="input-group">
-				<input type="text" id="busca" class="form-control" placeholder="Buscar...">
-				<span class="input-group-btn">
-					<button class="btn btn-default" type="button">Go!</button>
-				</span>
-			</div><!-- /input-group -->
-		</div>
-		<div class="col-md-offset-2 col-xs-offset-1 col-md-8 col-xs-10">
+			<div class="col-md-3 col-md-offset-7" style="margin-top: 2%;">
+				<div class="input-group">
+					<input type="text" id="busca" class="form-control" placeholder="Buscar...">
+					<span class="input-group-btn">
+						<button class="btn btn-default" type="button">Buscar</button>
+					</span>
+				</div><!-- /input-group -->
+			</div>
+		<div class="col-md-offset-2 col-xs-offset-1 col-md-8 col-xs-10" style="margin-top: 2%;">
 			<div class="panel panel-default">
-				<table class="table">
+				<table id="vagas_minhas" class="table">
 					<thead>
 						<tr>
 							<th>Cargo</th>
@@ -33,6 +34,9 @@
 
 						<?php }} ?>
 					</tbody>
+				</table>
+				<table id="estudantes_candidatos" class="table">
+					
 				</table>
 			</div>
 		</div>

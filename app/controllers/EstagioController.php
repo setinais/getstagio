@@ -56,7 +56,7 @@ class EstagioController extends \HXPHP\System\Controller
 					
 				}
 			}else{
-				$estrutura_vagas[] = "<tr><td colspan='5'>Nada encontrado <a href='".$this->configs->baseURI."estagio/candidatar/'>Clique aqui</a> para procura vagas de emprego!</td></tr>";
+				$estrutura_vagas[] = "<tr><td colspan='5'>Nada encontrado <a href='".$this->configs->baseURI."estagio/candidatar/'>Clique aqui</a> para procurar vagas de estágio.</td></tr>";
 			}
 			$this->view->setVars(['vagas' => $estrutura_vagas]);
 		}
@@ -240,7 +240,7 @@ class EstagioController extends \HXPHP\System\Controller
 
 	public function candidatarAction()
 	{
-		$vagas = Vaga::all();
+		$vagas = Vaga::find('all',array('conditions'=>array('status = ? OR status = ?',1,true)));
 		$estrutura_vagas = null;
 		$idu = Estudante::find_by_usuario_id($this->auth->getUserId())->id;
 		foreach ($vagas as $key => $value) {
@@ -272,25 +272,53 @@ class EstagioController extends \HXPHP\System\Controller
 			$estrutura_vagas[] = $estrutura_vagas_head.$estrutura_vagas_section.$estrutura_vagas_footer;
 			
 		}
-		$this->view->setAssets('js',[$this->configs->baseURI."public/js/jquery.js",$this->configs->baseURI.'public/js/cadastro/candidatar.js']);
+		$this->view->setAssets('js',[$this->configs->baseURI."public/js/jquery.js",$this->configs->baseURI.'public/js/jquery.js',$this->configs->baseURI.'public/js/cadastro/candidatar.js']);
 		$this->view->setVars(['vagas' => $estrutura_vagas]);
 	}
 	public function ajaxAction($type = ""){
 		$this->view->setTemplate(false);
-		$id_vaga = Vaga::find($this->request->post()['id'])->id;
-		$idu = Estudante::find_by_usuario_id($this->auth->getUserId())->id;
 		if($type == ""){
+			$id_vaga = Vaga::find($this->request->post()['id'])->id;
+			$idu = Estudante::find_by_usuario_id($this->auth->getUserId())->id;
 			if(Cadastro::cadastrar($id_vaga,$idu)){
 				echo "true";
 			}else{
 				echo "false";
 			}
 		}else if($type == "descandidatar"){
+			$id_vaga = Vaga::find($this->request->post()['id'])->id;
+			$idu = Estudante::find_by_usuario_id($this->auth->getUserId())->id;
 			if(Cadastro::descadastrar($id_vaga,$idu)){
 				echo "true";
 			}else{
 				echo "false";
 			}
+		}else if($type == "cadastrarCargo"){
+			$cargo = $this->request->post();
+			$cad_cargo = Cargo::cadastrar($cargo);
+						
+			if($cad_cargo->status === true){
+				CargoHasInstituicao::cadastrar(Instituicao::find_by_usuario_id($this->auth->getUserId())->id,$cad_cargo->user->id);
+				echo "true";
+				$post = null;
+			}else{
+				echo "false";
+				$post = null;
+			}
+		}else if($type == "carregaCargo"){
+			$e = "";
+			$view_cargos = Cargo::all();
+			foreach($view_cargos as $es){ 
+				$e .= '<option value="'.$es->id.'">'.$es->nome.'</option>';
+			}
+			echo $e;
+		}else if($type == "carregaCidade"){
+			if(!empty($this->request->post()['cidade_id'])){
+				foreach(Cidade::find_all_by_estado_id($this->request->post()['cidade_id']) as $val){
+					$txt .= "<option value='".$val->id."'>".$val->nome."</option>";
+				}
+			}
+			echo $txt;
 		}
 	}
 	public function infoInscritosAction($id_vaga)
