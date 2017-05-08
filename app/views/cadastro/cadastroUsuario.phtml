@@ -29,32 +29,33 @@ echo $data;
                         <div class="form-group ">
                             <div class="col-md-12">
                                 <label class="control-label" for="username">*Nome:</label>
-                                <input type="text" class="form-control" id="id_nome" name="nome" value="<?=$view_request['nome'];?>" placeholder="Nome" />
+                                <input type="text" class="form-control" id="id_nome" required="" name="nome" value="<?=$view_request['nome'];?>" placeholder="Nome" />
                             </div>
 
                         </div>
                         <div class="form-group">
                             <div class="col-md-6">
                                 <label for="exampleInputEmail1">*Email:</label>
-                                <input value="<?=$view_request['email'];?>" type="email" class="form-control" id="id_email" name="email" placeholder="Email" />
+                                <input value="<?=$view_request['email'];?>" type="email" required="" class="form-control" id="id_email" name="email" placeholder="Email" />
 
                             </div>
-                            <div class="col-sm-6 col-md-3">
-                                <label for="id_senha">*Senha:</label>
-                                <input type="password" class="form-control" id="id_senha" name="senha" placeholder="Senha" />
-
+                            <div class="col-md-6">
+                                <div class="col-sm-6 col-md-6">
+                                    <label for="id_senha">*Senha:</label>
+                                    <input type="password" class="form-control" id="id_senha" required="" name="senha" placeholder="Senha" />
+                                </div>
+                                <div class="col-sm-6 col-md-6">
+                                    <label for="password">*Confirmar Senha:</label>
+                                    <input type="password" class="form-control col-md-5" required="" id="confirsenha" placeholder="Senha" />
+                                </div>
+                                <span class="label label-danger col-md-8 col-md-offset-2" id="erroSenhas" style="display: none;">As senha não coicidem!</span>
+                                <span class="label label-warning col-md-8 col-md-offset-2" id="erroSenhasTamanho" style="display: none;">Necessário no minimo 6 caracteres!</span>
                             </div>
-                            <div class="col-sm-6 col-md-3">
-                                <label for="password">*Confirmar Senha:</label>
-                                <input type="password" class="form-control col-md-5" id="confirsenha" placeholder="Senha" />
-
-                            </div>
-
                         </div>
                         <div class="form-group">
                             <div class="col-sm-4 col-md-2">
                                 <label>*Estado:</label>
-                                <select class="form-control" id="estado_id">
+                                <select class="form-control" required="" id="estado_id">
 									<option value="" disabled="" selected="">Selecione...</option>
 									<?php   foreach($view_estados as $es){ ?>
 									<option value="<?=$es->id;?>"><?=$es->sigla;?></option>
@@ -63,24 +64,24 @@ echo $data;
                             </div>
                             <div class="col-sm-8 col-md-5">
                                 <label for="id_cidade">*Cidade:</label>
-                                <select id="cidade_id" name="cidade_id" class="form-control"></select>
+                                <select id="cidade_id" name="cidade_id" required="" class="form-control"></select>
                             </div>
                             <div class="col-sm-6 col-md-5">
                                 <label for="id_telefone">*Telefone:</label>
-                                <input value="<?=$view_request['telefone'];?>" type="text" placeholder="(DD)9 9999-9999" class="form-control col-md-5" id="id_telefone" name="telefone" maxlength="11" />
+                                <input value="<?=$view_request['telefone'];?>" required="" type="text" placeholder="(DD)9 9999-9999" class="form-control col-md-5" id="id_telefone" name="telefone" maxlength="11" />
 
                             </div>
                             <div class="col-sm-6 col-md-3">
                                 <label for="password">*CEP:</label>
-                                <input value="<?=$view_request['cep'];?>" type="text" class="form-control col-md-5" id="id_cep" name="cep" placeholder="CEP" maxlength="8" />
+                                <input value="<?=$view_request['cep'];?>" required="" type="text" class="form-control col-md-5" id="id_cep" name="cep" placeholder="CEP" maxlength="8" />
                             </div>
                             <div class="col-sm-9 col-md-6">
                                 <label for="password">*Endereço:</label>
-                                <input value="<?=$view_request['endereco'];?>" type="text" class="form-control" id="" name="endereco" placeholder="Endereço" />
+                                <input value="<?=$view_request['endereco'];?>" required="" type="text" class="form-control" id="" name="endereco" placeholder="Endereço" />
                             </div>
                             <div class="col-sm-3 col-md-3">
                                 <label for="password">*Número:</label>
-                                <input value="<?=$view_request['numero'];?>" type="text" class="form-control" id="id_numero" name="numero" placeholder="Número" maxlength="7" />
+                                <input value="<?=$view_request['numero'];?>" required="" type="text" class="form-control" id="id_numero" name="numero" placeholder="Número" maxlength="7" />
                             </div>
                         </div>
                         <p>* Campos Obrigatórios</p>

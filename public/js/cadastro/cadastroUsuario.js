@@ -31,4 +31,31 @@ jQuery(document).ready(function($) {
 			}
 		});
  	});
+ 	$("form").submit(function(event) {
+ 		if($("#id_senha").val() == $("#confirsenha").val() ){
+ 			if($("#id_senha").val().length >= 6){
+ 				$("#erroSenhasTamanho").hide('fast');
+ 				return true;
+ 			}else{
+ 				$("#erroSenhasTamanho").show("fast");
+ 			}
+ 		}else{
+ 			$("#erroSenhas").show('fast');
+ 			return false;
+ 		}
+ 	});
+ 	$("#confirsenha").focus(function(event) {
+ 		$("#erroSenhas").hide('fast');
+ 	}).blur(function(event) {
+ 		if($("#id_senha").val() == $("#confirsenha").val()){
+ 			$("#erroSenhas").hide('fast');
+ 			if($("#id_senha").val().length >= 6){
+ 				$("#erroSenhasTamanho").hide('fast');
+ 			}else{
+ 				$("#erroSenhasTamanho").show("fast");
+ 			}
+ 		}else{
+ 			$("#erroSenhas").show('fast');
+ 		}
+ 	});;
  });
