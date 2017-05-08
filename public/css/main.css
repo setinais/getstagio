@@ -12,8 +12,8 @@
 /* ------- */
 /* ++Geral++ */
 body {
-  background-color: #1c2a4e;
-  background-image: url("../img/bgbg.png"); }
+  background-color: #b6caff;
+  /* background-image: $bgsite2; */ }
 
 /* --------- */
 /* +Estilo do MENU+ */
@@ -50,7 +50,7 @@ body {
   /*Change rollover cell color here*/ }
 
 .navbar-default .navbar-nav > li > a {
-  color: #1c2a4e;
+  color: #04224b;
   /*Cor do texto quando ativo*/ }
 
 /* ---------------- */
