@@ -86,4 +86,14 @@
 			}
 			return $layout;
 		}
+		public static function deleteInscritos($id){
+			foreach(Self::find_all_by_vaga_id($id) as $val){
+				$val->delete();
+			}
+			if(Self::find_all_by_vaga_id($id) == null || empty(Self::find_all_by_vaga_id($id))){
+				return true;
+			}else{
+				return false;
+			}
+		}
 	}

@@ -163,10 +163,12 @@ class Vaga extends \HXPHP\System\Model
 	public static function eliminarVaga($ids)
 	{
 		//self::table()->update(array('status'=>2), array('id'=>$ids));
-		self::update_all(array(
-    		'set' => array('status' => 2),
-    		'conditions' => array('id' => $ids)
-    	));
+		if(Cadastro::deleteInscritos($ids)){
+			self::update_all(array(
+	    		'set' => array('status' => 2),
+	    		'conditions' => array('id' => $ids)
+	    	));
+		}
 	}
 
 	public static function editarVaga($id,$atributes)

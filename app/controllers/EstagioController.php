@@ -45,7 +45,8 @@ class EstagioController extends \HXPHP\System\Controller
 					$estrutura_vagas_head = null;
 					$estrutura_vagas_section = null;
 					$estrutura_vagas_footer = null;
-
+					$statu = $value->status == 0?"<span class='label label-warning'>Inativada</span>":"";
+					$statu = $value->status == 1?"<span class='label label-success'>Ativa</span>":$statu;
 					$estrutura_vagas_head = "<tr>
 					<td>
 						<h4 class='busca'>".$value->cargo_has_instituicao->cargo->nome."</h4>
@@ -60,6 +61,7 @@ class EstagioController extends \HXPHP\System\Controller
 						$estrutura_vagas_footer = "</td>
 						<td>R$".$value->remuneracao.",00</td>
 						<td>".$value->duracao." ".$value->definicao_tempo."</td>
+						<td>".$statu."</td>
 						<td><span class='label label-danger descandidatar' id='".$value->id."' style='cursor: pointer;'><span class='glyphicon glyphicon-log-in'></span>  <span class='troca'> Cancelar</span></span></td>";
 					$estrutura_vagas[] = $estrutura_vagas_head.$estrutura_vagas_section.$estrutura_vagas_footer;
 					
@@ -281,7 +283,15 @@ class EstagioController extends \HXPHP\System\Controller
 			$estrutura_vagas[] = $estrutura_vagas_head.$estrutura_vagas_section.$estrutura_vagas_footer;
 			
 		}
-		$this->view->setAssets('js',[$this->configs->baseURI."public/js/jquery.js",$this->configs->baseURI.'public/js/jquery.js',$this->configs->baseURI.'public/js/cadastro/candidatar.js']);
+		$this->view->setAssets('js',
+			[$this->configs->baseURI."public/js/jquery.js",
+			$this->configs->baseURI.'public/js/jquery.js',
+			$this->configs->baseURI.'public/js/cadastro/candidatar.js',
+			$this->configs->baseURI.'public/js/toogle/tablesaw.js',
+			$this->configs->baseURI.'public/js/toogle/tablesaw-init.js'
+			])->setAssets('css',[
+			$this->configs->baseURI."public/css/toogle/tablesaw.css"
+			]);
 		$this->view->setVars(['vagas' => $estrutura_vagas]);
 	}
 	public function ajaxAction($type = ""){
