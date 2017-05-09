@@ -23,7 +23,7 @@ jQuery(document).ready(function($) {
 		if(valida_cnpj($("#id_cnpj").val())){
 			return true;
 		}else{
-			$("#erroCNPJ").show("fast");
+			$("#erroCNPJ").show("fast").focus();
 			return false;
 		}
 	});
@@ -36,7 +36,7 @@ jQuery(document).ready(function($) {
 		if(valida_cpf($("#id_cpf").val())){
 			return true;
 		}else{
-			$("#erroCNPJ").show("fast");
+			$("#erroCNPJ").show("fast").focus();
 			return false;
 		}
 	});

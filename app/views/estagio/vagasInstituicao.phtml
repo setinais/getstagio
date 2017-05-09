@@ -3,10 +3,10 @@
 		<h3 class="col-md-4 col-md-offset-4" id="texto">Situação das Vagas</h3>
 		<a href="<?=$view_url?>" class="btn btn-success col-md-offset-2">Criar vaga</a><br>
 		<div id="aparece">
-			<table class="table table-hover" >
+			<table class="table table-hover tablesaw" data-tablesaw-mode="columntoggle">
 				<thead>
 					<tr>
-						<th>
+						<th data-tablesaw-sortable-col data-tablesaw-priority="persist">
 							<div class="btn-group">
 								<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 									Ações <span class="caret"></span>
@@ -19,13 +19,13 @@
 								</ul>
 							</div>
 						</th>
-						<th>Cargo</th>
-						<th>Quantidade</th>
-						<th>Inscritos</th>
-						<th>Remuneração</th>
-						<th>Duração</th>
-						<th>Status</th>
-						<th>Opções</th>
+						<th data-tablesaw-sortable-col data-tablesaw-sortable-default-col data-tablesaw-priority="persist">Cargo</th>
+						<th data-tablesaw-sortable-col data-tablesaw-priority="3">Quantidade</th>
+						<th data-tablesaw-sortable-col data-tablesaw-priority="persist">Inscritos</th>
+						<th data-tablesaw-sortable-col data-tablesaw-priority="2">Remuneração</th>
+						<th data-tablesaw-sortable-col data-tablesaw-priority="4">Duração</th>
+						<th data-tablesaw-sortable-col data-tablesaw-priority="1">Status</th>
+						<th data-tablesaw-sortable-col data-tablesaw-priority="persist">Opções</th>
 					</tr>
 				</thead>
 				<tbody>

@@ -65,7 +65,7 @@
 				{
 					$estagiarios .= "
 						<tr>
-							<td>".$value->estudante->usuario->nome."</td>
+							<th>".$value->estudante->usuario->nome."</th>
 							<td>".$value->estudante->usuario->email."</td>
 							<td>".$value->estudante->usuario->telefone."</td>
 						</tr>

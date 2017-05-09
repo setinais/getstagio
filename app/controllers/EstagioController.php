@@ -27,7 +27,15 @@ class EstagioController extends \HXPHP\System\Controller
 
 	public function listAction()
 	{
-		$this->view->setAssets('js',[$this->configs->baseURI."public/js/jquery.js"]);
+		//$this->view->setAssets('js',[$this->configs->baseURI."public/js/jquery.js"]);
+		$this->view->setAssets('js',
+			[$this->configs->baseURI."public/js/jquery.js",
+			$this->configs->baseURI.'public/js/cadastro/candidatar2.js',
+			$this->configs->baseURI.'public/js/estagio/list.js',
+			$this->configs->baseURI.'public/js/toogle/tablesaw.js',
+			$this->configs->baseURI.'public/js/toogle/tablesaw-init.js',
+			])->setAssets('css',
+			[$this->configs->baseURI."public/css/toogle/tablesaw.css"]);
 		if($this->auth->getUserRole() == 'Estudante'){
 			$vagas = Cadastro::lists($this->auth->getUserId());
 			$estrutura_vagas = null;
@@ -88,7 +96,7 @@ class EstagioController extends \HXPHP\System\Controller
 			
 		}
 		$this->view->setFile('vagas'.$this->auth->getUserRole());
-		$this->view->setAssets('js',[$this->configs->baseURI."public/js/jquery.js",$this->configs->baseURI.'public/js/cadastro/candidatar2.js',$this->configs->baseURI.'public/js/estagio/list.js']);
+
 	}
 
 	public function criarAction($acao=null)

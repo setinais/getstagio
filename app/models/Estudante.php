@@ -34,6 +34,10 @@ class Estudante extends \HXPHP\System\Model
 			[
 				['matricula'],
 				'message' => 'Já existe um estudante cadastrado com esta <strong>matrícula</strong>.'
+			],
+			[
+				['cpf'],
+				'message'=>'Já existe um estudante cadastrado com este <strong>CPF</strong>.'
 			]
 	];
 
