@@ -27,6 +27,7 @@ class EstagioController extends \HXPHP\System\Controller
 
 	public function listAction()
 	{
+		$this->view->setAssets('js',[$this->configs->baseURI."public/js/jquery.js"]);
 		if($this->auth->getUserRole() == 'Estudante'){
 			$vagas = Cadastro::lists($this->auth->getUserId());
 			$estrutura_vagas = null;
@@ -319,6 +320,8 @@ class EstagioController extends \HXPHP\System\Controller
 				}
 			}
 			echo $txt;
+		}else if($type == "carregaCandidato"){
+			echo(Cadastro::searchEstudantes($this->request->post()['vaga_id']));
 		}
 	}
 	public function infoInscritosAction($id_vaga)

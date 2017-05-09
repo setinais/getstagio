@@ -206,13 +206,4 @@ class Vaga extends \HXPHP\System\Model
 
 		return $callback;
 	}
-	public static function ids($id_user)
-	{
-		$ids = null;
-		$id_cargo_inst = CargoHasInstituicao::all(['conditions' => ['instituicao_id = ?',Instituicao::find_by_usuario_id($id_user)->id]]);
-		foreach ($id_cargo_inst as $key => $value) {
-			$ids[] .= $value->id;
-		}
-		return $ids;
-	}
 }

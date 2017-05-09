@@ -56,14 +56,14 @@
 		public static function searchEstudantes($id_vaga)
 		{
 			$estagiarios = null;
-			$ids_estudantes = self::all(['conditions' => ['vaga_id = ?',$id_vagad]]);
+			$ids_estudantes = self::all(['conditions' => ['vaga_id = ?',$id_vaga]]);
 			if(is_null($ids_estudantes))
 			{
 				$estagiarios = "<tr>Nenhum candidato para esta vaga</tr>";
 			}else{
 				foreach ($ids_estudantes as $key => $value) 
 				{
-					$estagiarios[] .= "
+					$estagiarios .= "
 						<tr>
 							<td>".$value->estudante->usuario->nome."</td>
 							<td>".$value->estudante->usuario->email."</td>
@@ -76,7 +76,7 @@
 							<tr>
 								<th>Estagiario</th>
 								<th>E-mail</th>
-								<th>Idade</th>
+								<th>Telefone</th>
 							</tr>
 						</thead>
 						<tbody>

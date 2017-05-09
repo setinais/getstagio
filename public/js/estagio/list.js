@@ -17,6 +17,7 @@ $(document).ready(function($) {
 			window.location.href = "/getstagio/estagio/eliminarVaga/"+string;
 		}
 	});
+	
 });
 
 function checkboxValues()

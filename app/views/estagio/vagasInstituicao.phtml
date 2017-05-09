@@ -1,132 +1,137 @@
 <div class="col-md-8 col-md-offset-2">
 	<div class="row">
-		<h3 class="col-md-4 col-md-offset-4">Situação das Vagas</h3>
-		<a href="<?=$view_url?>" class="btn btn-success col-md-offset-2">Criar vaga</a>
-		<table class="table table-hover">
-			<thead>
-				<tr>
-					<th>
-						<div class="btn-group">
-							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								Ações <span class="caret"></span>
-							</button>
-							<ul class="dropdown-menu">
-								<li><a href="#" id="Finalizar">Desativar</a></li>
-								<li><a href="#" id="Reabrir">Ativar</a></li>
-								<li role="separator" class="divider"></li>
-								<li><a href="#" id="Excluir">Excluir</a></li>
-							</ul>
-						</div>
-					</th>
-					<th>Cargo</th>
-					<th>Quantidade</th>
-					<th>Inscritos</th>
-					<th>Remuneração</th>
-					<th>Duração</th>
-					<th>Status</th>
-					<th>Opções</th>
-				</tr>
-			</thead>
-			<tbody>
-			<?php if(!is_null($view_vagas)){ foreach($view_vagas as $vagas) { ?>
-				<tr>
-					<th>
-						<p class="text-center">
-							<input type="checkbox" value="<?=$vagas->id;?>" name="value_id">
-						</p>
-					</th>
-					<td>
-						<?=$vagas->cargo_has_instituicao->cargo->nome;?>
-					</td>
-					<td>
-						<?=$vagas->qnt;?>
-					</td>
-					<td>
-						<a href="#" data-id-vaga="<?=$vagas->id?>">
-							<span class="badge">
-								<?php
-								if(!is_null($view_vagas)){
-									$qntd = 0;
-									foreach ($view_inscrito as $key => $value) 
-									{
-										
-										if($key == $vagas->id)
+		<h3 class="col-md-4 col-md-offset-4" id="texto">Situação das Vagas</h3>
+		<a href="<?=$view_url?>" class="btn btn-success col-md-offset-2">Criar vaga</a><br>
+		<div id="aparece">
+			<table class="table table-hover" >
+				<thead>
+					<tr>
+						<th>
+							<div class="btn-group">
+								<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									Ações <span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu">
+									<li><a href="#" id="Finalizar">Desativar</a></li>
+									<li><a href="#" id="Reabrir">Ativar</a></li>
+									<li role="separator" class="divider"></li>
+									<li><a href="#" id="Excluir">Excluir</a></li>
+								</ul>
+							</div>
+						</th>
+						<th>Cargo</th>
+						<th>Quantidade</th>
+						<th>Inscritos</th>
+						<th>Remuneração</th>
+						<th>Duração</th>
+						<th>Status</th>
+						<th>Opções</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php if(!is_null($view_vagas)){ foreach($view_vagas as $vagas) { ?>
+					<tr>
+						<th>
+							<p class="text-center">
+								<input type="checkbox" value="<?=$vagas->id;?>" name="value_id">
+							</p>
+						</th>
+						<td>
+							<?=$vagas->cargo_has_instituicao->cargo->nome;?>
+						</td>
+						<td>
+							<?=$vagas->qnt;?>
+						</td>
+						<td>
+							<a href="#" class="inscritos" data-id-vaga="<?=$vagas->id?>">
+								<span class="badge">
+									<?php
+									if(!is_null($view_vagas)){
+										$qntd = 0;
+										foreach ($view_inscrito as $key => $value) 
 										{
-											if(!empty($value))
-											{
-												$qntd = $value;
-											}
-										}
 
+											if($key == $vagas->id)
+											{
+												if(!empty($value))
+												{
+													$qntd = $value;
+												}
+											}
+
+										}
+										echo $qntd;
 									}
-									echo $qntd;
-								}
-								?>
-							</span>
-						</a>
-					</td>
-					<td>
-						R$ <?=$vagas->remuneracao;?>,00
-					</td>
-					<td>
-						<?=$vagas->duracao;?> <?=$vagas->definicao_tempo?>
-					</td>
-					<td>
-						<?php echo ($vagas->status === 1 ? "<span class='label label-info'>Em Aberto</span>" : "<span class='label label-danger'>Finalizado</span>" );?> 
-					</td>
-					<td>
-						<p class="text-center">
-							<a href="#" data-toggle="modal" data-target="#info<?=$vagas->id;?>">
-								<span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+									?>
+								</span>
 							</a>
-							<a href="<?=BASE;?>estagio/editarVaga/<?=$vagas->id;?>">
-								<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-							</a>
-						</p>
-					</td>
-					<div class="modal fade"  id="info<?=$vagas->id?>" tabindex="-1" role="dialog">
-					  <div class="modal-dialog" role="document">
-					    <div class="modal-content">
-					      <div class="modal-header">
-					        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					        <h4 class="modal-title">Vaga de <?=$vagas->cargo_has_instituicao->cargo->nome;?></h4>
-					      </div>
-					      <div class="modal-body">
-					        <dl class="dl-horizontal">
-							  	<dt>Cargo</dt>
-							  		<dd><?=$vagas->cargo_has_instituicao->cargo->nome;?></dd>
-								<dt>Quantidade</dt>
-									<dd><?=$vagas->qnt;?> ofertada(s)</dd>
-								<dt>Remuneração</dt>
-									<dd>R$ <?=$vagas->remuneracao;?>,00</dd>
-								<dt>Duração</dt>
-									<dd><?=$vagas->duracao." ".$vagas->definicao_tempo;?> </dd>
-								<dt>Idade Mínima</dt>
-									<dd><?=$vagas->idademinima;?> anos</dd>
-								<dt>Carga Horária</dt>
-									<dd><?=$vagas->cargahoraria;?>h semanais</dd>
-								<dt>Requisitos</dt>
-									<dd><?php  foreach ($view_requisitos[$vagas->id] as $key => $value) { ?>
-										<span class="label label-default"><?=$value->requisito;?></span>
-									<?php } ?>
-									</dd>
-								<dt>Status</dt>
-									<dd><?php echo ($vagas->status === 1 ? "<span class='label label-info'>Em Aberto</span>" : "<span class='label label-danger'>Finalizado</span>" ); ?></dd>
-							</dl>
-					      </div>
-					      <div class="modal-footer">
-					        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-					      </div>
-					    </div><!-- /.modal-content -->
-					  </div><!-- /.modal-dialog -->
-					</div><!-- /.modal -->
-				</tr>
-			<?php } }else{
-				echo "<tr><td colspan='5'>Você ainda não cadastrou nenhuma vaga. <a href='".$this->configs->baseURI."estagio/criar/'>Clique aqui</a> para criar novas vagas!</td></tr>";}?>
-			</tbody>
-		</table>
-		<div id="infoinscritos">
-			
+						</td>
+						<td>
+							R$ <?=$vagas->remuneracao;?>,00
+						</td>
+						<td>
+							<?=$vagas->duracao;?> <?=$vagas->definicao_tempo?>
+						</td>
+						<td>
+							<?php echo ($vagas->status === 1 ? "<span class='label label-info'>Em Aberto</span>" : "<span class='label label-danger'>Finalizado</span>" );?> 
+						</td>
+						<td>
+							<p class="text-center">
+								<a href="#" data-toggle="modal" data-target="#info<?=$vagas->id;?>">
+									<span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+								</a>
+								<a href="<?=BASE;?>estagio/editarVaga/<?=$vagas->id;?>">
+									<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+								</a>
+							</p>
+						</td>
+						<div class="modal fade"  id="info<?=$vagas->id?>" tabindex="-1" role="dialog">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+										<h4 class="modal-title">Vaga de <?=$vagas->cargo_has_instituicao->cargo->nome;?></h4>
+									</div>
+									<div class="modal-body">
+										<dl class="dl-horizontal">
+											<dt>Cargo</dt>
+											<dd><?=$vagas->cargo_has_instituicao->cargo->nome;?></dd>
+											<dt>Quantidade</dt>
+											<dd><?=$vagas->qnt;?> ofertada(s)</dd>
+											<dt>Remuneração</dt>
+											<dd>R$ <?=$vagas->remuneracao;?>,00</dd>
+											<dt>Duração</dt>
+											<dd><?=$vagas->duracao." ".$vagas->definicao_tempo;?> </dd>
+											<dt>Idade Mínima</dt>
+											<dd><?=$vagas->idademinima;?> anos</dd>
+											<dt>Carga Horária</dt>
+											<dd><?=$vagas->cargahoraria;?>h semanais</dd>
+											<dt>Requisitos</dt>
+											<dd><?php  foreach ($view_requisitos[$vagas->id] as $key => $value) { ?>
+												<span class="label label-default"><?=$value->requisito;?></span>
+												<?php } ?>
+											</dd>
+											<dt>Status</dt>
+											<dd><?php echo ($vagas->status === 1 ? "<span class='label label-info'>Em Aberto</span>" : "<span class='label label-danger'>Finalizado</span>" ); ?></dd>
+										</dl>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+									</div>
+								</div><!-- /.modal-content -->
+							</div><!-- /.modal-dialog -->
+						</div><!-- /.modal -->
+					</tr>
+					<?php } }else{
+						echo "<tr><td colspan='5'>Você ainda não cadastrou nenhuma vaga. <a href='".$this->configs->baseURI."estagio/criar/'>Clique aqui</a> para criar novas vagas!</td></tr>";}?>
+					</tbody>
+				</table>
+			</div>
+			<div id="troca" class="col-md-12" style="display: none">
+				<button id="some" class="btn btn-success">< Voltar</button>
+				<table id="estudantes_candidatos" class="table">
+
+				</table>
+			</div>
 		</div>
 	</div>
-</div>

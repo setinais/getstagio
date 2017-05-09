@@ -1,15 +1,18 @@
-$(document).ready(function($){
-	$(document).on( "click","[a:data-id-vaga]", function(){
-		
-		obj = $(this);
+$(document).ready(function(){
+	$(document).on( "click",".inscritos", function(){
+		id = $(this).attr('data-id-vaga');
 		$.ajax({
-			url: 'http://localhost/getstagio/estagio/ajax'+id,
+			url: 'http://localhost/getstagio/estagio/ajax/carregaCandidato',
 			type: 'POST',
 			dataType: 'html',
-			data: "id="+id,
+			data: "vaga_id="+id,
 		})
 		.done(function(volta) {
-			$('#infoinscritos').html(volta);
+			$('#estudantes_candidatos').html(volta);
+			$("#aparece").hide("fast",function(){
+			$("#troca").show("fast");
+			$("#texto").html("Candidatos Inscritos");
+			});
 		})
 		.fail(function() {
 			console.log("error");
@@ -17,6 +20,11 @@ $(document).ready(function($){
 		.always(function() {
 			console.log("complete");
 		});
-		
 	});
+	$("#some").click(function(){
+		$("#troca").hide("fast",function(){
+			$("#aparece").show("fast");
+			$("#texto").html("Situação das Vagas");
+		});
+	})
 });

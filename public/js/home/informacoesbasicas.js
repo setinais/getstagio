@@ -38,4 +38,10 @@ jQuery(document).ready(function($){
 			}
 		});
  	});
+
+ 	$("#cidade_id").click(function(event) {
+ 		if($(this).html() == ""){
+ 			$("#estado_id").focus().select();
+ 		}
+ 	});
 });

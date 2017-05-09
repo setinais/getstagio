@@ -66,7 +66,7 @@ class CadastroAdicionalController extends HXPHP\System\Controller
 						break;
 				}
 			}
-			$this->view->setVar('request',$post)->setAssets('js',[$this->configs->baseURI.'public/js/jquery.js',$this->configs->baseURI.'public/js/cadastro/cadastro.js',$this->configs->baseURI.'public/js/jquery.1.7.7.mask.min.js' ]);
+			$this->view->setVar('request',$post)->setAssets('js',[$this->configs->baseURI.'public/js/jquery.js',$this->configs->baseURI.'public/js/cadastro/cadastro.js',$this->configs->baseURI.'public/js/jquery.1.7.7.mask.min.js',$this->configs->baseURI.'public/js/validaCpfCnpj.js']);
 
 		
 		

@@ -1,5 +1,4 @@
 jQuery(document).ready(function($) {
- 	//$("#id_telefone").mask('(99)99999-9999');
  	$("#id_telefone").click(function(event) {
  		$(this).unmask()
  	});
@@ -12,7 +11,7 @@ jQuery(document).ready(function($) {
  	});
  	$("#id_cep").mask('99999-999');
  	$("#estado_id").blur(function(){
- 	$("datalist").each(function(e){
+ 		$("datalist").each(function(e){
  			if($(this).attr('data')){
  				$(this).attr('id',$(this).attr('data'));
  			}
@@ -22,14 +21,14 @@ jQuery(document).ready(function($) {
  	});
  	$("#estado_id").change(function(event) {
  		$.ajax({
-			url: 'http://localhost/getstagio/cadastro/ajax/carregaCidade',
-			type: 'POST',
-			dataType: 'html',
-			data: "cidade_id="+$(this).val(),
-			success: function(e){
-				$("#cidade_id").html(e);
-			}
-		});
+ 			url: 'http://localhost/getstagio/cadastro/ajax/carregaCidade',
+ 			type: 'POST',
+ 			dataType: 'html',
+ 			data: "cidade_id="+$(this).val(),
+ 			success: function(e){
+ 				$("#cidade_id").html(e);
+ 			}
+ 		});
  	});
  	$("form").submit(function(event) {
  		if($("#id_senha").val() == $("#confirsenha").val() ){
@@ -57,5 +56,17 @@ jQuery(document).ready(function($) {
  		}else{
  			$("#erroSenhas").show('fast');
  		}
- 	});;
+ 	});
+ 	$("#id_senha").blur(function(event) {
+ 		if($("#id_senha").val().length >= 6){
+ 			$("#erroSenhasTamanho").hide('fast');
+ 		}else{
+ 			$("#erroSenhasTamanho").show("fast");
+ 		}
+ 	});
+ 	$("#cidade_id").click(function(event) {
+ 		if($(this).html() == ""){
+ 			$("#estado_id").focus().select();
+ 		}
+ 	});
  });
