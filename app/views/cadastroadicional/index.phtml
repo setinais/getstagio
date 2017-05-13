@@ -1,78 +1,78 @@
-<div class="col-md-6 col-md-offset-3">
-	<?php echo (isset($this->alert) ? $this->alert : ''); ?>
-	<div class="panel panel-success">
-		<div class="panel-heading">Dados complementares</div>
-		<div class="panel-body">
-			<div class="form-group col-md-offset-3 col-lg-offset-3 col-xs-offset-3">
-				<label class="radio-inline">
+<div class="col-xs-offset-1 col-xs-10 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
+    <?php echo (isset($this->alert) ? $this->alert : ''); ?>
+    <div class="panel panel-primary">
+        <div class="panel-heading">Dados complementares</div>
+        <div class="panel-body">
+            <div class="form-group col-md-12 text-center">
+                <label class="radio-inline col-md-offset-2 col-md-4">
 					<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1" onclick="troca(this.value);"/> Estudante
 				</label>
-				<label class="radio-inline">
+                <label class="radio-inline col-md-offset-1 col-md-4">
 					<input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="2" onclick="troca(this.value);"/> Ofertante
 				</label>
-			</div>
-		</div>
-	</div>
+            </div>
+        </div>
+    </div>
 </div>
 
-<div id="estudante" class="container" style="display: none;">
-	<div class="row">
-		<div class="col-md-8 col-md-offset-2">
-			<div class="panel panel-success">
-				<div class="panel-heading">Dados complementares para Estudante</div>
-				<div class="panel-body">
-					<form action="<?=BASE?>cadastroadicional/index/1" id="formEstudante" method="POST">
-						<div class="form-group">
-							<label for="exampleInputEmail1">CPF*</label>
-							<input type="text" class="form-control" name="cpf" id="id_cpf" placeholder="CPF">
-							<span class="label label-danger col-md-12" id="erroCNPJ" style="display: none;">CPF invalido !</span>
-						</div>
-						<div class="form-group">
-							<label for="exampleInputEmail1">Data de Nascimento*</label>
-							<input type="date" class="form-control" name="data_nasc" placeholder="Idade">
-						</div>
-						<div class="form-group">
-							<label for="exampleInputEmail1">Matrícula*</label>
-							<input type="number" class="form-control" name="matricula" placeholder="Matrícula">
-						</div>
-						<div class="form-group">
-							<label for="exampleInputEmail1">Curso*</label>
-							<input type="text" class="form-control" name="curso" placeholder="Curso">
-						</div>
-						<div class="form-group">
-							<label for="exampleInputEmail1">Série / Módulo / Período*</label>
-							<input type="text" class="form-control" name="serie_modulo" placeholder="Série / Módulo / Período">
-						</div>
-
-						<button type="submit" class="btn btn-primary">Cadastrar</button>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
+<div id="estudante" class=" " styl="display: none;">
+    <div class="row col-xs-offset-1 col-xs-10 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
+        <div class="panel panel-primary ">
+            <div class="panel-heading">Dados complementares para Estudante</div>
+            <div class="panel-body no-gutter">
+                <form action="<?=BASE?>cadastroadicional/index/1" id="formEstudante" method="POST">
+                    <div class="form-group col-md-6">
+                        <label for="exampleInputEmail1">CPF*</label>
+                        <input type="text" class="form-control" name="cpf" id="id_cpf" placeholder="CPF">
+                        <span class="label label-danger col-md-12" id="erroCNPJ" style="display: none;">CPF invalido !</span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="exampleInputEmail1">Data de Nascimento*</label>
+                        <input type="date" class="form-control" name="data_nasc" placeholder="Idade">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="exampleInputEmail1">Matrícula*</label>
+                        <input type="number" class="form-control" name="matricula" placeholder="Matrícula">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="exampleInputEmail1">Curso*</label>
+                        <input type="text" class="form-control" name="curso" placeholder="Curso">
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="exampleInputEmail1">Série / Módulo / Período*</label>
+                        <input type="text" class="form-control" name="serie_modulo" placeholder="Série / Módulo / Período">
+                    </div>
+                     <div class="form-group btnbtn2">
+                        <button type="submit" class="btn btn-primary col-md-12">Cadastrar</button>
+                    </div> 
+                </form>
+                
+            </div>
+        </div>
+    </div>
 </div>
 
-<div id="instituicao" class="container" style="display: none;">
-	<div class="row">
-		<div class="col-md-8 col-md-offset-2">
-			<div class="panel panel-success">
-				<div class="panel-heading">Dados complementares para Ofertante</div>
-				<div class="panel-body">
-					<form action="<?=BASE?>cadastroadicional/index/2" id="formInstituicao" method="POST">
-						<div class="form-group">
-							<label for="exampleInputEmail1">CNPJ*</label>
-							<input type="text" name="cnpj" id="id_cnpj" class="form-control" placeholder="CNPJ" data-mask="#.##0"/>
-							<span class="label label-danger col-md-12" id="erroCNPJ" style="display: none;">CNPJ invalido !</span>
-						</div>
-						<div class="form-group">
-							<label for="exampleInputEmail1">Razão Social / Fantasia*</label>
-							<input type="text" class="form-control" name="razao_social" placeholder="Nome">
-						</div>
+<div id="instituicao" class="" style="display: none;">
+    <div class="row col-xs-offset-1 col-xs-10 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Dados complementares para Ofertante</div>
+            <div class="panel-body no-gutter">
+                <form action="<?=BASE?>cadastroadicional/index/2" id="formInstituicao" method="POST">
+                    <div class="form-group col-md-12">
+                        <label for="exampleInputEmail1">CNPJ*</label>
+                        <input type="text" name="cnpj" id="id_cnpj" class="form-control" placeholder="CNPJ" data-mask="#.##0" />
+                        <span class="label label-danger col-md-12" id="erroCNPJ" style="display: none;">CNPJ invalido !</span>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="exampleInputEmail1">Razão Social / Fantasia*</label>
+                        <input type="text" class="form-control" name="razao_social" placeholder="Nome">
+                    </div>
 
-						<button type="submit" class="btn btn-primary">Cadastrar</button>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
+                    <div class="form-group btnbtn2">
+                        <button type="submit" class="btn btn-primary col-md-12">Cadastrar</button>
+                    </div> 
+                </form>
+            </div>
+        </div>
+    </div>
 </div>

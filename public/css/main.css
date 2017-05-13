@@ -12,7 +12,10 @@
 /* ------- */
 /* ++Geral++ */
 body {
-  background-color: #b6caff; }
+  background-color: #96d4d0; }
+
+#gtlogo {
+  padding-top: 5px; }
 
 /* --------- */
 /* +Estilo do MENU+ */
@@ -33,6 +36,7 @@ body {
   border-style: none;
   border-radius: 0px;
   box-shadow: 0px 0px 7px;
+  height: 67px;
   /* Estilo default do menu */ }
 
 .dropdown-menu > li > a:hover,
@@ -72,13 +76,20 @@ body {
 
 /* ----------------- */
 /* +Estilo do button+ */
-.duplabtn > .btn {
+.btnbtn > .btn {
   height: 45px;
   border-radius: 0px;
   margin-bottom: -30px; }
 
+.btnbtn2 > .btn {
+  height: 45px;
+  border-radius: 0px;
+  margin-top: 30px; }
+
 /* ------------------ */
 /* +Estilo do campo de texto+ */
 /* -------------------------- */
+.panel-body.no-gutter {
+  padding: 0px; }
 
 /*# sourceMappingURL=main.css.map */
