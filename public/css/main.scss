@@ -1,13 +1,32 @@
 @import "master";
 
+ 
 /* ++Geral++ */
-body{
-    background-color: $bgsite1;
+body, html {
+    width: 100%;
+    height: 100%;
 }
-#gtlogo{
+body {
+    position: fixed; /* posição fixa para que a possível rolagem da tela não revele espaços em branco */
+    
+    /* background-color: $bgsite1; */
+    background: -moz-linear-gradient(top, rgba(125, 185, 232, 0.35) 0%, rgba(0, 169, 157, 1) 100%);
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgba(125, 185, 232, 0.35) 0%, rgba(0, 169, 157, 1) 100%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(125, 185, 232, 0.35) 0%, rgba(0, 169, 157, 1) 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#597db9e8', endColorstr='#00a99d', GradientType=0);
+    /* IE6-9 */
+}
+
+#gtlogo {
     padding-top: 5px;
 }
+
+
 /* --------- */
+
 
 /* +Estilo do MENU+ */
 
@@ -30,7 +49,6 @@ body{
     border-style: none;
     border-radius: 0px;
     box-shadow: 0px 0px 7px;
-    height: 67px;
     /* Estilo default do menu */
 }
 
@@ -53,6 +71,8 @@ body{
     color: $fontcolor1;
     /*Cor do texto quando ativo*/
 }
+
+
 /* ---------------- */
 
 
@@ -64,10 +84,14 @@ body{
     border-radius: 0px;
     font-family: 'padrao';
     /* Estilo do corpo do panel */
-    
 }
 
-.panel-default>.panel-heading {
+.panel-body.no-gutter {
+    padding: 0px;
+}
+
+.panel-default>.panel-heading,
+{
     margin-bottom: -20px;
     font-size: 25px;
     background-color: $bghpanel1;
@@ -76,25 +100,39 @@ body{
     font-family: 'padraobold';
     /* Estilo do header no panel-default */
 }
+
+.panel-primary>.panel-heading,
+{
+    margin-bottom: 20px;
+    border-style: none;
+    border-radius: 0px;
+    font-family: 'padraobold';
+    /* Estilo do header no panel-default */
+}
+
+
 /* ----------------- */
 
+
 /* +Estilo do button+ */
-.btnbtn>.btn{
+
+.btnbtn>.btn {
     height: 45px;
     border-radius: 0px;
     margin-bottom: -30px;
-
 }
-.btnbtn2>.btn{
+
+.btnbtn2>.btn {
     height: 45px;
     border-radius: 0px;
     margin-top: 30px;
 }
+
+
 /* ------------------ */
+
 
 /* +Estilo do campo de texto+ */
 
+
 /* -------------------------- */
-.panel-body.no-gutter{
-    padding:0px;
-}
