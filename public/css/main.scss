@@ -1,13 +1,16 @@
 @import "master";
-
  
-/* ++Geral++ */
-body, html {
+#fundo-externo {
+    overflow: hidden; /* para que não tenha rolagem se a imagem de fundo for maior que a tela */
     width: 100%;
     height: 100%;
+    position: relative; /* criamos um contexto para posicionamento */
 }
-body {
+ 
+#fundo {
     position: fixed; /* posição fixa para que a possível rolagem da tela não revele espaços em branco */
+    width: 100%;
+    height: 100%;
     
     /* background-color: $bgsite1; */
     background: -moz-linear-gradient(top, rgba(125, 185, 232, 0.35) 0%, rgba(0, 169, 157, 1) 100%);
@@ -19,6 +22,8 @@ body {
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#597db9e8', endColorstr='#00a99d', GradientType=0);
     /* IE6-9 */
 }
+/* ++Geral++ */
+
 
 #gtlogo {
     padding-top: 5px;
