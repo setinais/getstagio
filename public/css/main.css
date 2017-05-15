@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* fontes */
 @font-face {
   font-family: padrao;
@@ -10,9 +11,32 @@
 /* ----------- */
 /* shadows */
 /* ------- */
+#fundo-externo {
+  overflow: hidden;
+  /* para que n├úo tenha rolagem se a imagem de fundo for maior que a tela */
+  width: 100%;
+  height: 100%;
+  position: relative;
+  /* criamos um contexto para posicionamento */ }
+
+#fundo {
+  position: fixed;
+  /* posi├º├úo fixa para que a poss├¡vel rolagem da tela n├úo revele espa├ºos em branco */
+  width: 100%;
+  height: 100%;
+  /* background-color: $bgsite1; */
+  background: -moz-linear-gradient(top, rgba(125, 185, 232, 0.35) 0%, #00a99d 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, rgba(125, 185, 232, 0.35) 0%, #00a99d 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, rgba(125, 185, 232, 0.35) 0%, #00a99d 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#597db9e8', endColorstr='#00a99d', GradientType=0);
+  /* IE6-9 */ }
+
 /* ++Geral++ */
-body {
-  background-color: #b6caff; }
+#gtlogo {
+  padding-top: 5px; }
 
 /* --------- */
 /* +Estilo do MENU+ */
@@ -61,6 +85,9 @@ body {
   font-family: 'padrao';
   /* Estilo do corpo do panel */ }
 
+.panel-body.no-gutter {
+  padding: 0px; }
+
 .panel-default > .panel-heading {
   margin-bottom: -20px;
   font-size: 25px;
@@ -70,12 +97,24 @@ body {
   font-family: 'padraobold';
   /* Estilo do header no panel-default */ }
 
+.panel-primary > .panel-heading {
+  margin-bottom: 20px;
+  border-style: none;
+  border-radius: 0px;
+  font-family: 'padraobold';
+  /* Estilo do header no panel-default */ }
+
 /* ----------------- */
 /* +Estilo do button+ */
-.duplabtn > .btn {
+.btnbtn > .btn {
   height: 45px;
   border-radius: 0px;
   margin-bottom: -30px; }
+
+.btnbtn2 > .btn {
+  height: 45px;
+  border-radius: 0px;
+  margin-top: 30px; }
 
 /* ------------------ */
 /* +Estilo do campo de texto+ */

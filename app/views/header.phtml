@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="<?php echo BOWER; ?>bootstrap/dist/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="<?php echo BOWER; ?>font-awesome/css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="<?php echo CSS; ?>main.css" type="text/css">
-    <style type="text/css">table{background: white}</style>
     <?php 
 		echo $add_css;
 		echo $add_js;
@@ -22,14 +21,20 @@
 </head>
 
 <body>
-        <nav class="navbar navbar-default bgmenu">
-                <a href="" class="navbabrand col-xs-offset-4 col-xs-4 col-sm-offset-4 col-sm-4 col-md-offset-5 col-md-2">
-                    <img class="img-responsive col-md-" src="<?php echo IMG; ?>gt.png" alt="">
-                </a>
-        </nav>
-
-
-
-    <div class="col-md-8 col-xs-8 col-sm-8 col-lg-8 col-md-offset-2 col-xs-offset-2 col-sm-offset-2 col-lg-offset-2">
-        <?php echo (isset($this->menu) ? $this->menu : ""); ?>
+    <div id="fundo-externo">
+        <div id="fundo">
+        </div>
     </div>
+    <nav class="navbar navbar-default bgmenu container-fluid">
+        <div class="col-xs-offset-3 col-xs-6 col-sm-offset-4 col-sm-4 col-md-offset-5 col-md-2">
+            <a href="" class="navbabrand">
+                <img id="gtlogo" class="img-responsive" src="<?php echo IMG; ?>gt.png" alt="">
+            </a>
+        </div>
+    </nav>
+
+
+
+        <div class="text-center col-xs-offset-1 col-xs-10 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
+            <?php echo (isset($this->menu) ? $this->menu : ""); ?>
+        </div>
