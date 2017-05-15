@@ -9,12 +9,14 @@ class Usuario extends \HXPHP\System\Model
 			['funcoe'],
 			['cidade']
 			];
+	static $has_one = [
+			['instituicao'],
+			['estudante']
 
+			];
 	static $has_many = [
 		['recuperar_senhas'],
 		['tentativas_logons'],
-		['estudantes'],
-		['instituicaos'],
 		['cadastros']
 	];
 	static $validates_presence_of = [
@@ -208,41 +210,41 @@ class Usuario extends \HXPHP\System\Model
 			</div>
 		</div>
 	</div>
-</div> <!-- /container fluid-->  
-<div class='container'>
-	<div class='col-sm-8'>
+	</div> <!-- /container fluid-->  
+	<div class='container'>
+		<div class='col-sm-8'>
 
-		<div data-spy='scroll' class='tabbable-panel'>
-			<div class='tabbable-line'>
-				<ul class='nav nav-tabs '>
-					<li class='active'>
-						<a href='#tab_default_1' data-toggle='tab'>
-							Sobre </a>
-						</li>
-						<li>
-							<a href='#tab_default_2' data-toggle='tab'>
-								Educação & Carreira</a>
+			<div data-spy='scroll' class='tabbable-panel'>
+				<div class='tabbable-line'>
+					<ul class='nav nav-tabs '>
+						<li class='active'>
+							<a href='#tab_default_1' data-toggle='tab'>
+								Sobre </a>
 							</li>
 							<li>
-								
-								</ul>
-								<div class='tab-content'>
-									";
-									$layout2 = "";
-									if(isset($usuario->instituicao))
-									{
-										$layout2 = Instituicao::mostrarPerfil($usuario->id);
-									}
-									else
-									{
-										$layout2 = Estudante::mostrarPerfil($usuario->id);
-									}
-									$layout3 = "
-								</div>
-							</div>
-						</div>
-					</div>
+								<a href='#tab_default_2' data-toggle='tab'>
+									Detalhes</a>
+								</li>
+								<li>
+									
+									</ul>
+									<div class='tab-content'>
+										";
+										$layout2 = "";
+										if(isset($usuario->instituicao->id))
+										{
+											$layout2 = Instituicao::mostrarPerfil($usuario->id);
+										}
+										else
+										{
+											$layout2 = Estudante::mostrarPerfil($usuario->id);
+										}
+										$layout3 = "
+									</div>
 				</div>
+			</div>
+		</div>
+	</div>
 		";
 		return $layout.$layout2.$layout3;
 	}

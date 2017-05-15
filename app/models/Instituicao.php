@@ -90,71 +90,71 @@ class Instituicao extends \HXPHP\System\Model
 
 	public static function mostrarPerfil($id_usuario)
 	{
-		$ofertante = self::find_by_usuario_id($id_usuario);
+		$string_cargos = null;
+		$vagas = null;
+		$ofertante = null;
+		$layout = null;
 
+
+		$ofertante = self::find_by_usuario_id($id_usuario);
+		$vagas = self::find_by_sql("select 
+									c.nome as Cargo
+									from
+									getstagio.instituicaos as i 
+									inner join getstagio.cargo_has_instituicaos as ci on i.id = ci.instituicao_id
+									inner join getstagio.cargos as c on ci.cargo_id = c.id
+									inner join getstagio.vagas as v on ci.id = v.cargo_has_instituicao_id
+									where v.status = 1 AND i.id = $ofertante->id
+									group by Cargo
+									order by Cargo");
+		$total = self::find_by_sql("select 
+									sum(v.qnt) as QNTD
+									from
+									getstagio.instituicaos as i 
+									inner join getstagio.cargo_has_instituicaos as ci on i.id = ci.instituicao_id
+									inner join getstagio.cargos as c on ci.cargo_id = c.id
+									inner join getstagio.vagas as v on ci.id = v.cargo_has_instituicao_id
+									where v.status = 1 AND i.id = $ofertante->id
+									");
+		foreach ($vagas as $key => $value) {
+			$string_cargos .= $value->cargo.", ";	
+		}
 		$layout = " 
 				<div class='tab-pane active' id='tab_default_1'>
 						Ofertante
 										<p>
-											My daughter  is good looking, with pleasant personality, smart, well educated, from well cultural and  a religious family background. having respect in heart for others.  
-											would like to thanks you for visiting through my daughter;s profile. 
-											She has done PG in Human Resources after her graduation. 
-											At present working IN INSURANCE sector as Manager Training .
+											A empresa <strong>".$ofertante->razao_social."</strong> de CNPJ <strong>".$ofertante->cnpj."</strong> está ofetanto vagas nas areás de $string_cargos somando um total de ".$total[0]->qntd." vagas dentre os cargos informados.
 										</p>
-										<h4>About her Family</h4>
-										<p>
-											About her family she belongs to a religious and a well cultural family background. 
-											Father - Retired from a Co-operate Bank as a Manager. 
-											Mother - she is a home maker. 
-											1 younger brother - works for Life Insurance n manages cluster. 
-										</p>
-										<h4>Education </h4>
-										<p>I have done PG in Human Resourses</p>
-										<h4>Occupation</h4>
-										<p>At present Working in Insurance sector</p>
-
+										
 									</div>
 									<div class='tab-pane' id='tab_default_2'>
 										<p>
-											Education& Career
+											Detalhes
 										</p>
 										<div class='row'>
 											<div class='col-sm-6'>
 												<div class='form-group'>
-													<label for='email'>Highest Education:</label>
-													<p> MBA/PGDM</p>
+													<label for='email'>Estado:</label>
+													<p> "           .$ofertante->usuario->estado->sigla." - ".$ofertante->usuario->estado->estados." </p>
 												</div>
 												<div class='form-group'>
-													<label for='email'>Place of Birth:</label>
-													<p> pune, maharashtra</p>
+													<label for='email'>Cidade:</label>
+													<p> ".$ofertante->usuario->cidade." </p>
 												</div>
 												<div class='form-group'>
-													<label for='email'>Place of Birth:</label>
-													<p> pune, maharashtra</p>
+													<label for='email'>Telefone:</label>
+													<p> ".$ofertante->usuario->telefone."</p>
 												</div>
 												<div class='form-group'>
-													<label for='email'>Place of Birth:</label>
-													<p> pune, maharashtra</p>
+													<label for='email'>Endereço:</label>
+													<p> ".$ofertante->usuario->endereco." Nº ".$ofertante->usuario->numero."</p>
 												</div>
 											</div>
 											<div class='col-sm-6'>
 												<div class='form-group'>
-													<label for='email'>Place of Birth:</label>
-													<p> pune, maharashtra</p>
+													<label for='email'>CEP:</label>
+													<p> ".$ofertante->usuario->cep."</p>
 												</div>
-												<div class='form-group'>
-													<label for='email'>Place of Birth:</label>
-													<p> pune, maharashtra</p>
-												</div>
-												<div class='form-group'>
-													<label for='email'>Place of Birth:</label>
-													<p> pune, maharashtra</p>
-												</div>
-												<div class='form-group'>
-													<label for='email'>Place of Birth:</label>
-													<p> pune, maharashtra</p>
-												</div>
-
 											</div>
 										</div>
 									</div>
