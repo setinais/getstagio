@@ -339,7 +339,7 @@ class EstagioController extends \HXPHP\System\Controller
 			}
 			echo $txt;
 		}else if($type == "carregaCandidato"){
-			echo(Cadastro::searchEstudantes($this->request->post()['vaga_id']));
+			echo(Cadastro::searchEstudantes($this->request->post()['vaga_id'],$this->configs->baseURI));
 		}
 	}
 	public function infoInscritosAction($id_vaga)

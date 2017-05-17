@@ -53,7 +53,7 @@
 		* Pegar todos os estudantes que estão inscritos nesta vaga
 		*
 		*/
-		public static function searchEstudantes($id_vaga)
+		public static function searchEstudantes($id_vaga,$baseURI)
 		{
 			$estagiarios = null;
 			$ids_estudantes = self::all(['conditions' => ['vaga_id = ?',$id_vaga]]);
@@ -65,7 +65,7 @@
 				{
 					$estagiarios .= "
 						<tr>
-							<th>".$value->estudante->usuario->nome."</th>
+							<th><a href='".$baseURI."perfil/index/".$value->estudante->usuario->id."'>".$value->estudante->usuario->nome."</a></th>
 							<td>".$value->estudante->usuario->email."</td>
 							<td>".$value->estudante->usuario->telefone."</td>
 						</tr>

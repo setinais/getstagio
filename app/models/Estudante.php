@@ -102,4 +102,50 @@ class Estudante extends \HXPHP\System\Model
 		}
 		return $callback;
 	} 
+	public static function mostrarPerfil($id_usuario)
+	{
+		$estudante = self::find_by_usuario_id($id_usuario);
+
+		$layout = " 
+				<div class='tab-pane active' id='tab_default_1'>
+						Ofertante
+										<p>
+											
+										</p>
+										
+									</div>
+									<div class='tab-pane' id='tab_default_2'>
+										<p>
+											Detalhes
+										</p>
+										<div class='row'>
+											<div class='col-sm-6'>
+												<div class='form-group'>
+													<label for='email'>Estado:</label>
+													<p> "           .$estudante->usuario->cidade->estado->sigla." - ".$estudante->usuario->cidade->estado->estados." </p>
+												</div>
+												<div class='form-group'>
+													<label for='email'>Cidade:</label>
+													<p> ".$estudante->usuario->cidade->nome." </p>
+												</div>
+												<div class='form-group'>
+													<label for='email'>Telefone:</label>
+													<p> ".$estudante->usuario->telefone."</p>
+												</div>
+												<div class='form-group'>
+													<label for='email'>Endereço:</label>
+													<p> ".$estudante->usuario->endereco." Nº ".$estudante->usuario->numero."</p>
+												</div>
+											</div>
+											<div class='col-sm-6'>
+												<div class='form-group'>
+													<label for='email'>CEP:</label>
+													<p> ".$estudante->usuario->cep."</p>
+												</div>
+											</div>
+										</div>
+									</div>
+		";
+		return $layout;
+	}
 }

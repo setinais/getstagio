@@ -9,12 +9,14 @@ class Usuario extends \HXPHP\System\Model
 			['funcoe'],
 			['cidade']
 			];
+	static $has_one = [
+			['instituicao'],
+			['estudante']
 
+			];
 	static $has_many = [
 		['recuperar_senhas'],
 		['tentativas_logons'],
-		['estudantes'],
-		['instituicaos'],
 		['cadastros']
 	];
 	static $validates_presence_of = [
@@ -192,5 +194,58 @@ class Usuario extends \HXPHP\System\Model
 			$callback->errors = "Todos os campos estão vazios!";
 		}
 		return $callback;
+	}
+
+	public static function mostrarPerfil($id_usuario)
+	{
+		$usuario = self::find_by_id($id_usuario);
+		$layout = "
+			<div class='container-fluid'>
+	<div class='row'>
+		<div class='fb-profile'>
+			<img align='left' class='fb-image-profile thumbnail' src='http://lorempixel.com/180/180/people/9/' alt='Profile image example'/>
+			<div class='fb-profile-text'>
+				<h1>$usuario->nome</h1>
+
+			</div>
+		</div>
+	</div>
+	</div> <!-- /container fluid-->  
+	<div class='container'>
+		<div class='col-sm-8'>
+
+			<div data-spy='scroll' class='tabbable-panel'>
+				<div class='tabbable-line'>
+					<ul class='nav nav-tabs '>
+						<li class='active'>
+							<a href='#tab_default_1' data-toggle='tab'>
+								Sobre </a>
+							</li>
+							<li>
+								<a href='#tab_default_2' data-toggle='tab'>
+									Detalhes</a>
+								</li>
+								<li>
+									
+									</ul>
+									<div class='tab-content'>
+										";
+										$layout2 = "";
+										if(isset($usuario->instituicao->id))
+										{
+											$layout2 = Instituicao::mostrarPerfil($usuario->id);
+										}
+										else
+										{
+											$layout2 = Estudante::mostrarPerfil($usuario->id);
+										}
+										$layout3 = "
+									</div>
+				</div>
+			</div>
+		</div>
+	</div>
+		";
+		return $layout.$layout2.$layout3;
 	}
 }
