@@ -24,15 +24,7 @@
   /* posi├º├úo fixa para que a poss├¡vel rolagem da tela n├úo revele espa├ºos em branco */
   width: 100%;
   height: 100%;
-  /* background-color: $bgsite1; */
-  background: -moz-linear-gradient(top, rgba(125, 185, 232, 0.35) 0%, #00a99d 100%);
-  /* FF3.6-15 */
-  background: -webkit-linear-gradient(top, rgba(125, 185, 232, 0.35) 0%, #00a99d 100%);
-  /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to bottom, rgba(125, 185, 232, 0.35) 0%, #00a99d 100%);
-  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#597db9e8', endColorstr='#00a99d', GradientType=0);
-  /* IE6-9 */ }
+  background-image: url(../img/gshomepage1.jpg); }
 
 /* ++Geral++ */
 #gtlogo {
@@ -119,5 +111,9 @@
 /* ------------------ */
 /* +Estilo do campo de texto+ */
 /* -------------------------- */
+.btn-primary,
+.panel-primary > .panel-heading {
+  background-color: #61d3cb;
+  border-style: none; }
 
 /*# sourceMappingURL=main.css.map */
