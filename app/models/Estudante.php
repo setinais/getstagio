@@ -105,10 +105,9 @@ class Estudante extends \HXPHP\System\Model
 	public static function mostrarPerfil($id_usuario)
 	{
 		$estudante = self::find_by_usuario_id($id_usuario);
-
 		$layout = " 
 				<div class='tab-pane active' id='tab_default_1'>
-						Ofertante
+						Estudante
 										<p>
 											
 										</p>

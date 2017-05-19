@@ -231,7 +231,8 @@ class Usuario extends \HXPHP\System\Model
 									<div class='tab-content'>
 										";
 										$layout2 = "";
-										if(isset($usuario->instituicao->id))
+
+										if(is_null($usuario->estudante))
 										{
 											$layout2 = Instituicao::mostrarPerfil($usuario->id);
 										}

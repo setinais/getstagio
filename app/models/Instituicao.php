@@ -135,11 +135,11 @@ class Instituicao extends \HXPHP\System\Model
 											<div class='col-sm-6'>
 												<div class='form-group'>
 													<label for='email'>Estado:</label>
-													<p> "           .$ofertante->usuario->estado->sigla." - ".$ofertante->usuario->estado->estados." </p>
+													<p> "           .$ofertante->usuario->cidade->estado->sigla." - ".$ofertante->usuario->cidade->estado->estados." </p>
 												</div>
 												<div class='form-group'>
 													<label for='email'>Cidade:</label>
-													<p> ".$ofertante->usuario->cidade." </p>
+													<p> ".$ofertante->usuario->cidade->nome." </p>
 												</div>
 												<div class='form-group'>
 													<label for='email'>Telefone:</label>
