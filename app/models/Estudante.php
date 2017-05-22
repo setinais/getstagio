@@ -13,10 +13,6 @@ class Estudante extends \HXPHP\System\Model
 		);
 	static $validates_presence_of = [
 			[
-				'matricula',
-				'message' => '<strong>Matrícula</strong> é um campo obrigatório.'
-			],
-			[
 				'curso',
 				'message' => '<strong>Curso</strong> é um campo obrigatório.'
 			],
@@ -31,10 +27,6 @@ class Estudante extends \HXPHP\System\Model
 			
 	];
 	static $validates_uniqueness_of  = [
-			[
-				['matricula'],
-				'message' => 'Já existe um estudante cadastrado com esta <strong>matrícula</strong>.'
-			],
 			[
 				['cpf'],
 				'message'=>'Já existe um estudante cadastrado com este <strong>CPF</strong>.'

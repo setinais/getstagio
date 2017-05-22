@@ -2,7 +2,7 @@
 /**
 * 
 */
-class EstagioController extends \HXPHP\System\Controller
+class ListarController extends \HXPHP\System\Controller
 {
 	
 	function __construct($configs)
@@ -15,23 +15,24 @@ class EstagioController extends \HXPHP\System\Controller
                     true
       
                 );
-            $this->load(
-				'Helpers\Menu',
-				$this->request,
-				$this->configs,
-				$this->auth->getUserRole()
+           	$usuario = Usuario::find_by_id($this->auth->getUserId());
+           	$this->load(
+				'Helpers\Menuget',
+				$usuario,
+				$configs,
+				$this->request->controller
 			);
     		$this->auth->redirectCheck();
 
 	}
 
-	public function listAction()
+	public function indexAction()
 	{
 		//$this->view->setAssets('js',[$this->configs->baseURI."public/js/jquery.js"]);
 		$this->view->setAssets('js',
 			[$this->configs->baseURI."public/js/jquery.js",
 			$this->configs->baseURI.'public/js/cadastro/candidatar2.js',
-			$this->configs->baseURI.'public/js/estagio/list.js',
+			$this->configs->baseURI.'public/js/Listar/list.js',
 			$this->configs->baseURI.'public/js/toogle/tablesaw.js',
 			$this->configs->baseURI.'public/js/toogle/tablesaw-init.js',
 			])->setAssets('css',
@@ -67,7 +68,7 @@ class EstagioController extends \HXPHP\System\Controller
 					
 				}
 			}else{
-				$estrutura_vagas[] = "<tr><td colspan='5'>Nada encontrado <a href='".$this->configs->baseURI."estagio/candidatar/'>Clique aqui</a> para procurar vagas de estágio.</td></tr>";
+				$estrutura_vagas[] = "<tr><td colspan='5'>Nada encontrado <a href='".$this->configs->baseURI."Listar/candidatar/'>Clique aqui</a> para procurar vagas de estágio.</td></tr>";
 			}
 			$this->view->setVars(['vagas' => $estrutura_vagas]);
 		}
@@ -91,10 +92,10 @@ class EstagioController extends \HXPHP\System\Controller
 			$this->view->setVars([
 				'vagas'=> $vagaste,
 				'requisitos'=>Requisito::search($this->auth->getUserId()),
-				'url'=>$this->configs->baseURI.'estagio/criar', 
+				'url'=>$this->configs->baseURI.'Listar/criar', 
 				'inscrito' => $incritos
 				])
-			->setAssets('js',[$this->configs->baseURI."public/js/estagio/infoinscritos.js"]);
+			->setAssets('js',[$this->configs->baseURI."public/js/Listar/infoinscritos.js"]);
 			
 		}
 		$this->view->setFile('vagas'.$this->auth->getUserRole());
@@ -161,11 +162,11 @@ class EstagioController extends \HXPHP\System\Controller
 						}
 					break;
 				default:
-					$this->redirectTo($this->configs->baseURI.'estagio/criar');
+					$this->redirectTo($this->configs->baseURI.'Listar/criar');
 					break;
 			}
 		}
-		$this->view->setAssets('js',[$this->configs->baseURI.'public/js/jquery.js',$this->configs->baseURI.'public/js/estagio/cadastroVaga.js']);
+		$this->view->setAssets('js',[$this->configs->baseURI.'public/js/jquery.js',$this->configs->baseURI.'public/js/Listar/cadastroVaga.js']);
 		$this->view->setAssets('css',[$this->configs->baseURI."public/css/vaga/vaga.css"]);
 		
 		$this->view->setVars(['request' => $post, 'cargos' => Cargo::all()]);
@@ -177,7 +178,7 @@ class EstagioController extends \HXPHP\System\Controller
 		for ($v = 0; $v < count($ids)-1;$v++) {
 			Vaga::finalizarVaga($ids[$v]);
 		}
-		$this->redirectTo($this->configs->baseURI."estagio/list");
+		$this->redirectTo($this->configs->baseURI."Listar/list");
 	}
 
 	public function reabrirVagaAction($id)
@@ -186,7 +187,7 @@ class EstagioController extends \HXPHP\System\Controller
 		for ($v = 0; $v < count($ids)-1;$v++) {
 			Vaga::reabrirVaga($ids[$v]);
 		}
-		$this->redirectTo($this->configs->baseURI."estagio/list");
+		$this->redirectTo($this->configs->baseURI."Listar/list");
 	}
 
 	public function eliminarVagaAction($id)
@@ -194,7 +195,7 @@ class EstagioController extends \HXPHP\System\Controller
 		$ids = explode("-", $id);
 		unset($ids[count($ids)-1]);
 		Vaga::eliminarVaga($ids);
-		$this->redirectTo($this->configs->baseURI."estagio/list");
+		$this->redirectTo($this->configs->baseURI."Listar/list");
 	}
 
 	public function editarVagaAction($id,$acao=null)
@@ -225,7 +226,7 @@ class EstagioController extends \HXPHP\System\Controller
 									$i++;
 								}
 							}
-							$this->redirectTo($this->configs->baseURI."estagio/list");
+							$this->redirectTo($this->configs->baseURI."Listar/list");
 						}
 						else
 						{
@@ -244,56 +245,11 @@ class EstagioController extends \HXPHP\System\Controller
 			$post = Vaga::find($id);
 		}
 
-		$this->view->setAssets('js',[$this->configs->baseURI.'public/js/jquery.js',$this->configs->baseURI.'public/js/estagio/cadastroVaga.js'])
+		$this->view->setAssets('js',[$this->configs->baseURI.'public/js/jquery.js',$this->configs->baseURI.'public/js/Listar/cadastroVaga.js'])
 		->setAssets('css',[$this->configs->baseURI."public/css/vaga/vaga.css"])
 		->setVars(['requisitos' => Requisito::find('all',['conditions' => ['vaga_id = ?',$id]]),'request' => $post, 'cargos' => Cargo::all()]);
 	}
 
-	public function candidatarAction()
-	{
-		$vagas = Vaga::find('all',array('conditions'=>array('status = ? OR status = ?',1,true)));
-		$estrutura_vagas = null;
-		$idu = Estudante::find_by_usuario_id($this->auth->getUserId())->id;
-		foreach ($vagas as $key => $value) {
-			$estrutura_vagas_head = null;
-			$estrutura_vagas_section = null;
-			$estrutura_vagas_footer = null;
-
-			$estrutura_vagas_head = "<tr>
-			<td>
-				<h4 class='busca'>".$value->cargo_has_instituicao->cargo->nome."</h4>
-			</td>
-			<td>";
-				$search_requisitos = Requisito::searchRequisitos($value->id);
-				if(!is_null($search_requisitos)){
-					foreach ($search_requisitos as $indei => $requisitos) {
-						$estrutura_vagas_section .= "<span class='label label-default busca'>".$requisitos->requisito."</span>";
-					}
-				}
-				$estrutura_vagas_footer = "</td>
-				<td>R$ ".$value->remuneracao.",00</td>
-				<td>".$value->duracao." ".$value->definicao_tempo."</td>
-				<td>";
-				if(Cadastro::verifica($value->id,$idu)){
-					$estrutura_vagas_footer .= "<span class='label label-success candidatar' id='".$value->id."' style='cursor: pointer;'><span class='glyphicon glyphicon-log-in'></span>  <span class='troca'>Inscreva-se</span></span></td>";
-				}else{
-					$estrutura_vagas_footer .= "<span class='label label-info' id='".$value->id."' style='cursor: not-allowed;'><span class='glyphicon glyphicon-log-in'></span>  <span class='troca'> Inscrito</span></span> 
-						<span class='label label-danger descandidatar' id='".$value->id."' style='cursor: pointer;'><span class='glyphicon glyphicon-log-in'></span>  <span class='troca'> Cancelar</span></span></td>";
-				}
-			$estrutura_vagas[] = $estrutura_vagas_head.$estrutura_vagas_section.$estrutura_vagas_footer;
-			
-		}
-		$this->view->setAssets('js',
-			[$this->configs->baseURI."public/js/jquery.js",
-			$this->configs->baseURI.'public/js/jquery.js',
-			$this->configs->baseURI.'public/js/cadastro/candidatar.js',
-			$this->configs->baseURI.'public/js/toogle/tablesaw.js',
-			$this->configs->baseURI.'public/js/toogle/tablesaw-init.js'
-			])->setAssets('css',[
-			$this->configs->baseURI."public/css/toogle/tablesaw.css"
-			]);
-		$this->view->setVars(['vagas' => $estrutura_vagas]);
-	}
 	public function ajaxAction($type = ""){
 		$this->view->setTemplate(false);
 		if($type == ""){

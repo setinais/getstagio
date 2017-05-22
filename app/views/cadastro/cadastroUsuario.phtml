@@ -28,17 +28,12 @@ echo $data;
 
                         <div class="form-group ">
                             <div class="col-md-12">
-                                <label class="control-label" for="username">*Nome:</label>
+                                <label class="control-label" for="username">*Nome de Usuário:</label>
                                 <input type="text" class="form-control" id="id_nome" required="" name="nome" value="<?=$view_request['nome'];?>" placeholder="Nome" />
                             </div>
 
                         </div>
                         <div class="form-group">
-                            <div class="col-md-6">
-                                <label for="exampleInputEmail1">*Email:</label>
-                                <input value="<?=$view_request['email'];?>" type="email" required="" class="form-control" id="id_email" name="email" placeholder="Email" />
-
-                            </div>
                             <div class="col-sm-6 col-md-3">
                                 <label for="id_senha">*Senha:</label>
                                 <input type="password" class="form-control" id="id_senha" required="" name="senha" placeholder="Senha" />
@@ -64,11 +59,6 @@ echo $data;
                                 <label for="id_cidade">*Cidade:</label>
                                 <select id="cidade_id" name="cidade_id" required="" class="form-control"></select>
                             </div>
-                            <div class="col-sm-6 col-md-5">
-                                <label for="id_telefone">*Telefone:</label>
-                                <input value="<?=$view_request['telefone'];?>" required="" type="text" placeholder="(DD)9 9999-9999" class="form-control col-md-5" id="id_telefone" name="telefone" maxlength="11" />
-
-                            </div>
                             <div class="col-sm-6 col-md-3">
                                 <label for="password">*CEP:</label>
                                 <input value="<?=$view_request['cep'];?>" required="" type="text" class="form-control col-md-5" id="id_cep" name="cep" placeholder="CEP" maxlength="8" />
@@ -80,6 +70,10 @@ echo $data;
                             <div class="col-sm-3 col-md-3">
                                 <label for="password">*Número:</label>
                                 <input value="<?=$view_request['numero'];?>" required="" type="text" class="form-control" id="id_numero" name="numero" placeholder="Número" maxlength="7" />
+                            </div>
+                            <div class="col-sm-3 col-md-3">
+                                <label for="password">*Bairro:</label>
+                                <input value="<?=$view_request['bairro'];?>" required="" type="text" class="form-control" id="id_bairro" name="bairro" placeholder="Bairro" />
                             </div>
                         </div>
                         <p>* Campos Obrigatórios</p>

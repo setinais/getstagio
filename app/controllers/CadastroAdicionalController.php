@@ -14,11 +14,12 @@ class CadastroAdicionalController extends HXPHP\System\Controller
                     $configs->auth->after_logout,
                     true
                 );
-            $this->load(
-				'Helpers\Menu',
-				$this->request,
-				$this->configs,
-				$this->auth->getUserRole()
+            $usuario = Usuario::find_by_id($this->auth->getUserId());
+           	$this->load(
+				'Helpers\Menuget',
+				$usuario,
+				$configs,
+				$this->request->controller
 			);
     		$this->auth->redirectCheck();
 	}

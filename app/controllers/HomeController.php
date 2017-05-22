@@ -14,11 +14,13 @@ class HomeController extends \HXPHP\System\Controller
                     true
       
                 );
-            $this->load(
-				'Helpers\Menu',
-				$this->request,
-				$this->configs,
-				$this->auth->getUserRole()
+            $usuario = Usuario::find_by_id($this->auth->getUserId());
+           	$this->load(
+				'Helpers\Menuget',
+				$usuario,
+				$configs,
+				$this->request->controller,
+				$this->request->action
 			);
     		$this->auth->redirectCheck();
 
@@ -28,64 +30,8 @@ class HomeController extends \HXPHP\System\Controller
     		}
 
 	}
-
-	public function informacoesBasicasAction()
+	public function indexAction()
 	{
-		$post = $this->request->post();
-		if(!empty($post))
-		{
-			$post['cep'] = str_replace('-', "", $post['cep']);
-			$post['telefone'] = str_replace("-", "", $post['telefone']);
-			$post['telefone'] = str_replace("(", "", $post['telefone']);
-			$post['telefone'] = str_replace(")", "", $post['telefone']);
-			$callback = Usuario::editar($post,$this->auth->getUserId());
-			if($callback->status === true)
-			{
-				$this->load('Helpers\Alert',[
-	                    'success',
-	                    'Salvo',
-	     				'Dados alterados com sucesso.'
-	                    ]);
 
-			}
-			else
-			{
-	            $this->load('Helpers\Alert',[
-	                    'danger',
-	                    'Atenção',
-	     				$callback->errors
-	                    ]);
-			}
-		}
-		$this->requestpag = Usuario::find_by_id($this->auth->getUserId());
-		$this->view->setVars(['request' => $this->requestpag, 'estados' => Estado::getEstados()])->setAssets('js',[$this->configs->baseURI."public/js/jquery.js",$this->configs->baseURI."public/js/home/informacoesbasicas.js",$this->configs->baseURI."public/js/jquery.1.7.7.mask.min.js"]);
-	}
-
-	public function perfilAction()
-	{
-		$post = $this->request->post();
-		if(!empty($post))
-		{
-			($this->auth->getUserRole() == "Estudante" ? $callback = Estudante::editar($post,$this->auth->getUserId()) : $callback = Instituicao::editar($post,$this->auth->getUserId()) );
-			if($callback->status === true)
-			{
-				$this->load('Helpers\Alert',[
-	                    'success',
-	                    'Salvo',
-	     				'Dados alterados com sucesso.'
-	                    ]);
-
-			}
-			else
-			{
-	            $this->load('Helpers\Alert',[
-	                    'danger',
-	                    'Atenção',
-	     				$callback->errors
-	                    ]);
-			}
-		}
-		($this->auth->getUserRole() == "Estudante" ? $this->requestpag = Estudante::find_by_usuario_id($this->auth->getUserId()) : $this->requestpag = Instituicao::find_by_usuario_id($this->auth->getUserId()) );
-		$this->view->setFile('perfil'.$this->auth->getUserRole())->setVar('request', $this->requestpag);
 	}
 }

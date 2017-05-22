@@ -143,7 +143,7 @@ class Instituicao extends \HXPHP\System\Model
 												</div>
 												<div class='form-group'>
 													<label for='email'>Telefone:</label>
-													<p> ".$ofertante->usuario->telefone."</p>
+													<p> ".$ofertante->telefone."</p>
 												</div>
 												<div class='form-group'>
 													<label for='email'>Endereço:</label>

@@ -2,7 +2,7 @@ $(document).ready(function(){
 	$(document).on( "click",".inscritos", function(){
 		id = $(this).attr('data-id-vaga');
 		$.ajax({
-			url: 'http://localhost/getstagio/estagio/ajax/carregaCandidato',
+			url: 'http://localhost/getstagio/listar/ajax/carregaCandidato',
 			type: 'POST',
 			dataType: 'html',
 			data: "vaga_id="+id,

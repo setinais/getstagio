@@ -30,7 +30,7 @@ $(document).ready(function() {
 		var id = $(this).attr('id');
 		obj = $(this);
 		$.ajax({
-			url: 'http://localhost/getstagio/estagio/ajax',
+			url: 'http://localhost/getstagio/listar/ajax',
 			type: 'POST',
 			dataType: 'html',
 			data: "id="+id,
@@ -56,7 +56,7 @@ $(document).ready(function() {
 		var id = $(this).attr('id');
 		obj = $(this);
 		$.ajax({
-			url: 'http://localhost/getstagio/estagio/ajax/descandidatar',
+			url: 'http://localhost/getstagio/listar/ajax/descandidatar',
 			type: 'POST',
 			dataType: 'html',
 			data: "id="+id,

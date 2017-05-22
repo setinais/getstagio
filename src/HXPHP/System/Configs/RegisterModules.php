@@ -12,7 +12,8 @@ class RegisterModules
 			'database',
 			'mail',
 			'menu',
-			'auth'
+			'auth',
+			'menuget'
 		];
 
 		return $this;

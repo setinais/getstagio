@@ -28,7 +28,7 @@ class LoginController extends \HXPHP\System\Controller
             if ($callback->status) 
             {
 
-                 $this->auth->login($callback->user->id, $callback->user->email, $callback->user->funcoe->tipo);
+                 $this->auth->login($callback->user->id, $callback->user->nome, $callback->user->funcoe->tipo);
             }
             else
             {
