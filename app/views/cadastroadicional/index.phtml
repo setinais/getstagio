@@ -14,44 +14,212 @@
         </div>
     </div>
 </div>
-
-<div id="estudante" class=" " style="display: none;">
+<!-- CADASTRO PERFIL ESTUDANTE -->
+<div id="estudante" class=" " styl="display: none;">
     <div class="row col-xs-offset-1 col-xs-10 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
         <div class="panel panel-primary ">
             <div class="panel-heading text-center">Dados complementares para Estudante</div>
             <div class="panel-body no-gutter">
                 <form action="<?=BASE?>cadastroadicional/index/1" id="formEstudante" method="POST">
-                    <div class="form-group col-md-6">
-                        <label for="exampleInputEmail1">CPF*</label>
-                        <input type="text" class="form-control" name="cpf" id="id_cpf" placeholder="CPF">
-                        <span class="label label-danger col-md-12" id="erroCNPJ" style="display: none;">CPF invalido !</span>
+
+                    <div class="form-group col-md-5">
+                        <label for="nomeEstudante">Nome completo:</label>
+                        <input type="text=" class="form-control" id="nomeEstudante" value="" placeholder="Nome" required>
                     </div>
-                    <div class="form-group col-md-6">
-                        <label for="exampleInputEmail1">Data de Nascimento*</label>
-                        <input type="date" class="form-control" name="data_nasc" placeholder="Idade">
+                    <div class="form-group col-md-7">
+                        <label for="sobrenomeEstudante"><br></label>
+                        <input type="text=" class="form-control" id="sobrenomeEstudante" value="" placeholder="Sobrenome" required>
                     </div>
-                    <div class="form-group col-md-6">
-                        <label for="exampleInputEmail1">Matrícula*</label>
-                        <input type="number" class="form-control" name="matricula" placeholder="Matrícula">
+
+                    <div class="form-group col-md-4">
+                        <label for="dataNascimento">Data de Nascimento:</label>
+                        <input type="date" class="form-control" id="dataNascimento" required>
                     </div>
-                    <div class="form-group col-md-6">
-                        <label for="exampleInputEmail1">Curso*</label>
-                        <input type="text" class="form-control" name="curso" placeholder="Curso">
+
+                    <div class="form-group col-md-8">
+                        <label for="" class="col-md-offset-1">Sexo:</label>
+                        <div class="col-md-12">
+                            <button type="" class="col-md-offset-1 col-md-5 btn btn-default">Feminino</button>
+                            <button type="" class="col-md-offset-1 col-md-5 btn btn-default">Masculino</button>
+                        </div>
                     </div>
+
+                    <div class="form-group col-md-4">
+                        <label for="">Possui deficiência?</label>
+                        <div class="col-md-12">
+                            <button type="" class=" col-md-5 btn btn-default">Sim</button>
+                            <button type="" class="col-md-offset-1 col-md-5 btn btn-default">Não</button>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <label for="deficiencia"><br></label>
+                        <input type="text=" class="form-control" id="deficiencia" value="" placeholder="Se sim, descreva qual">
+                    </div>
+
+                    <h4 class="col-md-12 text-center">Contato</h4>
+
                     <div class="form-group col-md-12">
-                        <label for="exampleInputEmail1">Série / Módulo / Período*</label>
-                        <input type="text" class="form-control" name="serie_modulo" placeholder="Série / Módulo / Período">
+                        <label for="emailEstudante">E-mail:</label>
+                        <input type="email" class="form-control" id="emailEstudante" value="" placeholder="E-mail" required>
                     </div>
-                     <div class="form-group btnbtn2">
+                    <div class="col-md-6">
+                        <label for="telefoneEstudante">Telefone:</label>
+                        <input type="" class="form-control" id="telefoneEstudante" placeholder="(99)9 9999-9999" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="celularEstudante">Celular:</label>
+                        <input type="" class="form-control" id="celularEstudante" placeholder="(99)9 9999-9999" required>
+                    </div>
+
+                    <h4 class="col-md-12 text-center">Endereço</h4>
+
+                    <div class="col-md-4">
+                        <label for="cepEstudante">CEP:</label>
+                        <input type="" class="form-control" id="cepEstudante" placeholder="99999-999" required>
+                    </div>
+                    <div class="col-md-8">
+                        <label for="logradouroEstudante">Logradouro:</label>
+                        <input type="text" class="form-control" id="logradouroEstudante" placeholder="Logradouro" required>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="numeroEstudante">Número:</label>
+                        <input type="text" class="form-control" id="numeroEstudante" placeholder="Número" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="complemetoEstudante">Complemento:</label>
+                        <input type="text" class="form-control" id="complementoEstudante" placeholder="Complemento" required>
+                    </div>
+                    <div class="col-md-5">
+                        <label for="bairroEstudante">Bairro:</label>
+                        <input type="text" class="form-control" id="bairroEstudante" placeholder="Bairro" required>
+                    </div>
+
+                    <h4 class="col-md-12 text-center">Formação</h4>
+
+                    <h4 class="col-md-12 text-center">Idiomas</h4>
+
+                    <div class="col-md-12 form-group">
+                        <label for="">Inglês:</label><br>
+                        <div class="col-md-offset-1 col-md-3">
+                            <label for="nivelIngles">Lê:</label>
+                            <select name="" id="nivelIngles" class="form-control">
+                                <option>Pouco</option>
+                                <option>Bem</option>
+                                <option>Fluente</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="nivelIngles">Escreve:</label>
+                            <select name="" id="nivelIngles" class="form-control">
+                                <option>Pouco</option>
+                                <option>Bem</option>
+                                <option>Fluente</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="nivelIngles">Fala:</label>
+                            <select name="" id="nivelIngles" class="form-control">
+                                <option>Pouco</option>
+                                <option>Bem</option>
+                                <option>Fluente</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <label for="">Espanhol:</label><br>
+                        <div class="col-md-offset-1 col-md-3">
+                            <label for="nivelIngles">Lê:</label>
+                            <select name="" id="nivelIngles" class="form-control">
+                                <option>Pouco</option>
+                                <option>Bem</option>
+                                <option>Fluente</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="nivelIngles">Escreve:</label>
+                            <select name="" id="nivelIngles" class="form-control">
+                                <option>Pouco</option>
+                                <option>Bem</option>
+                                <option>Fluente</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="nivelIngles">Fala:</label>
+                            <select name="" id="nivelIngles" class="form-control">
+                                <option>Pouco</option>
+                                <option>Bem</option>
+                                <option>Fluente</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3 mt2">
+                            <input type="text" class="form-control" placeholder="Outro idioma">
+                        </div>
+                        <div class="col-md-12">
+                            <div class="col-md-offset-1 col-md-3">
+                                <label for="nivelIngles">Lê:</label>
+                                <select name="" id="nivelIngles" class="form-control">
+                                <option>Pouco</option>
+                                <option>Bem</option>
+                                <option>Fluente</option>
+                            </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="nivelIngles">Escreve:</label>
+                                <select name="" id="nivelIngles" class="form-control">
+                                <option>Pouco</option>
+                                <option>Bem</option>
+                                <option>Fluente</option>
+                            </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="nivelIngles">Fala:</label>
+                                <select name="" id="nivelIngles" class="form-control">
+                                <option>Pouco</option>
+                                <option>Bem</option>
+                                <option>Fluente</option>
+                            </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h4 class="col-md-12 text-center">Formação complementar</h4>
+
+                    <div class="form-group col-md-12">
+                        <label for="institutoComplementar">Nome da Instituição:</label>
+                        <input type="email" class="form-control" id="institutoComplementar" value="" placeholder="Nome da Instituição" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="cursoComplementar">Curso:</label>
+                        <input type="" class="form-control" id="cursoComplementar" placeholder="Curso" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="cargaHComplementar">Carga horária:</label>
+                        <input type="" class="form-control" id="cargaHComplementar" placeholder="" required>
+                    </div>
+
+                    <h4 class="col-md-12 text-center">Conhecimentos de Informática</h4>
+
+                  <!--   <div class="col-md-6">
+                        <label for="nivelIngles">Lê:</label>
+                        <select name="" id="nivelIngles" class="form-control">
+                                <option>Pouco</option>
+                                <option>Bem</option>
+                                <option>Fluente</option>
+                            </select>
+                    </div> -->
+
+                    <div class="form-group btnbtn2">
                         <button type="submit" class="btn btn-primary col-xs-12 col-sm-12 col-md-12">Cadastrar</button>
-                    </div> 
+                    </div>
                 </form>
-                
+
             </div>
         </div>
     </div>
 </div>
-
+<!-- CADASTRO PERFIL INSTITUIÇÃO -->
 <div id="instituicao" class="" style="display: none;">
     <div class="row col-xs-offset-1 col-xs-10 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
         <div class="panel panel-primary">
@@ -70,7 +238,7 @@
 
                     <div class="form-group btnbtn2">
                         <button type="submit" class="btn btn-primary col-xs-12 col-sm-12 col-md-12">Cadastrar</button>
-                    </div> 
+                    </div>
                 </form>
             </div>
         </div>

@@ -11,6 +11,26 @@
 /* ----------- */
 /* shadows */
 /* ------- */
+/* VITOR*MARGIN*SYSTEM */
+.mt {
+  margin-top: 5px; }
+
+.mt2 {
+  margin-top: 10px; }
+
+.mt3 {
+  margin-top: 20px; }
+
+.mb {
+  margin-bottom: 5px; }
+
+.mb2 {
+  margin-bottom: 10px; }
+
+.mb3 {
+  margin-bottom: 20px; }
+
+/* +x+x+x+x+x+x+x+x+x+ */
 #fundo-externo {
   overflow: hidden;
   /* para que n├úo tenha rolagem se a imagem de fundo for maior que a tela */
