@@ -39,7 +39,7 @@ $(document).on( "click",".descandidatar", function(){
 		var id = $(this).attr('id');
 		obj = $(this);
 		$.ajax({
-			url: 'http://localhost/getstagio/estagio/ajax/descandidatar',
+			url: 'http://localhost/getstagio/listar/ajax/descandidatar',
 			type: 'POST',
 			dataType: 'html',
 			data: "id="+id,

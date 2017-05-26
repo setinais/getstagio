@@ -80,7 +80,7 @@
 								<a href="#" data-toggle="modal" data-target="#info<?=$vagas->id;?>">
 									<span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
 								</a>
-								<a href="<?=BASE;?>estagio/editarVaga/<?=$vagas->id;?>">
+								<a href="<?=BASE;?>listar/editarVaga/<?=$vagas->id;?>">
 									<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
 								</a>
 							</p>
@@ -123,7 +123,7 @@
 						</div><!-- /.modal -->
 					</tr>
 					<?php } }else{
-						echo "<tr><td colspan='5'>Você ainda não cadastrou nenhuma vaga. <a href='".$this->configs->baseURI."estagio/criar/'>Clique aqui</a> para criar novas vagas!</td></tr>";}?>
+						echo "<tr><td colspan='5'>Você ainda não cadastrou nenhuma vaga. <a href='".$this->configs->baseURI."listar/criar/'>Clique aqui</a> para criar novas vagas!</td></tr>";}?>
 					</tbody>
 				</table>
 			</div>

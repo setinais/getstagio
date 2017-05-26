@@ -29,7 +29,7 @@ jQuery(document).ready(function($){
  	});
  	$("#estado_id").change(function(event) {
  		$.ajax({
-			url: 'http://localhost/getstagio/estagio/ajax/carregaCidade',
+			url: 'http://localhost/getstagio/listar/ajax/carregaCidade',
 			type: 'POST',
 			dataType: 'html',
 			data: "cidade_id="+$(this).val(),

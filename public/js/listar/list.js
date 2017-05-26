@@ -2,19 +2,19 @@ $(document).ready(function($) {
 	$("#Finalizar").click(function(event) {
 		var string = checkboxValues();
 		if(string != ""){
-		window.location.href = "/getstagio/estagio/finalizarVaga/"+string;
+		window.location.href = "/getstagio/listar/finalizarVaga/"+string;
 		}
 	});
 	$("#Reabrir").click(function(event) {
 		var string = checkboxValues();
 		if(string != ""){
-		window.location.href = "/getstagio/estagio/reabrirVaga/"+string;
+		window.location.href = "/getstagio/listar/reabrirVaga/"+string;
 		}
 	});
 	$("#Excluir").click(function(event) {
 		var string = checkboxValues();
 		if(string != ""){
-			window.location.href = "/getstagio/estagio/eliminarVaga/"+string;
+			window.location.href = "/getstagio/listar/eliminarVaga/"+string;
 		}
 	});
 	

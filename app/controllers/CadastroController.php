@@ -25,13 +25,10 @@ class CadastroController extends \HXPHP\System\Controller
 		if(!empty($post))
 		{
 			$post['cep'] = str_replace('-', "", $post['cep']);
-			$post['telefone'] = str_replace("-", "", $post['telefone']);
-			$post['telefone'] = str_replace("(", "", $post['telefone']);
-			$post['telefone'] = str_replace(")", "", $post['telefone']);
 			$callback = Usuario::cadastrar($post);
 			if($callback->status === true)
 			{
-					 $this->auth->login($callback->user->id, $callback->user->email, $callback->user->funcoe->tipo);
+					 $this->auth->login($callback->user->id, $callback->user->nome, $callback->user->funcoe->tipo);
 			}
 			else
 			{

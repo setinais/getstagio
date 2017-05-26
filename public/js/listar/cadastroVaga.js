@@ -76,7 +76,7 @@ $(document).ready(function() {
 	$("#form_cadastro_cargo").submit(function(event) {
 		if($("#id_cargo").val() !=""){
 			$.ajax({
-				url: 'http://localhost/getstagio/estagio/ajax/cadastrarCargo',
+				url: 'http://localhost/getstagio/listar/ajax/cadastrarCargo',
 				type: 'POST',
 				dataType: 'html',
 				data: "nome="+$("#id_cargo").val(),
@@ -84,7 +84,7 @@ $(document).ready(function() {
 					if(e == "true"){
 						$("#erro_cargo").html("<p class='bg-success'>Cargo criado com sucesso.</p>");
 						$.ajax({
-							url: 'http://localhost/getstagio/estagio/ajax/carregaCargo',
+							url: 'http://localhost/getstagio/listar/ajax/carregaCargo',
 							type: 'POST',
 							dataType: 'html',
 							data: "nome='nada'",

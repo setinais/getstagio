@@ -23,15 +23,7 @@ class Usuario extends \HXPHP\System\Model
 			[
 				'nome',
 				'message' => '<strong>Nome</strong> é um campo obrigatório.'
-			],
-			[
-				'email',
-				'message' => '<strong>Email</strong> é um campo obrigatório.'
-			],			
-			[
-				'telefone',
-				'message' => '<strong>Telefone</strong> é um campo obrigatório.'
-			],
+			],		
 			[
 				'senha',
 				'message' => '<strong>Senha</strong> é um campo obrigatório.'
@@ -57,14 +49,12 @@ class Usuario extends \HXPHP\System\Model
 	];
 	static $validates_uniqueness_of  = [
 			[
-				['email'],
-				'message' => 'Já existe um usuário cadastrado com este <strong>email</strong>.'
+				['nome'],
+				'message' => 'Já existe um usuário cadastrado com este <strong>Nome</strong>.'
 			]
 	];
 	static $validates_size_of = [
-	  ['cep', 'is' => 8, 'wrong_length' => 'O tamanho do <strong>CEP</strong> deve ser de 8 caracteres.'],
-	  ['telefone', 'maximum' => 11, 'too_long' => '<strong>Telefone</strong> inválido!'],
-	  ['telefone', 'minimum' => 10, 'too_short' => '<strong>Telefone</strong> inválido!']
+	  ['cep', 'is' => 8, 'wrong_length' => 'O tamanho do <strong>CEP</strong> deve ser de 8 caracteres.']
    ];
 	public static function cadastrar($post)
 	{
@@ -75,6 +65,7 @@ class Usuario extends \HXPHP\System\Model
   
 		if(!empty($post['senha'])){
 			$senha = \HXPHP\System\Tools::hashHX($post['senha']);
+			$post['nome'] = strtolower($post['nome']);
 			$post["senha"] = $senha['password'];
 			$post['salt'] = $senha['salt'];
 			$post['status'] = 1;
@@ -107,10 +98,10 @@ class Usuario extends \HXPHP\System\Model
 		$callBack_logar->alert = '';
 		$callBack_logar->status = false;
 		$callBack_logar->user = null;
-		if(!empty($dados['email'])){
+		if(!empty($dados['nome'])){
 			if(!empty($dados['senha'])){
-
-				$user = self::find_by_email($dados['email']);
+				$dados['nome'] = strtolower($dados['nome']);
+				$user = self::find_by_nome($dados['nome']);
 				if(!is_null($user))
 				{
 					$password = \HXPHP\System\Tools::hashHX($dados['senha'],$user->salt);

@@ -16,18 +16,20 @@ class PerfilController extends \HXPHP\System\Controller
                     true
       
                 );
-            $this->load(
-				'Helpers\Menu',
-				$this->request,
-				$this->configs,
-				$this->auth->getUserRole()
+            $usuario = Usuario::find_by_id($this->auth->getUserId());
+           	$this->load(
+				'Helpers\Menuget',
+				$usuario,
+				$configs,
+				$this->request->controller
 			);
     		$this->auth->redirectCheck();
 	}
 
 	public function indexAction($id_usuario = null)
 	{
-
+		//'https://www.receitaws.com.br/v1/cnpj/22948361000105' url API
+		
 		if(is_null($id_usuario) || !is_numeric($id_usuario))
 			$this->auth->redirectCheck(true);
 		$test = Usuario::find_by_id($id_usuario);
