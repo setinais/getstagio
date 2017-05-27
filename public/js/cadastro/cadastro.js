@@ -6,11 +6,11 @@ function troca(tipo)
 	{
 		case '1': 
 		$("#instituicao").hide();
-		$("#estudante").show('slow');
+		$("#estudante").show('fast');
 		break;
 		case '2': 
 		$("#estudante").hide();
-		$("#instituicao").show('slow');
+		$("#instituicao").show('fast');
 		break;
 		default: 
 		alert('invalido');
