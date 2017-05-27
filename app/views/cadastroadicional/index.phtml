@@ -490,16 +490,67 @@
             <div class="panel-heading text-center">Dados complementares para Ofertante</div>
             <div class="panel-body no-gutter">
                 <form action="<?=BASE?>cadastroadicional/index/2" id="formInstituicao" method="POST">
+                    <h4 class="col-md-12 text-center">
+                        <hr> Dados da Empresa*
+                        <hr>
+                    </h4>
                     <div class="form-group col-md-12">
-                        <label for="exampleInputEmail1">CNPJ*</label>
+                        <label>Razão Social / Fantasia*</label>
+                        <input type="text" class="form-control" name="razao_social" placeholder="Nome">
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label>CNPJ*</label>
                         <input type="text" name="cnpj" id="id_cnpj" class="form-control" placeholder="CNPJ" data-mask="#.##0" />
                         <span class="label label-danger col-md-12" id="erroCNPJ" style="display: none;">CNPJ invalido !</span>
                     </div>
                     <div class="form-group col-md-12">
-                        <label for="exampleInputEmail1">Razão Social / Fantasia*</label>
-                        <input type="text" class="form-control" name="razao_social" placeholder="Nome">
+                        <label>Área de atuação*</label>
+                        <input type="text" class="form-control" name="areaAtuacao" placeholder="Área de atuação">
+                    </div>  
+                    <h4 class="col-md-12 text-center">
+                        <hr> Endereço*
+                        <hr>
+                    </h4>
+                    <div class="form-group col-md-3">
+                        <label>Estado*</label>
+                        <input type="text" class="form-control" name="estado" placeholder="Estado">
                     </div>
-
+                    <div class="form-group col-md-6">
+                        <label>Cidade*</label>
+                        <input type="text" class="form-control" name="cidade" placeholder="Cidade">
+                    </div>   
+                    <div class="form-group col-md-3">
+                        <label>CEP*</label>
+                        <input type="text" class="form-control" name="cep" placeholder="CEP">
+                    </div>
+                    <div class="form-group col-md-9">
+                        <label>Logradouro*</label>
+                        <input type="text" class="form-control" name="logradouro" placeholder="Logradouro">
+                    </div>    
+                    <div class="form-group col-md-3">
+                        <label>Número*</label>
+                        <input type="text" class="form-control" name="numero" placeholder="Número">
+                    </div> 
+                    <div class="form-group col-xs-12 col-md-12">
+                        <label>Complemento*</label>
+                        <input type="text" class="form-control" name="numero" placeholder="Complemento de Endereço">
+                    </div> 
+                    <h4 class="col-md-12 text-center">
+                        <hr> Contato*
+                        <hr>
+                    </h4>
+                    <div class="form-group col-xs-12 col-md-6">
+                        <label>E-mail*</label>
+                        <input type="email" class="form-control" name="email" placeholder="E-mail">
+                    </div>
+                    <div class="form-group col-xs-12 col-md-6">
+                        <label>Telefone*</label>
+                        <input type="text" class="form-control" name="telefone" placeholder="Telefone">
+                    </div>
+                    <div class="form-group col-xs-12 col-md-12">
+                        <label>Site Web</label>
+                        <input type="text" class="form-control" name="site" placeholder="Site Web">
+                    </div>
                     <div class="form-group btnbtn2">
                         <button type="submit" class="btn btn-primary col-xs-12 col-sm-12 col-md-12">Cadastrar</button>
                     </div>
