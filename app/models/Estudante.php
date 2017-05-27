@@ -6,11 +6,19 @@
 class Estudante extends \HXPHP\System\Model
 {
 	static $belongs_to = [
-		['usuario']
+		['usuario'],
+		['cargo'],
+		['contato']
 	];
-	static $has_many = array(
-		array('cadastros')
-		);
+	static $has_many = [
+		['cadastros'],
+		['formacoes'],
+		['conhecimentos_escritorios'],
+		['conhecimentos_sistemas'],
+		['informacoes_complementares'],
+		['idiomas'],
+		['formacoes_complementares']
+	];
 	static $validates_presence_of = [
 			[
 				'curso',

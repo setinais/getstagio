@@ -103,7 +103,6 @@ jQuery(document).ready(function($) {
             dataType: 'html',
             data: "cidade_id="+$(this).val(),
             success: function(e){
-            	alert(e);
                 $("#cidade_id2").html(e);
             }
         });

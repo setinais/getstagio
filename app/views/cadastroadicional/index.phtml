@@ -94,17 +94,17 @@
 				<form action="<?=BASE?>cadastroadicional/index/1" id="formEstudante" method="POST">
 
 					<div class="form-group col-md-12">
-						<label for="nomeEstudante">Nome completo:</label>
+						<label for="nomeEstudante">Nome completo:*</label>
 						<input type="text=" class="form-control" name="nome" id="nome" value="" placeholder="Nome completo" required>
 					</div>
 
 					<div class="form-group col-md-4">
-						<label for="dataNascimento">Data de Nascimento:</label>
+						<label for="dataNascimento">Data de Nascimento:*</label>
 						<input type="date" class="form-control" id="dataNascimento" name="dataNascimento" required>
 					</div>
 
 					<div class="form-group col-md-8">
-						<label for="" class="col-md-offset-1 pull-left">Sexo:</label>
+						<label for="" class="col-md-offset-1 pull-left">Sexo:*</label>
 						<div class="col-md-5 funkyradio">
 							<div class="funkyradio-primary col-md-12 ">
 								<input type="radio" name="sexo" id="sexf" value="Feminino" />
@@ -119,7 +119,7 @@
 						</div>
 					</div>
 					<div>
-						<label for="" class="pull-left col-md-12" style="">Possui alguma deficiência?</label>
+						<label for="" class="pull-left col-md-12" style="">Possui alguma deficiência?*</label>
 						<div class="form-group col-md-5">
 							<div class="col-md-6 funkyradio ">
 								<div class="funkyradio-primary col-md-12 ">
@@ -148,7 +148,7 @@
 					</h4>
 
 					<div class="form-group col-md-12">
-						<label for="emailEstudante">E-mail:</label>
+						<label for="emailEstudante">E-mail:*</label>
 						<input type="email" class="form-control" id="emailEstudante" name="emailEstudante" value="" placeholder="E-mail" required>
 					</div>
 					<div class="col-md-6">
@@ -166,7 +166,7 @@
 					</h4>
 					
 					<div class="col-md-4 mt3">
-						<label>*Estado:</label>
+						<label>Estado:*</label>
 						<select class="form-control" required="" id="estado_id">
 							<option value="" disabled="" selected="">Selecione...</option>
 							<?php   foreach(Estado::all() as $es){ ?>
@@ -175,25 +175,25 @@
 							</select>
 						</div>
 						<div class="col-md-4 mt3">
-							<label for="id_cidade">*Cidade:</label>
+							<label for="id_cidade">Cidade:*</label>
 							<select id="cidade_id" name="cidade_id" required="" class="form-control"></select>
 						</div>
 
 						<div class="col-md-4 mt3">
-							<label for="cepEstudante">CEP:</label>
+							<label for="cepEstudante">CEP:*</label>
 							<input type="" class="form-control" name="cep" id="cepEstudante" placeholder="99999-999" required>
 						</div>
 						<div class="col-md-4 mt3">
-							<label for="bairroEstudante">Bairro:</label>
+							<label for="bairroEstudante">Bairro:*</label>
 							<input type="text" class="form-control" id="bairroEstudante" placeholder="Bairro" required>
 						</div>
 						<div class="col-md-8 mt3">
-							<label for="logradouroEstudante">Logradouro:</label>
+							<label for="logradouroEstudante">Logradouro:*</label>
 							<input type="text" class="form-control" name="logradouroEstudante" id="logradouroEstudante" placeholder="Logradouro" required>
 						</div>
 
 						<div class="col-md-3 mt3">
-							<label for="numeroEstudante">Número:</label>
+							<label for="numeroEstudante">Número:*</label>
 							<input type="text" class="form-control" id="numeroEstudante" name="numeroEstudante" placeholder="Número" required>
 						</div>
 						<div class="col-md-9 mt3">
@@ -209,24 +209,24 @@
 						<div>
 							<!-- ENSINO MEDIO -->
 							<div class="form-group col-md-12">
-								<label for="instEM">Instituição de ensino:</label>
+								<label for="instEM">Instituição de ensino:*</label>
 								<input type="text" class="form-control" id="instEM" value="" placeholder="Nome da instituição de ensino" required>
 							</div>
 							<div class="col-md-3 mt2">
-								<label for="sitEM">Situação do curso:</label>
+								<label for="sitEM">Situação do curso:*</label>
 								<select name="" id="sitEM" class="form-control">
-									<option>Selecione</option>
+									<option disabled="" selected="">Selecione</option>
 									<option>Incompleto</option>
 									<option>Cursando</option>
 									<option>Completo</option>
 								</select>
 							</div>
 							<div class="col-md-2 mt2">
-								<label for="serieEM">Série:</label>
+								<label for="serieEM">Série:*</label>
 								<input type="number" id="serieEM" class="form-control" >
 							</div>
 							<div class="col-md-3 mt2">
-								<label for="iniEM">Ano de início:</label>
+								<label for="iniEM">Ano de início:*</label>
 								<select name="" id="iniEM" class="form-control">
 									<option selected="" disabled="">Selecione</option>
 									<?php for($i=date("Y");$i>=1980;$i--){ ?>
@@ -235,7 +235,7 @@
 								</select>
 							</div>
 							<div class="col-md-3 mt2">
-								<label for="fimEM">Ano de término:</label>
+								<label for="fimEM">Ano de término:*</label>
 								<select name="" id="fimEM" class="form-control">
 									<option selected="" disabled="">Selecione</option>
 									<?php for($i=date("Y");$i>=1980;$i--){ ?>
@@ -248,37 +248,37 @@
 								<div class="funkyradio">
 									<div class="funkyradio-primary col-md-3">
 										<input type="checkbox" id="forma2" />
-										<label for="forma2">Curso Técnico</label>
+										<label for="forma2">Curso Técnico*</label>
 									</div>
 								</div>
 								<div class="form-group col-md-12">
-									<label for="instCT">Instituição de ensino:</label>
+									<label for="instCT">Instituição de ensino:*</label>
 									<input type="text" disabled="disabled" class="form-control" id="instCT" value="" placeholder="Nome da instituição de ensino" name="instituicaoTec" required>
 								</div>
 								<div class="col-md-9">
-									<label for="cursoCT">Curso:</label>
+									<label for="cursoCT">Curso:*</label>
 									<select name="cursoTec" disabled="disabled" id="cursotCT" class="form-control">
-										<option>Selecione</option>
+										<option disabled="" selected="">Selecione</option>
 										<option>Sugestão</option>
 										<option>Sugestion</option>
 										<option>Sugestione</option>
 									</select>
 								</div>
 								<div class="col-md-3">
-									<label for="sitCT">Situação do curso:</label>
+									<label for="sitCT">Situação do curso:*</label>
 									<select name="situacaoTec" id="situacaoTec" disabled="disabled" class="form-control">
-										<option>Selecione</option>
+										<option disabled="" selected="">Selecione</option>
 										<option>Incompleto</option>
 										<option>Cursando</option>
 										<option>Completo</option>
 									</select>
 								</div>
 								<div class="col-md-2 mt2">
-									<label for="serieCT">Série/Módulo:</label>
+									<label for="serieCT">Série/Módulo:*</label>
 									<input type="number" name="serieTec" disabled="disabled" id="serieCT" class="form-control" >
 								</div>
 								<div class="col-md-3 mt2">
-									<label for="iniCT">Ano de início:</label>
+									<label for="iniCT">Ano de início:*</label>
 									<select name="anoTecInicio" disabled="disabled" id="iniCT" class="form-control">
 										<option selected="" disabled="">Selecione</option>
 										<?php for($i=date("Y");$i>=1980;$i--){ ?>
@@ -287,7 +287,7 @@
 									</select>
 								</div>
 								<div class="col-md-3 mt2">
-									<label for="fimCT">Ano de término:</label>
+									<label for="fimCT">Ano de término:*</label>
 									<select name="anoTecTermino" disabled="disabled" id="fimCT" class="form-control">
 										<option selected="" disabled="">Selecione</option>
 										<?php for($i=date("Y");$i>=1980;$i--){ ?>
@@ -305,33 +305,33 @@
 									</div>
 								</div>
 								<div class="form-group col-md-12">
-									<label for="instSP">Instituição de ensino:</label>
+									<label for="instSP">Instituição de ensino:*</label>
 									<input type="text" disabled="disabled" class="form-control" name="instituicaoSup" id="instSP" value="" placeholder="Nome da instituição de ensino" required>
 								</div>
 								<div class="col-md-9">
-									<label for="cursoSP">Curso:</label>
+									<label for="cursoSP">Curso:*</label>
 									<select name="cursoSup" disabled="disabled" id="cursotSP" class="form-control">
-										<option>Selecione</option>
+										<option disabled="" selected="">Selecione</option>
 										<option>Sugestão</option>
 										<option>Sugestion</option>
 										<option>Sugestione</option>
 									</select>
 								</div>
 								<div class="col-md-3">
-									<label for="sitSP">Situação do curso:</label>
+									<label for="sitSP">Situação do curso:*</label>
 									<select name="cursoSup" disabled="disabled" id="sitSP" class="form-control">
-										<option>Selecione</option>
+										<option disabled="" selected="">Selecione</option>
 										<option>Incompleto</option>
 										<option>Cursando</option>
 										<option>Completo</option>
 									</select>
 								</div>
 								<div class="col-md-2 mt2">
-									<label for="serieSP">Período:</label>
+									<label for="serieSP">Período:*</label>
 									<input type="number" name="periodoSup" disabled="disabled" id="serieSP" class="form-control" >
 								</div>
 								<div class="col-md-3 mt2">
-									<label for="iniSP">Ano de início:</label>
+									<label for="iniSP">Ano de início:*</label>
 									<select name="anoSupInicio" disabled="disabled" id="iniSP" class="form-control">
 										<option selected="" disabled="">Selecione</option>
 										<?php for($i=date("Y");$i>=1980;$i--){ ?>
@@ -340,7 +340,7 @@
 									</select>
 								</div>
 								<div class="col-md-3 mt2">
-									<label for="fimSP">Ano de término:</label>
+									<label for="fimSP">Ano de término:*</label>
 									<select name="anoSupTermino" disabled="disabled" id="fimSP" class="form-control">
 										<option selected="" disabled="">Selecione</option>
 										<?php for($i=date("Y");$i>=1980;$i--){ ?>
@@ -355,29 +355,29 @@
 							</h4>
 
 							<div class="col-md-12 form-group">
-								<label for="">Inglês:</label><br>
+								<label for="">Inglês:*</label><br>
 								<div class="col-md-offset-1 col-md-3">
-									<label for="nivelIngles">Lê:</label>
+									<label for="nivelIngles">Lê:*</label>
 									<select name="inglesLe" id="nivelIngles" class="form-control ">
-										<option>Selecione</option>
+										<option disabled="" selected="">Selecione</option>
 										<option>Pouco</option>
 										<option>Bem</option>
 										<option>Fluente</option>
 									</select>
 								</div>
 								<div class="col-md-3">
-									<label for="nivelIngles">Escreve:</label>
+									<label for="nivelIngles">Escreve:*</label>
 									<select name="inglesEscreve" id="nivelIngles" class="form-control ">
-										<option>Selecione</option>
+										<option disabled="" selected="">Selecione</option>
 										<option>Pouco</option>
 										<option>Bem</option>
 										<option>Fluente</option>
 									</select>
 								</div>
 								<div class="col-md-3">
-									<label for="nivelIngles">Fala:</label>
+									<label for="nivelIngles">Fala:*</label>
 									<select name="inglesFala" id="nivelIngles" class="form-control ">
-										<option>Selecione</option>
+										<option disabled="" selected="">Selecione</option>
 										<option>Pouco</option>
 										<option>Bem</option>
 										<option>Fluente</option>
@@ -389,7 +389,7 @@
 								<div class="col-md-offset-1 col-md-3">
 									<label for="nivelIngles">Lê:</label>
 									<select name="espanholLe" id="nivelIngles" class="form-control ">
-										<option>Selecione</option>
+										<option disabled="" selected="">Selecione</option>
 										<option>Pouco</option>
 										<option>Bem</option>
 										<option>Fluente</option>
@@ -398,7 +398,7 @@
 								<div class="col-md-3">
 									<label for="nivelIngles">Escreve:</label>
 									<select name="espanholEscreve" id="nivelIngles" class="form-control ">
-										<option>Selecione</option>
+										<option disabled="" selected="">Selecione</option>
 										<option>Pouco</option>
 										<option>Bem</option>
 										<option>Fluente</option>
@@ -407,7 +407,7 @@
 								<div class="col-md-3">
 									<label for="nivelIngles">Fala:</label>
 									<select name="espanholFala" id="nivelIngles" class="form-control ">
-										<option>Selecione</option>
+										<option disabled="" selected="">Selecione</option>
 										<option>Pouco</option>
 										<option>Bem</option>
 										<option>Fluente</option>
@@ -422,7 +422,7 @@
 									<div class="col-md-offset-1 col-md-3">
 										<label for="nivelIngles">Lê:</label>
 										<select name="adicionalLe" id="nivelIngles" class="form-control">
-											<option>Selecione</option>
+											<option disabled="" selected="">Selecione</option>
 											<option>Pouco</option>
 											<option>Bem</option>
 											<option>Fluente</option>
@@ -431,7 +431,7 @@
 									<div class="col-md-3">
 										<label for="nivelIngles">Escreve:</label>
 										<select name="adicionalEscreve" id="nivelIngles" class="form-control">
-											<option>Selecione</option>
+											<option disabled="" selected="">Selecione</option>
 											<option>Pouco</option>
 											<option>Bem</option>
 											<option>Fluente</option>
@@ -440,7 +440,7 @@
 									<div class="col-md-3">
 										<label for="nivelIngles">Fala:</label>
 										<select name="adicionalFala" id="nivelIngles" class="form-control">
-											<option>Selecione</option>
+											<option disabled="" selected="">Selecione</option>
 											<option>Pouco</option>
 											<option>Bem</option>
 											<option>Fluente</option>
@@ -472,11 +472,11 @@
 								<hr>
 							</h4>
 							<div class="col-md-5 mt2">
-								<label for="conhecimentosEscritorio">Conhecimentos de escritório:</label>
+								<label for="conhecimentosEscritorio">Conhecimentos de escritório:*</label>
 								<div class="multiselect">
 									<div class="selectBox" onclick="showCheckboxes()">
 										<select class="form-control">
-											<option>SELECIONE...</option>
+											<option disabled="" selected="">SELECIONE...</option>
 										</select>
 										<div class="overSelect"></div>
 									</div>
@@ -495,11 +495,11 @@
 
 							</div>
 							<div class="col-md-4 mt2">
-								<label for="conhecimentosEscritorio">Sistemas operacionais:</label>
+								<label for="conhecimentosEscritorio">Sistemas operacionais:*</label>
 								<div class="multiselect">
 									<div class="selectBox" onclick="showCheckboxes2()">
 										<select class="form-control">
-											<option>SELECIONE...</option>
+											<option disabled="" selected="">SELECIONE...</option>
 										</select>
 										<div class="overSelect"></div>
 									</div>
@@ -523,9 +523,9 @@
 								<hr>
 							</h4>
 							<div class="col-md-4 mt2">
-								<label for="turno">Disponibilidade de jornada:</label>
+								<label for="turno">Disponibilidade de jornada:*</label>
 								<select name="disponibilidadeTurno" id="turno" class="form-control">
-									<option>Selecione</option>
+									<option disabled="" selected="">Selecione</option>
 									<option>Matutino</option>
 									<option>Vespertino</option>
 									<option>Noturno</option>
@@ -533,7 +533,7 @@
 								</select>
 							</div>
 							<div class="form-group col-md-4 mt2">
-								<label for="cargaH">Carga horária diária (Horas):</label>
+								<label for="cargaH">Carga horária diária (Horas):*</label>
 								<select name="cargaHDiaria" class="form-control" id="cargaH">
 									<?php for($i=1;$i<=8;$i++){ ?>
 									<option value="<?=$i?>"><?=$i?> Hora(s)</option>
@@ -541,15 +541,19 @@
 								</select>
 							</div>
 
+							<div class="form-group col-md-12">
+								<label for="">Area de interesse:*</label>
+								<input type="text=" name="areaDeInteresse" class="form-control" value="" placeholder="Area de interesse" required>
+							</div>
+							<div class="form-group col-md-12">
+								<label for="">Cargo ou palavra chave:*</label>
+								<input type="text=" name="cargoPalavraChave" class="form-control" value="" placeholder="Cargo ou palavra chave" required>
+							</div>
 
 							<div class="form-group col-md-12">
 								<label for="objetivos">Descrição e objetivos:</label>
-								<input type="text=" name="descricaoEobjetivo" class="form-control" id="objetivos" value="" placeholder="Descrição e objetivos" required>
+								<textarea name="descricaoEobjetivo" class="form-control" id="objetivos" value="" placeholder="Descrição e objetivos" required></textarea>
 							</div>
-
-
-
-
 							<div class="form-group btnbtn2">
 								<button type="submit" class="btn btn-primary col-xs-12 col-sm-12 col-md-12">Cadastrar</button>
 							</div>
@@ -600,7 +604,7 @@
                     </div>
                     <div class="form-group col-md-6">
                        	<label for="id_cidade2">*Cidade:</label>
-						<select id="cidade_id" name="cidade_id2" required="" class="form-control"></select>
+						<select id="cidade_id2" name="cidade_id2" required="" class="form-control"></select>
                     </div>   
                     <div class="form-group col-md-3">
                         <label>CEP*</label>
@@ -615,7 +619,7 @@
                         <input type="text" class="form-control" name="numero" placeholder="Número">
                     </div> 
                     <div class="form-group col-xs-12 col-md-12">
-                        <label>Complemento*</label>
+                        <label>Complemento</label>
                         <input type="text" class="form-control" name="numero" placeholder="Complemento de Endereço">
                     </div> 
                     <h4 class="col-md-12 text-center">
