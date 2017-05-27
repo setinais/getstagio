@@ -1,510 +1,586 @@
+<script type="text/javascript">
+	var expanded = false;
+
+	function showCheckboxes() {
+		var checkboxes = document.getElementById("checkboxes");
+		if (!expanded) {
+			checkboxes.style.display = "block";
+			expanded = true;
+		} else {
+			checkboxes.style.display = "none";
+			expanded = false;
+		}
+	}
+	var expanded2 = false;
+	function showCheckboxes2() {
+		var checkboxes2 = document.getElementById("checkboxes2");
+		if (!expanded2) {
+			checkboxes2.style.display = "block";
+			expanded2 = true;
+		} else {
+			checkboxes2.style.display = "none";
+			expanded2 = false;
+		}
+	}
+</script>
+<style type="text/css">
+	.multiselect {
+		width: 200px;
+	}
+
+	.selectBox {
+		position: relative;
+	}
+
+	.selectBox select {
+		width: 100%;
+		font-weight: bold;
+	}
+
+	.overSelect {
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+	}
+
+	#checkboxes {
+		display: none;
+		border: 1px #dadada solid;
+	}
+
+	#checkboxes label {
+		display: block;
+	}
+
+	#checkboxes label:hover {
+		background-color: #1e90ff;
+	}#checkboxes2 {
+		display: none;
+		border: 1px #dadada solid;
+	}
+
+	#checkboxes2 label {
+		display: block;
+	}
+
+	#checkboxes2 label:hover {
+		background-color: #1e90ff;
+	}
+</style>
 <div class="col-xs-offset-1 col-xs-10 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
-    <?php echo (isset($this->alert) ? $this->alert : ''); ?>
-    <div class="panel panel-primary">
-        <div class="panel-heading text-center">Dados complementares</div>
-        <div class="panel-body">
-            <div class="form-group col-md-12 text-center">
-                <label class="radio-inline col-md-offset-2 col-md-4">
+	<?php echo (isset($this->alert) ? $this->alert : ''); ?>
+	<div class="panel panel-primary">
+		<div class="panel-heading text-center">Dados complementares</div>
+		<div class="panel-body">
+			<div class="form-group col-md-12 text-center">
+				<label class="radio-inline col-md-offset-2 col-md-4">
 					<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1" onclick="troca(this.value);"/> Estudante
 				</label>
-                <label class="radio-inline col-md-offset-1 col-md-4">
+				<label class="radio-inline col-md-offset-1 col-md-4">
 					<input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="2" onclick="troca(this.value);"/> Ofertante
 				</label>
-            </div>
-        </div>
-    </div>
+			</div>
+		</div>
+	</div>
 </div>
 <!-- CADASTRO PERFIL ESTUDANTE -->
 <div id="estudante" class=" " styl="display: none;">
-    <div class="row col-xs-offset-1 col-xs-10 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
-        <div class="panel panel-primary ">
-            <div class="panel-heading text-center">Dados complementares para Estudante</div>
-            <div class="panel-body no-gutter">
-                <form action="<?=BASE?>cadastroadicional/index/1" id="formEstudante" method="POST">
+	<div class="row col-xs-offset-1 col-xs-10 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
+		<div class="panel panel-primary ">
+			<div class="panel-heading text-center">Dados complementares para Estudante</div>
+			<div class="panel-body no-gutter">
+				<form action="<?=BASE?>cadastroadicional/index/1" id="formEstudante" method="POST">
 
-                    <div class="form-group col-md-5">
-                        <label for="nomeEstudante">Nome completo:</label>
-                        <input type="text=" class="form-control" id="nomeEstudante" value="" placeholder="Nome" required>
-                    </div>
-                    <div class="form-group col-md-7">
-                        <label for="sobrenomeEstudante"><br></label>
-                        <input type="text=" class="form-control" id="sobrenomeEstudante" value="" placeholder="Sobrenome" required>
-                    </div>
+					<div class="form-group col-md-12">
+						<label for="nomeEstudante">Nome completo:</label>
+						<input type="text=" class="form-control" name="nome" id="nome" value="" placeholder="Nome completo" required>
+					</div>
 
-                    <div class="form-group col-md-4">
-                        <label for="dataNascimento">Data de Nascimento:</label>
-                        <input type="date" class="form-control" id="dataNascimento" required>
-                    </div>
+					<div class="form-group col-md-4">
+						<label for="dataNascimento">Data de Nascimento:</label>
+						<input type="date" class="form-control" id="dataNascimento" name="dataNascimento" required>
+					</div>
 
-                    <div class="form-group col-md-8">
-                        <label for="" class="col-md-offset-1 pull-left">Sexo:</label>
-                        <div class="col-md-5 funkyradio">
-                            <div class="funkyradio-primary col-md-12 ">
-                                <input type="radio" name="sexo" id="sexf" />
-                                <label for="sexf">Feminino</label>
-                            </div>
-                        </div>
-                        <div class="col-md-5 funkyradio">
-                            <div class="funkyradio-primary col-md-12 ">
-                                <input type="radio" name="sexo" id="sexm" />
-                                <label for="sexm">Masculino</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <label for="" class="pull-left col-md-12" style="">Possui alguma deficiência?</label>
-                        <div class="form-group col-md-5">
-                            <div class="col-md-6 funkyradio ">
-                                <div class="funkyradio-primary col-md-12 ">
-                                    <input type="radio" name="def" id="defs" />
-                                    <label for="defs">Sim</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6 funkyradio ">
-                                <div class="funkyradio-primary col-md-12 ">
-                                    <input type="radio" name="def" id="defn" />
-                                    <label for="defn">Não</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+					<div class="form-group col-md-8">
+						<label for="" class="col-md-offset-1 pull-left">Sexo:</label>
+						<div class="col-md-5 funkyradio">
+							<div class="funkyradio-primary col-md-12 ">
+								<input type="radio" name="sexo" id="sexf" value="Feminino" />
+								<label for="sexf">Feminino</label>
+							</div>
+						</div>
+						<div class="col-md-5 funkyradio">
+							<div class="funkyradio-primary col-md-12 ">
+								<input type="radio" name="sexo" id="sexm" value="Masculino" />
+								<label for="sexm">Masculino</label>
+							</div>
+						</div>
+					</div>
+					<div>
+						<label for="" class="pull-left col-md-12" style="">Possui alguma deficiência?</label>
+						<div class="form-group col-md-5">
+							<div class="col-md-6 funkyradio ">
+								<div class="funkyradio-primary col-md-12 ">
+									<input type="radio" name="def" value="sim" id="defs" />
+									<label for="defs">Sim</label>
+								</div>
+							</div>
+							<div class="col-md-6 funkyradio ">
+								<div class="funkyradio-primary col-md-12 ">
+									<input type="radio" name="def" value="nao" id="defn" />
+									<label for="defn">Não</label>
+								</div>
+							</div>
+						</div>
+					</div>
 
-                    <div class="col-md-7">
-                        <label for="deficiencia"><br></label>
-                        <input type="text=" class="form-control" id="deficiencia" value="" placeholder="Se sim, descreva qual">
-                    </div>
+					<div class="col-md-7">
+						<label for="deficiencia"><br></label>
+						<input type="text=" class="form-control" id="deficiencia" value="" placeholder="Se sim, descreva qual">
+					</div>
 
 
-                    <h4 class="col-md-12 text-center">
-                        <hr> Contato
-                        <hr>
-                    </h4>
+					<h4 class="col-md-12 text-center">
+						<hr> Contato
+						<hr>
+					</h4>
 
-                    <div class="form-group col-md-12">
-                        <label for="emailEstudante">E-mail:</label>
-                        <input type="email" class="form-control" id="emailEstudante" value="" placeholder="E-mail" required>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="telefoneEstudante">Telefone:</label>
-                        <input type="" class="form-control" id="telefoneEstudante" placeholder="(99)9 9999-9999" required>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="celularEstudante">Celular:</label>
-                        <input type="" class="form-control" id="celularEstudante" placeholder="(99)9 9999-9999" required>
-                    </div>
+					<div class="form-group col-md-12">
+						<label for="emailEstudante">E-mail:</label>
+						<input type="email" class="form-control" id="emailEstudante" name="emailEstudante" value="" placeholder="E-mail" required>
+					</div>
+					<div class="col-md-6">
+						<label for="telefoneEstudante">Telefone:</label>
+						<input type="" class="form-control" id="telefoneEstudante" name="telefoneEstudante" placeholder="(99) 9999-9999" required>
+					</div>
+					<div class="col-md-6">
+						<label for="celularEstudante">Celular:</label>
+						<input type="" class="form-control" id="celularEstudante" name="celularEstudante" placeholder="(99)9 9999-9999" required>
+					</div>
 
-                    <h4 class="col-md-12 text-center">
-                        <hr> Endereço
-                        <hr>
-                    </h4>
+					<h4 class="col-md-12 text-center">
+						<hr> Endereço
+						<hr>
+					</h4>
+					
+					<div class="col-md-4 mt3">
+						<label>*Estado:</label>
+						<select class="form-control" required="" id="estado_id">
+							<option value="" disabled="" selected="">Selecione...</option>
+							<?php   foreach(Estado::all() as $es){ ?>
+								<option value="<?=$es->id;?>"><?=$es->sigla;?></option>
+								<?php } ?>
+							</select>
+						</div>
+						<div class="col-md-4 mt3">
+							<label for="id_cidade">*Cidade:</label>
+							<select id="cidade_id" name="cidade_id" required="" class="form-control"></select>
+						</div>
 
-                    <div class="col-md-4 mt3">
-                        <label for="cepEstudante">CEP:</label>
-                        <input type="" class="form-control" id="cepEstudante" placeholder="99999-999" required>
-                    </div>
-                    <div class="col-md-8 mt3">
-                        <label for="logradouroEstudante">Logradouro:</label>
-                        <input type="text" class="form-control" id="logradouroEstudante" placeholder="Logradouro" required>
-                    </div>
+						<div class="col-md-4 mt3">
+							<label for="cepEstudante">CEP:</label>
+							<input type="" class="form-control" name="cep" id="cepEstudante" placeholder="99999-999" required>
+						</div>
+						<div class="col-md-4 mt3">
+							<label for="bairroEstudante">Bairro:</label>
+							<input type="text" class="form-control" id="bairroEstudante" placeholder="Bairro" required>
+						</div>
+						<div class="col-md-8 mt3">
+							<label for="logradouroEstudante">Logradouro:</label>
+							<input type="text" class="form-control" name="logradouroEstudante" id="logradouroEstudante" placeholder="Logradouro" required>
+						</div>
 
-                    <div class="col-md-3 mt3">
-                        <label for="numeroEstudante">Número:</label>
-                        <input type="text" class="form-control" id="numeroEstudante" placeholder="Número" required>
-                    </div>
-                    <div class="col-md-4 mt3">
-                        <label for="complemetoEstudante">Complemento:</label>
-                        <input type="text" class="form-control" id="complementoEstudante" placeholder="Complemento" required>
-                    </div>
-                    <div class="form-group col-md-6 mt3">
-                        <label for="exampleInputEmail1">Curso*</label>
-                        <input type="text" class="form-control" name="curso" placeholder="Curso">
+						<div class="col-md-3 mt3">
+							<label for="numeroEstudante">Número:</label>
+							<input type="text" class="form-control" id="numeroEstudante" name="numeroEstudante" placeholder="Número" required>
+						</div>
+						<div class="col-md-9 mt3">
+							<label for="complemetoEstudante">Complemento:</label>
+							<input type="text" class="form-control" id="complementoEstudante" name="complementoEstudante" placeholder="Complemento" required>
+						</div>
 
-                    </div>
-                    <div class="col-md-5 mt3">
-                        <label for="bairroEstudante">Bairro:</label>
-                        <input type="text" class="form-control" id="bairroEstudante" placeholder="Bairro" required>
-                    </div>
 
-                    <h4 class="col-md-12 text-center">
-                        <hr> Formação
-                        <hr>
-                    </h4>
-                    <div>
-                       <!-- ENSINO MEDIO -->
-                        <div class="funkyradio">
-                            <div class="funkyradio-primary col-md-3">
-                                <input type="checkbox" name="ensinoMedio" id="forma1" />
-                                <label for="forma1">Ensino Médio</label>
-                            </div>
-                        </div>
-                        <div class="form-group col-md-12">
-                            <label for="instEM">Instituição de ensino:</label>
-                            <input type="text" class="form-control" id="instEM" value="" placeholder="Nome da instituição de ensino" required>
-                        </div>
-                        <div class="col-md-9">
-                            <label for="cursoEM">Curso:</label>
-                            <select name="" id="cursotEM" class="form-control">
-                                               <option>Selecione</option>
-                                                <option>Sugestão</option>
-                                                <option>Sugestion</option>
-                                                <option>Sugestione</option>
-                                            </select>
-                        </div>
-                        <div class="col-md-3">
-                            <label for="sitEM">Situação do curso:</label>
-                            <select name="" id="sitEM" class="form-control">
-                                               <option>Selecione</option>
-                                                <option>Incompleto</option>
-                                                <option>Cursando</option>
-                                                <option>Completo</option>
-                                            </select>
-                        </div>
-                        <div class="col-md-2 mt2">
-                            <label for="serieEM">Série:</label>
-                            <input type="number" id="serieEM" class="form-control" >
-                        </div>
-                        <div class="col-md-3 mt2">
-                            <label for="iniEM">Ano de início:</label>
-                            <select name="" id="iniEM" class="form-control">
-                                               <option>Selecione</option>
-                                                <option>2012</option>
-                                                <option>2013</option>
-                                                <option>2014</option>
-                                            </select>
-                        </div>
-                        <div class="col-md-3 mt2">
-                            <label for="fimEM">Ano de término:</label>
-                            <select name="" id="fimEM" class="form-control">
-                                               <option>Selecione</option>
-                                                <option>2015</option>
-                                                <option>2016</option>
-                                                <option>2017</option>
-                                            </select>
-                        </div>
-                        <!-- CURSO TÉCNICO -->
-                        <div class="funkyradio">
-                            <div class="funkyradio-primary col-md-3">
-                                <input type="checkbox" name="cursoTec" id="forma2" />
-                                <label for="forma2">Curso Técnico</label>
-                            </div>
-                        </div>
-                        <div class="form-group col-md-12">
-                            <label for="instCT">Instituição de ensino:</label>
-                            <input type="text" class="form-control" id="instCT" value="" placeholder="Nome da instituição de ensino" required>
-                        </div>
-                        <div class="col-md-9">
-                            <label for="cursoCT">Curso:</label>
-                            <select name="" id="cursotCT" class="form-control">
-                                               <option>Selecione</option>
-                                                <option>Sugestão</option>
-                                                <option>Sugestion</option>
-                                                <option>Sugestione</option>
-                                            </select>
-                        </div>
-                        <div class="col-md-3">
-                            <label for="sitCT">Situação do curso:</label>
-                            <select name="" id="sitCT" class="form-control">
-                                               <option>Selecione</option>
-                                                <option>Incompleto</option>
-                                                <option>Cursando</option>
-                                                <option>Completo</option>
-                                            </select>
-                        </div>
-                        <div class="col-md-2 mt2">
-                            <label for="serieCT">Série/Módulo:</label>
-                            <input type="number" id="serieCT" class="form-control" >
-                        </div>
-                        <div class="col-md-3 mt2">
-                            <label for="iniCT">Ano de início:</label>
-                            <select name="" id="iniCT" class="form-control">
-                                               <option>Selecione</option>
-                                                <option>2012</option>
-                                                <option>2013</option>
-                                                <option>2014</option>
-                                            </select>
-                        </div>
-                        <div class="col-md-3 mt2">
-                            <label for="fimCT">Ano de término:</label>
-                            <select name="" id="fimCT" class="form-control">
-                                               <option>Selecione</option>
-                                                <option>2015</option>
-                                                <option>2016</option>
-                                                <option>2017</option>
-                                            </select>
-                        </div>
-                        <!-- ENSINO SUPERIOR -->
-                        <div class="funkyradio">
-                            <div class="funkyradio-primary col-md-3">
-                                <input type="checkbox" name="ensinoSup" id="forma3" />
-                                <label for="forma3">Ensino Superior</label>
-                            </div>
-                        </div>
-                        <div class="form-group col-md-12">
-                            <label for="instSP">Instituição de ensino:</label>
-                            <input type="text" class="form-control" id="instSP" value="" placeholder="Nome da instituição de ensino" required>
-                        </div>
-                        <div class="col-md-9">
-                            <label for="cursoSP">Curso:</label>
-                            <select name="" id="cursotSP" class="form-control">
-                                               <option>Selecione</option>
-                                                <option>Sugestão</option>
-                                                <option>Sugestion</option>
-                                                <option>Sugestione</option>
-                                            </select>
-                        </div>
-                        <div class="col-md-3">
-                            <label for="sitSP">Situação do curso:</label>
-                            <select name="" id="sitSP" class="form-control">
-                                               <option>Selecione</option>
-                                                <option>Incompleto</option>
-                                                <option>Cursando</option>
-                                                <option>Completo</option>
-                                            </select>
-                        </div>
-                        <div class="col-md-2 mt2">
-                            <label for="serieSP">Período:</label>
-                            <input type="number" id="serieSP" class="form-control" >
-                        </div>
-                        <div class="col-md-3 mt2">
-                            <label for="iniSP">Ano de início:</label>
-                            <select name="" id="iniSP" class="form-control">
-                                               <option>Selecione</option>
-                                                <option>2012</option>
-                                                <option>2013</option>
-                                                <option>2014</option>
-                                            </select>
-                        </div>
-                        <div class="col-md-3 mt2">
-                            <label for="fimSP">Ano de término:</label>
-                            <select name="" id="fimSP" class="form-control">
-                                               <option>Selecione</option>
-                                                <option>2015</option>
-                                                <option>2016</option>
-                                                <option>2017</option>
-                                            </select>
-                        </div>
-                    </div>
-                    <h4 class="col-md-12 text-center">
-                        <hr>Idiomas
-                        <hr>
-                    </h4>
+						<h4 class="col-md-12 text-center">
+							<hr> Formação
+							<hr>
+						</h4>
+						<div>
+							<!-- ENSINO MEDIO -->
+							<div class="form-group col-md-12">
+								<label for="instEM">Instituição de ensino:</label>
+								<input type="text" class="form-control" id="instEM" value="" placeholder="Nome da instituição de ensino" required>
+							</div>
+							<div class="col-md-3 mt2">
+								<label for="sitEM">Situação do curso:</label>
+								<select name="" id="sitEM" class="form-control">
+									<option>Selecione</option>
+									<option>Incompleto</option>
+									<option>Cursando</option>
+									<option>Completo</option>
+								</select>
+							</div>
+							<div class="col-md-2 mt2">
+								<label for="serieEM">Série:</label>
+								<input type="number" id="serieEM" class="form-control" >
+							</div>
+							<div class="col-md-3 mt2">
+								<label for="iniEM">Ano de início:</label>
+								<select name="" id="iniEM" class="form-control">
+									<option selected="" disabled="">Selecione</option>
+									<?php for($i=date("Y");$i>=1980;$i--){ ?>
+									<option value="<?=$i?>"><?=$i?></option>
+									<?php } ?>
+								</select>
+							</div>
+							<div class="col-md-3 mt2">
+								<label for="fimEM">Ano de término:</label>
+								<select name="" id="fimEM" class="form-control">
+									<option selected="" disabled="">Selecione</option>
+									<?php for($i=date("Y");$i>=1980;$i--){ ?>
+									<option value="<?=$i?>"><?=$i?></option>
+									<?php } ?>
+								</select>
+							</div>
+							<!-- CURSO TÉCNICO -->
+							<div id="cursoTec">
+								<div class="funkyradio">
+									<div class="funkyradio-primary col-md-3">
+										<input type="checkbox" id="forma2" />
+										<label for="forma2">Curso Técnico</label>
+									</div>
+								</div>
+								<div class="form-group col-md-12">
+									<label for="instCT">Instituição de ensino:</label>
+									<input type="text" disabled="disabled" class="form-control" id="instCT" value="" placeholder="Nome da instituição de ensino" name="instituicaoTec" required>
+								</div>
+								<div class="col-md-9">
+									<label for="cursoCT">Curso:</label>
+									<select name="cursoTec" disabled="disabled" id="cursotCT" class="form-control">
+										<option>Selecione</option>
+										<option>Sugestão</option>
+										<option>Sugestion</option>
+										<option>Sugestione</option>
+									</select>
+								</div>
+								<div class="col-md-3">
+									<label for="sitCT">Situação do curso:</label>
+									<select name="situacaoTec" id="situacaoTec" disabled="disabled" class="form-control">
+										<option>Selecione</option>
+										<option>Incompleto</option>
+										<option>Cursando</option>
+										<option>Completo</option>
+									</select>
+								</div>
+								<div class="col-md-2 mt2">
+									<label for="serieCT">Série/Módulo:</label>
+									<input type="number" name="serieTec" disabled="disabled" id="serieCT" class="form-control" >
+								</div>
+								<div class="col-md-3 mt2">
+									<label for="iniCT">Ano de início:</label>
+									<select name="anoTecInicio" disabled="disabled" id="iniCT" class="form-control">
+										<option selected="" disabled="">Selecione</option>
+										<?php for($i=date("Y");$i>=1980;$i--){ ?>
+										<option value="<?=$i?>"><?=$i?></option>
+										<?php } ?>
+									</select>
+								</div>
+								<div class="col-md-3 mt2">
+									<label for="fimCT">Ano de término:</label>
+									<select name="anoTecTermino" disabled="disabled" id="fimCT" class="form-control">
+										<option selected="" disabled="">Selecione</option>
+										<?php for($i=date("Y");$i>=1980;$i--){ ?>
+										<option value="<?=$i?>"><?=$i?></option>
+										<?php } ?>
+									</select>
+								</div>
+							</div>
+							<!-- ENSINO SUPERIOR -->
+							<div id="cursoSup">
+								<div class="funkyradio">
+									<div class="funkyradio-primary col-md-3">
+										<input type="checkbox" name="ensinoSup" id="forma3" />
+										<label for="forma3">Ensino Superior</label>
+									</div>
+								</div>
+								<div class="form-group col-md-12">
+									<label for="instSP">Instituição de ensino:</label>
+									<input type="text" disabled="disabled" class="form-control" name="instituicaoSup" id="instSP" value="" placeholder="Nome da instituição de ensino" required>
+								</div>
+								<div class="col-md-9">
+									<label for="cursoSP">Curso:</label>
+									<select name="cursoSup" disabled="disabled" id="cursotSP" class="form-control">
+										<option>Selecione</option>
+										<option>Sugestão</option>
+										<option>Sugestion</option>
+										<option>Sugestione</option>
+									</select>
+								</div>
+								<div class="col-md-3">
+									<label for="sitSP">Situação do curso:</label>
+									<select name="cursoSup" disabled="disabled" id="sitSP" class="form-control">
+										<option>Selecione</option>
+										<option>Incompleto</option>
+										<option>Cursando</option>
+										<option>Completo</option>
+									</select>
+								</div>
+								<div class="col-md-2 mt2">
+									<label for="serieSP">Período:</label>
+									<input type="number" name="periodoSup" disabled="disabled" id="serieSP" class="form-control" >
+								</div>
+								<div class="col-md-3 mt2">
+									<label for="iniSP">Ano de início:</label>
+									<select name="anoSupInicio" disabled="disabled" id="iniSP" class="form-control">
+										<option selected="" disabled="">Selecione</option>
+										<?php for($i=date("Y");$i>=1980;$i--){ ?>
+										<option value="<?=$i?>"><?=$i?></option>
+										<?php } ?>
+									</select>
+								</div>
+								<div class="col-md-3 mt2">
+									<label for="fimSP">Ano de término:</label>
+									<select name="anoSupTermino" disabled="disabled" id="fimSP" class="form-control">
+										<option selected="" disabled="">Selecione</option>
+										<?php for($i=date("Y");$i>=1980;$i--){ ?>
+										<option value="<?=$i?>"><?=$i?></option>
+										<?php } ?>
+									</select>
+								</div>
+							</div>
+							<h4 class="col-md-12 text-center">
+								<hr>Idiomas
+								<hr>
+							</h4>
 
-                    <div class="col-md-12 form-group">
-                        <label for="">Inglês:</label><br>
-                        <div class="col-md-offset-1 col-md-3">
-                            <label for="nivelIngles">Lê:</label>
-                            <select name="" id="nivelIngles" class="form-control ">
-                                               <option>Selecione</option>
-                                                <option>Pouco</option>
-                                                <option>Bem</option>
-                                                <option>Fluente</option>
-                                            </select>
-                        </div>
-                        <div class="col-md-3">
-                            <label for="nivelIngles">Escreve:</label>
-                            <select name="" id="nivelIngles" class="form-control ">
-                                               <option>Selecione</option>
-                                                <option>Pouco</option>
-                                                <option>Bem</option>
-                                                <option>Fluente</option>
-                                            </select>
-                        </div>
-                        <div class="col-md-3">
-                            <label for="nivelIngles">Fala:</label>
-                            <select name="" id="nivelIngles" class="form-control ">
-                                               <option>Selecione</option>
-                                                <option>Pouco</option>
-                                                <option>Bem</option>
-                                                <option>Fluente</option>
-                                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-12 form-group">
-                        <label for="">Espanhol:</label><br>
-                        <div class="col-md-offset-1 col-md-3">
-                            <label for="nivelIngles">Lê:</label>
-                            <select name="" id="nivelIngles" class="form-control ">
-                                               <option>Selecione</option>
-                                                <option>Pouco</option>
-                                                <option>Bem</option>
-                                                <option>Fluente</option>
-                                            </select>
-                        </div>
-                        <div class="col-md-3">
-                            <label for="nivelIngles">Escreve:</label>
-                            <select name="" id="nivelIngles" class="form-control ">
-                                               <option>Selecione</option>
-                                                <option>Pouco</option>
-                                                <option>Bem</option>
-                                                <option>Fluente</option>
-                                            </select>
-                        </div>
-                        <div class="col-md-3">
-                            <label for="nivelIngles">Fala:</label>
-                            <select name="" id="nivelIngles" class="form-control ">
-                                               <option>Selecione</option>
-                                                <option>Pouco</option>
-                                                <option>Bem</option>
-                                                <option>Fluente</option>
-                                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-3 mt2">
-                            <input type="text" class="form-control" placeholder="Outro idioma">
-                        </div>
-                        <div class="col-md-12">
-                            <div class="col-md-offset-1 col-md-3">
-                                <label for="nivelIngles">Lê:</label>
-                                <select name="" id="nivelIngles" class="form-control">
-                                               <option>Selecione</option>
-                                                <option>Pouco</option>
-                                                <option>Bem</option>
-                                                <option>Fluente</option>
-                                            </select>
-                            </div>
-                            <div class="col-md-3">
-                                <label for="nivelIngles">Escreve:</label>
-                                <select name="" id="nivelIngles" class="form-control">
-                                               <option>Selecione</option>
-                                                <option>Pouco</option>
-                                                <option>Bem</option>
-                                                <option>Fluente</option>
-                                            </select>
-                            </div>
-                            <div class="col-md-3">
-                                <label for="nivelIngles">Fala:</label>
-                                <select name="" id="nivelIngles" class="form-control">
-                                               <option>Selecione</option>
-                                                <option>Pouco</option>
-                                                <option>Bem</option>
-                                                <option>Fluente</option>
-                                            </select>
-                            </div>
-                        </div>
-                    </div>
+							<div class="col-md-12 form-group">
+								<label for="">Inglês:</label><br>
+								<div class="col-md-offset-1 col-md-3">
+									<label for="nivelIngles">Lê:</label>
+									<select name="inglesLe" id="nivelIngles" class="form-control ">
+										<option>Selecione</option>
+										<option>Pouco</option>
+										<option>Bem</option>
+										<option>Fluente</option>
+									</select>
+								</div>
+								<div class="col-md-3">
+									<label for="nivelIngles">Escreve:</label>
+									<select name="inglesEscreve" id="nivelIngles" class="form-control ">
+										<option>Selecione</option>
+										<option>Pouco</option>
+										<option>Bem</option>
+										<option>Fluente</option>
+									</select>
+								</div>
+								<div class="col-md-3">
+									<label for="nivelIngles">Fala:</label>
+									<select name="inglesFala" id="nivelIngles" class="form-control ">
+										<option>Selecione</option>
+										<option>Pouco</option>
+										<option>Bem</option>
+										<option>Fluente</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-md-12 form-group">
+								<label for="">Espanhol:</label><br>
+								<div class="col-md-offset-1 col-md-3">
+									<label for="nivelIngles">Lê:</label>
+									<select name="espanholLe" id="nivelIngles" class="form-control ">
+										<option>Selecione</option>
+										<option>Pouco</option>
+										<option>Bem</option>
+										<option>Fluente</option>
+									</select>
+								</div>
+								<div class="col-md-3">
+									<label for="nivelIngles">Escreve:</label>
+									<select name="espanholEscreve" id="nivelIngles" class="form-control ">
+										<option>Selecione</option>
+										<option>Pouco</option>
+										<option>Bem</option>
+										<option>Fluente</option>
+									</select>
+								</div>
+								<div class="col-md-3">
+									<label for="nivelIngles">Fala:</label>
+									<select name="espanholFala" id="nivelIngles" class="form-control ">
+										<option>Selecione</option>
+										<option>Pouco</option>
+										<option>Bem</option>
+										<option>Fluente</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-md-3 mt2">
+									<input type="text" class="form-control" placeholder="Outro idioma">
+								</div>
+								<div class="col-md-12">
+									<div class="col-md-offset-1 col-md-3">
+										<label for="nivelIngles">Lê:</label>
+										<select name="adicionalLe" id="nivelIngles" class="form-control">
+											<option>Selecione</option>
+											<option>Pouco</option>
+											<option>Bem</option>
+											<option>Fluente</option>
+										</select>
+									</div>
+									<div class="col-md-3">
+										<label for="nivelIngles">Escreve:</label>
+										<select name="adicionalEscreve" id="nivelIngles" class="form-control">
+											<option>Selecione</option>
+											<option>Pouco</option>
+											<option>Bem</option>
+											<option>Fluente</option>
+										</select>
+									</div>
+									<div class="col-md-3">
+										<label for="nivelIngles">Fala:</label>
+										<select name="adicionalFala" id="nivelIngles" class="form-control">
+											<option>Selecione</option>
+											<option>Pouco</option>
+											<option>Bem</option>
+											<option>Fluente</option>
+										</select>
+									</div>
+								</div>
+							</div>
 
-                    <h4 class="col-md-12 text-center">
-                        <hr> Formação complementar
-                        <hr>
-                    </h4>
+							<h4 class="col-md-12 text-center">
+								<hr> Formação complementar
+								<hr>
+							</h4>
 
-                    <div class="form-group col-md-12">
-                        <label for="institutoComplementar">Nome da Instituição:</label>
-                        <input type="text" class="form-control" id="institutoComplementar" value="" placeholder="Nome da Instituição" required>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="cursoComplementar">Curso:</label>
-                        <input type="" class="form-control" id="cursoComplementar" placeholder="Curso" required>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="cargaHComplementar">Carga horária:</label>
-                        <input type="" class="form-control" id="cargaHComplementar" placeholder="" required>
-                    </div>
+							<div class="form-group col-md-12">
+								<label for="institutoComplementar">Nome da Instituição:</label>
+								<input type="text" name="nomeIstituicao" class="form-control" id="institutoComplementar" value="" placeholder="Nome da Instituição" required>
+							</div>
+							<div class="col-md-6">
+								<label for="cursoComplementar">Curso:</label>
+								<input type="" name="cursoInstituicao" class="form-control" id="cursoComplementar" placeholder="Curso" required>
+							</div>
+							<div class="col-md-6">
+								<label for="cargaHComplementar">Carga horária:</label>
+								<input type="" name="cargaHInstituicao" class="form-control" id="cargaHComplementar" placeholder="" required>
+							</div>
 
-                    <h4 class="col-md-12 text-center">
-                        <hr> Conhecimentos de Informática
-                        <hr>
-                    </h4>
-                     <div class="col-md-5 mt2">
-                            <label for="conhecimentosEscritorio">Conhecimentos de escritório:</label>
-                            <select name="" id="conhecimentosEscritorio" class="form-control" multiple>
-                                                <option>Selecione</option>
-                                                <option>Todos</option>
-                                                <option>Apresentações do Google</option>
-                                                <option>Documentos Google</option>
-                                                <option>Formulários Google</option>
-                                                <option>Planilhas Google</option>
-                                                <option>Google Drive</option>
-                                                <option>Google Gmail</option>
-                                                <option>LibreOffice Base</option>
-                                                <option>LibreOffice Calc</option>
-                                                <option>LibreOffice Draw</option>
-                                                <option>LibreOffice Impress</option>
-                                                <option>LibreOffice Math</option>
-                                                <option>LibreOffice Gráfico</option>
-                                                <option>LibreOffice Writer</option>
-                                                <option>Microsoft Access</option>
-                                                <option>Microsoft Excel</option>
-                                                <option>Microsoft OneNote</option>
-                                                <option>Microsoft OneDrive</option>
-                                                <option>Microsoft Outlook</option>
-                                                <optiom>Microsoft PowerPoint</optiom>
-                                                <option>Microsoft Word</option>
-                                            </select>
-                        </div>
-                        <div class="col-md-4 mt2">
-                            <label for="conhecimentosEscritorio">Sistemas operacionais:</label>
-                            <select name="" id="conhecimentosEscritorio" class="form-control" multiple>
-                                                <option>Selecione</option>
-                                                <option>Debian</option>
-                                                <option>Mac OS</option>
-                                                <option>UNIX</option>
-                                                <option>Ubuntu</option>
-                                                <option>Windows</option>
+							<h4 class="col-md-12 text-center">
+								<hr> Conhecimentos de Informática
+								<hr>
+							</h4>
+							<div class="col-md-5 mt2">
+								<label for="conhecimentosEscritorio">Conhecimentos de escritório:</label>
+								<div class="multiselect">
+									<div class="selectBox" onclick="showCheckboxes()">
+										<select class="form-control">
+											<option>SELECIONE...</option>
+										</select>
+										<div class="overSelect"></div>
+									</div>
+									<div id="checkboxes">
+										<label for="one">
+											<input type="checkbox" id="one" name="escritorio" value="Google" />Google
+										</label>
+										<label for="two">
+											<input type="checkbox" id="two" name="escritorio" value="Microsoft" />Microsoft Office
+										</label>
+										<label for="three">
+											<input type="checkbox" id="three" name="escritorio" value="Libre" />Libre Office
+										</label>
+									</div>
+								</div>
 
-                                            </select>
-                        </div>
+							</div>
+							<div class="col-md-4 mt2">
+								<label for="conhecimentosEscritorio">Sistemas operacionais:</label>
+								<div class="multiselect">
+									<div class="selectBox" onclick="showCheckboxes2()">
+										<select class="form-control">
+											<option>SELECIONE...</option>
+										</select>
+										<div class="overSelect"></div>
+									</div>
+									<div id="checkboxes2">
+										<label for="one2">
+											<input type="checkbox" id="one2" name="sistema" value="Windows" />Windows
+										</label>
+										<label for="two2">
+											<input type="checkbox" id="two2" name="sistema" value="Windows" />LInux
+										</label>
+										<label for="three2">
+											<input type="checkbox" id="three2" name="sistema" value="Windows" />Seila
+										</label>
+									</div>
+								</div>
 
-                    <h4 class="col-md-12 text-center">
-                        <hr> Informações complementares
-                        <hr>
-                    </h4>
-                    <div class="col-md-4 mt2">
-                            <label for="turno">Disponibilidade de jornada:</label>
-                            <select name="" id="turno" class="form-control">
-                                                <option>Selecione</option>
-                                                <option>Matutino</option>
-                                                <option>Vespertino</option>
-                                                <option>Noturno</option>
-                                                <option>Integral</option>
-                                            </select>
-                        </div>
-                        <div class="form-group col-md-4 mt2">
-                        <label for="cargaH">Carga horária diária (Horas):</label>
-                        <input type="number" class="form-control" id="cargaH"> 
-                        </div>
-                    
-                    
-                    <div class="form-group col-md-12">
-                        <label for="objetivos">Descrição e objetivos:</label>
-                        <input type="text=" class="form-control" id="objetivos" value="" placeholder="Descrição e objetivos" required>
-                    </div>
-                    
-                   
-                   
-                   
-                    <div class="form-group btnbtn2">
-                        <button type="submit" class="btn btn-primary col-xs-12 col-sm-12 col-md-12">Cadastrar</button>
-                    </div>
-                </form>
+							</div>
 
-            </div>
-        </div>
-    </div>
-</div>
-<!-- CADASTRO PERFIL INSTITUIÇÃO -->
-<div id="instituicao" class="" style="display: none;">
-    <div class="row col-xs-offset-1 col-xs-10 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
-        <div class="panel panel-primary">
-            <div class="panel-heading text-center">Dados complementares para Ofertante</div>
-            <div class="panel-body no-gutter">
-                <form action="<?=BASE?>cadastroadicional/index/2" id="formInstituicao" method="POST">
-                    <div class="form-group col-md-12">
-                        <label for="exampleInputEmail1">CNPJ*</label>
-                        <input type="text" name="cnpj" id="id_cnpj" class="form-control" placeholder="CNPJ" data-mask="#.##0" />
-                        <span class="label label-danger col-md-12" id="erroCNPJ" style="display: none;">CNPJ invalido !</span>
-                    </div>
-                    <div class="form-group col-md-12">
-                        <label for="exampleInputEmail1">Razão Social / Fantasia*</label>
-                        <input type="text" class="form-control" name="razao_social" placeholder="Nome">
-                    </div>
+							<h4 class="col-md-12 text-center">
+								<hr> Informações complementares
+								<hr>
+							</h4>
+							<div class="col-md-4 mt2">
+								<label for="turno">Disponibilidade de jornada:</label>
+								<select name="disponibilidadeTurno" id="turno" class="form-control">
+									<option>Selecione</option>
+									<option>Matutino</option>
+									<option>Vespertino</option>
+									<option>Noturno</option>
+									<option>Integral</option>
+								</select>
+							</div>
+							<div class="form-group col-md-4 mt2">
+								<label for="cargaH">Carga horária diária (Horas):</label>
+								<select name="cargaHDiaria" class="form-control" id="cargaH">
+									<?php for($i=1;$i<=8;$i++){ ?>
+									<option value="<?=$i?>"><?=$i?> Hora(s)</option>
+									<?php } ?>
+								</select>
+							</div>
 
-                    <div class="form-group btnbtn2">
-                        <button type="submit" class="btn btn-primary col-xs-12 col-sm-12 col-md-12">Cadastrar</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
+
+							<div class="form-group col-md-12">
+								<label for="objetivos">Descrição e objetivos:</label>
+								<input type="text=" name="descricaoEobjetivo" class="form-control" id="objetivos" value="" placeholder="Descrição e objetivos" required>
+							</div>
+
+
+
+
+							<div class="form-group btnbtn2">
+								<button type="submit" class="btn btn-primary col-xs-12 col-sm-12 col-md-12">Cadastrar</button>
+							</div>
+						</form>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- CADASTRO PERFIL INSTITUIÇÃO -->
+		<div id="instituicao" class="" style="display: none;">
+			<div class="row col-xs-offset-1 col-xs-10 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
+				<div class="panel panel-primary">
+					<div class="panel-heading text-center">Dados complementares para Ofertante</div>
+					<div class="panel-body no-gutter">
+						<form action="<?=BASE?>cadastroadicional/index/2" id="formInstituicao" method="POST">
+							<div class="form-group col-md-12">
+								<label for="exampleInputEmail1">CNPJ*</label>
+								<input type="text" name="cnpj" id="id_cnpj" class="form-control" placeholder="CNPJ" data-mask="#.##0" />
+								<span class="label label-danger col-md-12" id="erroCNPJ" style="display: none;">CNPJ invalido !</span>
+							</div>
+							<div class="form-group col-md-12">
+								<label for="exampleInputEmail1">Razão Social / Fantasia*</label>
+								<input type="text" class="form-control" name="razao_social" placeholder="Nome">
+							</div>
+
+							<div class="form-group btnbtn2">
+								<button type="submit" class="btn btn-primary col-xs-12 col-sm-12 col-md-12">Cadastrar</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>

@@ -23,6 +23,18 @@ class CadastroAdicionalController extends HXPHP\System\Controller
 			);
     		$this->auth->redirectCheck();
 	}
+	public function ajaxAction($type=""){
+		$this->view->setTemplate(false);$txt="";
+		if($type == "carregaCidade"){
+			if(!empty($this->request->post()['cidade_id'])){
+				foreach(Cidade::find_all_by_estado_id($this->request->post()['cidade_id']) as $val){
+					$txt .= "<option value='".$val->id."'>".$val->nome."</option>";
+				}
+			}
+			echo $txt;
+		}
+		echo $txt;
+	}
 	public function indexAction($acao=null)
 	{
 			$post = $this->request->post();
@@ -31,7 +43,8 @@ class CadastroAdicionalController extends HXPHP\System\Controller
 			{
 				switch ((int) $acao) {
 					case 1:
-							$callback = Estudante::cadastrar($post,$this->auth->getUserId());
+							var_dump($post);
+							/*$callback = Estudante::cadastrar($post,$this->auth->getUserId());
 							if($callback->status === true)
 							{
 									 $this->redirectTo($this->configs->baseURI."login/sair");
@@ -44,7 +57,7 @@ class CadastroAdicionalController extends HXPHP\System\Controller
 				                    $callback->errors
 				                    ]);
 
-							}
+							}*/
 						break;
 					case 2: 
 							$callback = Instituicao::cadastrar($post,$this->auth->getUserId());
