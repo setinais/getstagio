@@ -590,12 +590,17 @@
                         <hr>
                     </h4>
                     <div class="form-group col-md-3">
-                        <label>Estado*</label>
-                        <input type="text" class="form-control" name="estado" placeholder="Estado">
+                        <label>*Estado:</label>
+						<select class="form-control" required="" id="estado_id2">
+							<option value="" disabled="" selected="">Selecione...</option>
+							<?php   foreach(Estado::all() as $es){ ?>
+								<option value="<?=$es->id;?>"><?=$es->sigla;?></option>
+								<?php } ?>
+							</select>
                     </div>
                     <div class="form-group col-md-6">
-                        <label>Cidade*</label>
-                        <input type="text" class="form-control" name="cidade" placeholder="Cidade">
+                       	<label for="id_cidade2">*Cidade:</label>
+						<select id="cidade_id" name="cidade_id2" required="" class="form-control"></select>
                     </div>   
                     <div class="form-group col-md-3">
                         <label>CEP*</label>

@@ -92,8 +92,19 @@ jQuery(document).ready(function($) {
             dataType: 'html',
             data: "cidade_id="+$(this).val(),
             success: function(e){
-            	alert(e)
                 $("#cidade_id").html(e);
+            }
+        });
+    });
+    $("#estado_id2").change(function(event) {
+        $.ajax({
+            url: 'http://localhost/getstagio/cadastroAdicional/ajax/carregaCidade',
+            type: 'POST',
+            dataType: 'html',
+            data: "cidade_id="+$(this).val(),
+            success: function(e){
+            	alert(e);
+                $("#cidade_id2").html(e);
             }
         });
     });
