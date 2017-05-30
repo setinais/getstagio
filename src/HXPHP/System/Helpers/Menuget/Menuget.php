@@ -49,7 +49,7 @@ class Menuget
 					break;
 				case 'user':
 						$menu = [
-							$this->usuario->nome.'/user' => [
+							$this->usuario->email.'/user' => [
 								'Perfil/user-plus' => 'Usuario/perfil',
 								'Sair/power-off' => 'login/sair'
 							]
