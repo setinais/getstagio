@@ -95,9 +95,12 @@
 
 					<div class="form-group col-md-12">
 						<label for="nomeEstudante">Nome completo:*</label>
-						<input type="text=" class="form-control" name="nome" id="nome" value="" placeholder="Nome completo" required>
+						<input type="text" class="form-control" name="nome" id="nome" value="" placeholder="Nome completo" required>
 					</div>
-
+					<div class="form-group col-md-12">
+						<label for="nomeEstudante">CPF:*</label>
+						<input type="text" class="form-control" name="cpf" id="cpf" value="" placeholder="CPF" required>
+					</div>
 					<div class="form-group col-md-4">
 						<label for="dataNascimento">Data de Nascimento:*</label>
 						<input type="date" class="form-control" id="dataNascimento" name="dataNascimento" required>
@@ -138,7 +141,7 @@
 
 					<div class="col-md-7">
 						<label for="deficiencia"><br></label>
-						<input type="text=" class="form-control" id="deficiencia" value="" placeholder="Se sim, descreva qual">
+						<input type="text" class="form-control" name="espDeficiencia" id="deficiencia" value="" placeholder="Se sim, descreva qual">
 					</div>
 
 
@@ -210,11 +213,11 @@
 							<!-- ENSINO MEDIO -->
 							<div class="form-group col-md-12">
 								<label for="instEM">Instituição de ensino:*</label>
-								<input type="text" class="form-control" id="instEM" value="" placeholder="Nome da instituição de ensino" required>
+								<input type="text" class="form-control" name="instEM" id="instEM" value="" placeholder="Nome da instituição de ensino" required>
 							</div>
 							<div class="col-md-3 mt2">
 								<label for="sitEM">Situação do curso:*</label>
-								<select name="" id="sitEM" class="form-control">
+								<select name="sitEM" id="sitEM" class="form-control">
 									<option disabled="" selected="">Selecione</option>
 									<option>Incompleto</option>
 									<option>Cursando</option>
@@ -223,11 +226,11 @@
 							</div>
 							<div class="col-md-2 mt2">
 								<label for="serieEM">Série:*</label>
-								<input type="number" id="serieEM" class="form-control" >
+								<input type="number" name="serieEM" class="form-control" >
 							</div>
 							<div class="col-md-3 mt2">
 								<label for="iniEM">Ano de início:*</label>
-								<select name="" id="iniEM" class="form-control">
+								<select name="iniEM" class="form-control">
 									<option selected="" disabled="">Selecione</option>
 									<?php for($i=date("Y");$i>=1960;$i--){ ?>
 									<option value="<?=$i?>"><?=$i?></option>
@@ -236,7 +239,7 @@
 							</div>
 							<div class="col-md-3 mt2">
 								<label for="fimEM">Ano de término:*</label>
-								<select name="" id="fimEM" class="form-control">
+								<select  name="fimEM" class="form-control">
 									<option selected="" disabled="">Selecione</option>
 									<?php for($i=date("Y");$i>=1980;$i--){ ?>
 									<option value="<?=$i?>"><?=$i?></option>
@@ -247,7 +250,7 @@
 							<div id="cursoTec">
 								<div class="funkyradio">
 									<div class="funkyradio-primary col-md-3">
-										<input type="checkbox" id="forma2" />
+										<input type="checkbox" name="ensinoTec" id="forma2" />
 										<label for="forma2">Curso Técnico*</label>
 									</div>
 								</div>
@@ -319,7 +322,7 @@
 								</div>
 								<div class="col-md-3">
 									<label for="sitSP">Situação do curso:*</label>
-									<select name="cursoSup" disabled="disabled" id="sitSP" class="form-control">
+									<select name="situacaoSup" disabled="disabled" id="sitSP" class="form-control">
 										<option disabled="" selected="">Selecione</option>
 										<option>Incompleto</option>
 										<option>Cursando</option>
@@ -456,15 +459,15 @@
 
 							<div class="form-group col-md-12">
 								<label for="institutoComplementar">Nome da Instituição:</label>
-								<input type="text" name="nomeIstituicao" class="form-control" id="institutoComplementar" value="" placeholder="Nome da Instituição" required>
+								<input type="text" name="nomeIstituicao" class="form-control" id="institutoComplementar" value="" placeholder="Nome da Instituição">
 							</div>
 							<div class="col-md-6">
 								<label for="cursoComplementar">Curso:</label>
-								<input type="" name="cursoInstituicao" class="form-control" id="cursoComplementar" placeholder="Curso" required>
+								<input type="" name="cursoInstituicao" class="form-control" id="cursoComplementar" placeholder="Curso">
 							</div>
 							<div class="col-md-6">
 								<label for="cargaHComplementar">Carga horária:</label>
-								<input type="" name="cargaHInstituicao" class="form-control" id="cargaHComplementar" placeholder="" required>
+								<input type="" name="cargaHInstituicao" class="form-control" id="cargaHComplementar" placeholder="">
 							</div>
 
 							<h4 class="col-md-12 text-center">
@@ -543,11 +546,11 @@
 
 							<div class="form-group col-md-12">
 								<label for="">Area de interesse:*</label>
-								<input type="text=" name="areaDeInteresse" class="form-control" value="" placeholder="Area de interesse" required>
+								<input type="text" name="areaDeInteresse" class="form-control" value="" placeholder="Area de interesse" required>
 							</div>
 							<div class="form-group col-md-12">
 								<label for="">Cargo ou palavra chave:*</label>
-								<input type="text=" name="cargoPalavraChave" class="form-control" value="" placeholder="Cargo ou palavra chave" required>
+								<input type="text" name="cargo" class="form-control" value="" placeholder="Cargo ou palavra chave" required>
 							</div>
 
 							<div class="form-group col-md-12">
