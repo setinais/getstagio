@@ -36,6 +36,6 @@ class PerfilController extends \HXPHP\System\Controller
 		if(!isset($test))
 			$this->auth->redirectCheck(true);
 		$perfil = Usuario::mostrarPerfil($id_usuario);
-		$this->view->setVars(["perfil" => $perfil])->setAssets('css',[$this->configs->baseURI.'public/css/perfil/index.css']);
+		$this->view->setVars(["perfil" => $perfil])->setAssets('css',[$this->configs->baseURI.'public/css/perfil/index.css'])->setAssets('js',[$this->configs->baseURI.'public/js/cadastroadicional/jqBootstrapValidation.js',$this->configs->baseURI.'public/js/cadastroadicional/contact_me.js']);
 	}
 }

@@ -98,10 +98,10 @@ class Usuario extends \HXPHP\System\Model
 		$callBack_logar->alert = '';
 		$callBack_logar->status = false;
 		$callBack_logar->user = null;
-		if(!empty($dados['nome'])){
+		if(!empty($dados['email'])){
 			if(!empty($dados['senha'])){
-				$dados['nome'] = strtolower($dados['nome']);
-				$user = self::find_by_nome($dados['nome']);
+				$dados['email'] = strtolower($dados['email']);
+				$user = self::find_by_email($dados['email']);
 				if(!is_null($user))
 				{
 					$password = \HXPHP\System\Tools::hashHX($dados['senha'],$user->salt);
