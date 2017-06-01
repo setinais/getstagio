@@ -84,51 +84,52 @@ class Estudante extends \HXPHP\System\Model
 						'ano_termino'=>(isset($post['anoTecTermino']))?$post['anoTecTermino']:"",
 						);
 					$formacoT = Formacoe::create($formacao,$cadastrar->id);
-				if(isset($post['ensinoSup']) && $post['ensinoSup'] == "on"){
-				if(isset($post['ensinoSup']) && $post['ensinoSup'] == "on"){
-					$formacao = array(
-						'formacao'=>$post['Ensino Superior'],
-						'instituicao_ensino'=>$post['instituicaoSup'],
-						'curso'=>$post['cursoSup'],
-						'situacao_curso'=>$post['situacaoSup'],
-						'serie_modulo_periodo'=>(isset($post['periodoSup']))?$post['periodoSup']:"",
-						'ano_inicio'=>(isset($post['anoSupInicio']))?$post['anoSupInicio']:"",
-						'ano_termino'=>(isset($post['anoSupTermino']))?$post['anoSupTermino']:"",
-						);
-					$formacoS = Formacoe::create($formacao,$cadastrar->id);
-				}
+					if(isset($post['ensinoSup']) && $post['ensinoSup'] == "on"){
+						if(isset($post['ensinoSup']) && $post['ensinoSup'] == "on"){
+							$formacao = array(
+								'formacao'=>$post['Ensino Superior'],
+								'instituicao_ensino'=>$post['instituicaoSup'],
+								'curso'=>$post['cursoSup'],
+								'situacao_curso'=>$post['situacaoSup'],
+								'serie_modulo_periodo'=>(isset($post['periodoSup']))?$post['periodoSup']:"",
+								'ano_inicio'=>(isset($post['anoSupInicio']))?$post['anoSupInicio']:"",
+								'ano_termino'=>(isset($post['anoSupTermino']))?$post['anoSupTermino']:"",
+								);
+							$formacoS = Formacoe::create($formacao,$cadastrar->id);
+						}
 				//formaçoes
 
 				//idiomas
-				$idioma = array(
-					'Idioma'=>$post['Ingles'],
-					'le'=>$post['inglesLe'],
-					'fala'=>$post['inglesFala'],
-					'escreve'=>$post['inglesEscreve'],
-					'estudante_id'=>$cadastrar->id
-					);
-				$ingles = Idioma::create($idioma);
+						$idioma = array(
+							'Idioma'=>$post['Ingles'],
+							'le'=>$post['inglesLe'],
+							'fala'=>$post['inglesFala'],
+							'escreve'=>$post['inglesEscreve'],
+							'estudante_id'=>$cadastrar->id
+							);
+						$ingles = Idioma::create($idioma);
 				//idiomas 
-				$callback->status = true;
-				$callback->user = $cadastrar;
-				$usuario = Usuario::find($id_user);
-				$usuario->funcoe_id = 1;
-				$usuario->save();
+						$callback->status = true;
+						$callback->user = $cadastrar;
+						$usuario = Usuario::find($id_user);
+						$usuario->funcoe_id = 1;
+						$usuario->save();
 
-			}else{
-				$errors = $cadastrar->errors->get_raw_errors();
-				foreach ($errors as $campo => $messagem) {
-					array_push($callback->errors, $messagem[0]);
+					}else{
+						$errors = $cadastrar->errors->get_raw_errors();
+						foreach ($errors as $campo => $messagem) {
+							array_push($callback->errors, $messagem[0]);
+						}
+					}
+				}else{
+					array_push($callback->errors, $contato->errors);
+					array_push($callback->errors, $cargo->errors);
 				}
-			}
-		}else{
-			array_push($callback->errors, $contato->errors);
-			array_push($callback->errors, $cargo->errors);
-		}
 
-		return $callback;
+				return $callback;
+			}
+		}
 	}
-	
 	public static function editar($atributos,$id)
 	{
 		$callback = new \stdClass;
