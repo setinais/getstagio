@@ -44,7 +44,7 @@ class CadastroAdicionalController extends HXPHP\System\Controller
 				switch ((int) $acao) {
 					case 1:
 							var_dump($post);
-							/*$callback = Estudante::cadastrar($post,$this->auth->getUserId());
+							$callback = Estudante::cadastrar($post,$this->auth->getUserId());
 							if($callback->status === true)
 							{
 									 $this->redirectTo($this->configs->baseURI."login/sair");
@@ -57,7 +57,7 @@ class CadastroAdicionalController extends HXPHP\System\Controller
 				                    $callback->errors
 				                    ]);
 
-							}*/
+							}
 						break;
 					case 2: 
 							$callback = Instituicao::cadastrar($post,$this->auth->getUserId());

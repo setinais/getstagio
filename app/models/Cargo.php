@@ -5,7 +5,8 @@
 class Cargo extends \HXPHP\System\Model
 {
 	static $has_many = [
-		['cargo_has_instituicaos']
+		['cargo_has_instituicaos'],
+		['estudantes']
 	];
 
 	static $validates_presence_of = [
@@ -19,14 +20,16 @@ class Cargo extends \HXPHP\System\Model
 	{
 		$callback = new \stdClass;
 		$callback->status = false;
-		$callback->user = null;
+		$callback->cadastro = null;
 		$callback->errors = [];
   			
-			$cadastrar = self::create($post);
-			if($cadastrar->is_valid())
-			{
+			$cadastrar = self::create(array(
+				'nome'=>(isset($post['cargo']) && $post['cargo']!="")?$post['cargo']:"",
+				'desc'=>(isset($post['desc']) && $post['desc']!="")?$post['desc']:"",
+				));
+			if($cadastrar->is_valid()){
 				$callback->status = true;
-				$callback->user = $cadastrar;
+				$callback->cadastro = $cadastrar;
 			}
 			else
 			{
