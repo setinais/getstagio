@@ -19,43 +19,20 @@ class Usuario extends \HXPHP\System\Model
 		['tentativas_logons'],
 		['cadastros']
 	];
-	static $validates_presence_of = [
-			[
-				'nome',
-				'message' => '<strong>Nome</strong> é um campo obrigatório.'
-			],		
+	static $validates_presence_of = [	
 			[
 				'senha',
 				'message' => '<strong>Senha</strong> é um campo obrigatório.'
-			],
-			[
-				'endereco',
-				'message' => '<strong>Endereço</strong> é um campo obrigatório.'
-			],
-			[
-				'numero',
-				'message' => '<strong>Número</strong> é um campo obrigatório.'
-			],
-			[
-				'cep',
-				'message' => '<strong>Cep</strong> é um campo obrigatório.'
-			],
-			[
-				'cidade_id',
-				'message' => '<strong>Cidade</strong> é um campo obrigatório.'
 			]
 
 			
 	];
 	static $validates_uniqueness_of  = [
 			[
-				['nome'],
-				'message' => 'Já existe um usuário cadastrado com este <strong>Nome</strong>.'
+				['email'],
+				'message' => 'Já existe um usuário cadastrado com este <strong>E-mail</strong>.'
 			]
 	];
-	static $validates_size_of = [
-	  ['cep', 'is' => 8, 'wrong_length' => 'O tamanho do <strong>CEP</strong> deve ser de 8 caracteres.']
-   ];
 	public static function cadastrar($post)
 	{
 		$callback = new \stdClass;
@@ -65,7 +42,7 @@ class Usuario extends \HXPHP\System\Model
   
 		if(!empty($post['senha'])){
 			$senha = \HXPHP\System\Tools::hashHX($post['senha']);
-			$post['nome'] = strtolower($post['nome']);
+			$post['email'] = strtolower($post['email']);
 			$post["senha"] = $senha['password'];
 			$post['salt'] = $senha['salt'];
 			$post['status'] = 1;
@@ -98,10 +75,10 @@ class Usuario extends \HXPHP\System\Model
 		$callBack_logar->alert = '';
 		$callBack_logar->status = false;
 		$callBack_logar->user = null;
-		if(!empty($dados['nome'])){
+		if(!empty($dados['email'])){
 			if(!empty($dados['senha'])){
-				$dados['nome'] = strtolower($dados['nome']);
-				$user = self::find_by_nome($dados['nome']);
+				$dados['email'] = strtolower($dados['email']);
+				$user = self::find_by_email($dados['email']);
 				if(!is_null($user))
 				{
 					$password = \HXPHP\System\Tools::hashHX($dados['senha'],$user->salt);

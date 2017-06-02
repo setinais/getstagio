@@ -1,6 +1,7 @@
 <?php 
 
-class informacoesComplementare extends Model{
+class informacoesComplementare extends \HXPHP\System\Model
+{
 	static $belongs_to = [
 		['estudante']
 		];

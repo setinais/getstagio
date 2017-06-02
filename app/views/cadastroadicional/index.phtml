@@ -150,10 +150,6 @@
 						<hr>
 					</h4>
 
-					<div class="form-group col-md-12">
-						<label for="emailEstudante">E-mail:*</label>
-						<input type="email" class="form-control" id="emailEstudante" name="emailEstudante" value="" placeholder="E-mail" required>
-					</div>
 					<div class="col-md-6">
 						<label for="telefoneEstudante">Telefone:</label>
 						<input type="" class="form-control" id="telefoneEstudante" name="telefoneEstudante" placeholder="(99) 9999-9999" required>
@@ -419,12 +415,12 @@
 							</div>
 							<div class="form-group">
 								<div class="col-md-3 mt2">
-									<input type="text" class="form-control" placeholder="Outro idioma">
+									<input type="text" name="idioma" class="form-control" placeholder="Outro idioma">
 								</div>
 								<div class="col-md-12">
 									<div class="col-md-offset-1 col-md-3">
-										<label for="nivelIngles">Lê:</label>
-										<select name="adicionalLe" id="nivelIngles" class="form-control">
+										<label for="idiomaLe">Lê:</label>
+										<select name="idiomaLe" id="idiomaLe" class="form-control">
 											<option disabled="" selected="">Selecione</option>
 											<option>Pouco</option>
 											<option>Bem</option>
@@ -432,8 +428,8 @@
 										</select>
 									</div>
 									<div class="col-md-3">
-										<label for="nivelIngles">Escreve:</label>
-										<select name="adicionalEscreve" id="nivelIngles" class="form-control">
+										<label for="idiomaEscreve">Escreve:</label>
+										<select name="idiomaEscreve" id="idiomaEscreve" class="form-control">
 											<option disabled="" selected="">Selecione</option>
 											<option>Pouco</option>
 											<option>Bem</option>
@@ -441,8 +437,8 @@
 										</select>
 									</div>
 									<div class="col-md-3">
-										<label for="nivelIngles">Fala:</label>
-										<select name="adicionalFala" id="nivelIngles" class="form-control">
+										<label for="idiomaFala">Fala:</label>
+										<select name="idiomaFala" id="idiomaFala" class="form-control">
 											<option disabled="" selected="">Selecione</option>
 											<option>Pouco</option>
 											<option>Bem</option>
@@ -485,13 +481,13 @@
 									</div>
 									<div id="checkboxes">
 										<label for="one">
-											<input type="checkbox" id="one" name="escritorio" value="Google" />Google
+											<input type="checkbox" id="one" name="escritorio1" value="Google" />Google
 										</label>
 										<label for="two">
-											<input type="checkbox" id="two" name="escritorio" value="Microsoft" />Microsoft Office
+											<input type="checkbox" id="two" name="escritorio2" value="Microsoft" />Microsoft Office
 										</label>
 										<label for="three">
-											<input type="checkbox" id="three" name="escritorio" value="Libre" />Libre Office
+											<input type="checkbox" id="three" name="escritorio3" value="Libre" />Libre Office
 										</label>
 									</div>
 								</div>
@@ -508,13 +504,13 @@
 									</div>
 									<div id="checkboxes2">
 										<label for="one2">
-											<input class="form-control" type="checkbox" id="one2" name="sistema" value="Windows" />Windows
+											<input class="form-control" type="checkbox" id="one2" name="sistema1" value="Windows" />Windows
 										</label>
 										<label for="two2">
-											<input class="form-control" type="checkbox" id="two2" name="sistema" value="Windows" />LInux
+											<input class="form-control" type="checkbox" id="two2" name="sistema2" value="Windows" />LInux
 										</label>
 										<label for="three2">
-											<input class="form-control" type="checkbox" id="three2" name="sistema" value="Windows" />Seila
+											<input class="form-control" type="checkbox" id="three2" name="sistema3" value="Windows" />Seila
 										</label>
 									</div>
 								</div>

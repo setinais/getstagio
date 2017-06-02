@@ -169,4 +169,7 @@ class Auth
     {
         return $this->storage->get($this->subfolder . '_user_role');
     }
+    /**
+     * Retorna o usuario logado 
+    */
 }

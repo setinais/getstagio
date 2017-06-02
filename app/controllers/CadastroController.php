@@ -24,7 +24,6 @@ class CadastroController extends \HXPHP\System\Controller
         $post = $this->request->post();
 		if(!empty($post))
 		{
-			$post['cep'] = str_replace('-', "", $post['cep']);
 			$callback = Usuario::cadastrar($post);
 			if($callback->status === true)
 			{

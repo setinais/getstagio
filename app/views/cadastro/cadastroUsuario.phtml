@@ -28,10 +28,9 @@ echo $data;
 
                         <div class="form-group ">
                             <div class="col-md-12">
-                                <label class="control-label" for="username">*Nome de Usuário:</label>
-                                <input type="text" class="form-control" id="id_nome" required="" name="nome" value="<?=$view_request['nome'];?>" placeholder="Nome" />
+                                <label class="control-label" for="username">*E-mail:</label>
+                                <input type="text" class="form-control" id="id_nome" required="" name="email" value="<?=$view_request['email'];?>" placeholder="E-mail" />
                             </div>
-
                         </div>
                         <div class="form-group">
                             <div class="col-sm-6 col-md-3">
@@ -42,40 +41,10 @@ echo $data;
                                 <label for="password">*Confirmar Senha:</label>
                                 <input type="password" class="form-control col-md-5" required="" id="confirsenha" placeholder="Senha" />
                             </div>
-                            <span class="label label-danger col-md-8 col-md-offset-2" id="erroSenhas" style="display: none;">As senha não coicidem!</span>
+                            <span class="label label-danger col-md-8 col-md-offset-2" id="erroSenhas" style="display: none;">As senhas não coincidem</span>
                             <span class="label label-warning col-md-8 col-md-offset-2" id="erroSenhasTamanho" style="display: none;">Necessário no minimo 6 caracteres!</span>
                         </div>
-                        <div class="form-group">
-                            <div class="col-sm-4 col-md-2">
-                                <label>*Estado:</label>
-                                <select class="form-control" required="" id="estado_id">
-									<option value="" disabled="" selected="">Selecione...</option>
-									<?php   foreach($view_estados as $es){ ?>
-									<option value="<?=$es->id;?>"><?=$es->sigla;?></option>
-									<?php } ?>
-								</select>
-                            </div>
-                            <div class="col-sm-8 col-md-5">
-                                <label for="id_cidade">*Cidade:</label>
-                                <select id="cidade_id" name="cidade_id" required="" class="form-control"></select>
-                            </div>
-                            <div class="col-sm-6 col-md-3">
-                                <label for="password">*CEP:</label>
-                                <input value="<?=$view_request['cep'];?>" required="" type="text" class="form-control col-md-5" id="id_cep" name="cep" placeholder="CEP" maxlength="8" />
-                            </div>
-                            <div class="col-sm-9 col-md-6">
-                                <label for="password">*Endereço:</label>
-                                <input value="<?=$view_request['endereco'];?>" required="" type="text" class="form-control" id="" name="endereco" placeholder="Endereço" />
-                            </div>
-                            <div class="col-sm-3 col-md-3">
-                                <label for="password">*Número:</label>
-                                <input value="<?=$view_request['numero'];?>" required="" type="text" class="form-control" id="id_numero" name="numero" placeholder="Número" maxlength="7" />
-                            </div>
-                            <div class="col-sm-3 col-md-3">
-                                <label for="password">*Bairro:</label>
-                                <input value="<?=$view_request['bairro'];?>" required="" type="text" class="form-control" id="id_bairro" name="bairro" placeholder="Bairro" />
-                            </div>
-                        </div>
+                            
                         <p>* Campos Obrigatórios</p>
 
                         <div class="form-group btnbtn">

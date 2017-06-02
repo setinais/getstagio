@@ -12,21 +12,21 @@ class Estudante extends \HXPHP\System\Model
 	];
 	static $has_many = [
 		['cadastros'],
-		['formacoes'],
-		['conhecimentos_escritorios'],
-		['conhecimentos_sistemas'],
+		['formacos'],
+		['conhecimento_escritorios'],
+		['conhecimento_sistemas'],
 		['informacoes_complementares'],
 		['idiomas'],
 		['formacoes_complementares']
 	];
 	static $validates_presence_of = [
 			[
-				'curso',
-				'message' => '<strong>Curso</strong> é um campo obrigatório.'
+				'nome',
+				'message' => '<strong>Nome</strong> é um campo obrigatório.'
 			],
 			[
-				'serie_modulo',
-				'message' => '<strong>Série / Modúlo / Período</strong> é um campo obrigatório.'
+				'deficiencia',
+				'message' => '<strong>Escolha se você tem ou não deficiencia</strong> é um campo obrigatório.'
 			],
 			[
 				'data_nasc',
@@ -34,12 +34,12 @@ class Estudante extends \HXPHP\System\Model
 			]
 			
 	];
-	static $validates_uniqueness_of  = [
+	/*static $validates_uniqueness_of  = [
 			[
 				['cpf'],
 				'message'=>'Já existe um estudante cadastrado com este <strong>CPF</strong>.'
 			]
-	];
+	];*/
 
 	public static function cadastrar($post,$id_user)
 	{
@@ -58,57 +58,97 @@ class Estudante extends \HXPHP\System\Model
 				'cpf'=>$post['cpf'],
 				'deficiencia'=>$post['def'],
 				'especificacao_deficiencia'=>($post['def']=="nao")?"":$post['espDeficiencia'],
-				'user_id'=>$post['usuario_id'],
+				'usuario_id'=>$post['usuario_id'],
 				'cargo_id'=>$cargo->cadastro->id,
 				'contato_id'=>$contato->cadastro->id
 				));		
 			if($cadastrar->is_valid()){
 				//formacoes
 				$formacao = array(
-					'formacao'=>$post['Ensino Medio'],
+					'formacao'=>'Ensino Medio',
 					'instituicao_ensino'=>$post['instEM'],
 					'situacao_curso'=>$post['sitEM'],
 					'serie_modulo_periodo'=>(isset($post['serieEM']))?$post['serieEM']:"",
 					'ano_inicio'=>(isset($post['iniEM']))?$post['iniEM']:"",
 					'ano_termino'=>(isset($post['fimEM']))?$post['fimEM']:"",
+					'estudante_id'=>$cadastrar->id
 					);
-				$formacoM = Formacoe::create($formacao,$cadastrar->id);
+				$formacoM = Formaco::create($formacao);
 				if(isset($post['ensinoTec']) && $post['ensinoTec'] == "on"){
 					$formacao = array(
-						'formacao'=>$post['Ensino Tecnico'],
+						'formacao'=>'Ensino Tecnico',
 						'instituicao_ensino'=>$post['instituicaoTec'],
 						'curso'=>$post['cursoTec'],
 						'situacao_curso'=>$post['situacaoTec'],
 						'serie_modulo_periodo'=>(isset($post['serieTec']))?$post['serieTec']:"",
 						'ano_inicio'=>(isset($post['anoTecInicio']))?$post['anoTecInicio']:"",
 						'ano_termino'=>(isset($post['anoTecTermino']))?$post['anoTecTermino']:"",
+						'estudante_id'=>$cadastrar->id
 						);
-					$formacoT = Formacoe::create($formacao,$cadastrar->id);
-				if(isset($post['ensinoSup']) && $post['ensinoSup'] == "on"){
+					$formacoT = Formaco::create($formacao);
+				}
 				if(isset($post['ensinoSup']) && $post['ensinoSup'] == "on"){
 					$formacao = array(
-						'formacao'=>$post['Ensino Superior'],
+						'formacao'=>'Ensino Superior',
 						'instituicao_ensino'=>$post['instituicaoSup'],
 						'curso'=>$post['cursoSup'],
 						'situacao_curso'=>$post['situacaoSup'],
 						'serie_modulo_periodo'=>(isset($post['periodoSup']))?$post['periodoSup']:"",
 						'ano_inicio'=>(isset($post['anoSupInicio']))?$post['anoSupInicio']:"",
 						'ano_termino'=>(isset($post['anoSupTermino']))?$post['anoSupTermino']:"",
+						'estudante_id'=>$cadastrar->id
 						);
-					$formacoS = Formacoe::create($formacao,$cadastrar->id);
+					$formacoS = Formaco::create($formacao);
 				}
 				//formaçoes
-
 				//idiomas
-				$idioma = array(
-					'Idioma'=>$post['Ingles'],
-					'le'=>$post['inglesLe'],
-					'fala'=>$post['inglesFala'],
-					'escreve'=>$post['inglesEscreve'],
+				$idioma = array('ingles'=>"",'espanhol'=>"");
+				if(isset($post['idioma']) && $post['idioma']!=""){
+					$idioma[$post['idioma']] = "";
+				}
+				foreach($idioma as $key => $valad){
+					Idioma::cadastrar(array(
+						"idioma"=>$key,
+						'le'=>$post[$key.'Le'],
+						'fala'=>$post[$key.'Fala'],
+						'escreve'=>$post[$key.'Escreve'],
+						'estudante_id'=>$cadastrar->id
+						));
+				}
+				//idiomas
+				//formação complementar
+				if(!empty($post['nomeIstituicao']) && !empty($post['cursoInstituicao']) && !empty($post['cargaHInstituicao'])){
+					$formacaoC = FormacoesComplementare::cadastrar(array(
+						'instituicao'=>$post['nomeIstituicao'],
+						'curso'=>$post['cursoInstituicao'],
+						'carga_horaria'=>$post['cargaHInstituicao'],
+						'estudante_id'=>$cadastrar->id
+					));
+				}
+				//formação complementar
+				//conhecimentos escritorios
+				foreach($post as $key => $valu){
+					if(Escritorio::existe($valu)){
+						$conhecimentoEscritorio = conhecimentoEscritorio::cadastrar($cadastrar->id,Escritorio::existe($valu)->id);
+					}
+				}
+				//conhecimentos escritorios
+				//conhecimentos sistemas
+				foreach($post as $key => $valu){
+					if(Sistema::existe($valu)){
+						$conhecimentoEscritorio = conhecimentoSistema::cadastrar($cadastrar->id,Sistema::existe($valu));
+					}
+				}
+				//conhecimentos sistemas
+				// infromaçoes complementares
+				$ifocomps = array(
+					'disponibilidade_jornada'=>$post['disponibilidadeTurno'],
+					'disponibilidade_ch_diaria'=>$post['cargaHDiaria'],
+					'desc_objetivos'=>$post['descricaoEobjetivo'],
 					'estudante_id'=>$cadastrar->id
 					);
-				$ingles = Idioma::create($idioma);
-				//idiomas 
+				informacoesComplementare::create($ifocomps);
+				// infromaçoes complementares
 				$callback->status = true;
 				$callback->user = $cadastrar;
 				$usuario = Usuario::find($id_user);
@@ -125,7 +165,6 @@ class Estudante extends \HXPHP\System\Model
 			array_push($callback->errors, $contato->errors);
 			array_push($callback->errors, $cargo->errors);
 		}
-
 		return $callback;
 	}
 	

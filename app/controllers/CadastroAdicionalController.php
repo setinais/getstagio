@@ -43,6 +43,9 @@ class CadastroAdicionalController extends HXPHP\System\Controller
 			{
 				switch ((int) $acao) {
 					case 1:
+							$post['cursoTec'] = "informatica";
+							$post['cursoSup'] = "informatica";
+							$post['situacaoSup'] = "comcluido";
 							var_dump($post);
 							$callback = Estudante::cadastrar($post,$this->auth->getUserId());
 							if($callback->status === true)
@@ -80,6 +83,7 @@ class CadastroAdicionalController extends HXPHP\System\Controller
 						break;
 				}
 			}
+			$post['email'] = Usuario::find($this->auth->getUserId())->email;
 			$this->view->setVar('request',$post)->setAssets('js',[$this->configs->baseURI.'public/js/jquery.js',$this->configs->baseURI.'public/js/cadastro/cadastro.js',$this->configs->baseURI.'public/js/jquery.1.7.7.mask.min.js',$this->configs->baseURI.'public/js/validaCpfCnpj.js']);
 
 		
