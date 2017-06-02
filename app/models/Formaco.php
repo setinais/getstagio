@@ -1,9 +1,9 @@
 <?php 
 
-class formacoe extends Model{
+class Formaco extends HXPHP\System\Model{
 	static $belongs_to = [
 		['estudante']
-	]
+	];
 	public static function cadastrar($post,$idestu)
 	{
 		$callback = new \stdClass;

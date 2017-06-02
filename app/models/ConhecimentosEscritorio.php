@@ -1,6 +1,6 @@
 <?php 
 
-class ConheciemntoEscritorio extends Model{
+class ConhecimentosEscritorio extends HXPHP\System\Model{
 	static $belongs_to = [
 		['estudante'],
 		['conheciemnto']

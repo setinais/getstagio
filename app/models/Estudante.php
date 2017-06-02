@@ -164,6 +164,11 @@ class Estudante extends \HXPHP\System\Model
 	public static function mostrarPerfil($id_usuario)
 	{
 		$estudante = self::find_by_usuario_id($id_usuario);
+		$telefone = null;
+		if(!is_null($estudante->contato))
+			foreach ($estudante->contato as $key => $value) {
+				 $telefone = $value->telefone;
+			}
 		$layout = " 
 				<div class='tab-pane active' id='tab_default_1'>
 						Estudante
@@ -188,7 +193,7 @@ class Estudante extends \HXPHP\System\Model
 												</div>
 												<div class='form-group'>
 													<label for='email'>Telefone:</label>
-													<p> ".$estudante->usuario->telefone."</p>
+													<p> ".$telefone."</p>
 												</div>
 												<div class='form-group'>
 													<label for='email'>Endereço:</label>

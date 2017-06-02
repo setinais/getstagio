@@ -1,6 +1,6 @@
 <?php 
 
-class escritorio extends Model{
+class Escritorio extends HXPHP\System\Model{
 	static $has_many = [
 		['conhecimentoEscritorio']
 	];

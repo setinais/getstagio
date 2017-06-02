@@ -17,6 +17,7 @@ class Menuget
 		$this->usuario = $usuario;
 		$this->url = $configs->baseURI;
 		$this->controller = $controller;
+
 	}
 
 	public function getMenu()
@@ -25,6 +26,7 @@ class Menuget
 	}
 
 	private function menus($role){
+		$nome_usu = explode("@",$this->usuario->email);
 			switch ($role) {
 				case 'Instituicao':
 					$menu=array(
@@ -49,7 +51,7 @@ class Menuget
 					break;
 				case 'user':
 						$menu = [
-							$this->usuario->email.'/user' => [
+							$nome_usu[0].'/user' => [
 								'Perfil/user-plus' => 'Usuario/perfil',
 								'Sair/power-off' => 'login/sair'
 							]
