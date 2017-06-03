@@ -24,7 +24,6 @@ class Usuario extends \HXPHP\System\Model
 				'senha',
 				'message' => '<strong>Senha</strong> é um campo obrigatório.'
 			]
-
 			
 	];
 	static $validates_uniqueness_of  = [

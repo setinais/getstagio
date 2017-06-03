@@ -5,6 +5,12 @@ class contato extends \HXPHP\System\Model
 	static $has_many = [
 		['conhecimentoSistema']
 	];
+	static $validates_presence_of = [
+		[
+			'telefone',
+			'message' => '<strong>Telefone</strong> é um campo obrigatório.'
+		]
+		];
 	public static function cadastrar($post)
 	{
 		$callback = new \stdClass;
@@ -13,8 +19,8 @@ class contato extends \HXPHP\System\Model
 		$callback->errors = [];
   			
 			$cadastrar = self::create(array(
-				'telefone'=>(isset($post['telefoneEstudante']) && $post['telefoneEstudante']!="")?$post['telefoneEstudante']:"",
-				'celular'=>(isset($post['celularEstudante']) && $post['celularEstudante']!="")?$post['celularEstudante']:"",
+				'telefone'=>(isset($post['telefoneEstudante']) && $post['telefoneEstudante']!="")?preg_replace("/[^0-9]/", "", $post['telefoneEstudante']):"",
+				'celular'=>(isset($post['celularEstudante']) && $post['celularEstudante']!="")?preg_replace("/[^0-9]/", "", $post['celularEstudante']):"",
 				'site'=>(isset($post['site']) && $post['site']!="")?$post['site']:"",
 				));
 			if($cadastrar->is_valid()){

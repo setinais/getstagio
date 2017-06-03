@@ -27,9 +27,151 @@ jQuery(document).ready(function($) {
 			return false;
 		}
 	});
+	$("#defn").click(function(event) {
+		$("#deficiencia").attr('disabled', 'disabled');
+	});
+
+	$("#defs").click(function(event) {
+		$("#deficiencia").removeAttr('disabled');
+	});
+	$(".id_telefone").blur(function(){
+ 		if($(this).val().length <= 10 || $(this).val().length == 10){
+ 			$(this).mask('(99)9999-9999');
+ 		}else{
+ 			$(this).mask('(99)99999-9999');
+ 		}
+ 	});
+
+ 	$(".cep").mask('99999-999');
+
 	$("#id_cnpj").click(function(event) {
 		$("#erroCNPJ").hide();
 	});
+
+	$("#sitEM").change(function(event) {
+		switch($(this).val()){
+			case "Incompleto":
+				$("#fimEM").attr('disabled', 'disabled');
+				$("#serieEM").removeAttr('disabled');
+				break;
+			case "Cursando":
+				$("#fimEM").attr('disabled', 'disabled');
+				$("#serieEM").removeAttr('disabled');
+				break;
+			case "Completo":
+				$("#serieEM").attr('disabled', 'disabled');
+				$("#fimEM").removeAttr('disabled');
+				break;
+		}
+	});
+
+	$("#situacaoTec").change(function(event) {
+		switch($(this).val()){
+			case "Incompleto":
+				$("#fimCT").attr('disabled', 'disabled');
+				$("#serieCT").removeAttr('disabled');
+				break;
+			case "Cursando":
+				$("#fimCT").attr('disabled', 'disabled');
+				$("#serieCT").removeAttr('disabled');
+				break;
+			case "Completo":
+				$("#serieCT").attr('disabled', 'disabled');
+				$("#fimCT").removeAttr('disabled');
+				break;
+		}
+	});
+
+	$("#sitSP").change(function(event) {
+		switch($(this).val()){
+			case "Incompleto":
+				$("#fimSP").attr('disabled', 'disabled');
+				$("#serieSP").removeAttr('disabled');
+				break;
+			case "Cursando":
+				$("#fimSP").attr('disabled', 'disabled');
+				$("#serieSP").removeAttr('disabled');
+				break;
+			case "Completo":
+				$("#serieSP").attr('disabled', 'disabled');
+				$("#fimSP").removeAttr('disabled');
+				break;
+		}
+	});
+
+	$("#iniEM").change(function(event) {
+		var ano = $(this).val();
+		$("#fimEM").find('option').each(function(index, el) {
+			if($(this).val() < ano ){
+				$(this).attr('disabled','disabled');
+			}else{
+				if($(this).val() != "selecione"){
+					$(this).attr('disabled');
+				}
+				$(this).css('font-weight', '700');
+			}
+		});
+	});iniCT
+
+	$("#iniCT").change(function(event) {
+		var ano = $(this).val();
+		$("#fimCT").find('option').each(function(index, el) {
+			if($(this).val() < ano ){
+				$(this).attr('disabled','disabled');
+			}else{
+				if($(this).val() != "selecione"){
+					$(this).attr('disabled');
+				}
+				$(this).css('font-weight', '700');
+			}
+		});
+	});
+
+	$("#iniSP").change(function(event) {
+		var ano = $(this).val();
+		$("#fimSP").find('option').each(function(index, el) {
+			if($(this).val() < ano ){
+				$(this).attr('disabled','disabled');
+			}else{
+				if($(this).val() != "selecione"){
+					$(this).attr('disabled');
+				}
+				$(this).css('font-weight', '700');
+			}
+		});
+	});
+	var i = 0;
+	var b = 0;
+	$("#checkboxes").find('input').each(function(index, el) {
+		$(this).click(function(){
+			if($(this).prop('checked')){
+				b++;
+				$("#seleEscritorio").html(b+" Selecionados");
+			}else{
+				b--;
+				$("#seleEscritorio").html(b+" Selecionados");
+			}
+		});
+	});
+	$("#checkboxes2").find('input').each(function(index, el) {
+		$(this).click(function(){
+			if($(this).prop('checked')){
+				i++;
+				$("#seleSistema").html(i+" Selecionados");
+			}else{
+				i--;
+				$("#seleSistema").html(i+" Selecionados");
+			}
+		});
+	});
+
+
+
+
+
+
+
+
 	var obj = "";
 	$("#forma2").click(function(event) {
 		if(obj == ""){
@@ -56,20 +198,6 @@ jQuery(document).ready(function($) {
 				$(this).attr('disabled','disabled');
 			});
 		 	obj2="";
-		}
-	});
-	$("#situacaoTec").change(function(event) {
-		if($(this).val()=="Incompleto"){
-			$("#fimCT").attr('disabled', 'disabled');
-		}else{
-			$("#fimCT").removeAttr('disabled');
-		}
-	});
-	$("#sitSP").change(function(event) {
-		if($(this).val()=="Incompleto"){
-			$("#fimSP").attr('disabled', 'disabled');
-		}else{
-			$("#fimSP").removeAttr('disabled');
 		}
 	});
 	$("#formEstudante").submit(function(event) {

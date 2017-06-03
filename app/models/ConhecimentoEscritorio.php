@@ -4,8 +4,13 @@ class ConhecimentoEscritorio extends \HXPHP\System\Model{
 	static $belongs_to = [
 		['estudante'],
 		['escritorio']
+	];
+	static $validates_presence_of = [
+			[
+				'conhecimento_id',
+				'message' => '<strong>O conhecimento não foi identificado</strong> é um campo obrigatório.'
+			]
 		];
-
 	public static function cadastrar($idu,$idesc)
 	{
 		$callback = new \stdClass;

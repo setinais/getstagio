@@ -1,3 +1,4 @@
+
 <?php
 
 /**
@@ -34,12 +35,12 @@ class Estudante extends \HXPHP\System\Model
 			]
 			
 	];
-	/*static $validates_uniqueness_of  = [
+	static $validates_uniqueness_of  = [
 			[
 				['cpf'],
 				'message'=>'Já existe um estudante cadastrado com este <strong>CPF</strong>.'
 			]
-	];*/
+	];
 
 	public static function cadastrar($post,$id_user)
 	{
@@ -55,7 +56,7 @@ class Estudante extends \HXPHP\System\Model
 				'nome'=>$post['nome'],
 				'data_nasc'=>$post['dataNascimento'],
 				'sexo'=>$post['sexo'],
-				'cpf'=>$post['cpf'],
+				'cpf'=>preg_replace("/[^0-9]/", "", $post['cpf']),
 				'deficiencia'=>$post['def'],
 				'especificacao_deficiencia'=>($post['def']=="nao")?"":$post['espDeficiencia'],
 				'usuario_id'=>$post['usuario_id'],

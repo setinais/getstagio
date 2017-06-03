@@ -4,6 +4,16 @@ class InformacoesComplementare extends HXPHP\System\Model{
 	static $belongs_to = [
 		['estudante']
 		];
+	static $validates_presence_of = [
+		[
+			'disponibilidade_jornada',
+			'message' => '<strong>Disponibilidade jornada</strong> é um campo obrigatório.'
+		],
+		[
+			'disponibilidade_ch_diaria',
+			'message' => '<strong>Carga horária diária</strong> é um campo obrigatório.'
+		]
+		];
 	public static function cadastrar($post)
 	{
 		$callback = new \stdClass;

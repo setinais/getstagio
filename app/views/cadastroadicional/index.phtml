@@ -1,6 +1,5 @@
 <script type="text/javascript">
 	var expanded = false;
-
 	function showCheckboxes() {
 		var checkboxes = document.getElementById("checkboxes");
 		if (!expanded) {
@@ -99,7 +98,7 @@
 					</div>
 					<div class="form-group col-md-12">
 						<label for="nomeEstudante">CPF:*</label>
-						<input type="text" class="form-control" name="cpf" id="cpf" value="" placeholder="CPF" required>
+						<input type="text" class="form-control" name="cpf" id="id_cpf" value="" placeholder="CPF" required>
 	
 					</div>
 					<div class="form-group col-md-4">
@@ -153,11 +152,11 @@
 
 					<div class="col-md-6">
 						<label for="telefoneEstudante">Telefone:</label>
-						<input type="" class="form-control" id="telefoneEstudante" name="telefoneEstudante" placeholder="(99) 9999-9999" required>
+						<input type="" class="form-control id_telefone" id="telefoneEstudante" name="telefoneEstudante" placeholder="(99) 9999-9999" required>
 					</div>
 					<div class="col-md-6">
 						<label for="celularEstudante">Celular:</label>
-						<input type="" class="form-control" id="celularEstudante" name="celularEstudante" placeholder="(99)9 9999-9999" required>
+						<input type="" class="form-control id_telefone" id="celularEstudante" name="celularEstudante" placeholder="(99)9 9999-9999" required>
 					</div>
 
 					<h4 class="col-md-12 text-center">
@@ -181,7 +180,7 @@
 
 						<div class="col-md-4 mt3">
 							<label for="cepEstudante">CEP:*</label>
-							<input type="" class="form-control" name="cep" id="cepEstudante" placeholder="99999-999" required>
+							<input type="" class="form-control cep" name="cep" id="cepEstudante" placeholder="99999-999" required>
 						</div>
 						<div class="col-md-4 mt3">
 							<label for="bairroEstudante">Bairro:*</label>
@@ -223,12 +222,12 @@
 							</div>
 							<div class="col-md-2 mt2">
 								<label for="serieEM">Série:*</label>
-								<input type="number" name="serieEM" class="form-control" >
+								<input type="number" name="serieEM" id="serieEM" class="form-control" >
 							</div>
 							<div class="col-md-3 mt2">
 								<label for="iniEM">Ano de início:*</label>
-								<select name="iniEM" class="form-control">
-									<option selected="" disabled="">Selecione</option>
+								<select  name="iniEM" class="form-control" id="iniEM">
+									<option value="selecione" selected="" disabled="disabled">Selecione</option>
 									<?php for($i=date("Y");$i>=1960;$i--){ ?>
 									<option value="<?=$i?>"><?=$i?></option>
 									<?php } ?>
@@ -236,7 +235,7 @@
 							</div>
 							<div class="col-md-3 mt2">
 								<label for="fimEM">Ano de término:*</label>
-								<select  name="fimEM" class="form-control">
+								<select  name="fimEM" class="form-control" id="fimEM">
 									<option selected="" disabled="">Selecione</option>
 									<?php for($i=date("Y");$i>=1980;$i--){ ?>
 									<option value="<?=$i?>"><?=$i?></option>
@@ -280,7 +279,7 @@
 								<div class="col-md-3 mt2">
 									<label for="iniCT">Ano de início:*</label>
 									<select name="anoTecInicio" disabled="disabled" id="iniCT" class="form-control">
-										<option selected="" disabled="">Selecione</option>
+										<option value="" selected="" disabled="">Selecione</option>
 										<?php for($i=date("Y");$i>=1980;$i--){ ?>
 										<option value="<?=$i?>"><?=$i?></option>
 										<?php } ?>
@@ -333,7 +332,7 @@
 								<div class="col-md-3 mt2">
 									<label for="iniSP">Ano de início:*</label>
 									<select name="anoSupInicio" disabled="disabled" id="iniSP" class="form-control">
-										<option selected="" disabled="">Selecione</option>
+										<option value="" selected="" disabled="">Selecione</option>
 										<?php for($i=date("Y");$i>=1980;$i--){ ?>
 										<option value="<?=$i?>"><?=$i?></option>
 										<?php } ?>
@@ -389,7 +388,7 @@
 								<div class="col-md-offset-1 col-md-3">
 									<label for="nivelIngles">Lê:</label>
 									<select name="espanholLe" id="nivelIngles" class="form-control ">
-										<option disabled="" selected="">Selecione</option>
+										<option selected="">Selecione</option>
 										<option>Pouco</option>
 										<option>Bem</option>
 										<option>Fluente</option>
@@ -398,7 +397,7 @@
 								<div class="col-md-3">
 									<label for="nivelIngles">Escreve:</label>
 									<select name="espanholEscreve" id="nivelIngles" class="form-control ">
-										<option disabled="" selected="">Selecione</option>
+										<option selected="">Selecione</option>
 										<option>Pouco</option>
 										<option>Bem</option>
 										<option>Fluente</option>
@@ -407,7 +406,7 @@
 								<div class="col-md-3">
 									<label for="nivelIngles">Fala:</label>
 									<select name="espanholFala" id="nivelIngles" class="form-control ">
-										<option disabled="" selected="">Selecione</option>
+										<option selected="">Selecione</option>
 										<option>Pouco</option>
 										<option>Bem</option>
 										<option>Fluente</option>
@@ -422,7 +421,7 @@
 									<div class="col-md-offset-1 col-md-3">
 										<label for="idiomaLe">Lê:</label>
 										<select name="idiomaLe" id="idiomaLe" class="form-control">
-											<option disabled="" selected="">Selecione</option>
+											<option selected="">Selecione</option>
 											<option>Pouco</option>
 											<option>Bem</option>
 											<option>Fluente</option>
@@ -431,7 +430,7 @@
 									<div class="col-md-3">
 										<label for="idiomaEscreve">Escreve:</label>
 										<select name="idiomaEscreve" id="idiomaEscreve" class="form-control">
-											<option disabled="" selected="">Selecione</option>
+											<option selected="">Selecione</option>
 											<option>Pouco</option>
 											<option>Bem</option>
 											<option>Fluente</option>
@@ -440,7 +439,7 @@
 									<div class="col-md-3">
 										<label for="idiomaFala">Fala:</label>
 										<select name="idiomaFala" id="idiomaFala" class="form-control">
-											<option disabled="" selected="">Selecione</option>
+											<option selected="">Selecione</option>
 											<option>Pouco</option>
 											<option>Bem</option>
 											<option>Fluente</option>
@@ -464,7 +463,7 @@
 							</div>
 							<div class="col-md-6">
 								<label for="cargaHComplementar">Carga horária:</label>
-								<input type="" name="cargaHInstituicao" class="form-control" id="cargaHComplementar" placeholder="">
+								<input type="number" name="cargaHInstituicao" class="form-control" id="cargaHComplementar" placeholder="">
 							</div>
 
 							<h4 class="col-md-12 text-center">
@@ -474,9 +473,9 @@
 							<div class="col-md-5 mt2">
 								<label for="conhecimentosEscritorio">Conhecimentos de escritório:*</label>
 								<div class="multiselect">
-									<div class="selectBox" onclick="showCheckboxes()">
+									<div class="selectBox" id="selectBox1" onclick="showCheckboxes()">
 										<select class="form-control">
-											<option disabled="" selected="">SELECIONE...</option>
+											<option disabled="" selected="" id="seleEscritorio">SELECIONE...</option>
 										</select>
 										<div class="overSelect"></div>
 									</div>
@@ -493,16 +492,16 @@
 							<div class="col-md-4 mt2">
 								<label for="conhecimentosEscritorio">Sistemas operacionais:*</label>
 								<div class="multiselect">
-									<div class="selectBox" onclick="showCheckboxes2()">
+									<div class="selectBox" id="selectBox2" onclick="showCheckboxes2()">
 										<select class="form-control">
-											<option disabled="" selected="">SELECIONE...</option>
+											<option disabled="" selected="" id="seleSistema">SELECIONE...</option>
 										</select>
 										<div class="overSelect"></div>
 									</div>
 									<div id="checkboxes2">
 										<?php foreach(Sistema::all() as $val){?>
 										<label for="<?=$val->id*152?>">
-											<input class="form-control" type="checkbox" id="<?=$val->id*152?>" name="sistema<?=$val->id*152?>" value="<?=$val->nome?>" /><?=$val->nome?>
+											<input type="checkbox" id="<?=$val->id*152?>" name="sistema<?=$val->id*152?>" value="<?=$val->nome?>" /><?=$val->nome?>
 										</label>
 										<?php } ?>
 									</div>

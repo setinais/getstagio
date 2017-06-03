@@ -5,6 +5,12 @@ class ConhecimentoSistema extends HXPHP\System\Model{
 		['estudante'],
 		['sistema']
 		];
+	static $validates_presence_of = [
+			[
+				'sistema_id',
+				'message' => '<strong>O sistema não cadastrado</strong> é um campo obrigatório.'
+			]
+		];
 	public static function cadastrar($idu,$idesc)
 	{
 		$callback = new \stdClass;

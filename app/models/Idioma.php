@@ -5,6 +5,24 @@ class Idioma extends \HXPHP\System\Model
 	static $belongs_to = [
 		['estudante']
 	];
+	static $validates_presence_of = [
+		[
+			'idioma',
+			'message' => '<strong>Idioma</strong> é um campo obrigatório.'
+		],
+		[
+			'le',
+			'message' => '<strong>le</strong> é um campo obrigatório.'
+		],
+		[
+			'escreve',
+			'message' => '<strong>Escreve</strong> é um campo obrigatório.'
+		],
+		[
+			'fala',
+			'message' => '<strong>Fala</strong> é um campo obrigatório.'
+		],
+		];
 	public static function cadastrar($post)
 	{
 		$callback = new \stdClass;
