@@ -185,7 +185,7 @@
 						</div>
 						<div class="col-md-4 mt3">
 							<label for="bairroEstudante">Bairro:*</label>
-							<input type="text" class="form-control" id="bairroEstudante" placeholder="Bairro" required>
+							<input type="text" name="bairro" class="form-control" id="bairroEstudante" placeholder="Bairro" required>
 						</div>
 						<div class="col-md-8 mt3">
 							<label for="logradouroEstudante">Logradouro:*</label>
@@ -481,15 +481,11 @@
 										<div class="overSelect"></div>
 									</div>
 									<div id="checkboxes">
-										<label for="one">
-											<input type="checkbox" id="one" name="escritorio1" value="Google" />Google
+										<?php foreach(Escritorio::all() as $val){?>
+										<label for="<?=$val->id*15?>">
+											<input type="checkbox" id="<?=$val->id*15?>" name="escritorio<?=$val->id*15?>" value="<?=$val->nome?>" /><?=$val->nome?>
 										</label>
-										<label for="two">
-											<input type="checkbox" id="two" name="escritorio2" value="Microsoft" />Microsoft Office
-										</label>
-										<label for="three">
-											<input type="checkbox" id="three" name="escritorio3" value="Libre" />Libre Office
-										</label>
+										<?php } ?>
 									</div>
 								</div>
 
@@ -504,15 +500,11 @@
 										<div class="overSelect"></div>
 									</div>
 									<div id="checkboxes2">
-										<label for="one2">
-											<input class="form-control" type="checkbox" id="one2" name="sistema1" value="Windows" />Windows
+										<?php foreach(Sistema::all() as $val){?>
+										<label for="<?=$val->id*152?>">
+											<input class="form-control" type="checkbox" id="<?=$val->id*152?>" name="sistema<?=$val->id*152?>" value="<?=$val->nome?>" /><?=$val->nome?>
 										</label>
-										<label for="two2">
-											<input class="form-control" type="checkbox" id="two2" name="sistema2" value="Windows" />LInux
-										</label>
-										<label for="three2">
-											<input class="form-control" type="checkbox" id="three2" name="sistema3" value="Windows" />Seila
-										</label>
+										<?php } ?>
 									</div>
 								</div>
 

@@ -48,9 +48,9 @@ class Estudante extends \HXPHP\System\Model
 		$callback->user = null;
 		$callback->errors = [];
 		$post['usuario_id'] = $id_user;
-		$cargo = Cargo::cadastrar($post);
-		$contato = Contato::cadastrar($post);
-		if($cargo->status && $contato->status){
+		$insert['cargo'] = Cargo::cadastrar($post);
+		$insert['contato'] = Contato::cadastrar($post);
+		if($insert['cargo']->status && $insert['contato']->status){
 			$cadastrar = self::create(array(
 				'nome'=>$post['nome'],
 				'data_nasc'=>$post['dataNascimento'],
@@ -59,8 +59,8 @@ class Estudante extends \HXPHP\System\Model
 				'deficiencia'=>$post['def'],
 				'especificacao_deficiencia'=>($post['def']=="nao")?"":$post['espDeficiencia'],
 				'usuario_id'=>$post['usuario_id'],
-				'cargo_id'=>$cargo->cadastro->id,
-				'contato_id'=>$contato->cadastro->id
+				'cargo_id'=>$insert['cargo']->cadastro->id,
+				'contato_id'=>$insert['contato']->cadastro->id
 				));		
 			if($cadastrar->is_valid()){
 				//formacoes
@@ -73,7 +73,7 @@ class Estudante extends \HXPHP\System\Model
 					'ano_termino'=>(isset($post['fimEM']))?$post['fimEM']:"",
 					'estudante_id'=>$cadastrar->id
 					);
-				$formacoM = Formaco::create($formacao);
+				$insert['formacoM'] = Formaco::cadastrar($formacao);
 				if(isset($post['ensinoTec']) && $post['ensinoTec'] == "on"){
 					$formacao = array(
 						'formacao'=>'Ensino Tecnico',
@@ -85,7 +85,7 @@ class Estudante extends \HXPHP\System\Model
 						'ano_termino'=>(isset($post['anoTecTermino']))?$post['anoTecTermino']:"",
 						'estudante_id'=>$cadastrar->id
 						);
-					$formacoT = Formaco::create($formacao);
+					$insert['formacoT'] = Formaco::cadastrar($formacao);
 				}
 				if(isset($post['ensinoSup']) && $post['ensinoSup'] == "on"){
 					$formacao = array(
@@ -98,16 +98,22 @@ class Estudante extends \HXPHP\System\Model
 						'ano_termino'=>(isset($post['anoSupTermino']))?$post['anoSupTermino']:"",
 						'estudante_id'=>$cadastrar->id
 						);
-					$formacoS = Formaco::create($formacao);
+					$insert['formacoS'] = Formaco::cadastrar($formacao);
 				}
 				//formaçoes
 				//idiomas
 				$idioma = array('ingles'=>"",'espanhol'=>"");
 				if(isset($post['idioma']) && $post['idioma']!=""){
-					$idioma[$post['idioma']] = "";
+					$insert['idioma']=Idioma::cadastrar(array(
+						"idioma"=>$post['idioma'],
+						'le'=>$post['idiomaLe'],
+						'fala'=>$post['idiomaEscreve'],
+						'escreve'=>$post['idiomaFala'],
+						'estudante_id'=>$cadastrar->id
+						));
 				}
 				foreach($idioma as $key => $valad){
-					Idioma::cadastrar(array(
+					$insert[] = Idioma::cadastrar(array(
 						"idioma"=>$key,
 						'le'=>$post[$key.'Le'],
 						'fala'=>$post[$key.'Fala'],
@@ -118,7 +124,7 @@ class Estudante extends \HXPHP\System\Model
 				//idiomas
 				//formação complementar
 				if(!empty($post['nomeIstituicao']) && !empty($post['cursoInstituicao']) && !empty($post['cargaHInstituicao'])){
-					$formacaoC = FormacoesComplementare::cadastrar(array(
+					$insert['formacaoC'] = FormacoesComplementare::cadastrar(array(
 						'instituicao'=>$post['nomeIstituicao'],
 						'curso'=>$post['cursoInstituicao'],
 						'carga_horaria'=>$post['cargaHInstituicao'],
@@ -129,14 +135,14 @@ class Estudante extends \HXPHP\System\Model
 				//conhecimentos escritorios
 				foreach($post as $key => $valu){
 					if(Escritorio::existe($valu)){
-						$conhecimentoEscritorio = conhecimentoEscritorio::cadastrar($cadastrar->id,Escritorio::existe($valu)->id);
+						$insert[] = ConhecimentoEscritorio::cadastrar($cadastrar->id,Escritorio::find_by_nome($valu)->id);
 					}
 				}
 				//conhecimentos escritorios
 				//conhecimentos sistemas
 				foreach($post as $key => $valu){
 					if(Sistema::existe($valu)){
-						$conhecimentoEscritorio = conhecimentoSistema::cadastrar($cadastrar->id,Sistema::existe($valu));
+						$insert[] = ConhecimentoSistema::cadastrar($cadastrar->id,Sistema::find_by_nome($valu)->id);
 					}
 				}
 				//conhecimentos sistemas
@@ -147,14 +153,34 @@ class Estudante extends \HXPHP\System\Model
 					'desc_objetivos'=>$post['descricaoEobjetivo'],
 					'estudante_id'=>$cadastrar->id
 					);
-				informacoesComplementare::create($ifocomps);
+				$insert[] = informacoesComplementare::cadastrar($ifocomps);
 				// infromaçoes complementares
 				$callback->status = true;
 				$callback->user = $cadastrar;
 				$usuario = Usuario::find($id_user);
 				$usuario->funcoe_id = 1;
+				$usuario->cidade_id = $post['cidade_id'];
+				$usuario->endereco = $post['logradouroEstudante'];
+				$usuario->cep = preg_replace("/[^0-9]/", "", $post['cep']);
+				$usuario->numero = $post['numeroEstudante'];
+				$usuario->complemento = $post['complementoEstudante'];
+				$usuario->nome = $post['nome'];
+				$usuario->bairro = $post['bairro'];
 				$usuario->save();
 
+				foreach($insert as $key => $val){
+					if($val->status == false){
+						$errors = $cadastrar->errors->get_raw_errors();
+						foreach ($errors as $campo => $messagem) {
+							array_push($callback->errors, $messagem[0]);
+						}
+					}
+				}
+				if(!empty($callback->errors)){
+					foreach ($insert as $key => $value) {
+						$value->delete();
+					}
+				}
 			}else{
 				$errors = $cadastrar->errors->get_raw_errors();
 				foreach ($errors as $campo => $messagem) {
@@ -162,8 +188,8 @@ class Estudante extends \HXPHP\System\Model
 				}
 			}
 		}else{
-			array_push($callback->errors, $contato->errors);
-			array_push($callback->errors, $cargo->errors);
+			array_push($callback->errors, $insert['contato']->errors);
+			array_push($callback->errors, $insert['cargo']->errors);
 		}
 
 		return $callback;

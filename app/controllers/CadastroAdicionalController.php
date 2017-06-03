@@ -43,21 +43,16 @@ class CadastroAdicionalController extends HXPHP\System\Controller
 			{
 				switch ((int) $acao) {
 					case 1:
-					var_dump($post);
-					
+							$post['bairro'] = "alto pso";
 							$callback = Estudante::cadastrar($post,$this->auth->getUserId());
-							if($callback->status === true)
-							{
+							if($callback->status === true){
 									 $this->redirectTo($this->configs->baseURI."login/sair");
-							}
-							else
-							{
+							}else{
 								 $this->load('Helpers\Alert',[
 				                    'danger',
 				                    'Ops! Não foi possivel efetuar seu cadastro. Verifique os erros abaixo',
 				                    $callback->errors
 				                    ]);
-
 							}
 						break;
 					case 2: 

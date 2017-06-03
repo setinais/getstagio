@@ -14,7 +14,7 @@ class EnvironmentDevelopment extends Configs\AbstractEnvironment
 		$this->servers = [
 			'localhost',
 			'127.0.0.1',
-			'192.168.137.1'
+			'192.168.0.101'
 		];
 
 		return $this;

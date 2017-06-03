@@ -3,7 +3,7 @@
 class ConhecimentoEscritorio extends \HXPHP\System\Model{
 	static $belongs_to = [
 		['estudante'],
-		['conheciemnto']
+		['escritorio']
 		];
 
 	public static function cadastrar($idu,$idesc)

@@ -5,7 +5,7 @@ class Formaco extends \HXPHP\System\Model
 	static $belongs_to = [
 		['estudante']
 	];
-	public static function cadastrar($post,$idestu)
+	public static function cadastrar($post)
 	{
 		$callback = new \stdClass;
 		$callback->status = false;
