@@ -43,10 +43,8 @@ class CadastroAdicionalController extends HXPHP\System\Controller
 			{
 				switch ((int) $acao) {
 					case 1:
-							$post['cursoTec'] = "informatica";
-							$post['cursoSup'] = "informatica";
-							$post['situacaoSup'] = "comcluido";
-							var_dump($post);
+					var_dump($post);
+					
 							$callback = Estudante::cadastrar($post,$this->auth->getUserId());
 							if($callback->status === true)
 							{
