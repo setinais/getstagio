@@ -1,6 +1,6 @@
 <?php 
 
-class formaco extends \HXPHP\System\Model
+class Formaco extends \HXPHP\System\Model
 {
 	static $belongs_to = [
 		['estudante']

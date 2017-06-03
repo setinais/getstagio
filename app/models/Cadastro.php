@@ -63,11 +63,12 @@
 			}else{
 				foreach ($ids_estudantes as $key => $value) 
 				{
+					
 					$estagiarios .= "
 						<tr>
-							<th><a href='".$baseURI."perfil/index/".$value->estudante->usuario->id."'>".$value->estudante->usuario->nome."</a></th>
+							<th><a href='".$baseURI."Perfil/index/".$value->estudante->usuario->id."'>".$value->estudante->nome."</a></th>
 							<td>".$value->estudante->usuario->email."</td>
-							<td>".$value->estudante->usuario->telefone."</td>
+							
 						</tr>
 					";
 				}

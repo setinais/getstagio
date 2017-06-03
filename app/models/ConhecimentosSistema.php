@@ -1,6 +1,10 @@
 <?php 
 
+<<<<<<< HEAD:app/models/ConhecimentoSistema.php
 class conhecimentoSistema extends \HXPHP\System\Model{
+=======
+class ConhecimentosSistema extends HXPHP\System\Model{
+>>>>>>> 3ce8657d060a9f532b3987e7a754820b5d04b314:app/models/ConhecimentosSistema.php
 	static $belongs_to = [
 		['estudante'],
 		['sistema']

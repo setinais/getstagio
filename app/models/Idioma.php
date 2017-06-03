@@ -1,6 +1,6 @@
 <?php 
 
-class idioma extends \HXPHP\System\Model
+class Idioma extends \HXPHP\System\Model
 {
 	static $belongs_to = [
 		['estudante']

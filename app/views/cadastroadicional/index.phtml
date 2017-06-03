@@ -91,15 +91,17 @@
 		<div class="panel panel-primary ">
 			<div class="panel-heading text-center">Dados complementares para Estudante</div>
 			<div class="panel-body no-gutter">
-				<form action="<?=BASE?>cadastroadicional/index/1" id="formEstudante" method="POST">
+				<form name="sentMessage" id="contactForm" novalidate>
 
-					<div class="form-group col-md-12">
-						<label for="nomeEstudante">Nome completo:*</label>
-						<input type="text" class="form-control" name="nome" id="nome" value="" placeholder="Nome completo" required>
-					</div>
+					<div class="control-group form-group col-md-12">
+					 	
+							<label for="nomeEstudante">Nome completo:*</label>
+							<input type="text=" class="form-control" name="name" id="idname" value="" placeholder="Nome completo" required data-validation-required-message="Por favor insira seu nome.">
+				
 					<div class="form-group col-md-12">
 						<label for="nomeEstudante">CPF:*</label>
 						<input type="text" class="form-control" name="cpf" id="cpf" value="" placeholder="CPF" required>
+	
 					</div>
 					<div class="form-group col-md-4">
 						<label for="dataNascimento">Data de Nascimento:*</label>

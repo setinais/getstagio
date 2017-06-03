@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php 
 
 class contato extends \HXPHP\System\Model
@@ -31,4 +32,15 @@ class contato extends \HXPHP\System\Model
 
 		return $callback;
 	}
+=======
+<?php
+/**
+* 
+*/
+class Contato extends \HXPHP\System\Model
+{
+	static $has_many = array(
+		array('contatos')
+		);
+>>>>>>> 3ce8657d060a9f532b3987e7a754820b5d04b314
 }
