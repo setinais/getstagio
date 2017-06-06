@@ -36,8 +36,10 @@ $(document).ready(function() {
 			data: "id="+id,
 		})
 		.done(function(e) {
-			if(e == "true"){
+			e = e.replace(/^\s+|\s+$/g,"");
+			if(e = "true"){
 				obj.removeClass('label-success');
+				obj.removeClass('candidatar');
 				obj.addClass('label-info');
 				obj.find('.troca').html("Inscrito");
 				obj.css('cursor', 'not-allowed');
@@ -62,6 +64,7 @@ $(document).ready(function() {
 			data: "id="+id,
 		})
 		.done(function(e) {
+			e = e.replace(/^\s+|\s+$/g,"");
 			if(e == "true"){
 				obj.parent().html("<span class='label label-success candidatar' id='"+id+"' style='cursor: pointer;'><span class='glyphicon glyphicon-log-in'></span>  <span class='troca'>Inscrever</span></span>")
 			}

@@ -7,39 +7,39 @@
 class Estudante extends \HXPHP\System\Model
 {
 	static $belongs_to = [
-		['usuario'],
-		['cargo'],
-		['contato']
+	['usuario'],
+	['cargo'],
+	['contato']
 	];
 	static $has_many = [
-		['cadastros'],
-		['formacos'],
-		['conhecimento_escritorios'],
-		['conhecimento_sistemas'],
-		['informacoes_complementares'],
-		['idiomas'],
-		['formacoes_complementares']
+	['cadastros'],
+	['formacos'],
+	['conhecimento_escritorios'],
+	['conhecimento_sistemas'],
+	['informacoes_complementares'],
+	['idiomas'],
+	['formacoes_complementares']
 	];
 	static $validates_presence_of = [
-			[
-				'nome',
-				'message' => '<strong>Nome</strong> é um campo obrigatório.'
-			],
-			[
-				'deficiencia',
-				'message' => '<strong>Escolha se você tem ou não deficiencia</strong> é um campo obrigatório.'
-			],
-			[
-				'data_nasc',
-				'message' => '<strong>Data de nascimento</strong> é um campo obrigatorio.'
-			]
-			
+	[
+	'nome',
+	'message' => '<strong>Nome</strong> é um campo obrigatório.'
+	],
+	[
+	'deficiencia',
+	'message' => '<strong>Escolha se você tem ou não deficiencia</strong> é um campo obrigatório.'
+	],
+	[
+	'data_nasc',
+	'message' => '<strong>Data de nascimento</strong> é um campo obrigatorio.'
+	]
+
 	];
 	static $validates_uniqueness_of  = [
-			[
-				['cpf'],
-				'message'=>'Já existe um estudante cadastrado com este <strong>CPF</strong>.'
-			]
+	[
+	['cpf'],
+	'message'=>'Já existe um estudante cadastrado com este <strong>CPF</strong>.'
+	]
 	];
 
 	public static function cadastrar($post,$id_user)
@@ -49,8 +49,12 @@ class Estudante extends \HXPHP\System\Model
 		$callback->user = null;
 		$callback->errors = [];
 		$post['usuario_id'] = $id_user;
-		$insert['cargo'] = Cargo::cadastrar($post);
-		$insert['contato'] = Contato::cadastrar($post);
+		$insert['cargo'] = Stcargo::cadastrar($post);
+		$insert['contato'] = Contato::cadastrar(array(
+			'telefone'=>(isset($post['telefoneEstudante']) && $post['telefoneEstudante']!="")?preg_replace("/[^0-9]/", "", $post['telefoneEstudante']):"",
+			'celular'=>(isset($post['celularEstudante']) && $post['celularEstudante']!="")?preg_replace("/[^0-9]/", "", $post['celularEstudante']):"",
+			'site'=>(isset($post['site']) && $post['site']!="")?$post['site']:"",
+			));
 		if($insert['cargo']->status && $insert['contato']->status){
 			$cadastrar = self::create(array(
 				'nome'=>$post['nome'],
@@ -164,8 +168,7 @@ class Estudante extends \HXPHP\System\Model
 				$usuario->endereco = $post['logradouroEstudante'];
 				$usuario->cep = preg_replace("/[^0-9]/", "", $post['cep']);
 				$usuario->numero = $post['numeroEstudante'];
-				$usuario->complemento = $post['complementoEstudante'];
-				$usuario->nome = $post['nome'];
+				$usuario->complemento = $post['complemento'];
 				$usuario->bairro = $post['bairro'];
 				$usuario->save();
 
@@ -231,50 +234,62 @@ class Estudante extends \HXPHP\System\Model
 	public static function mostrarPerfil($id_usuario)
 	{
 		$estudante = self::find_by_usuario_id($id_usuario);
-		$telefone = null;
-		if(!is_null($estudante->contato))
-			foreach ($estudante->contato as $key => $value) {
-				 $telefone = $value->telefone;
-			}
-		$layout = " 
-				<div class='tab-pane active' id='tab_default_1'>
-						Estudante
-										<p>
-											
-										</p>
-										
-									</div>
-									<div class='tab-pane' id='tab_default_2'>
-										<p>
-											Detalhes
-										</p>
-										<div class='row'>
-											<div class='col-sm-6'>
-												<div class='form-group'>
-													<label for='email'>Estado:</label>
-													<p> "           .$estudante->usuario->cidade->estado->sigla." - ".$estudante->usuario->cidade->estado->estados." </p>
-												</div>
-												<div class='form-group'>
-													<label for='email'>Cidade:</label>
-													<p> ".$estudante->usuario->cidade->nome." </p>
-												</div>
-												<div class='form-group'>
-													<label for='email'>Telefone:</label>
-													<p> ".$telefone."</p>
-												</div>
-												<div class='form-group'>
-													<label for='email'>Endereço:</label>
-													<p> ".$estudante->usuario->endereco." Nº ".$estudante->usuario->numero."</p>
-												</div>
-											</div>
-											<div class='col-sm-6'>
-												<div class='form-group'>
-													<label for='email'>CEP:</label>
-													<p> ".$estudante->usuario->cep."</p>
-												</div>
-											</div>
-										</div>
-									</div>
+		$contato = "E-mail: ".$estudante->usuario->email."<br>";
+		if(!empty($estudante->contato->telefone))
+			$contato .= "Telefone: ".$estudante->contato->telefone."<br>";
+		if(!empty($estudante->contato->celular))
+			$contato .= "Celular: ".$estudante->contato->celular."<br>";
+			$layout = " 
+		<div class='panel-heading'>
+			<h3 class='panel-title'>
+			".$estudante->nome."</h3>
+		</div>
+		<div class='panel-body'>
+			<div class='col-sm-6'>
+				<div class='form-group'>
+					<label>CPF:</label>
+					<p> ".$estudante->cpf." </p>
+				</div>
+				<div class='form-group'>
+					<label>Data de nascimento:</label>
+					<p> ".$estudante->data_nasc->format("d/m/Y")." </p>
+				</div>
+				<div class='form-group'>
+					<label>Sexo:</label>
+					<p> ".$estudante->sexo." </p>
+				</div>
+				<div class='form-group'>
+					<label for='email'>Contato:</label>
+					<p> ".$contato."</p>
+				</div>
+				<div class='form-group'>
+					<label for='email'>Estado:</label>
+					<p> ".$estudante->usuario->cidade->estado->estados." - ".$estudante->usuario->cidade->estado->sigla." </p>
+				</div>
+				</div>
+				<div class='col-sm-6'>
+				<div class='form-group'>
+					<label for='email'>Cidade:</label>
+					<p> ".$estudante->usuario->cidade->nome." </p>
+				</div>
+				<div class='form-group'>
+					<label for='email'>CEP:</label>
+					<p> ".$estudante->usuario->cep." </p>
+				</div>
+				<div class='form-group'>
+					<label for='email'>Bairro:</label>
+					<p> ".$estudante->usuario->bairro." </p>
+				</div>
+				<div class='form-group'>
+					<label for='email'>Endereço:</label>
+					<p> ".$estudante->usuario->endereco." Nº ".$estudante->usuario->numero."</p>
+				</div>
+				<div class='form-group'>
+					<label for='email'>Complemento:</label>
+					<p> ".$estudante->usuario->complemento."</p>
+				</div>
+			</div>
+		</div>
 		";
 		return $layout;
 	}

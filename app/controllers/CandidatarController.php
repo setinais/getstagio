@@ -67,13 +67,10 @@ class CandidatarController extends \HXPHP\System\Controller
 		}
 		$this->view->setAssets('js',
 			[$this->configs->baseURI."public/js/jquery.js",
-			$this->configs->baseURI.'public/js/jquery.js',
 			$this->configs->baseURI.'public/js/cadastro/candidatar.js',
-			$this->configs->baseURI.'public/js/toogle/tablesaw.js',
+			/*$this->configs->baseURI.'public/js/toogle/tablesaw.js',
 			$this->configs->baseURI.'public/js/toogle/tablesaw-init.js'
-			])->setAssets('css',[
-			$this->configs->baseURI."public/css/toogle/tablesaw.css"
-			]);
+			*/]);
 		$this->view->setVars(['vagas' => $estrutura_vagas]);
 	}
 }

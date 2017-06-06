@@ -3,7 +3,8 @@
 class contato extends \HXPHP\System\Model
 {
 	static $has_many = [
-		['conhecimentoSistema']
+		['estudantes'],
+		['instituicao']
 	];
 	static $validates_presence_of = [
 		[
@@ -18,11 +19,7 @@ class contato extends \HXPHP\System\Model
 		$callback->cadastro = null;
 		$callback->errors = [];
   			
-			$cadastrar = self::create(array(
-				'telefone'=>(isset($post['telefoneEstudante']) && $post['telefoneEstudante']!="")?preg_replace("/[^0-9]/", "", $post['telefoneEstudante']):"",
-				'celular'=>(isset($post['celularEstudante']) && $post['celularEstudante']!="")?preg_replace("/[^0-9]/", "", $post['celularEstudante']):"",
-				'site'=>(isset($post['site']) && $post['site']!="")?$post['site']:"",
-				));
+			$cadastrar = self::create($post);
 			if($cadastrar->is_valid()){
 				$callback->status = true;
 				$callback->cadastro = $cadastrar;

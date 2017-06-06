@@ -29,12 +29,14 @@ class PerfilController extends \HXPHP\System\Controller
 	public function indexAction($id_usuario = null)
 	{
 		//'https://www.receitaws.com.br/v1/cnpj/22948361000105' url API
-		if(is_null($id_usuario) || !is_numeric($id_usuario))
+		if(is_null($id_usuario) || !is_numeric($id_usuario)){
 			$this->auth->redirectCheck(true);
-		$test = Usuario::find_by_id($id_usuario);
-		if(!isset($test))
+		}
+		$test = Usuario::find($id_usuario);
+		if(!isset($test)){
 			$this->auth->redirectCheck(true);
+		}
 		$perfil = Usuario::mostrarPerfil($id_usuario);
-		$this->view->setVars(["perfil" => $perfil])->setAssets('css',[$this->configs->baseURI.'public/css/perfil/index.css'])->setAssets('js',[$this->configs->baseURI.'public/js/cadastroadicional/jqBootstrapValidation.js',$this->configs->baseURI.'public/js/cadastroadicional/contact_me.js']);
+		$this->view->setVars(["perfil" => $perfil])->setAssets('css',[$this->configs->baseURI.'public/css/perfil/index.css']);
 	}
 }

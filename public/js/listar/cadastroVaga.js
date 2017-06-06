@@ -79,7 +79,7 @@ $(document).ready(function() {
 				url: 'http://localhost/getstagio/listar/ajax/cadastrarCargo',
 				type: 'POST',
 				dataType: 'html',
-				data: "nome="+$("#id_cargo").val(),
+				data: "cargo="+$("#id_cargo").val(),
 				success: function(e){
 					if(e == "true"){
 						$("#erro_cargo").html("<p class='bg-success'>Cargo criado com sucesso.</p>");

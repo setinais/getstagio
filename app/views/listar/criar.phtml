@@ -1,11 +1,12 @@
+
 <div class="container">
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2" style="background-color: white">
 			<div class="col-md-offset-4">
 				<h3><span class="label label-info">Dados da vaga</span></h3>
-			</div>
+			</div><div id="askldmkls"></div>
 			<?php echo (isset($this->alert) ? $this->alert : ''); ?>
-			<form action="<?=BASE;?>estagio/criar/1" method="POST" id="form_cadastro_vaga" role="form">
+			<form action="<?=BASE;?>listar/criar/1" method="POST" id="form_cadastro_vaga" role="form">
 				<div class="form-group">
 					<div class="col-md-4">
 						<label class="control-label" for="username">*Cargo:</label>

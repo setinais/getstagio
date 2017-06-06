@@ -6,7 +6,8 @@
 class Instituicao extends \HXPHP\System\Model
 {
 	static $belongs_to = [
-		['usuario']
+		['usuario'],
+		['contato']
 	];
 	static $validates_presence_of = [
 			[
@@ -32,24 +33,44 @@ class Instituicao extends \HXPHP\System\Model
 		$callback->status = false;
 		$callback->user = null;
 		$callback->errors = [];
-
-		$post['ofertas'] = false;
-		$post['usuario_id'] = $id_user;
-		$cadastrar = self::create($post);
-		if($cadastrar->is_valid())
-		{
+		$contato = contato::cadastrar(array(
+			'telefone'=>(isset($post['telefone']) && $post['telefone']!="")?preg_replace("/[^0-9]/", "", $post['telefone']):"",
+			'celular'=>(isset($post['celular']) && $post['celular']!="")?preg_replace("/[^0-9]/", "", $post['celular']):"",
+			'site'=>(isset($post['site']) && $post['site']!="")?$post['site']:"",
+			'email'=>(isset($post['email']) && $post['email']!="")?$post['email']:""
+			));
+		$cadastrar = self::create(array(
+			'razao_social'=>$post['razao_social'],
+			'cnpj'=>$post['cnpj'],
+			'ofertas' => false,
+			'usuario_id' => $id_user,
+			'instituicaoscol' => $post['areaAtuacao'],
+			'contato_id'=>$contato->cadastro->id,
+			));
+		if($cadastrar->is_valid() && $contato->status){
 			$callback->status = true;
 			$callback->user = $cadastrar;
-
 			$usuario = Usuario::find($id_user);
-			$usuario->funcoe_id = 2;
-			$usuario->save();
-		}
-		else
-		{
+				$usuario->funcoe_id = 2;
+				$usuario->cidade_id = $post['cidade_id2'];
+				$usuario->endereco = $post['logradouro'];
+				$usuario->cep = preg_replace("/[^0-9]/", "", $post['cep']);
+				$usuario->numero = $post['numero'];
+				$usuario->complemento = $post['complemento'];
+				$usuario->bairro = $post['bairro'];
+				$usuario->save();
+		}else{
 			$errors = $cadastrar->errors->get_raw_errors();
 			foreach ($errors as $campo => $messagem) {
 				array_push($callback->errors, $messagem[0]);
+			}
+			if(!$contato->status){
+				$errors = $contato->errors->get_raw_errors();
+				foreach ($errors as $campo => $messagem) {
+					array_push($callback->errors, $messagem[0]);
+				}
+			}else{
+				$contato->delete();
 			}
 		}
 

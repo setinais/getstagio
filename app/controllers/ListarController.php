@@ -31,12 +31,11 @@ class ListarController extends \HXPHP\System\Controller
 		//$this->view->setAssets('js',[$this->configs->baseURI."public/js/jquery.js"]);
 		$this->view->setAssets('js',
 			[$this->configs->baseURI."public/js/jquery.js",
-			$this->configs->baseURI.'public/js/cadastro/candidatar2.js',
+			/*$this->configs->baseURI.'public/js/cadastro/candidatar2.js',
 			$this->configs->baseURI.'public/js/Listar/list.js',
 			$this->configs->baseURI.'public/js/toogle/tablesaw.js',
 			$this->configs->baseURI.'public/js/toogle/tablesaw-init.js',
-			])->setAssets('css',
-			[$this->configs->baseURI."public/css/toogle/tablesaw.css"]);
+			*/]);
 		if($this->auth->getUserRole() == 'Estudante'){
 			$vagas = Cadastro::lists($this->auth->getUserId());
 			$estrutura_vagas = null;
@@ -271,9 +270,8 @@ class ListarController extends \HXPHP\System\Controller
 		}else if($type == "cadastrarCargo"){
 			$cargo = $this->request->post();
 			$cad_cargo = Cargo::cadastrar($cargo);
-						
 			if($cad_cargo->status === true){
-				CargoHasInstituicao::cadastrar(Instituicao::find_by_usuario_id($this->auth->getUserId())->id,$cad_cargo->user->id);
+				CargoHasInstituicao::cadastrar(Instituicao::find_by_usuario_id($this->auth->getUserId())->id,$cad_cargo->cadastro->id);
 				echo "true";
 				$post = null;
 			}else{
