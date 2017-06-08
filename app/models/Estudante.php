@@ -8,7 +8,7 @@ class Estudante extends \HXPHP\System\Model
 {
 	static $belongs_to = [
 	['usuario'],
-	['cargo'],
+	['stcargo'],
 	['contato']
 	];
 	static $has_many = [
