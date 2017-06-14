@@ -64,7 +64,7 @@ class Estudante extends \HXPHP\System\Model
 				'deficiencia'=>$post['def'],
 				'especificacao_deficiencia'=>($post['def']=="nao")?"":$post['espDeficiencia'],
 				'usuario_id'=>$post['usuario_id'],
-				'cargo_id'=>$insert['cargo']->cadastro->id,
+				'stcargo_id'=>$insert['cargo']->cadastro->id,
 				'contato_id'=>$insert['contato']->cadastro->id
 				));		
 			if($cadastrar->is_valid()){

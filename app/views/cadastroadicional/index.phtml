@@ -67,6 +67,9 @@
 	#checkboxes2 label:hover {
 		background-color: #1e90ff;
 	}
+	.form-control-feedback{
+		margin-right: 15px;
+	}
 </style>
 <div class="col-xs-offset-1 col-xs-10 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
 	<?php echo (isset($this->alert) ? $this->alert : ''); ?>
@@ -90,166 +93,179 @@
 		<div class="panel panel-primary ">
 			<div class="panel-heading text-center">Dados complementares para Estudante</div>
 			<div class="panel-body no-gutter">
-				<form action="<?=BASE?>CadastroAdicional/index/1" method="POST">
-
-					<div class="control-group form-group col-md-12"> 	
+				<form id="form1" action="<?=BASE?>CadastroAdicional/index/1" method="POST">
+					<div id="inicio">
+						<div class="control-group form-group col-md-12">    
 							<label for="nomeEstudante">*Nome completo:</label>
 							<input type="text=" class="form-control" name="nome" id="idname" value="" placeholder="Nome completo" required>
-					</div>
-					<div class="form-group col-md-12">
-						<label for="nomeEstudante">*CPF:</label>
-						<input type="text" class="form-control" name="cpf" id="id_cpf" value="" placeholder="999.999.999-99" required>
-	
-					</div>
-					<div class="form-group col-md-4">
-						<label for="dataNascimento">*Data de Nascimento:</label>
-						<input type="date" class="form-control" id="dataNascimento" name="dataNascimento" required>
-					</div>
+						</div>
+						<div class="form-group col-md-12">
+							<label for="nomeEstudante">*CPF:</label>
+							<input type="text" class="form-control" name="cpf" id="id_cpf" value="" placeholder="999.999.999-99" required>
 
-					<div class="form-group col-md-8">
-						<label for="" class="col-md-offset-1 pull-left">*Sexo:</label>
-						<div class="col-md-5 funkyradio">
-							<div class="funkyradio-primary col-md-12 ">
-								<input type="radio" name="sexo" id="sexf" value="Feminino" />
-								<label for="sexf">Feminino</label>
-							</div>
 						</div>
-						<div class="col-md-5 funkyradio">
-							<div class="funkyradio-primary col-md-12 ">
-								<input type="radio" name="sexo" id="sexm" value="Masculino" />
-								<label for="sexm">Masculino</label>
-							</div>
+						<div class="form-group col-md-4">
+							<label for="dataNascimento">*Data de Nascimento:</label>
+							<input type="date" class="form-control" id="dataNascimento" name="dataNascimento" required>
 						</div>
-					</div>
-					<div>
-						<label for="" class="pull-left col-md-12" style="">*Possui alguma deficiência?</label>
-						<div class="form-group col-md-5">
-							<div class="col-md-6 funkyradio ">
+
+						<div class="form-group col-md-8">
+							<label for="" class="col-md-offset-1 pull-left">*Sexo:</label>
+							<div class="col-md-5 funkyradio">
 								<div class="funkyradio-primary col-md-12 ">
-									<input type="radio" name="def" value="sim" id="defs" />
-									<label for="defs">Sim</label>
+									<input type="radio" name="sexo" id="sexf" value="Feminino" required="" />
+									<label for="sexf">Feminino</label>
 								</div>
 							</div>
-							<div class="col-md-6 funkyradio ">
+							<div class="col-md-5 funkyradio">
 								<div class="funkyradio-primary col-md-12 ">
-									<input type="radio" name="def" value="nao" id="defn" />
-									<label for="defn">Não</label>
+									<input type="radio" name="sexo" id="sexm" value="Masculino" />
+									<label for="sexm">Masculino</label>
 								</div>
 							</div>
 						</div>
+						<div>
+							<label for="" class="pull-left col-md-12" style="">*Possui alguma deficiência?</label>
+							<div class="form-group col-md-5">
+								<div class="col-md-6 funkyradio ">
+									<div class="funkyradio-primary col-md-12 ">
+										<input type="radio" name="def" value="sim" id="defs" required="" />
+										<label for="defs">Sim</label>
+									</div>
+								</div>
+								<div class="col-md-6 funkyradio ">
+									<div class="funkyradio-primary col-md-12 ">
+										<input type="radio" name="def" value="nao" id="defn" />
+										<label for="defn">Não</label>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-7">
+							<label for="deficiencia"><br></label>
+							<input type="text" class="form-control" name="espDeficiencia" id="deficiencia" value="" placeholder="Se sim, descreva qual">
+						</div>
+						<button id="1" type="button" class="btn btn-success col-md-12">Proximo</button>
 					</div>
-
-					<div class="col-md-7">
-						<label for="deficiencia"><br></label>
-						<input type="text" class="form-control" name="espDeficiencia" id="deficiencia" value="" placeholder="Se sim, descreva qual">
-					</div>
-
-
-					<h4 class="col-md-12 text-center">
-						<hr> Contato
-						<hr>
-					</h4>
-
-					<div class="col-md-6">
-						<label for="telefoneEstudante">*Telefone:</label>
-						<input type="" class="form-control id_telefone" id="telefoneEstudante" name="telefoneEstudante" placeholder="(99) 9999-9999" required>
-					</div>
-					<div class="col-md-6">
-						<label for="celularEstudante">*Celular:</label>
-						<input type="" class="form-control id_telefone" id="celularEstudante" name="celularEstudante" placeholder="(99)9 9999-9999" required>
-					</div>
-
-					<h4 class="col-md-12 text-center">
-						<hr> Endereço
-						<hr>
-					</h4>
-					
-					<div class="col-md-4 mt3">
-						<label>*Estado:</label>
-						<select class="form-control" required="" id="estado_id">
-							<option value="" disabled="" selected="">Selecione</option>
-							<?php   foreach(Estado::all() as $es){ ?>
-								<option value="<?=$es->id;?>"><?=$es->sigla;?></option>
-								<?php } ?>
-							</select>
-						</div>
-						<div class="col-md-4 mt3">
-							<label for="id_cidade">*Cidade:</label>
-							<select id="cidade_id" name="cidade_id" required="" class="form-control"></select>
-						</div>
-
-						<div class="col-md-4 mt3">
-							<label for="cepEstudante">*CEP:</label>
-							<input type="" class="form-control cep" name="cep" id="cepEstudante" placeholder="99999-999" required>
-						</div>
-						<div class="col-md-4 mt3">
-							<label for="bairroEstudante">*Bairro:</label>
-							<input type="text" name="bairro" class="form-control" id="bairroEstudante" placeholder="Bairro" required>
-						</div>
-						<div class="col-md-8 mt3">
-							<label for="logradouroEstudante">*Logradouro:</label>
-							<input type="text" class="form-control" name="logradouroEstudante" id="logradouroEstudante" placeholder="Rua ou Avenida" required>
-						</div>
-
-						<div class="col-md-3 mt3">
-							<label for="numeroEstudante">*Número:</label>
-							<input type="text" class="form-control" id="numeroEstudante" name="numeroEstudante" placeholder="Número" required>
-						</div>
-						<div class="col-md-9 mt3">
-							<label for="complemetoEstudante">Complemento:</label>
-							<input type="text" class="form-control" id="complementoEstudante" name="complementoEstudante" placeholder="Complemento de endereço" required>
-						</div>
-
-
+					<div id="contato" style="display: none;">
 						<h4 class="col-md-12 text-center">
-							<hr> Formação
+							<hr> Contato
 							<hr>
 						</h4>
-						<div>
+
+						<div class="col-md-6">
+							<label for="telefoneEstudante">*Telefone:</label>
+							<input type="" class="form-control id_telefone" id="telefoneEstudante" name="telefoneEstudante" placeholder="(99) 9999-9999" required>
+						</div>
+						<div class="col-md-6">
+							<label for="celularEstudante">*Celular:</label>
+							<input type="" class="form-control id_telefone" id="celularEstudante" name="celularEstudante" placeholder="(99)9 9999-9999" required>
+						</div>
+
+						<h4 class="col-md-12 text-center">
+							<hr> Endereço
+							<hr>
+						</h4>
+
+						<div class="col-md-4 mt3">
+							<label>*Estado:</label>
+							<select class="form-control" required="" id="estado_id">
+								<option value="" disabled="" selected="">Selecione</option>
+								<?php   foreach(Estado::all() as $es){ ?>
+									<option value="<?=$es->id;?>"><?=$es->sigla;?></option>
+									<?php } ?>
+								</select>
+							</div>
+							<div class="col-md-4 mt3">
+								<label for="id_cidade">*Cidade:</label>
+								<select id="cidade_id" name="cidade_id" required="" class="form-control"></select>
+							</div>
+
+							<div class="col-md-4 mt3">
+								<label for="cepEstudante">*CEP:</label>
+								<input type="" class="form-control cep" name="cep" id="cepEstudante" placeholder="99999-999" required>
+							</div>
+							<div class="col-md-4 mt3">
+								<label for="bairroEstudante">*Bairro:</label>
+								<input type="text" name="bairro" class="form-control" id="bairroEstudante" placeholder="Bairro" required>
+							</div>
+							<div class="col-md-8 mt3">
+								<label for="logradouroEstudante">*Logradouro:</label>
+								<input type="text" class="form-control" name="logradouroEstudante" id="logradouroEstudante" placeholder="Rua ou Avenida" required>
+							</div>
+
+							<div class="col-md-3 mt3">
+								<label for="numeroEstudante">*Número:</label>
+								<input type="text" class="form-control" id="numeroEstudante" name="numeroEstudante" placeholder="Número" required>
+							</div>
+							<div class="col-md-9 mt3">
+								<label for="complemetoEstudante">Complemento:</label>
+								<input type="text" class="form-control" id="complementoEstudante" name="complementoEstudante" placeholder="Complemento de endereço" required>
+							</div>
+
+							<button id="11" type="button" class="btn btn-warning col-md-6">Voltar</button>
+
+							<button id="2" type="button" class="btn btn-success col-md-6">Proximo</button>
+						</div>
+						<div id="formacao" style="display: none;">
+
+							<h4 class="col-md-12 text-center">
+								<hr> Formação
+								<hr>
+							</h4>
+							<div class="funkyradio">
+								<div class="funkyradio-primary col-md-3">
+									<input type="checkbox" name="ensinoMedio" id="forma1" />
+									<label for="forma1">Ensino medio</label>
+								</div>
+							</div>
 							<!-- ENSINO MEDIO -->
-							<div class="form-group col-md-12">
-								<label for="instEM">*Instituição de ensino:</label>
-								<input type="text" class="form-control" name="instEM" id="instEM" value="" placeholder="Nome da instituição de ensino" required>
-							</div>
-							<div class="col-md-3 mt2">
-								<label for="sitEM">*Situação do curso:</label>
-								<select name="sitEM" id="sitEM" class="form-control">
-									<option disabled="" selected="">Selecione</option>
-									<option>Incompleto</option>
-									<option>Cursando</option>
-									<option>Completo</option>
-								</select>
-							</div>
-							<div class="col-md-2 mt2">
-								<label for="serieEM">Série:</label>
-								<input type="number" name="serieEM" id="serieEM" class="form-control" >
-							</div>
-							<div class="col-md-3 mt2">
-								<label for="iniEM">*Ano de início:</label>
-								<select  name="iniEM" class="form-control" id="iniEM">
-									<option value="selecione" selected="" disabled="disabled">Selecione</option>
-									<?php for($i=date("Y");$i>=1960;$i--){ ?>
-									<option value="<?=$i?>"><?=$i?></option>
-									<?php } ?>
-								</select>
-							</div>
-							<div class="col-md-3 mt2">
-								<label for="fimEM">Ano de término:</label>
-								<select  name="fimEM" class="form-control" id="fimEM">
-									<option selected="" disabled="">Selecione</option>
-									<?php for($i=date("Y");$i>=1980;$i--){ ?>
-									<option value="<?=$i?>"><?=$i?></option>
-									<?php } ?>
-								</select>
+							<div id="cursoMedio" style="display: none;">
+								<div class="form-group col-md-12">
+									<label for="instEM">*Instituição de ensino:</label>
+									<input type="text" class="form-control" disabled="disabled" name="instEM" id="instEM" value="" placeholder="Nome da instituição de ensino" required>
+								</div>
+								<div class="col-md-3 mt2">
+									<label for="sitEM">*Situação do curso:</label>
+									<select name="sitEM" id="sitEM" disabled="disabled" class="form-control">
+										<option disabled="" selected="">Selecione</option>
+										<option>Incompleto</option>
+										<option>Cursando</option>
+										<option>Completo</option>
+									</select>
+								</div>
+								<div class="col-md-2 mt2">
+									<label for="serieEM">Série:</label>
+									<input type="number" min="0" name="serieEM" id="serieEM" disabled="disabled" class="form-control" required="">
+								</div>
+								<div class="col-md-3 mt2">
+									<label for="iniEM">*Ano de início:</label>
+									<select  name="iniEM" class="form-control" disabled="disabled" id="iniEM" required="">
+										<option value="selecione" selected="" disabled="disabled">Selecione</option>
+										<?php for($i=date("Y");$i>=1960;$i--){ ?>
+										<option value="<?=$i?>"><?=$i?></option>
+										<?php } ?>
+									</select>
+								</div>
+								<div class="col-md-3 mt2">
+									<label for="fimEM">Ano de término:</label>
+									<select  name="fimEM" class="form-control" id="fimEM" required="">
+										<option selected="" disabled="">Selecione</option>
+										<?php for($i=date("Y");$i>=1980;$i--){ ?>
+										<option value="<?=$i?>"><?=$i?></option>
+										<?php } ?>
+									</select>
+								</div>
 							</div>
 							<!-- CURSO TÉCNICO -->
-							<div id="cursoTec">
 								<div class="funkyradio">
 									<div class="funkyradio-primary col-md-3">
 										<input type="checkbox" name="ensinoTec" id="forma2" />
 										<label for="forma2">Curso Técnico</label>
 									</div>
 								</div>
+							<div id="cursoTec" style="display: none;">
 								<div class="form-group col-md-12">
 									<label for="instCT">Instituição de ensino:</label>
 									<input type="text" disabled="disabled" class="form-control" id="instCT" value="" placeholder="Nome da instituição de ensino" name="instituicaoTec" required>
@@ -274,11 +290,11 @@
 								</div>
 								<div class="col-md-2 mt2">
 									<label for="serieCT">Série/Módulo:</label>
-									<input type="number" name="serieTec" disabled="disabled" id="serieCT" class="form-control" >
+									<input type="number" min="0" name="serieTec" disabled="disabled" id="serieCT" class="form-control" required="">
 								</div>
 								<div class="col-md-3 mt2">
 									<label for="iniCT">Ano de início:</label>
-									<select name="anoTecInicio" disabled="disabled" id="iniCT" class="form-control">
+									<select name="anoTecInicio" disabled="disabled" id="iniCT" class="form-control" required="">
 										<option value="" selected="" disabled="">Selecione</option>
 										<?php for($i=date("Y");$i>=1980;$i--){ ?>
 										<option value="<?=$i?>"><?=$i?></option>
@@ -287,7 +303,7 @@
 								</div>
 								<div class="col-md-3 mt2">
 									<label for="fimCT">Ano de término:</label>
-									<select name="anoTecTermino" disabled="disabled" id="fimCT" class="form-control">
+									<select name="anoTecTermino" disabled="disabled" id="fimCT" class="form-control" required="">
 										<option selected="" disabled="">Selecione</option>
 										<?php for($i=date("Y");$i>=1980;$i--){ ?>
 										<option value="<?=$i?>"><?=$i?></option>
@@ -296,13 +312,13 @@
 								</div>
 							</div>
 							<!-- ENSINO SUPERIOR -->
-							<div id="cursoSup">
 								<div class="funkyradio">
 									<div class="funkyradio-primary col-md-3">
 										<input type="checkbox" name="ensinoSup" id="forma3" />
 										<label for="forma3">Ensino Superior</label>
 									</div>
 								</div>
+							<div id="cursoSup" style="display: none;">
 								<div class="form-group col-md-12">
 									<label for="instSP">Instituição de ensino:</label>
 									<input type="text" disabled="disabled" class="form-control" name="instituicaoSup" id="instSP" value="" placeholder="Nome da instituição de ensino" required>
@@ -327,11 +343,11 @@
 								</div>
 								<div class="col-md-2 mt2">
 									<label for="serieSP">Período:</label>
-									<input type="number" name="periodoSup" disabled="disabled" id="serieSP" class="form-control" >
+									<input type="number" min="0" name="periodoSup" disabled="disabled" id="serieSP" class="form-control" required="">
 								</div>
 								<div class="col-md-3 mt2">
 									<label for="iniSP">Ano de início:</label>
-									<select name="anoSupInicio" disabled="disabled" id="iniSP" class="form-control">
+									<select name="anoSupInicio" disabled="disabled" id="iniSP" class="form-control" required="">
 										<option value="" selected="" disabled="">Selecione</option>
 										<?php for($i=date("Y");$i>=1980;$i--){ ?>
 										<option value="<?=$i?>"><?=$i?></option>
@@ -340,7 +356,7 @@
 								</div>
 								<div class="col-md-3 mt2">
 									<label for="fimSP">Ano de término:</label>
-									<select name="anoSupTermino" disabled="disabled" id="fimSP" class="form-control">
+									<select name="anoSupTermino" disabled="disabled" id="fimSP" class="form-control" required="">
 										<option selected="" disabled="">Selecione</option>
 										<?php for($i=date("Y");$i>=1980;$i--){ ?>
 										<option value="<?=$i?>"><?=$i?></option>
@@ -348,12 +364,26 @@
 									</select>
 								</div>
 							</div>
+							<div class="col-md-12">
+							<button id="12" type="button" class="btn btn-warning col-md-6">Voltar</button>
+
+							<button id="3" type="button" class="btn btn-success col-md-6">Proximo</button>
+							</div>
+						</div>
+						<div id="idioma" style="display: none;">
 							<h4 class="col-md-12 text-center">
 								<hr>Idiomas
 								<hr>
 							</h4>
 
-							<div class="col-md-12 form-group">
+							<!-- INGLES -->
+							<div class="funkyradio">
+								<div class="funkyradio-primary col-md-3">
+									<input type="checkbox" name="chIngles" id="clickIngles" />
+									<label for="clickIngles">Inglês</label>
+								</div>
+							</div>
+							<div id="idIngles" class="col-md-12 form-group" style="display: none;">
 								<label for="">*Inglês:</label><br>
 								<div class="col-md-offset-1 col-md-3">
 									<label for="nivelIngles">*Lê:</label>
@@ -383,12 +413,22 @@
 									</select>
 								</div>
 							</div>
-							<div class="col-md-12 form-group">
+
+							<!-- INGLES -->
+
+							<!-- ESPANHOL -->
+							<div class="funkyradio">
+								<div class="funkyradio-primary col-md-3">
+									<input type="checkbox" name="chEspanhol" id="clickEspanhol" />
+									<label for="clickEspanhol">Espanhol</label>
+								</div>
+							</div>
+							<div class="col-md-12 form-group" id="idEspanhol" style="display: none;">
 								<label for="">Espanhol:</label><br>
 								<div class="col-md-offset-1 col-md-3">
 									<label for="nivelIngles">Lê:</label>
-									<select name="espanholLe" id="nivelIngles" class="form-control ">
-										<option selected="">Selecione</option>
+									<select required="" name="espanholLe" id="nivelIngles" class="form-control ">
+										<option disabled="" selected="">Selecione</option>
 										<option>Pouco</option>
 										<option>Bem</option>
 										<option>Fluente</option>
@@ -396,8 +436,8 @@
 								</div>
 								<div class="col-md-3">
 									<label for="nivelIngles">Escreve:</label>
-									<select name="espanholEscreve" id="nivelIngles" class="form-control ">
-										<option selected="">Selecione</option>
+									<select required="" name="espanholEscreve" id="nivelIngles" class="form-control ">
+										<option disabled="" selected="">Selecione</option>
 										<option>Pouco</option>
 										<option>Bem</option>
 										<option>Fluente</option>
@@ -405,23 +445,35 @@
 								</div>
 								<div class="col-md-3">
 									<label for="nivelIngles">Fala:</label>
-									<select name="espanholFala" id="nivelIngles" class="form-control ">
-										<option selected="">Selecione</option>
+									<select required="" name="espanholFala" id="nivelIngles" class="form-control ">
+										<option disabled="" selected="">Selecione</option>
 										<option>Pouco</option>
 										<option>Bem</option>
 										<option>Fluente</option>
 									</select>
 								</div>
 							</div>
-							<div class="form-group">
+
+							<!-- Espanhol -->
+							
+							<!-- Outro Edioma -->
+							
+
+							<div class="funkyradio">
+								<div class="funkyradio-primary col-md-3">
+									<input type="checkbox" name="chOutro" id="clickOutro" />
+									<label for="clickOutro">Outro edioma</label>
+								</div>
+							</div>
+							<div class="col-md-12 form-group" id="idOutro" style="display: none;">
 								<div class="col-md-3 mt2">
 									<input type="text" name="idioma" class="form-control" placeholder="Outro idioma">
 								</div>
 								<div class="col-md-12">
 									<div class="col-md-offset-1 col-md-3">
 										<label for="idiomaLe">Lê:</label>
-										<select name="idiomaLe" id="idiomaLe" class="form-control">
-											<option selected="">Selecione</option>
+										<select required="" name="idiomaLe" id="idiomaLe" class="form-control">
+											<option disabled="" selected="">Selecione</option>
 											<option>Pouco</option>
 											<option>Bem</option>
 											<option>Fluente</option>
@@ -429,8 +481,8 @@
 									</div>
 									<div class="col-md-3">
 										<label for="idiomaEscreve">Escreve:</label>
-										<select name="idiomaEscreve" id="idiomaEscreve" class="form-control">
-											<option selected="">Selecione</option>
+										<select required="" name="idiomaEscreve" id="idiomaEscreve" class="form-control">
+											<option disabled="" selected="">Selecione</option>
 											<option>Pouco</option>
 											<option>Bem</option>
 											<option>Fluente</option>
@@ -438,8 +490,8 @@
 									</div>
 									<div class="col-md-3">
 										<label for="idiomaFala">Fala:</label>
-										<select name="idiomaFala" id="idiomaFala" class="form-control">
-											<option selected="">Selecione</option>
+										<select required="" name="idiomaFala" id="idiomaFala" class="form-control">
+											<option disabled="" selected="">Selecione</option>
 											<option>Pouco</option>
 											<option>Bem</option>
 											<option>Fluente</option>
@@ -465,7 +517,11 @@
 								<label for="cargaHComplementar">Carga horária:</label>
 								<input type="number" name="cargaHInstituicao" class="form-control" id="cargaHComplementar" placeholder="">
 							</div>
+							<button id="13" type="button" class="btn btn-warning col-md-6">Voltar</button>
 
+							<button id="4" type="button" class="btn btn-success col-md-6">Proximo</button>
+						</div>
+						<div id="informatica" style="display: none;">
 							<h4 class="col-md-12 text-center">
 								<hr> Conhecimentos de Informática
 								<hr>
@@ -481,163 +537,164 @@
 									</div>
 									<div id="checkboxes">
 										<?php foreach(Escritorio::all() as $val){?>
-										<label for="<?=$val->id*15?>">
-											<input type="checkbox" id="<?=$val->id*15?>" name="escritorio<?=$val->id*15?>" value="<?=$val->nome?>" /><?=$val->nome?>
-										</label>
-										<?php } ?>
+											<label for="<?=$val->id*15?>">
+												<input type="checkbox" id="<?=$val->id*15?>" name="escritorio<?=$val->id*15?>" value="<?=$val->nome?>" /><?=$val->nome?>
+											</label>
+											<?php } ?>
+										</div>
 									</div>
-								</div>
 
-							</div>
-							<div class="col-md-4 mt2">
-								<label for="conhecimentosEscritorio">*Sistemas operacionais:</label>
-								<div class="multiselect">
-									<div class="selectBox" id="selectBox2" onclick="showCheckboxes2()">
-										<select class="form-control">
-											<option disabled="" selected="" id="seleSistema">Selecione</option>
+								</div>
+								<div class="col-md-4 mt2">
+									<label for="conhecimentosEscritorio">*Sistemas operacionais:</label>
+									<div class="multiselect">
+										<div class="selectBox" id="selectBox2" onclick="showCheckboxes2()">
+											<select class="form-control">
+												<option disabled="" selected="" id="seleSistema">Selecione</option>
+											</select>
+											<div class="overSelect"></div>
+										</div>
+										<div id="checkboxes2">
+											<?php foreach(Sistema::all() as $val){?>
+												<label for="<?=$val->id*152?>">
+													<input type="checkbox" id="<?=$val->id*152?>" name="sistema<?=$val->id*152?>" value="<?=$val->nome?>" /><?=$val->nome?>
+												</label>
+												<?php } ?>
+											</div>
+										</div>
+
+									</div>
+
+									<h4 class="col-md-12 text-center">
+										<hr> Informações complementares
+										<hr>
+									</h4>
+									<div class="col-md-4 mt2">
+										<label for="turno">*Disponibilidade de jornada:</label>
+										<select name="disponibilidadeTurno" id="turno" class="form-control">
+											<option disabled="" selected="">Selecione</option>
+											<option>Matutino</option>
+											<option>Vespertino</option>
+											<option>Noturno</option>
+											<option>Integral</option>
 										</select>
-										<div class="overSelect"></div>
 									</div>
-									<div id="checkboxes2">
-										<?php foreach(Sistema::all() as $val){?>
-										<label for="<?=$val->id*152?>">
-											<input type="checkbox" id="<?=$val->id*152?>" name="sistema<?=$val->id*152?>" value="<?=$val->nome?>" /><?=$val->nome?>
-										</label>
-										<?php } ?>
+									<div class="form-group col-md-4 mt2">
+										<label for="cargaH">*Carga horária diária (Horas):</label>
+										<select name="cargaHDiaria" class="form-control" id="cargaH">
+											<?php for($i=1;$i<=8;$i++){ ?>
+											<option value="<?=$i?>"><?=$i?> Hora(s)</option>
+											<?php } ?>
+										</select>
+									</div>
+
+									<div class="form-group col-md-12">
+										<label for="">*Área de interesse:</label>
+										<input type="text" name="areaDeInteresse" class="form-control" value="" placeholder="Area de interesse" required>
+									</div>
+									<div class="form-group col-md-12">
+										<label for="">*Cargo ou palavra chave:</label>
+										<input type="text" name="cargo" class="form-control" value="" placeholder="Cargo ou palavra chave" required>
+									</div>
+
+									<div class="form-group col-md-12">
+										<label for="objetivos">Descrição e objetivos:</label>
+										<textarea name="descricaoEobjetivo" class="form-control" id="objetivos" value="" placeholder="Descrição e objetivos" required></textarea>
+									</div>
+									<div class="form-group btnbtn2">
+										<button type="submit" class="btn btn-primary col-xs-12 col-sm-12 col-md-12">Cadastrar</button>
 									</div>
 								</div>
+							</form>
 
-							</div>
-
-							<h4 class="col-md-12 text-center">
-								<hr> Informações complementares
-								<hr>
-							</h4>
-							<div class="col-md-4 mt2">
-								<label for="turno">*Disponibilidade de jornada:</label>
-								<select name="disponibilidadeTurno" id="turno" class="form-control">
-									<option disabled="" selected="">Selecione</option>
-									<option>Matutino</option>
-									<option>Vespertino</option>
-									<option>Noturno</option>
-									<option>Integral</option>
-								</select>
-							</div>
-							<div class="form-group col-md-4 mt2">
-								<label for="cargaH">*Carga horária diária (Horas):</label>
-								<select name="cargaHDiaria" class="form-control" id="cargaH">
-									<?php for($i=1;$i<=8;$i++){ ?>
-									<option value="<?=$i?>"><?=$i?> Hora(s)</option>
-									<?php } ?>
-								</select>
-							</div>
-
-							<div class="form-group col-md-12">
-								<label for="">*Área de interesse:</label>
-								<input type="text" name="areaDeInteresse" class="form-control" value="" placeholder="Area de interesse" required>
-							</div>
-							<div class="form-group col-md-12">
-								<label for="">*Cargo ou palavra chave:</label>
-								<input type="text" name="cargo" class="form-control" value="" placeholder="Cargo ou palavra chave" required>
-							</div>
-
-							<div class="form-group col-md-12">
-								<label for="objetivos">Descrição e objetivos:</label>
-								<textarea name="descricaoEobjetivo" class="form-control" id="objetivos" value="" placeholder="Descrição e objetivos" required></textarea>
-							</div>
-							<div class="form-group btnbtn2">
-								<button type="submit" class="btn btn-primary col-xs-12 col-sm-12 col-md-12">Cadastrar</button>
-							</div>
-						</form>
-
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
-<!-- CADASTRO PERFIL DE OFERTANTE -->
-<div id="instituicao" class="" style="display: none;">
-    <div class="row col-xs-offset-1 col-xs-10 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
-        <div class="panel panel-primary">
-            <div class="panel-heading text-center">Dados complementares para Ofertante</div>
-            <div class="panel-body no-gutter">
-                <form action="<?=BASE?>cadastroadicional/index/2" id="formInstituicao" method="POST">
-                    <h4 class="col-md-12 text-center">
-                        <hr> Dados da Empresa
-                        <hr>
-                    </h4>
-                    <div class="form-group col-md-12">
-                        <label>*Razão Social / Fantasia:</label>
-                        <input type="text" class="form-control" name="razao_social" placeholder="Nome da empresa ou Instituição">
-                    </div>
-                    <div class="form-group col-md-12">
-                        <label>*CNPJ:</label>
-                        <input type="text" name="cnpj" id="id_cnpj" class="form-control" placeholder="99.999.999/999-99" data-mask="#.##0" />
-                        <span class="label label-danger col-md-12" id="erroCNPJ" style="display: none;">CNPJ invalido !</span>
-                    </div>
-                    <div class="form-group col-md-12">
-                        <label>*Área de atuação:</label>
-                        <input type="text" class="form-control" name="areaAtuacao" placeholder="Área de atuação ou Ramo de atividade">
-                    </div>  
-                    <h4 class="col-md-12 text-center">
-                        <hr> Endereço
-                        <hr>
-                    </h4>
-                    <div class="form-group col-md-3">
-                        <label>*Estado:</label>
-						<select class="form-control" required="" id="estado_id2">
-							<option value="" disabled="" selected="">Selecione</option>
-							<?php   foreach(Estado::all() as $es){ ?>
-								<option value="<?=$es->id;?>"><?=$es->sigla;?></option>
-								<?php } ?>
-							</select>
-                    </div>
-                    <div class="form-group col-md-6">
-                       	<label for="id_cidade2">*Cidade:</label>
-						<select id="cidade_id2" name="cidade_id2" required="" class="form-control"></select>
-                    </div>   
-                    <div class="form-group col-md-3">
-                        <label>*CEP:</label>
-                        <input type="text" class="form-control cep" name="cep" placeholder="99999-999">
-                    </div>  
-                    <div class="form-group col-md-3">
-                        <label>*Bairro:</label>
-                        <input type="text" class="form-control" name="bairro" placeholder="Bairro">
-                    </div>
-                    <div class="form-group col-md-9">
-                        <label>*Logradouro:</label>
-                        <input type="text" class="form-control" name="logradouro" placeholder="Rua ou Avenida">
-                    </div>    
-                    <div class="form-group col-md-3">
-                        <label>*Número:</label>
-                        <input type="text" class="form-control" name="numero" placeholder="Número">
-                    </div> 
-                    <div class="form-group col-xs-12 col-md-12">
-                        <label>Complemento</label>
-                        <input type="text" class="form-control" name="complemento" placeholder="Complemento de endereço">
-                    </div> 
-                    <h4 class="col-md-12 text-center">
-                        <hr> Contato
-                        <hr>
-                    </h4>
-                    <div class="form-group col-xs-12 col-md-6">
-                        <label>*E-mail:</label>
-                        <input type="email" class="form-control" name="email" placeholder="email@exemplo.com">
-                    </div>
-                    <div class="form-group col-xs-12 col-md-6">
-                        <label>*Telefone:</label>
-                        <input type="text" class="form-control id_telefone" name="telefone" placeholder="(99) 9999-9999">
-                    </div>
-                    <div class="form-group col-xs-12 col-md-12">
-                        <label>Site Web:</label>
-                        <input type="text" class="form-control" name="site" placeholder="www.exemplo.com.br">
-                    </div>
-                    <div class="form-group btnbtn2">
-                        <button type="submit" class="btn btn-primary col-xs-12 col-sm-12 col-md-12">Cadastrar</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
+	<!-- CADASTRO PERFIL DE OFERTANTE -->
+	<div id="instituicao" class="" style="display: none;">
+		<div class="row col-xs-offset-1 col-xs-10 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
+			<div class="panel panel-primary">
+				<div class="panel-heading text-center">Dados complementares para Ofertante</div>
+				<div class="panel-body no-gutter">
+					<form action="<?=BASE?>cadastroadicional/index/2" id="formInstituicao" method="POST">
+						<h4 class="col-md-12 text-center">
+							<hr> Dados da Empresa
+							<hr>
+						</h4>
+						<div class="form-group col-md-12">
+							<label>*Razão Social / Fantasia:</label>
+							<input type="text" class="form-control" name="razao_social" placeholder="Nome da empresa ou Instituição">
+						</div>
+						<div class="form-group col-md-12">
+							<label>*CNPJ:</label>
+							<input type="text" name="cnpj" id="id_cnpj" class="form-control" placeholder="99.999.999/999-99" data-mask="#.##0" />
+							<span class="label label-danger col-md-12" id="erroCNPJ" style="display: none;">CNPJ invalido !</span>
+						</div>
+						<div class="form-group col-md-12">
+							<label>*Área de atuação:</label>
+							<input type="text" class="form-control" name="areaAtuacao" placeholder="Área de atuação ou Ramo de atividade">
+						</div>  
+						<h4 class="col-md-12 text-center">
+							<hr> Endereço
+							<hr>
+						</h4>
+						<div class="form-group col-md-3">
+							<label>*Estado:</label>
+							<select class="form-control" required="" id="estado_id2">
+								<option value="" disabled="" selected="">Selecione</option>
+								<?php   foreach(Estado::all() as $es){ ?>
+									<option value="<?=$es->id;?>"><?=$es->sigla;?></option>
+									<?php } ?>
+								</select>
+							</div>
+							<div class="form-group col-md-6">
+								<label for="id_cidade2">*Cidade:</label>
+								<select id="cidade_id2" name="cidade_id2" required="" class="form-control"></select>
+							</div>   
+							<div class="form-group col-md-3">
+								<label>*CEP:</label>
+								<input type="text" class="form-control cep" name="cep" placeholder="99999-999">
+							</div>  
+							<div class="form-group col-md-3">
+								<label>*Bairro:</label>
+								<input type="text" class="form-control" name="bairro" placeholder="Bairro">
+							</div>
+							<div class="form-group col-md-9">
+								<label>*Logradouro:</label>
+								<input type="text" class="form-control" name="logradouro" placeholder="Rua ou Avenida">
+							</div>    
+							<div class="form-group col-md-3">
+								<label>*Número:</label>
+								<input type="text" class="form-control" name="numero" placeholder="Número">
+							</div> 
+							<div class="form-group col-xs-12 col-md-12">
+								<label>Complemento</label>
+								<input type="text" class="form-control" name="complemento" placeholder="Complemento de endereço">
+							</div> 
+							<h4 class="col-md-12 text-center">
+								<hr> Contato
+								<hr>
+							</h4>
+							<div class="form-group col-xs-12 col-md-6">
+								<label>*E-mail:</label>
+								<input type="email" class="form-control" name="email" placeholder="email@exemplo.com">
+							</div>
+							<div class="form-group col-xs-12 col-md-6">
+								<label>*Telefone:</label>
+								<input type="text" class="form-control id_telefone" name="telefone" placeholder="(99) 9999-9999">
+							</div>
+							<div class="form-group col-xs-12 col-md-12">
+								<label>Site Web:</label>
+								<input type="text" class="form-control" name="site" placeholder="www.exemplo.com.br">
+							</div>
+							<div class="form-group btnbtn2">
+								<button type="submit" class="btn btn-primary col-xs-12 col-sm-12 col-md-12">Cadastrar</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
