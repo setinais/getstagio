@@ -272,10 +272,10 @@ class ListarController extends \HXPHP\System\Controller
 			$cad_cargo = Cargo::cadastrar($cargo);
 			if($cad_cargo->status === true){
 				CargoHasInstituicao::cadastrar(Instituicao::find_by_usuario_id($this->auth->getUserId())->id,$cad_cargo->cadastro->id);
-				echo "true";
+				echo true;
 				$post = null;
 			}else{
-				echo "false";
+				echo false;
 				$post = null;
 			}
 		}else if($type == "carregaCargo"){

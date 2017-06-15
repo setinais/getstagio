@@ -56,20 +56,15 @@ class UsuarioController extends \HXPHP\System\Controller
 	public function perfilAction()
 	{
 		$post = $this->request->post();
-		if(!empty($post))
-		{
-			($this->auth->getUserRole() == "Estudante" ? $callback = Estudante::editar($post,$this->auth->getUserId()) : $callback = Instituicao::editar($post,$this->auth->getUserId()) );
-			if($callback->status === true)
-			{
+		if(!empty($post)){
+			if($callback->status === true){
 				$this->load('Helpers\Alert',[
 	                    'success',
 	                    'Salvo',
 	     				'Dados alterados com sucesso.'
 	                    ]);
 
-			}
-			else
-			{
+			}else{
 	            $this->load('Helpers\Alert',[
 	                    'danger',
 	                    'Atenção',
@@ -77,7 +72,17 @@ class UsuarioController extends \HXPHP\System\Controller
 	                    ]);
 			}
 		}
+		if($this->auth->getUserRole() == "Estudante"){
+			$callback = Estudante::editar($post,$this->auth->getUserId());
+			$this->view->setVar('estudante',Estudante::find_by_usuario_id($this->auth->getUserId()));
+		}else{
+			$callback = Instituicao::editar($post,$this->auth->getUserId()) ;
+			$this->view->setVar('instituicao',Estudante::find_by_usuario_id($this->auth->getUserId()));
+		}
+			
 		($this->auth->getUserRole() == "Estudante" ? $this->requestpag = Estudante::find_by_usuario_id($this->auth->getUserId()) : $this->requestpag = Instituicao::find_by_usuario_id($this->auth->getUserId()) );
-		$this->view->setFile('perfil'.$this->auth->getUserRole())->setVar('request', $this->requestpag);
+		$this->view->setFile('perfil'.$this->auth->getUserRole())->setVar('request', $this->requestpag)->setAssets('js',
+			[$this->configs->baseURI.'public/js/jquery.js',$this->configs->baseURI.'public/js/perfil/perfil.js',$this->configs->baseURI.'public/js/jquery.1.7.7.mask.min.js',$this->configs->baseURI.'public/js/validaCpfCnpj.js'
+			]);
 	}
 }

@@ -1,14 +1,3 @@
-<?php $data = "";
-foreach($view_estados as $val){
-	$data .= "<datalist id='".$val->id."'>";
-	foreach($val->cidades as $vall){
-		$data .= "<option value='".$vall->nome."'>";
-	}
-	$data .= "</datalist>";
-}
-echo $data;
-?>
-
 <section id="login-container">
     <div class="row">
         <div class="col-xs-offset-1 col-xs-10 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8 " id="login-wrapper">
@@ -29,7 +18,7 @@ echo $data;
                         <div class="form-group ">
                             <div class="col-md-12">
                                 <label class="control-label" for="username">*E-mail:</label>
-                                <input type="text" class="form-control" id="id_nome" required="" name="email" value="<?=$view_request['email'];?>" placeholder="E-mail" />
+                                <input type="email" class="form-control" id="id_nome" required="" name="email" value="<?=$view_request['email'];?>" placeholder="E-mail" />
                             </div>
                         </div>
                         <div class="form-group">

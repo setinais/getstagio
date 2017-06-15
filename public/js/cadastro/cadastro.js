@@ -296,10 +296,26 @@ jQuery(document).ready(function($) {
             $("#informatica").show('fast');
         }
     });
+    $("#11").click(function(){
+        $("#contato").hide('fast');
+        $("#inicio").show('fast');
+    });
 
+    $("#12").click(function(){
+        $("#formacao").hide('fast');
+        $("#contato").show('fast');
+    });
 
+    $("#13").click(function(){
+        $("#idioma").hide('fast');
+        $("#formacao").show('fast');
+    });
 
+    $("#14").click(function(){
+        $("#informatica").hide('fast');
+        $("#idioma").show('fast');
 
+    });
 
     $("#clickIngles").change(function(event) {
         if($("#idIngles").css('display') == "none"){

@@ -1,23 +1,86 @@
+<?php $estudante = $view_estudante; 
+$contato = "E-mail: ".$estudante->usuario->email."<br>";
+		if(!empty($estudante->contato->telefone))
+			$contato .= "Telefone: ".$estudante->contato->telefone."<br>";
+		if(!empty($estudante->contato->celular))
+			$contato .= "Celular: ".$estudante->contato->celular."<br>";
+?>
 <div class="col-md-8 col-md-offset-2">
-	<?php echo (isset($this->alert) ? $this->alert : '' );?>
 	<div class="panel panel-default">
-  		<div class="panel-heading">
-    		<h3 class="panel-title">Perfil</h3>
-  		</div>
-  		<div class="panel-body">
-  			<form action="<?=BASE?>home/perfil" method="POST">
-    		 <div class="form-group">
+		<div class="panel-heading">
+			<h3 class="panel-title">Meu perfil</h3>
+		</div>
+		<div class="panel-body">
+			<form action="<?=BASE?>Usuario/perfil" method="POST">
+						<div class='col-sm-6'>
+							<div class='form-group'>
+								<label>Nome:</label>
+								<input type="text" name="nome" class="form-control" value="<?=$estudante->nome?>">
+							</div>
+							<div class='form-group'>
+								<label>CPF:</label>
+								<p> <?=$estudante->cpf?> </p>
+							</div>
+							<div class='form-group'>
+								<label>Data de nascimento:</label>
+								<input type="date" name="data_nasc" class="form-control" value="<?=$estudante->data_nasc->format("Y-m-d")?>">
+							</div>
+							<div class='form-group'>
+								<label>Sexo:</label>
+								<select name="sexo" class="form-control">
+									<option <?=$estudante->sexo=="Masculino"?'selected=""':'';?> value="Masculino">Masculino</option>
+									<option <?=$estudante->sexo=="Feminino"?'selected=""':'';?> value="Feminino">Feminino</option>
+								</select>
+							</div>
+							<div class='form-group'>
+								<label for='email'>E-mail:</label>
+								<input type="email" name="email" class="form-control" value="<?=$estudante->usuario->email?>">
+							</div>
 
-				<label for="id_curso">Curso*</label>
-			    <input value="<?=$view_request->curso;?>" type="text" class="form-control" id="id_curso" placeholder="Curso" name="curso" required="">
+							<div class='form-group'>
+								<label for='email'>Telefone:</label>
+								<input type="text" name="telefone" class="form-control cell" value="<?=$estudante->contato->telefone?>">
+							</div>
 
-			    <label for="id_serie">Série / Módulo / Período*</label>
-			    <input value="<?=$view_request->serie_modulo;?>" type="text" class="form-control" id="id_serie" placeholder="Série / Modulo / Período" name="serie_modulo" required="">
-			  </div>
-			   <div class="form-group col-md-4 col-md-offset-5">
-	            <button class="btn btn-success">Salvar alterações</button>
-	          </div>
-			  </form>
-  		</div>
-	</div>
-</div>		
+							<div class='form-group'>
+								<label for='email'>Celular:</label>
+								<input type="text" name="celular" class="form-control cell" value="<?=$estudante->contato->celular?>">
+							</div>
+						</div>
+						<div class='col-sm-6'>
+							<div class='form-group'>
+								<label for='email'>Estado:</label>
+								<select id="estado_id" class="form-control">
+									<?php foreach(Estado::all() as $val){ ?>
+										<option value="<?=$val->id?>" <?=$val->estados==$estudante->usuario->cidade->estado->estados?'selected=""':'';?>><?=$val->estados?></option>
+									<?php } ?>
+								</select>
+							</div>
+							<div class='form-group'>
+								<label for='email'>Cidade:</label>
+								<select id="cidade_id" name="cidade" class="form-control">
+									<option value="<?=$estudante->usuario->cidade_id?>"><?=$estudante->usuario->cidade->nome?></option>
+								</select>
+							</div>
+							<div class='form-group'>
+								<label for='email'>CEP:</label>
+								<input type="text" name="cep" class="form-control cep" value="<?=$estudante->usuario->cep?>">
+							</div>
+							<div class='form-group'>
+								<label for='email'>Bairro:</label>
+								<input type="text" name="bairro" class="form-control" value="<?=$estudante->usuario->bairro?>">
+							</div>
+							<div class='form-group'>
+								<label for='email'>Endereço:</label>
+								<input type="text" name="endereco" class="form-control" value="<?=$estudante->usuario->endereco?> Nº <?=$estudante->usuario->numero?>">
+							</div>
+							<div class='form-group'>
+								<label for='email'>Complemento:</label>
+								<input type="text" name="complemento" class="form-control" value="<?=$estudante->usuario->complemento?>">
+							</div>							
+						</div>
+						<button class="form-control btn btn-success">Salvar</button>
+				</form>
+			</div>
+		</div>
+	</div>      

@@ -81,7 +81,7 @@ $(document).ready(function() {
 				dataType: 'html',
 				data: "cargo="+$("#id_cargo").val(),
 				success: function(e){
-					if(e == "true"){
+					if(e == true){
 						$("#erro_cargo").html("<p class='bg-success'>Cargo criado com sucesso.</p>");
 						$.ajax({
 							url: 'http://localhost/getstagio/listar/ajax/carregaCargo',
@@ -93,7 +93,7 @@ $(document).ready(function() {
 							}
 						});
 						$("#id_cargo").val("");
-					}else if(e == "false"){
+					}else if(e == false){
 						$("#erro_cargo").html("<p class='bg-danger'>Ocorreu algum erro ao cadastrar o cargo tente novamente!</p>");
 					}
 				}
