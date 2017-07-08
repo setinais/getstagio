@@ -340,6 +340,11 @@ jQuery(document).ready(function($) {
     });
     var obj = "";
     $("#forma1").click(function(event) {
+        if(!$(this).prop('checked')){
+            obj = $("#cursoMedio").find('[disabled="disabled"]');
+        }else{
+            obj = "";
+        }
         if(obj == ""){
             obj = $("#cursoMedio").find('[disabled="disabled"]');
             obj.each(function(index, el) {
@@ -356,6 +361,9 @@ jQuery(document).ready(function($) {
     });
     var obj0 = "";
     $("#forma2").click(function(event) {
+        if(!$(this).prop('checked')){
+            obj0 = $("#cursoMedio").find('[disabled="disabled"]');
+        }
         if(obj0 == ""){
             obj0 = $("#cursoTec").find('[disabled="disabled"]');
             obj0.each(function(index, el) {
@@ -372,6 +380,9 @@ jQuery(document).ready(function($) {
     });
     var obj2 = "";
     $("#forma3").click(function(event) {
+        if(!$(this).prop('checked')){
+            obj2 = $("#cursoMedio").find('[disabled="disabled"]');
+        }
         if(obj2 == ""){
             obj2 = $("#cursoSup").find('[disabled="disabled"]');
             obj2.each(function(index, el) {

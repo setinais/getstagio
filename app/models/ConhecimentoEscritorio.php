@@ -7,7 +7,7 @@ class ConhecimentoEscritorio extends \HXPHP\System\Model{
 	];
 	static $validates_presence_of = [
 			[
-				'conhecimento_id',
+				'escritorio_id',
 				'message' => '<strong>O conhecimento não foi identificado</strong> é um campo obrigatório.'
 			]
 		];
@@ -17,7 +17,7 @@ class ConhecimentoEscritorio extends \HXPHP\System\Model{
 		$callback->status = false;
 		$callback->cadastro = null;
 		$callback->errors = [];
-			$cadastrar = self::create(array('conhecimento_id'=>$idesc,'estudante_id'=>$idu));
+			$cadastrar = self::create(array('escritorio_id'=>$idesc,'estudante_id'=>$idu));
 			if($cadastrar->is_valid())
 			{
 				$callback->status = true;

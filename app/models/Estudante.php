@@ -168,7 +168,7 @@ class Estudante extends \HXPHP\System\Model
 				$usuario->endereco = $post['logradouroEstudante'];
 				$usuario->cep = preg_replace("/[^0-9]/", "", $post['cep']);
 				$usuario->numero = $post['numeroEstudante'];
-				$usuario->complemento = $post['complemento'];
+				$usuario->complemento = isset($post['complemento'])?$post['complemento']:"";
 				$usuario->bairro = $post['bairro'];
 				$usuario->save();
 
@@ -200,37 +200,54 @@ class Estudante extends \HXPHP\System\Model
 	}
 
 
-	public static function editar($atributos,$id)
-	{
+	public static function editar($post,$id){
 		$callback = new \stdClass;
 		$callback->status = false;
 		$callback->est = null;
 		$callback->errors = [];
-
-		if(!empty($atributos)){
-			$editar = self::find_by_usuario_id($id);
-			$editar->update_attributes($atributos);
-			$editar->save();
-			if($editar->is_valid())
-			{
-				$callback->status = true;
-				$callback->est = $editar;
-			}
-			else
-			{
-				$errors = $editar->errors->get_raw_errors();
-				foreach ($errors as $campo => $messagem) 
-				{
-					array_push($callback->errors, $messagem[0]);
+		$insert['user'] = Usuario::editar(array(
+		'cidade_id'=> $post['cidade'],
+		'endereco'=> $post['endereco'],
+		'cep'=> preg_replace("/[^0-9]/", "", $post['cep']),
+		'numero'=> $post['numero'],
+		'complemento'=> $post['complemento'],
+		'bairro'=> $post['bairro'],
+		'email'=>$post['email'] ),
+		$id );
+		$insert['contato'] = Contato::editar(array(
+			'telefone'=>(isset($post['telefone']) && $post['telefone']!="")?preg_replace("/[^0-9]/", "", $post['telefone']):"",
+			'celular'=>(isset($post['celular']) && $post['celular']!="")?preg_replace("/[^0-9]/", "", $post['celular']):"",
+			'site'=>(isset($post['site']) && $post['site']!="")?$post['site']:"",
+			),$id);
+		$editar = self::find_by_usuario_id($id);
+		$editar->update_attributes(array(
+			'nome'=>$post['nome'],
+			'cpf'=>preg_replace("/[^0-9]/", "", $post['cpf']),
+			'sexo'=>$post['sexo'],
+			'data_nasc'=>$post['data_nasc']
+			));
+		$editar->save();
+		foreach($insert as $key => $val){
+			if($val->status == false){
+				$errors = $val->errors;
+				foreach ($errors as $campo => $messagem) {
+					array_push($callback->errors, $messagem);
 				}
 			}
 		}
-		else
-		{
-			$callback->errors = "Todos os campos estão vazios!";
+		if($editar->is_valid()){
+			$callback->status = true;
+			$callback->est = $editar;
+		}else{
+			$errors = $editar->errors->get_raw_errors();
+			foreach ($errors as $campo => $messagem){
+				array_push($callback->errors, $messagem[0]);
+			}
 		}
 		return $callback;
-	} 
+	}
+
+
 	public static function mostrarPerfil($id_usuario)
 	{
 		$estudante = self::find_by_usuario_id($id_usuario);
@@ -292,5 +309,142 @@ class Estudante extends \HXPHP\System\Model
 		</div>
 		";
 		return $layout;
+	}
+	public static function updateEst($estudante,$post){
+		var_dump($post);
+		$estudante->update_attributes(array(
+      		'nome' => !empty($post['nome']) && isset($post['nome'])?$post['nome']:'',
+      		'data_nasc' => !empty($post['dataNascimento']) && isset($post['dataNascimento'])?$post['dataNascimento']:'',
+      		'sexo' => !empty($post['sexo']) && isset($post['sexo'])?$post['sexo']:'',
+      		'cpf' => !empty($post['cpf']) && isset($post['cpf'])?$post['cpf']:'',
+      		'deficiencia'=>$post['def'],
+			'especificacao_deficiencia'=>($post['def']=="nao")?"":$post['espDeficiencia'],
+			));
+		$estudante->contato->update_attributes(array(
+			'telefone' => !empty($post['telefoneEstudante']) && isset($post['telefoneEstudante'])?$post['telefoneEstudante']:'',
+  			'celular' => !empty($post['celularEstudante']) && isset($post['celularEstudante'])?$post['celularEstudante']:'',
+		));
+		$estudante->usuario->update_attributes(array(
+			'endereco' => !empty($post['logradouroEstudante']) && isset($post['logradouroEstudante'])?$post['logradouroEstudante']:'',
+      		'cep' => !empty($post['cep']) && isset($post['cep'])?$post['cep']:'',
+      		'numero' => !empty($post['numeroEstudante']) && isset($post['numeroEstudante'])?$post['numeroEstudante']:'',
+      		'bairro' =>!empty($post['bairro']) && isset($post['bairro'])?$post['bairro']:'',
+      		'cidade_id' => !empty($post['cidade_id']) && isset($post['cidade_id'])?$post['cidade_id']:'',
+		));
+		if(isset($post['chIngles'])){
+			$test = true;
+			foreach($estudante->idiomas as $val){
+				if($val->idioma == "ingles"){
+					$val->update_attributes(array(
+						'le'=> $post[$val->idioma."Le"],
+						'fala'=> $post[$val->idioma."Fala"],
+						'escreve'=> $post[$val->idioma."Escreve"]
+						));
+					$test = false;
+				}
+			}
+			if($test){
+				Idioma::cadastrar(array(
+					"idioma"=>'ingles',
+					'le'=>$post['inglesLe'],
+					'fala'=>$post['inglesEscreve'],
+					'escreve'=>$post['inglesFala'],
+					'estudante_id'=>$estudante->id
+				));
+			}
+		}
+		if(isset($post['chEspanhol'])){
+			$test = true;
+			foreach($estudante->idiomas as $val){
+				if($val->idioma == "espanhol"){
+					$val->update_attributes(array(
+						'le'=> $post[$val->idioma."Le"],
+						'fala'=> $post[$val->idioma."Fala"],
+						'escreve'=> $post[$val->idioma."Escreve"]
+						));
+					$test = false;
+				}
+			}
+			if($test){
+				Idioma::cadastrar(array(
+					"idioma"=>'espanhol',
+					'le'=>$post['espanholLe'],
+					'fala'=>$post['espanholEscreve'],
+					'escreve'=>$post['espanholFala'],
+					'estudante_id'=>$estudante->id
+				));
+			}
+		}
+		if(isset($post['idioma']) && !empty($post['idioma'])){
+			$test = true;
+			foreach($estudante->idiomas as $val){
+				if($val->idioma == $post['idioma']){
+					$val->update_attributes(array(
+						'le'=> $post["idiomaLe"],
+						'fala'=> $post["idiomaFala"],
+						'escreve'=> $post["idiomaEscreve"]
+						));
+					$test = false;
+				}
+			}
+			if($test){
+				foreach($estudante->idiomas as $val){
+					if($val->idioma != "ingles" && $val->idioma != 'espanhol'){
+						$val->delete();
+					}
+				}
+				Idioma::cadastrar(array(
+					"idioma"=>$post['idioma'],
+					'le'=>$post['espanholLe'],
+					'fala'=>$post['espanholEscreve'],
+					'escreve'=>$post['espanholFala'],
+					'estudante_id'=>$estudante->id
+				));
+			}
+		}
+		$estudante->formacoes_complementares[0]->update_attributes(array(
+			'instituicao' => !empty($post['nomeIstituicao']) && isset($post['nomeIstituicao'])?$post['nomeIstituicao']:'',
+          	'curso' => !empty($post['cursoInstituicao']) && isset($post['cursoInstituicao'])?$post['cursoInstituicao']:'',
+          	'carga_horaria' => !empty($post['cargaHInstituicao']) && isset($post['cargaHInstituicao'])?$post['cargaHInstituicao']:'',
+        ));
+		foreach ($post as $key => $value) {
+			if(preg_replace( '/\d+$/', null, $key ) == "escritorio"){
+				if(Escritorio::existe($value)){
+					$test = ConhecimentoEscritorio::find('all',array('conditions'=>array('estudante_id = ? and escritorio_id = ?',$estudante->id,Escritorio::find_by_nome($value)->id)));
+					if(empty($test)){
+						ConhecimentoEscritorio::cadastrar($estudante->id,Escritorio::find_by_nome($value)->id);
+					}
+				}
+				$escritorio[] = $value;
+			}
+		}
+		foreach ($estudante->conhecimento_escritorios as $val) {
+			if(!in_array($val->escritorio->nome,$escritorio)){
+				$val->delete();
+			}
+		}
+		foreach ($post as $key => $value) {
+			if(preg_replace( '/\d+$/', null, $key ) == "sistema"){
+				if(Sistema::existe($value)){
+					$test = ConhecimentoSistema::find('all',array('conditions'=>array('estudante_id = ? and sistema_id = ?',$estudante->id,Sistema::find_by_nome($value)->id)));
+					if(empty($test)){
+						ConhecimentoSistema::cadastrar($estudante->id,Sistema::find_by_nome($value)->id);
+					}
+				}
+				$sistema[] = $value;
+			}
+		}
+		foreach ($estudante->conhecimento_sistemas as $val) {
+			if(in_array($val->sistema->nome,$sistema)){
+				$val->delete();
+			}
+		}
+		$estudante->informacoes_complementares[0]->update_attributes(array(
+			'disponibilidade_jornada'=>$post['disponibilidadeTurno'],
+			'disponibilidade_ch_diaria'=>$post['cargaHDiaria'],
+			'areaDeInteresse'=>$post['areaDeInteresse'],
+			'cargo'=>$post['cargo'],
+			'desc_objetivos'=>$post['descricaoEobjetivo'],
+			));
 	}
 }
