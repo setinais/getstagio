@@ -92,5 +92,22 @@ class UsuarioController extends \HXPHP\System\Controller{
 	}
 	public function updateAction(){
 		Estudante::updateEst(Estudante::find_by_usuario_id($this->auth->getUserId()),$_POST);
+		if($this->auth->getUserRole() == "Estudante"){
+			$this->view->setVar('estudante',Estudante::find_by_usuario_id($this->auth->getUserId()));
+			$this->view->setAssets('js',
+			[$this->configs->baseURI.'public/js/jquery.js',
+			$this->configs->baseURI.'public/js/perfil/perfil.js',
+			$this->configs->baseURI.'public/js/cadastro/cadastro.js',
+			$this->configs->baseURI.'public/js/jquery.1.7.7.mask.min.js',
+			$this->configs->baseURI.'public/js/validaCpfCnpj.js']);
+			$this->load('Helpers\Alert',[
+	                    'success',
+	                    'Salvo',
+	     				'Dados alterados com sucesso.'
+	                    ]);
+			$this->view->setFile('curriculo');
+		}else{
+			header('location:'.$this->configs->baseURI);
+		}
 	}
 }

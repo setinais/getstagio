@@ -1,4 +1,4 @@
-<script type="text/javascript">
+ <script type="text/javascript">
 	$(document).ready(function() {
 		$("#definicao_tempo").find('option').each(function(index, el) {
 			if($(this).val() == '<?=$view_request->definicao_tempo?>'){
@@ -9,8 +9,9 @@
 </script>
 <div class="container">
 	<div class="row">
-		<div class="col-md-8 col-md-offset-2">
+		<div class="col-md-8 col-md-offset-2 well">
 			<div class="col-md-offset-4">
+				<button class="btn bnt-warning" onclick='window.history.back()'>Voltar</button>
 				<h3><span class="label label-info">Alteração de Dados da vaga</span></h3>
 			</div>
 			<?php echo (isset($this->alert) ? $this->alert : ''); ?>

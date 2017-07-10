@@ -259,7 +259,7 @@ class Estudante extends \HXPHP\System\Model
 			$layout = " 
 		<div class='panel-heading'>
 			<h3 class='panel-title'>
-			".$estudante->nome."</h3>
+			<button class='btn btn-warning' onclick='window.history.back()'>Voltar</button><br><br>".$estudante->nome."</h3>
 		</div>
 		<div class='panel-body'>
 			<div class='col-sm-6'>
@@ -311,14 +311,14 @@ class Estudante extends \HXPHP\System\Model
 		return $layout;
 	}
 	public static function updateEst($estudante,$post){
-		var_dump($post);
+		//var_dump($post);
 		$estudante->update_attributes(array(
       		'nome' => !empty($post['nome']) && isset($post['nome'])?$post['nome']:'',
       		'data_nasc' => !empty($post['dataNascimento']) && isset($post['dataNascimento'])?$post['dataNascimento']:'',
       		'sexo' => !empty($post['sexo']) && isset($post['sexo'])?$post['sexo']:'',
       		'cpf' => !empty($post['cpf']) && isset($post['cpf'])?$post['cpf']:'',
-      		'deficiencia'=>$post['def'],
-			'especificacao_deficiencia'=>($post['def']=="nao")?"":$post['espDeficiencia'],
+      		'deficiencia'=>$post['def']=='sim'?1:0,
+			'especificacao_deficiencia'=>($post['def']=="1")?"":$post['espDeficiencia'],
 			));
 		$estudante->contato->update_attributes(array(
 			'telefone' => !empty($post['telefoneEstudante']) && isset($post['telefoneEstudante'])?$post['telefoneEstudante']:'',
@@ -442,9 +442,102 @@ class Estudante extends \HXPHP\System\Model
 		$estudante->informacoes_complementares[0]->update_attributes(array(
 			'disponibilidade_jornada'=>$post['disponibilidadeTurno'],
 			'disponibilidade_ch_diaria'=>$post['cargaHDiaria'],
-			'areaDeInteresse'=>$post['areaDeInteresse'],
-			'cargo'=>$post['cargo'],
-			'desc_objetivos'=>$post['descricaoEobjetivo'],
+			'area_interesse'=>$post['areaDeInteresse'],
+			'desc_objetivos'=>$post['descricaoEobjetivo']
 			));
+		if($estudante->stcargo->nome != $post['cargo']){
+			$estudante->stcargo->delete();
+			Stcargo::cadastrar(array('cargo'=>$post['cargo']));
+		}
+		
+		if(isset($post['ensinoMedio'])){
+			$test = true;
+			foreach($estudante->formacos as $val){
+				if($val->formacao == "Ensino Medio"){
+					$val->update_attributes(array(
+						'formacao'=>'Ensino Medio',
+						'instituicao_ensino'=>$post['instEM'],
+						'situacao_curso'=>$post['sitEM'],
+						'serie_modulo_periodo'=>(isset($post['serieEM']))?$post['serieEM']:"",
+						'ano_inicio'=>(isset($post['iniEM']))?$post['iniEM']:"",
+						'ano_termino'=>(isset($post['fimEM']))?$post['fimEM']:"",
+					));
+					$test = false;
+				}
+			}
+			if($test){
+				Formaco::cadastrar( array(
+					'formacao'=>'Ensino Medio',
+					'instituicao_ensino'=>$post['instEM'],
+					'situacao_curso'=>$post['sitEM'],
+					'serie_modulo_periodo'=>(isset($post['serieEM']))?$post['serieEM']:"",
+					'ano_inicio'=>(isset($post['iniEM']))?$post['iniEM']:"",
+					'ano_termino'=>(isset($post['fimEM']))?$post['fimEM']:"",
+					'estudante_id'=>$estudante->id
+					));
+			}
+		}
+
+
+		if(isset($post['ensinoTec'])){
+			$test = true;
+			foreach($estudante->formacos as $val){
+				if($val->formacao == "Ensino Tecnico"){
+					$val->update_attributes(array(
+						'formacao'=>'Ensino Tecnico',
+						'instituicao_ensino'=>$post['instituicaoTec'],
+						'curso'=>$post['cursoTec'],
+						'situacao_curso'=>$post['situacaoTec'],
+						'serie_modulo_periodo'=>(isset($post['serieTec']))?$post['serieTec']:"",
+						'ano_inicio'=>(isset($post['anoTecInicio']))?$post['anoTecInicio']:"",
+						'ano_termino'=>(isset($post['anoTecTermino']))?$post['anoTecTermino']:""
+						));
+					$test = false;
+				}
+			}
+			if($test){
+				Formaco::cadastrar(array(
+						'formacao'=>'Ensino Tecnico',
+						'instituicao_ensino'=>$post['instituicaoTec'],
+						'curso'=>$post['cursoTec'],
+						'situacao_curso'=>$post['situacaoTec'],
+						'serie_modulo_periodo'=>(isset($post['serieTec']))?$post['serieTec']:"",
+						'ano_inicio'=>(isset($post['anoTecInicio']))?$post['anoTecInicio']:"",
+						'ano_termino'=>(isset($post['anoTecTermino']))?$post['anoTecTermino']:"",
+						'estudante_id'=>$estudante->id
+						));
+			}
+		}
+
+		if(isset($post['ensinoSup'])){
+			$test = true;
+			foreach($estudante->formacos as $val){
+				if($val->formacao == "Ensino Superior"){
+					$val->update_attributes(array(
+						'formacao'=>'Ensino Superior',
+						'instituicao_ensino'=>$post['instituicaoSup'],
+						'curso'=>(isset($post['cursoSup']))?$post['cursoSup']:"",
+						'situacao_curso'=>$post['situacaoSup'],
+						'serie_modulo_periodo'=>(isset($post['periodoSup']))?$post['periodoSup']:"",
+						'ano_inicio'=>(isset($post['anoSupInicio']))?$post['anoSupInicio']:"",
+						'ano_termino'=>(isset($post['anoSupTermino']))?$post['anoSupTermino']:""
+						));
+					$test = false;
+				}
+			}
+			if($test){
+				Formaco::cadastrar(array(
+						'formacao'=>'Ensino Superior',
+						'instituicao_ensino'=>$post['instituicaoSup'],
+						'curso'=>$post['cursoSup'],
+						'situacao_curso'=>$post['situacaoSup'],
+						'serie_modulo_periodo'=>(isset($post['periodoSup']))?$post['periodoSup']:"",
+						'ano_inicio'=>(isset($post['anoSupInicio']))?$post['anoSupInicio']:"",
+						'ano_termino'=>(isset($post['anoSupTermino']))?$post['anoSupTermino']:"",
+						'estudante_id'=>$estudante->id
+						));
+			}
+		}
+
 	}
 }

@@ -182,7 +182,7 @@ class Usuario extends \HXPHP\System\Model
 		</div>  /container fluid-->
 		<div class='container'>
 			<div class='col-sm-8 col-md-offset-2'>
-
+				
 				<div class='panel panel-primary'>
 					";
 					$layout2 = "";

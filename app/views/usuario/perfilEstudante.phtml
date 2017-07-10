@@ -3,7 +3,7 @@
 <?php echo (isset($this->alert) ? $this->alert : ''); ?>
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title">Meu perfil</h3>
+			<h3 class="panel-title">Meu perfil</h3><a href="<?=$this->configs->baseURI?>/Usuario/curriculo" class='btn btn-success'>Editar curriculo</a>
 		</div>
 		<div class="panel-body">
 			<form action="<?=BASE?>Usuario/perfil" method="POST">
